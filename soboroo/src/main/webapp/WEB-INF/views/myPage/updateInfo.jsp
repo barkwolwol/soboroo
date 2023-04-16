@@ -100,7 +100,7 @@
 
                                 <div class="post">
 
-                                    <div class="post-body">
+                                    <div class="post-body" style="padding-top:20px">
                                         <div class="entry-header">
                                             <h2 class="entry-title">
                                                 <a href="news-single.html">닉네임 변경</a>
@@ -118,7 +118,7 @@
                                                             <div class="mb-3">
                                                                 <input type="email" class="form-control"
                                                                     id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                    style="width: 690px;" placeholder="변경할 닉네임">
+                                                                    style="width: 690px; padding: 5px 10px;" placeholder="변경할 닉네임">
                                                                 <div id="emailHelp" class="form-text" style="padding-left: 5px;">변경 가능한 닉네임입니다.
                                                                 </div>
                                                             </div>
@@ -151,7 +151,7 @@
                                                         <div class="mb-3">
                                                             <input type="email" class="form-control"
                                                                 id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                style="width: 690px;" placeholder="최대 1000자">
+                                                                style="width: 690px; padding: 5px 10px;" placeholder="최대 1000자">
                                                         </div>
                                                 </div>
                                                 <div class="post-footer">
@@ -182,7 +182,7 @@
                                                         <div class="mb-3">
                                                             <input type="email" class="form-control"
                                                                 id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                style="width: 690px;" placeholder="비밀번호 입력">
+                                                                style="width: 690px; padding: 5px 10px;" placeholder="비밀번호 입력">
                                                         </div>
                                                 </div>
                                                 <div class="post-footer">

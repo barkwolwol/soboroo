@@ -98,7 +98,7 @@
 	                    <ul class="nav navbar-nav mr-auto align-items-center">
 	
 	                      <li class="nav-item dropdown">
-	                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">온라인<i class="fa fa-angle-down"></i></a>
+	                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">온라인 <i class="fa fa-angle-down"></i></a>
 	                          <ul class="dropdown-menu" role="menu">
 	                            <li><a href="listTest.bo">반짝모임</a></li>
 	                            <li><a href="#">정기모임</a></li>
@@ -106,7 +106,7 @@
 	                      </li>
 	                      
                           <li class="nav-item dropdown">
-	                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">오프라인<i class="fa fa-angle-down"></i></a>
+	                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">오프라인 <i class="fa fa-angle-down"></i></a>
 	                          <ul class="dropdown-menu" role="menu">
 	                            <li><a href="#">반짝모임</a></li>
 	                            <li><a href="#">정기모임</a></li>
@@ -116,6 +116,27 @@
 	                      <li class="nav-item"><a class="nav-link" href="contact.html">자유게시판</a></li>
 	                      
 	                      <li class="nav-item"><a class="nav-link" href="contact.html">공지사항</a></li>
+	                      
+	                      <li class="nav-item dropdown">
+												<a href="myCalender.do" class="nav-link dropdown-toggle"
+													data-toggle="dropdown">마이페이지 <i class="fa fa-angle-down"></i></a>
+												<ul class="dropdown-menu" role="menu">
+													<li><a href="myCalender.my">나의 일정</a></li>
+													<li><a href="updateInfo.my">개인정보 수정</a></li>
+													<li><a href="myGroup.my">참여 소모임 조회</a></li>
+													<!-- <li><a href="myBoard.my">작성 게시글 조회</a></li> -->
+													<li class="dropdown-submenu">
+														<a href="myBoard.my" class="dropdown-toggle"
+															data-toggle="dropdown">작성 게시글 조회</a>
+														<ul class="dropdown-menu">
+															<li><a href="myBoard.my">소모임 게시글 조회</a></li>
+															<li><a href="mybReply.my">소모임 댓글 조회</a></li>
+															<li><a href="myCboard.my">커뮤니티 게시글 조회</a></li>
+															<li><a href="myCreply.my">커뮤니티 댓글 조회</a></li>
+														</ul>
+												</ul>
+
+											</li>
 	
 	                    </ul>
 	                    <ul class="nav navbar-nav ml-auto align-items-center">
