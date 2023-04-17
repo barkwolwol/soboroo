@@ -144,10 +144,10 @@
 	  <!-- Javascript Files
 	  ================================================== -->
 	
-	  <!-- initialize jQuery Library -->
+	  <!-- initialize jQuery Library
 	  <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>
-	  <!-- Bootstrap jQuery -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script>
+	  <!-- Bootstrap jQuery
+	  <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script> -->
 	  <!-- Slick Carousel -->
 	  <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick.min.js"></script>
 	  <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick-animation.min.js"></script>
