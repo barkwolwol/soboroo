@@ -127,7 +127,7 @@
                  
                          <li class="nav-item"><a class="nav-link" href="list.bo">자유게시판</a></li>
                          
-                         <li class="nav-item"><a class="nav-link" href="contact.html">공지사항</a></li>
+                         <li class="nav-item"><a class="nav-link" href="pmtNotice.bo">공지사항</a></li>
                          
                          <li class="nav-item dropdown">
                                     <a href="myCalender.do" class="nav-link dropdown-toggle"
@@ -187,7 +187,7 @@
      <!-- Color box -->
      <script src="${pageContext.request.contextPath}/resources/plugins/colorbox/jquery.colorbox.js"></script>
      <!-- shuffle -->
-     <script src="${pageContext.request.contextPath}/resources/plugins/shuffle/shuffle.min.js" defer="defer"></script>
+     <!-- <script src="${pageContext.request.contextPath}/resources/plugins/shuffle/shuffle.min.js" defer="defer"></script> -->
    
    
      <!-- Google Map API Key-->

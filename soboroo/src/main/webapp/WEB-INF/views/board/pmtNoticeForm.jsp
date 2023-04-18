@@ -87,29 +87,12 @@
     <div class="content">
         <br><br>
         <div class="innerOuter" style="padding:5% 10%;">
-            <h2>게시판</h2>
+            <h2>공지사항</h2>
             <br>
-            <div align="center">
-            <nav id="topMenu" style="margin-bottom: 25px; margin-left: 10%;" >
-                <ul>
-                        <li><a class="menuLink" href="#">전체</a></li>
-                        <li><a class="menuLink" href="#">교육/어학</a></li>
-                        <li><a class="menuLink" href="#">취업/자격증</a></li>
-                        <li><a class="menuLink" href="#">여행</a></li>
-                        <li><a class="menuLink" href="#">스포츠/운동</a></li>
-                        <li><a class="menuLink" href="#">요리/음식</a></li>
-                        <li><a class="menuLink" href="#">문화/예술</a></li>
-                        <li><a class="menuLink" href="#">영화/음악</a></li>
-                        <li><a class="menuLink" href="#">성인</a></li>
-                        <li><a class="menuLink" href="#">기타</a></li>
-                </ul>
-            </nav>
-            </div>
-        
-
+            
 
 	            <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼-->
-           		<a class="btn btn-secondary btn-sm" style="float:right" href="enrollForm.bo">글쓰기</a>
+           		<a class="btn btn-secondary btn-sm" style="float:right" href="pmtenrollForm.bo">글쓰기</a>
             <br></br>
             <table id="boardList" class="table table-hover" align="center">
                 <thead>
@@ -154,19 +137,7 @@
             <br clear="both"><br>
             
 
-            <form id="searchForm" action="" method="get" align="center">
-                <div class="select">
-                    <select class="custom-select" name="condition">
-                        <option value="writer">작성자</option>
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                    </select>
-                </div>
-                <div class="text">
-                    <input type="text" class="form-control" name="keyword">
-                </div>
-                <button type="submit" class="searchBtn btn btn-secondary">검색</button>
-            </form>
+           
             <br><br>
         </div>
         <br><br>

@@ -19,4 +19,18 @@ public class BoardController {
 		return "board/boardEnrollForm";
 }
 	
+	@RequestMapping("pmtNotice.bo")
+	public String pmtNotice() {
+		return "board/pmtNoticeForm";
+	
+	
+	
+}
+	@RequestMapping("pmtenrollForm.bo")
+	public String pmtenrollForm() {
+		return "board/pmtEnrollForm";
+	
+	
+	
+}
 }
