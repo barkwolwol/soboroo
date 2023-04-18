@@ -44,8 +44,8 @@
     border: none;
     border-bottom: 2px solid orange;
     border-radius: 0;
-    padding: 8px 118px 8px 0;
-    line-height: 1.2;
+    padding: 0px 118px 8px 0;
+    line-height: 1.3;
     }
    
 *:not(input):not(hr), ::before, ::after {

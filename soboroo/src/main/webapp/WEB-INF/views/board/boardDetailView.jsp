@@ -73,7 +73,7 @@
                 <br>
             <div class="author">
                 <div class="write" style=" font-size: 13px;">관리자</div>
-                <div class="board_name" style="">
+                <div class="board_name">
                     <a href="" style="color: black;">
                         카테고리 게시판
                     </a>

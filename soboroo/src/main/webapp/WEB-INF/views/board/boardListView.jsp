@@ -59,7 +59,6 @@
 #topMenu ul li {              
         list-style: none;          
         color: white;             
-        background-color: #2d2d2d;  
         float: left;               
         line-height: 30px;         
         vertical-align: middle;     
@@ -67,7 +66,7 @@
 }
 #topMenu .menuLink {                             
         text-decoration:none;                      
-        color: white;                            
+        color: rgb(0, 0, 0);                            
         display: block;                           
         width: 100px;                          
         font-size: 12px;                           
@@ -76,7 +75,7 @@
 }
 #topMenu .menuLink:hover {           
         color: orange   ;            
-        background-color: #4d4d4d;  
+        background-color: #ffffff;  
 }
 
     </style>
@@ -116,7 +115,7 @@
                     <th>글번호</th>
                     <th>
                         <select name="" id="">
-                            <option value="" style="">카테고리</option>
+                            <option value="" >카테고리</option>
                             <option value="">전체</option>
                             <option value="">전체</option>
                             <option value="">전체</option>

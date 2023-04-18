@@ -98,29 +98,7 @@
 	  
 	  
 	  
-	  <!-- Javascript Files
-	  ================================================== -->
-	
-	  <!-- initialize jQuery Library -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>
-	  <!-- Bootstrap jQuery -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script>
-	  <!-- Slick Carousel -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick.min.js"></script>
-	  <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick-animation.min.js"></script>
-	  <!-- Color box -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/colorbox/jquery.colorbox.js"></script>
-	  <!-- shuffle -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/shuffle/shuffle.min.js" defer="defer"></script>
-	
-	
-	  <!-- Google Map API Key-->
-	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer="defer"></script>
-	  <!-- Google Map Plugin-->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/google-map/map.js" defer="defer"></script>
-	
-	  <!-- Template custom -->
-	  <script src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+	 
 
 </body>
 </html>
