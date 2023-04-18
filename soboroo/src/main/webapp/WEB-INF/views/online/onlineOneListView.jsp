@@ -4,8 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>soboroo | 온라인 반짝모임</title>
+	<meta charset="UTF-8">
+	<title>soboroo | 온라인 반짝모임</title>
+	<!-- Favicon
+	================================================== -->
+  	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+  	
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
@@ -45,7 +49,7 @@
                   <%-- <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/icon-image/service-icon1.png" alt="service-icon"> --%>
               </div>
               <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="detail.on?groupNum=1">Zero Harm Everyday</a></h3>
+                  <h3 class="service-box-title"><a href="detail.on?groupNum=1" target="_blank">Zero Harm Everyday</a></h3>
                   <p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for talent like. Lorem ipsum dolor suscipit.</p>
                   <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
               </div>
@@ -63,7 +67,7 @@
                   <%-- <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/icon-image/service-icon2.png" alt="service-icon"> --%>
               </div>
               <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="detail.on?groupNum=1">Virtual Construction</a></h3>
+                  <h3 class="service-box-title"><a href="detail.on?groupNum=1" target="_blank">Virtual Construction</a></h3>
                   <p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for talent like. Lorem ipsum dolor suscipit.</p>
                   <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
               </div>
@@ -81,7 +85,7 @@
                   <%-- <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/icon-image/service-icon3.png" alt="service-icon"> --%>
               </div>
               <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="detail.on?groupNum=1">Build To Last</a></h3>
+                  <h3 class="service-box-title"><a href="detail.on?groupNum=1" target="_blank">Build To Last</a></h3>
                   <p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for talent like. Lorem ipsum dolor suscipit.</p>
                   <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
               </div>
@@ -99,7 +103,7 @@
                   <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/icon-image/service-icon4.png" alt="service-icon">
               </div>
               <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="detail.on?groupNum=1">EXTERIOR DESIGN</a></h3>
+                  <h3 class="service-box-title"><a href="detail.on?groupNum=1" target="_blank">EXTERIOR DESIGN</a></h3>
                   <p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for talent like. Lorem ipsum dolor suscipit.</p>
                   <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
               </div>
@@ -117,7 +121,7 @@
                   <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/icon-image/service-icon5.png" alt="service-icon">
               </div>
               <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="detail.on?groupNum=1">RENOVATION</a></h3>
+                  <h3 class="service-box-title"><a href="detail.on?groupNum=1" target="_blank">RENOVATION</a></h3>
                   <p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for talent like. Lorem ipsum dolor suscipit.</p>
                   <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
               </div>
@@ -135,7 +139,7 @@
                   <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/icon-image/service-icon6.png" alt="service-icon">
               </div>
               <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="detail.on?groupNum=1">SAFETY MANAGEMENT</a></h3>
+                  <h3 class="service-box-title"><a href="detail.on?groupNum=1" target="_blank">SAFETY MANAGEMENT</a></h3>
                   <p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for talent like. Lorem ipsum dolor suscipit.</p>
                   <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
               </div>
