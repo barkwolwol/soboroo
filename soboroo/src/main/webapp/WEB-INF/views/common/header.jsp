@@ -100,16 +100,28 @@
 	                      <li class="nav-item dropdown">
 	                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">온라인 <i class="fa fa-angle-down"></i></a>
 	                          <ul class="dropdown-menu" role="menu">
-	                            <li><a href="listTest.bo">반짝모임</a></li>
-	                            <li><a href="#">정기모임</a></li>
+	                            <li><a href="listOne.on">반짝모임</a></li>
+	                            <li><a href="listReg.on">정기모임</a></li>
+	                            <li class="dropdown-submenu"><a href="#">목표모임</a>
+	                            	<ul class="dropdown-menu">
+	                            		<li><a href="listGoal.on">꾸준한 습관</a></li>
+	                            		<li><a href="listDday.on">D-DAY</a></li>
+	                            	</ul>
+	                            </li>
 	                          </ul>
 	                      </li>
 	                      
                           <li class="nav-item dropdown">
 	                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">오프라인 <i class="fa fa-angle-down"></i></a>
 	                          <ul class="dropdown-menu" role="menu">
-	                            <li><a href="#">반짝모임</a></li>
-	                            <li><a href="#">정기모임</a></li>
+	                            <li><a href="listOne.off">반짝모임</a></li>
+	                            <li><a href="listReg.off">정기모임</a></li>
+	                            <li class="dropdown-submenu"><a href="#">목표모임</a>
+	                            	<ul class="dropdown-menu">
+	                            		<li><a href="listGoal.off">꾸준한 습관</a></li>
+	                            		<li><a href="listDday.off">D-DAY</a></li>
+	                            	</ul>
+	                            </li>
 	                          </ul>
 	                      </li>
 	              
@@ -165,10 +177,10 @@
 	  <!-- Javascript Files
 	  ================================================== -->
 	
-	  <!-- initialize jQuery Library -->
+	  <!-- initialize jQuery Library
 	  <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>
-	  <!-- Bootstrap jQuery -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script>
+	  <!-- Bootstrap jQuery
+	  <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script> -->
 	  <!-- Slick Carousel -->
 	  <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick.min.js"></script>
 	  <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick-animation.min.js"></script>
