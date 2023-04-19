@@ -69,7 +69,7 @@
               </li>
               <li>
                 <p class="project-info-label">모임장소</p>
-                <p class="project-info-content">온라인</p>		<!-- 오프라인의 경우 우측에 지도버튼 추가 -->
+                <p class="project-info-content">온라인</p>
               </li>
               <li>
                 <p class="project-info-label">그룹장</p>
