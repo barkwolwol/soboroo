@@ -28,13 +28,13 @@
                 <jsp:include page="../common/header.jsp" />
 
                 <!--     <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)"> -->
-                <div id="banner-area" class="banner-area" style="background-color:black">
+                <div id="banner-area" class="banner-area" style="background-color:#ff8932">
                     <div class="banner-text">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="banner-heading">
-                                        <h1 class="banner-title">MyPage</h1>
+                                        <h1 class="banner-title">마이페이지</h1>
                                     </div>
                                 </div><!-- Col end -->
                             </div><!-- Row end -->
@@ -55,7 +55,7 @@
                                             <li class="d-flex align-items-center">
                                                 <div class="posts-thumb">
                                                     <a href="#"><img loading="lazy" alt="img"
-                                                            src="images/news/news1.jpg"></a>
+                                                            src="${pageContext.request.contextPath}/resources/images/news/news1.jpg"></a>
                                                 </div>
                                                 <div class="post-info">
                                                     <h4 class="entry-title">
@@ -67,7 +67,7 @@
                                             <li class="d-flex align-items-center">
                                                 <div class="posts-thumb">
                                                     <a href="#"><img loading="lazy" alt="img"
-                                                            src="images/news/news2.jpg"></a>
+                                                            src="${pageContext.request.contextPath}/resources/images/news/news2.jpg"></a>
                                                 </div>
                                                 <div class="post-info">
                                                     <h4 class="entry-title">
@@ -79,7 +79,7 @@
                                             <li class="d-flex align-items-center">
                                                 <div class="posts-thumb">
                                                     <a href="#"><img loading="lazy" alt="img"
-                                                            src="images/news/news3.jpg"></a>
+                                                            src="${pageContext.request.contextPath}/resources/images/news/news3.jpg"></a>
                                                 </div>
                                                 <div class="post-info">
                                                     <h4 class="entry-title">

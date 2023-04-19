@@ -18,13 +18,13 @@
 
 
       <!--     <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)"> -->
-      <div id="banner-area" class="banner-area" style="background-color:black">
+      <div id="banner-area" class="banner-area" style="background-color:#ff8932">
         <div class="banner-text">
           <div class="container">
             <div class="row">
               <div class="col-lg-12">
                 <div class="banner-heading">
-                  <h1 class="banner-title">MyPage</h1>
+                  <h1 class="banner-title">마이페이지</h1>
                 </div>
               </div><!-- Col end -->
             </div><!-- Row end -->
@@ -43,9 +43,9 @@
                 <div class="widget recent-posts">
                   <h3 class="widget-title">최근 조회한 소모임</h3>
                   <ul class="list-unstyled">
-                    <li class="d-flex align-items-center">
+                    <li class="d-flex align-items-center" style="padding-bottom: 0px; margin-bottom: 10px;">
                       <div class="posts-thumb">
-                        <a href="#"><img loading="lazy" alt="img" src="images/news/news1.jpg"></a>
+                        <a href="#"><img loading="lazy" alt="img" src="${pageContext.request.contextPath}/resources/images/news/news1.jpg"></a>
                       </div>
                       <div class="post-info">
                         <h4 class="entry-title">
@@ -54,9 +54,9 @@
                       </div>
                     </li><!-- 1st post end-->
 
-                    <li class="d-flex align-items-center">
+                    <li class="d-flex align-items-center" style="padding-bottom: 0px; margin-bottom: 10px;">
                       <div class="posts-thumb">
-                        <a href="#"><img loading="lazy" alt="img" src="images/news/news2.jpg"></a>
+                        <a href="#"><img loading="lazy" alt="img" src="${pageContext.request.contextPath}/resources/images/news/news2.jpg"></a>
                       </div>
                       <div class="post-info">
                         <h4 class="entry-title">
@@ -65,9 +65,9 @@
                       </div>
                     </li><!-- 2nd post end-->
 
-                    <li class="d-flex align-items-center">
+                    <li class="d-flex align-items-center" style="padding-bottom: 0px; margin-bottom: 10px;">
                       <div class="posts-thumb">
-                        <a href="#"><img loading="lazy" alt="img" src="images/news/news3.jpg"></a>
+                        <a href="#"><img loading="lazy" alt="img" src="${pageContext.request.contextPath}/resources/images/news/news3.jpg"></a>
                       </div>
                       <div class="post-info">
                         <h4 class="entry-title">

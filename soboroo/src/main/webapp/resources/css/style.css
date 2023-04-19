@@ -1,4 +1,4 @@
-/*!------------------------------------------------------------------
+ background: #ffb600;/*!------------------------------------------------------------------
 [MAIN STYLESHEET]
 
 Template Name: Constra - Construction Html5 Template
@@ -507,7 +507,8 @@ a[href^=tel] {
   color: #fff;
   font-family: "Montserrat", sans-serif;
   transition: 350ms;
-  font-size: 14px;
+  font-size: 13px;
+  background: #ffb600;
 }
 
 @media (max-width: 767px) {
@@ -3432,8 +3433,8 @@ label {
 
 .widget.recent-posts ul li {
  /*  border-bottom: 1px solid #dadada; */
-  padding-bottom: 15px;
-  margin-bottom: 17px;
+/*   padding-bottom: 15px; */
+  margin-bottom: 10px;
 }
 
 .widget.recent-posts ul li:last-child {

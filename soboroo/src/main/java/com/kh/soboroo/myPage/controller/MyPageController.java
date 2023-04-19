@@ -12,6 +12,11 @@ public class MyPageController {
       return "myPage/myCalender";
    }
    
+   // 마이페이지 알림 호출
+   @RequestMapping("myAlert.my")
+   public String myAlert() {
+      return "myPage/myAlert";
+   }
    // 마이페이지 정보수정 페이지 호출
    @RequestMapping("updateInfo.my")
    public String updateInfo() {
