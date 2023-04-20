@@ -82,7 +82,7 @@
               </li>
               <li>
                 <p class="project-info-label">신청마감일</p>
-                <p class="project-info-content">2023년 04월 12일(수) 21:00</p>		<!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
+                <p class="project-info-content">2023년 04월 12일(수) 21:00</p>	 <!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
               </li>
               <li>
                 <p class="project-link">
