@@ -4,9 +4,11 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Insert title here</title>
+        <title>soboroo | 게시글 등록</title>
       
-
+		<!-- Favicon
+		================================================== -->
+	    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
    
         <!-- include libraries(jQuery, bootstrap) -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
