@@ -106,7 +106,7 @@
                   <div class="post-body">
                     <div class="entry-header">
                       <h2 class="entry-title">
-                        <a href="news-single.html">나의 알림</a>
+                        나의 알림
                       </h2>
                     </div><!-- header end -->
 

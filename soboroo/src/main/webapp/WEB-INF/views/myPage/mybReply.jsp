@@ -102,7 +102,7 @@
                   <div class="post-body">
                     <div class="entry-header">
                       <h2 class="entry-title">
-                        <a href="news-single.html">작성한 소모임 댓글</a>
+                      	작성한 소모임 댓글
                       </h2>
                     </div><!-- header end -->
 

@@ -94,7 +94,7 @@
                     <div class="entry-header">
 
                       <h2 class="entry-title">
-                        <a href="news-single.html">나의 일정</a>
+                        나의 일정
                       </h2>
                     </div><!-- header end -->
 

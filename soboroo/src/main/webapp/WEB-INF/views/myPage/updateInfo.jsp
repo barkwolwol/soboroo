@@ -103,7 +103,7 @@
                                     <div class="post-body">
                                         <div class="entry-header">
                                             <h2 class="entry-title">
-                                                <a href="news-single.html">닉네임 변경</a>
+                                                닉네임 변경
                                             </h2>
                                         </div><!-- header end -->
 
@@ -136,7 +136,7 @@
                                 <div class="post">
                                     <div class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="news-single.html">자기소개 변경</a>
+                                            자기소개 변경
                                         </h2>
                                     </div><!-- header end -->
 
@@ -167,7 +167,7 @@
                                 <div class="post">
                                     <div class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="news-single.html">회원 탈퇴</a>
+                                            회원 탈퇴
                                         </h2>
                                     </div><!-- header end -->
 

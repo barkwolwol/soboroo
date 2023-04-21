@@ -100,7 +100,7 @@
                   <div class="post-body">
                     <div class="entry-header">
                       <h2 class="entry-title">
-                        <a href="news-single.html">참여 소모임 조회</a>
+                        참여 소모임 조회
                       </h2>
                     </div><!-- header end -->
 

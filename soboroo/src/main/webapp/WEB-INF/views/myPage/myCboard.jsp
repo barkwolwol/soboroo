@@ -105,7 +105,7 @@
                   <div class="post-body">
                     <div class="entry-header">
                       <h2 class="entry-title">
-                        <a href="news-single.html">작성한 커뮤니티 게시글</a>
+                        작성한 커뮤니티 게시글
                       </h2>
                     </div><!-- header end -->
 
