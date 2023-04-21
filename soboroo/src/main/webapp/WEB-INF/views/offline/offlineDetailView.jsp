@@ -95,7 +95,17 @@
           </div><!-- Content col end -->
 
         </div><!-- Row end -->
-
+		
+		<!-- 여기부터는 참가버튼 누른 경우에만 보여야 함 -->
+		<hr>
+		
+		<div>
+		
+		</div>
+		<!-- 버튼 여부에 따라 보이는 부분 끝 -->
+		
+      	<hr>
+      	
       </div><!-- Conatiner end -->
     </section><!-- Main container end -->
 
