@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>같이 바리스타 자격증 취득해봐요</title>
+	<title>같이 바리스타 자격증 취득해봐요2</title>
 	
 	<!-- Favicon
 	================================================== -->
@@ -25,8 +25,8 @@
                     <h1 class="banner-title">그룹 정보</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
-                          <li class="breadcrumb-item"><a href="listOne.on">온라인</a></li>
-                          <li class="breadcrumb-item"><a href="listOne.on">반짝모임</a></li>
+                          <li class="breadcrumb-item"><a href="listOne.off">오프라인</a></li>
+                          <li class="breadcrumb-item"><a href="listOne.off">반짝모임</a></li>
                           <li class="breadcrumb-item active" aria-current="page">취업/자격증</li>
                         </ol>
                     </nav>
@@ -55,7 +55,7 @@
 
           <div class="col-lg-4 mt-5 mt-lg-0">
 
-            <h3 class="column-title mrt-0">같이 바리스타 자격증 취득해봐요</h3>
+            <h3 class="column-title mrt-0">같이 바리스타 자격증 취득해봐요2</h3>
             <p>23년 04월 23일에 진행되는 바리스타 자격증 취득 준비를 위한 온라인 모임입니다. 서로가 갖고 있는 지식을 공유하며 합격 확률을 높이고자 열심히 활동할 준비가 된 분들을 모집합니다. 많은 참여 부탁드릴게요~</p>
 
             <ul class="project-info list-unstyled">
@@ -69,7 +69,7 @@
               </li>
               <li>
                 <p class="project-info-label">모임장소</p>
-                <p class="project-info-content">온라인</p>		<!-- 오프라인의 경우 우측에 지도버튼 추가 -->
+                <p class="project-info-content">서울특별시 강남구 테헤란로14길 6 남도빌딩 2F <input type=button style="width:60px; height:20px; font-size:10px; text-align:center; line-height:15px" value="지도보기"></p>
               </li>
               <li>
                 <p class="project-info-label">그룹장</p>
