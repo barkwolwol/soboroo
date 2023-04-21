@@ -30,5 +30,11 @@ public class OfflineController {
 	      return "offline/offlineDdayListView";
 	   }
 	   
+	   // 오프라인 모임 상세 페이지 호출
+	   @RequestMapping("detail.off")
+	   public String onDetailView(int groupNum) {
+		  return "offline/offlineDetailView";
+	   }
+	   
 	   
 }
