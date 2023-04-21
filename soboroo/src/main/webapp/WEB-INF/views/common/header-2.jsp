@@ -39,7 +39,7 @@
 </head>
 <body>
 
-   <div id="top-bar" class="top-bar">
+	<div id="top-bar" class="top-bar">
         <div class="container">
           <div class="row">
               <div class="col-lg-8 col-md-8">
@@ -181,11 +181,11 @@
 	
 	  <!-- initialize jQuery Library 
 	  <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>-->
-	  <!-- Bootstrap jQuery -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script>
+	  <!-- Bootstrap jQuery 
+	  <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script>-->
 	  
-	  <!-- 서머노트 bootstrap 	  
-	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+	  <!-- 서머노트 bootstrap 	-->  
+	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 	  
 	  <!-- Slick Carousel -->
