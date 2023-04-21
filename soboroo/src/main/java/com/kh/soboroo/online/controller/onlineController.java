@@ -29,4 +29,6 @@ public class onlineController {
 	   public String onlineDdayList() {
 	      return "online/onlineDdayListView";
 	   }
+	   
+	   
 }
