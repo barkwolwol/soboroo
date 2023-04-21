@@ -7,20 +7,19 @@
         <title>Insert title here</title>
       
 
-       <!-- include libraries(jQuery, bootstrap) -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
    
-   
-    <!-- 이쪽에 헤더바 포함할꺼임 -->
-    <jsp:include page="../common/header.jsp" />
+        <!-- include libraries(jQuery, bootstrap) -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    
- 
-    <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+        <!-- 이쪽에 헤더바 포함할꺼임 -->
+        <jsp:include page="../common/header.jsp" />
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+        <!-- include summernote css/js -->
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
             <style>
             #enrollForm>table * {
@@ -178,6 +177,19 @@
                 padding: 8px 0 20px;
                 display: table;
             }
+
+               
+.where {
+  display: block;
+  margin: 25px 15px;
+  font-size: 11px;
+  color: #000;
+  text-decoration: none;
+  font-family: verdana;
+  font-style: italic;
+}
+
+
         </style>
     </head>
     
@@ -189,7 +201,7 @@
         
 
 
-        <form id="enrollForm" method="post" action="" enctype="">
+        <form id="enrollFormNotice" method="post" action="" enctype="">
             <div class="content">
                 <br><br>
                 <div class="innerOuter">
@@ -228,20 +240,30 @@
                             <tr>
                                 <th>
                                     <select style="border-bottom: 2px solid orange;">
-                                        <option selected>교육/어학</option>
+                                        <option>선택</option>
+                                        <option>교육/어학</option>
                                         <option>취업/자격증</option>
                                         <option>여행</option>
                                         <option>스포츠/운동</option>
                                         <option>요리/음식</option>
                                         <option>문화/예술</option>
                                         <option>영화/음악</option>
-                                        <option>성인</option>
                                         <option>기타</option>
                                     </select>
                                 </th>
-                                <td><input id="post_subject" name="subject"
+
+                                       
+
+
+
+
+
+                              
+                                <td>
+                                    <input id="post_subject" name="subject"
                                         class="no-margin basic_input title_name w100p mb24" type="text" value=""
-                                        placeholder="제목"></td>
+                                        placeholder="제목">
+                                    </td>
                             </tr>
 
                             <tr>
@@ -278,19 +300,64 @@
         </div>
         <br><br>
         </div>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                //아이디가 content 에 서머노트를 적용 한다.
-              $('#content').summernote({
-                height:400 , 
-                width: 1000,
-                minHeight: null,             // set minimum height of editor
-                maxHeight: null,             // set maximum height of editor
-                focus: true                  // set focus to editable area after initializing summe						  
-              });
-            });
-                                    
-            </script>
+        <script>
+           $(function(){
+         var editor = $('#content').summernote({
+        height: 500,
+        width : 1000,
+        minHeight: null,
+        maxHeight: null,
+        focus: true,
+        toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['style']],
+            ['style', ['bold', 'italic', 'underline']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['insert', ['link', 'picture', 'video','hr']],
+            ['height', ['height']],
+            ['view', ['fullscreen', 'codeview', 'help','undo','redo']]
+        ],
+        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+      fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+        callbacks: {
+          onImageUpload : function(files){
+        	console.log("이걸타나요 제발타주세요");
+            sendFile(files[0],this);
+          }
+        }
+    })
+     });
+
+     
+     function sendFile(file, editor){
+    const form_data = new FormData();
+    form_data.append('file',file);
+        
+    $.ajax({
+    	data: form_data,
+    	type:"POST",
+    	url :"insertImg.co",
+    	cache : false,
+    	contentType : false,
+    	enctype : "multipart/form-data",
+    	processData : false,
+    	success : function(url){
+    		$(editor).summernote('insertImage', url, function($image){
+    			$image.css("width", "50%");
+    		})
+    	}, error:function(){
+    		console.log("ajax 통신 실패!");
+    	}
+    })	
+    
+    
+}
+
+
+        </script>
 
 
         <!-- 이쪽에 푸터바 포함할꺼임 -->

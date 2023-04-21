@@ -92,7 +92,7 @@
             
 
 	            <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼-->
-           		<a class="btn btn-secondary btn-sm" style="float:right" href="pmtenrollForm.bo">글쓰기</a>
+           		<a class="btn btn-secondary btn-sm" style="float:right" href="pmtenrollForm.no">글쓰기</a>
             <br></br>
             <table id="boardList" class="table table-hover" align="center">
                 <thead>

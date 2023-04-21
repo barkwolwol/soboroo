@@ -96,8 +96,7 @@
 	    </div><!-- Copyright end -->
 	  </footer><!-- Footer end -->
 	  
-	  <!-- Javascript Files
-     ================================================== -->
+	
    
      
 	 
