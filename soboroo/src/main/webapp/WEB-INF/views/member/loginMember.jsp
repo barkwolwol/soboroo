@@ -20,9 +20,7 @@
 	            <span id="titleLogo"><img src="resources/images/logo_1.png" alt=""></span>
 			</div>
 	       <div id="login_input">
-	           <form action="#" method="post">
-	               <button type="submit" class="login_btn">로그인</button>
-	           </form>
+               <button type="submit" class="login_btn">카카오로 시작하기</button>
 	       </div>
 	    </div>
 	</div>
