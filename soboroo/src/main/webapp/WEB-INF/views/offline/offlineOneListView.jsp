@@ -37,8 +37,12 @@
 
 <section id="main-container" class="main-container pb-2">
   <div class="container">
+  	<div style="text-align: right">
+	  	<a class="btn btn-primary" href="enrollOne.off">새로운 모임</a>
+  	</div>
+  	<br>
+  	
     <div class="row">
-
       <div class="col-lg-4 col-md-6 mb-5">
         <div class="ts-service-box">
             <div class="ts-service-image-wrapper">
