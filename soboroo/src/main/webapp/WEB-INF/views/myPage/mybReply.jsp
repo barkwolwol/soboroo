@@ -7,6 +7,14 @@
       <meta charset="UTF-8">
       <title>Insert title here</title>
       <style>
+      
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
         #boardList {
           text-align: center;
         }
@@ -19,10 +27,19 @@
           width: fit-content;
           margin: auto;
         }
+        
+
+
+body * {
+	font-family: 'GmarketSansMedium';
+}
+
+
       </style>
     </head>
 
     <body>
+    <h3 class="test">테스트ㅡ트트트트	</h3>
       <div class="body-inner">
 
         <jsp:include page="../common/header.jsp" />
@@ -51,7 +68,7 @@
                 <div class="sidebar sidebar-left">
 
                   <div class="widget recent-posts">
-                    <h3 class="widget-title">최근 조회한 소모임</h3>
+                    <h3 class="widget-title test">최근 조회한 소모임</h3>
                     <ul class="list-unstyled">
                       <li class="d-flex align-items-center">
                         <div class="posts-thumb">
