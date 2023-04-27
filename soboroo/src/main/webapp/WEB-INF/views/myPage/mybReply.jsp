@@ -7,14 +7,6 @@
       <meta charset="UTF-8">
       <title>Insert title here</title>
       <style>
-      
-@font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
         #boardList {
           text-align: center;
         }
@@ -27,19 +19,11 @@
           width: fit-content;
           margin: auto;
         }
-        
-
-
-body * {
-	font-family: 'GmarketSansMedium';
-}
-
-
+      
       </style>
     </head>
 
     <body>
-    <h3 class="test">테스트ㅡ트트트트	</h3>
       <div class="body-inner">
 
         <jsp:include page="../common/header.jsp" />

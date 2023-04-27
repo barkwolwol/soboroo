@@ -57,6 +57,7 @@
           padding: 3px 10px 3px;
           float: right;
         }
+
       </style>
 
     </head>
@@ -179,8 +180,9 @@
                     </ul>
 
                     </li>
-                    <li class="nav-item"><i class="fa-sharp fa-solid fa-bell" a tabindex="0" data-toggle="popover"
+                    <li class="nav-item"><i class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
                         data-bs-trigger="focus" title="최신 알림" data-html="true" data-content="
+                        
                         <div>
                         <li>XXX님이 회원님의 소모임에 참가했습니다.</li>
                       </div>
@@ -197,7 +199,11 @@
                         <li>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</li>
                       </div>
                       <a href='myAlert.my'>더보기</a>
-                      " data-placement="bottom"></i></li>
+                      " data-placement="bottom">
+                      </i>
+                          <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"></span>
+                      </li>
+                     
 
                     <script>
                       $(function () {
