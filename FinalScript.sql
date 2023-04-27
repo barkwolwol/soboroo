@@ -1,6 +1,6 @@
 -- 관리자계정에서 계정 생성
 -- CREATE USER SOBOROO IDENTIFIED BY SOBOROO;
--- GRANT CONNECT, RESOURCE TO SOBOROO; 
+-- GRANT CONNECT, RESOURCE TO SOBOROO;
 
 -- 시퀀스 삭제
 DROP SEQUENCE SEQ_MEM_NO;
@@ -39,6 +39,26 @@ CREATE TABLE TABLE_NAME(
 COMMENT ON COLUMN TABLE_NAME.TABLE_NO IS '테이블번호';
 COMMENT ON COLUMN TABLE_NAME.TABLE_NAME IS '테이블명';
 
+-- 테이블관리 데이터 입력(필수 입력사항)
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(1, 'MEMBER');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(2, 'ONLINE_GROUP_ONCE');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(3, 'ONLINE_GROUP_REGULAR');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(4, 'ONLINE_CHALLENGE_D_DAY');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(5, 'ONLINE_CHALLENGE_REGULAR');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(6, 'OFFLINE_GROUP_ONCE');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(7, 'OFFLINE_GROUP_REGULAR');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(8, 'OFFLINE_CHALLENGE_D_DAY');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(9, 'OFFLINE_CHALLENGE_REGULAR ');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(10, 'BOARD');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(11, 'NOTICE');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(12, 'REPLY');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(13, 'ENTRY_LIST');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(14, 'REPORT');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(15, 'ALERT');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(16, 'UPLOAD');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(17, 'CATEGORY');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(18, 'LOCAL');
+INSERT INTO TABLE_NAME(TABLE_NO, TABLE_NAME) VALUES(19, 'GROUP_MESSAGE');
 
 -- ------------------- MEMBER ---------------------
 
@@ -52,17 +72,16 @@ CREATE SEQUENCE SEQ_MEM_NO
 -- 회원 테이블 생성
 CREATE TABLE MEMBER(
     MEM_NO NUMBER PRIMARY KEY,
-    MEM_TOKEN VARCHAR2(1000),
+    MEM_TOKEN VARCHAR2(4000),
     MEM_ID VARCHAR2(100) NOT NULL UNIQUE,
     MEM_BIRTH DATE NOT NULL,
-    MEM_PHONE VARCHAR2(100) NOT NULL,
+    MEM_PHONE VARCHAR2(50) NOT NULL,
     MEM_NAME VARCHAR2(50) NOT NULL,
-    MEM_STATUS_NY CHAR(10) DEFAULT 'Y' CONSTRAINT MEM_STATUS_NY_CK CHECK(MEM_STATUS_NY IN('Y','N')),
+    MEM_STATUS NUMBER DEFAULT 1 NOT NULL CONSTRAINT MEM_STATUS_CK CHECK(MEM_STATUS IN(1,2,3,4,5)),
     MEM_NICKNAME VARCHAR2(50),
     MEM_INTRODUCE VARCHAR2(3000),
-    MEM_RPR_CUM NUMBER,
-    MEM_IMG VARCHAR2(1000),
-    MEM_ADMIN_NY CHAR(10) DEFAULT 'N' CONSTRAINT MEM_ADMIN_NY_CK CHECK(MEM_ADMIN_NY IN('Y','N'))
+    MEM_RPR_COUNT NUMBER DEFAULT 0,
+    MEM_IMG VARCHAR2(1000)
 );
     
 -- 회원 컬럼명   
@@ -72,183 +91,291 @@ COMMENT ON COLUMN MEMBER.MEM_ID IS '아이디';
 COMMENT ON COLUMN MEMBER.MEM_BIRTH IS '본인인증 확인용 생년월일';
 COMMENT ON COLUMN MEMBER.MEM_PHONE IS '휴대폰 번호';
 COMMENT ON COLUMN MEMBER.MEM_NAME IS '이름';
-COMMENT ON COLUMN MEMBER.MEM_STATUS_NY IS '회원 상태';
+COMMENT ON COLUMN MEMBER.MEM_STATUS IS '회원 상태';
 COMMENT ON COLUMN MEMBER.MEM_NICKNAME IS '닉네임';
 COMMENT ON COLUMN MEMBER.MEM_INTRODUCE IS '자기소개';
-COMMENT ON COLUMN MEMBER.MEM_RPR_CUM IS '누적 신고수';
+COMMENT ON COLUMN MEMBER.MEM_RPR_COUNT IS '누적 신고수';
 COMMENT ON COLUMN MEMBER.MEM_IMG IS '프로필 이미지';
-COMMENT ON COLUMN MEMBER.MEM_ADMIN_NY IS '관리자 여부';
+
+-- 관리자 데이터 입력(필수 입력사항)
+INSERT INTO MEMBER(MEM_NO, MEM_TOKEN, MEM_ID, MEM_BIRTH, MEM_PHONE, MEM_NAME, MEM_STATUS, MEM_NICKNAME) VALUES(SEQ_MEM_NO.NEXTVAL, 'TOKEN1', 'qwer9402@naver.com', '1998-05-08', '010-5049-9858', '김수진', 5, '관리자');
+INSERT INTO MEMBER(MEM_NO, MEM_TOKEN, MEM_ID, MEM_BIRTH, MEM_PHONE, MEM_NAME, MEM_STATUS, MEM_NICKNAME) VALUES(SEQ_MEM_NO.NEXTVAL, 'TOKEN2', 'never2462@naver.com', '1996-04-02', '010-4916-4217', '최영재', 5, '관리자');
+INSERT INTO MEMBER(MEM_NO, MEM_TOKEN, MEM_ID, MEM_BIRTH, MEM_PHONE, MEM_NAME, MEM_STATUS, MEM_NICKNAME) VALUES(SEQ_MEM_NO.NEXTVAL, 'TOKEN3', 'barkwolwol@gmail.com', '1993-02-24', '010-4130-9950', '이형근', 5, '관리자');
+INSERT INTO MEMBER(MEM_NO, MEM_TOKEN, MEM_ID, MEM_BIRTH, MEM_PHONE, MEM_NAME, MEM_STATUS, MEM_NICKNAME) VALUES(SEQ_MEM_NO.NEXTVAL, 'TOKEN4', 'wlsdn960531@naver.com', '1996-05-31', '010-4694-3228', '박진우', 5, '관리자');
+INSERT INTO MEMBER(MEM_NO, MEM_TOKEN, MEM_ID, MEM_BIRTH, MEM_PHONE, MEM_NAME, MEM_STATUS, MEM_NICKNAME) VALUES(SEQ_MEM_NO.NEXTVAL, 'TOKEN5', 'dlemrdl95@naver.com', '1995-04-01', '010-7307-9295', '이지원', 5, '관리자');
+
+-- 회원 데이터 입력
+INSERT INTO MEMBER(MEM_NO, MEM_TOKEN, MEM_ID, MEM_BIRTH, MEM_PHONE, MEM_NAME, MEM_STATUS, MEM_NICKNAME, MEM_INTRODUCE, MEM_RPR_COUNT, MEM_IMG) VALUES(SEQ_MEM_NO.NEXTVAL, 'TOKEN6', 'kh1018@gmail.com', '2000-10-18', '010-2022-2023', '김도기', 1, '디그다그', '자기소개하고 있는 중입니다.', DEFAULT, NULL);
+
+-- -------------------- CATEGORY ---------------------
 
 
--- ------------------- ALERT -----------------------
+-- -------------------- LOCATION ---------------------
 
--- 알림 테이블 생성
-CREATE TABLE ALERT(
-    ID_NO NUMBER PRIMARY KEY,
-    TABLE_NO NUMBER REFERENCES TABLE_NAME(TABLE_NO),
-    MEM_NO NUMBER NOT NULL REFERENCES MEMBER(MEM_NO),
-    ALERT_DATE DATE DEFAULT SYSDATE NOT NULL,
-    ALERT_TYPE NUMBER CONSTRAINT ALERT_TYPE_CK CHECK(ALERT_TYPE IN('1','2','3','4','5','6')),
-    ALERT_READ_NY CHAR(10) DEFAULT 'N' CONSTRAINT ALERT_READ_NY_CK CHECK(ALERT_READ_NY IN('Y','N'))
+-- 지역 테이블 생성
+CREATE TABLE LOCATION(
+    LOCAL_NO NUMBER NOT NULL,
+    SIDO VARCHAR2(100) NOT NULL,
+    SIGUNGU VARCHAR2(100) NOT NULL
 );
 
--- 알림 컬럼명
-COMMENT ON COLUMN ALERT.ID_NO IS '게시물 번호';
-COMMENT ON COLUMN ALERT.TABLE_NO IS '테이블 번호';
-COMMENT ON COLUMN ALERT.MEM_NO IS '회원 번호';
-COMMENT ON COLUMN ALERT.ALERT_DATE IS '알림 일시';
-COMMENT ON COLUMN ALERT.ALERT_TYPE IS '알림 타입';
-COMMENT ON COLUMN ALERT.ALERT_READ_NY IS '알림 상태';
+-- 지역 컬럼명
+COMMENT ON COLUMN LOCATION.LOCAL_NO IS '지역번호';
+COMMENT ON COLUMN LOCATION.SIDO IS '시도';
+COMMENT ON COLUMN LOCATION.SIGUNGU IS '시군구';
 
--- ------------------- CATEGORY ---------------------
-
--- 카테고리 테이블 생성
-CREATE TABLE CATEGORY(
-    CATEGORY NUMBER PRIMARY KEY,
-    CATEGORY_TITLE VARCHAR2(3000) NOT NULL
-);
-
--- 카테고리 컬럼명
-COMMENT ON COLUMN CATEGORY.CATEGORY IS '카테고리';
-COMMENT ON COLUMN CATEGORY.CATEGORY_TITLE IS '카테고리명';
-
--- --------------------- REPLY -----------------------
-
--- 댓글 테이블 생성
-CREATE TABLE REPLY(
-    REPLY_NO NUMBER PRIMARY KEY,
-    REPLY_CONTENT VARCHAR2(3000) NOT NULL,
-    ENROLL_DATE DATE DEFAULT SYSDATE NOT NULL,
-    MODIFY_DATE DATE DEFAULT SYSDATE,
-    DEL_NY VARCHAR2(60) DEFAULT 'N' CHECK(DEL_NY IN('Y','N')) NOT NULL,
-    REP_NY VARCHAR2(60) DEFAULT 'N' CHECK(REP_NY IN('Y','N')) NOT NULL,
-    RECOMENT_NY VARCHAR2(60) DEFAULT 'N' CHECK(RECOMENT_NY IN('Y','N')) NOT NULL,
-    REPER_NO NUMBER NOT NULL,
-    FOREIGN KEY(MEM_NO) REFERENCES MEMBER(MEM_NO),
-    FOREIGN KEY(TABLE_NO) REFERENCES TABLE_NAME(TABLE_NO),
-    FOREIGN KEY(BOARD_NO) REFERENCES BOARD(BOARD_NO)
-);
-
--- 댓글 컬럼명
-COMMENT ON COLUMN REPLY.REPLY_NO IS '댓글번호';
-COMMENT ON COLUMN REPLY.REPLY_CONTENT IS '댓글내용';
-COMMENT ON COLUMN REPLY.ENROLL_DATE IS '작성일';
-COMMENT ON COLUMN REPLY.MODIFY_DATE IS '수정일자';
-COMMENT ON COLUMN REPLY.DEL_NY IS '삭제여부';
-COMMENT ON COLUMN REPLY.REP_NY IS '신고여부';
-COMMENT ON COLUMN REPLY.RECOMMENT_NY IS '대댓글여부';
-COMMENT ON COLUMN REPLY.REPER_NO IS '참조댓글';
-COMMENT ON COLUMN REPLY.MEM_NO IS '참조회원번호';
-COMMENT ON COLUMN REPLY.TABLE_NO IS '참조테이블번호';
-COMMENT ON COLUMN REPLY.BOARD_NO IS '참조게시판번호';
-
--- ------------------ ENTRY_LIST ---------------------
-
--- 참가자목록 테이블 생성
-CREATE TABLE ENTRY_LIST(
-    GROUP_NO NUMBER NOT NULL,
-    ENTRY_ID VARCHAR2(60) NOT NULL,
-    WAIT_NY DEFAULT 'N' CHECK(WAIT_NY IN('Y','N')) NOT NULL,
-    ENTRY_DATE DATE DEFAULT SYSDATE NOT NULL,
-    FOREIGN KEY(MEM_NO) REFERENCES MEMBER(MEM_NO),
-    FOREIGN KEY(TABLE_NO) REFERENCES TABLE_NAME(TABLE_NO)
-);
-
--- 참가자목록 컬럼명
-COMMENT ON COLUMN ENTRY_LIST.GROUP_NO IS '모임번호';
-COMMENT ON COLUMN ENTRY_LIST.ENTRY_ID IS '참가자아이디';
-COMMENT ON COLUMN ENTRY_LIST.WAIT_NY IS '대기여부';
-COMMENT ON COLUMN ENTRY_LIST.ENTRY_DATE IS '참가시간';
-COMMENT ON COLUMN ENTRY_LIST.GROUP_NO IS '참조회원번호';
-COMMENT ON COLUMN ENTRY_LIST.GROUP_NO IS '참조테이블번호';
-
--- ----------------- GROUP_MESSAGE -------------------
-
--- 실시간채팅(그룹채팅) 테이블 생성
-CREATE TABLE GROUP_MESSAGE(
-    CHANNEL_NO NUMBER PRIMARY KEY,
-    MESSAGE_CONTENT VARCHAR2(4000) NOT NULL,
-    CREATE_AT DATE DEFAULT SYSDATE NOT NULL,
-    CHANNEL_ID VARCHAR2(1000) NOT NULL,
-    FOREIGN KEY(MEM_NO) REFERENCES MEMBER(MEM_NO)
-);
-
--- 실시간채팅 컬럼명
-COMMENT ON COLUMN GROUP_MESSAGE.CHANNEL_NO IS '채널번호';
-COMMENT ON COLUMN GROUP_MESSAGE.MESSAGE_CONTENT IS '내용';
-COMMENT ON COLUMN GROUP_MESSAGE.CREATE_AT IS '메시지 생성시간';
-COMMENT ON COLUMN GROUP_MESSAGE.CHANNEL_ID IS '채널명';
-COMMENT ON COLUMN GROUP_MESSAGE.MEM_NO IS '참조회원번호';
-
--- --------------------- BOARD -----------------------
-
--- 자유게시판 글 번호 부여하기 위한 시퀀스 생성
-CREATE SEQUENCE SEQ_BOARD
-    START WITH 1
-    INCREMENT BY 1
-    NOCYCLE
-    NOCACHE;
-
--- 자유게시판 테이블 생성
-CREATE TABLE BOARD(
-    BOARD_NO NUMBER NOT NULL,
-    BOARD_TITLE VARCHAR(50) NOT NULL,
-    BOARD_CONTENT VARCHAR(2000) NOT NULL,
-    CREATE_DATE DATE DEFAULT SYSDATE NOT NULL,
-    MODIFY_DATE DATE DEFAULT SYSDATE NOT NULL,
-    BOARD_HIT NUMBER NOT NULL,
-    BOARD_FILE VARCHAR(1000),
-    REP_NY VARCHAR(60) DEFAULT 'N' NOT NULL CONSTRAINT RPR_NY_CK CHECK(RPR_NY IN('Y','N')),
-    DEL_NY VARCHAR(1) DEFAULT 'N' NOT NULL CONSTRAINT DEL_NY_CK CHECK(DEL_NY IN('Y','N')),
-    CATEGORY NUMBER NOT NULL REFERENCES CATEGORY,
-    MEM_NO NUMBER NOT NULL REFERENCES MEMBER,
-    TABLE_NO NUMBER NOT NULL REFERENCES TABLE_NAME
-);
-
--- 자유게시판 컬럼명
-COMMENT ON COLUMN BOARD.BOARD_NO IS '게시글 번호';
-COMMENT ON COLUMN BOARD.BOARD_TITLE IS '제목';
-COMMENT ON COLUMN BOARD.BOARD_CONTENT IS '게시글 내용';
-COMMENT ON COLUMN BOARD.CREATE_DATE IS '작성일';
-COMMENT ON COLUMN BOARD.MODIFY_DATE IS '수정일';
-COMMENT ON COLUMN BOARD.BOARD_HIT IS '조회수';
-COMMENT ON COLUMN BOARD.BOARD_FILE IS '첨부파일';
-COMMENT ON COLUMN BOARD.REP_NY IS '신고여부';
-COMMENT ON COLUMN BOARD.DEL_NY IS '삭제여부';
-COMMENT ON COLUMN BOARD.CATEGORY IS '카테고리';
-COMMENT ON COLUMN BOARD.MEM_NO IS '인덱스';
-COMMENT ON COLUMN BOARD.TABLE_NO IS '테이블 번호';
-
--- -------------------- NOTICE -----------------------
-
--- 공지글 번호 부여하기 위한 시퀀스 생성
-CREATE SEQUENCE SEQ_NTC
-    START WITH 1
-    INCREMENT BY 1
-    NOCYCLE
-    NOCACHE;
-
--- 공지사항 테이블 생성
-CREATE TABLE NOTICE(
-    NTC_NO NUMBER NOT NULL,
-    NTC_WRLTER VARCHAR(20) NOT NULL,
-    NTC_TITLE VARCHAR(100) NOT NULL,
-    NTC_CNT VARCHAR(2000) NOT NULL,
-    NTC_DATE DATE DEFAULT SYSDATE NOT NULL,
-    NTC_COUNT NUMBER NOT NULL,
-    NTC_DEL_NY VARCHAR(1) DEFAULT 'N' NOT NULL CONSTRAINT DEL_NY_CK CHECK(DEL_NY IN('Y','N')),
-    UPDATED_AT DATE DEFAULT SYSDATE NOT NULL
-);
-
--- 공지사항 컬럼명
-COMMENT ON COLUMN NOTICE.NTC_NO IS '공지사항 번호';
-COMMENT ON COLUMN NOTICE.NTC_WRLTER IS '작성자';
-COMMENT ON COLUMN NOTICE.NTC_TITLE IS '공지제목';
-COMMENT ON COLUMN NOTICE.NTC_CNT IS '공지내용';
-COMMENT ON COLUMN NOTICE.NTC_DATE IS '공지등록일';
-COMMENT ON COLUMN NOTICE.NTC_COUNT IS '조회수';
-COMMENT ON COLUMN NOTICE.NTC_DEL_NY IS '삭제여부';
-COMMENT ON COLUMN NOTICE.NTC_UPDATE_AT IS '수정일';
+-- 지역 데이터 입력(필수 입력사항)
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(1, '강원도', '강릉시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(2, '강원도', '고성군');
+	(3, '강원도', '동해시'),
+	(4, '강원도', '삼척시'),
+	(5, '강원도', '속초시'),
+	(6, '강원도', '양구군'),
+	(7, '강원도', '양양군'),
+	(8, '강원도', '영월군'),
+	(9, '강원도', '원주시'),
+	(10, '강원도', '인제군'),
+	(11, '강원도', '정선군'),
+	(12, '강원도', '철원군'),
+	(13, '강원도', '춘천시'),
+	(14, '강원도', '태백시'),
+	(15, '강원도', '평창군'),
+	(16, '강원도', '홍천군'),
+	(17, '강원도', '화천군'),
+	(18, '강원도', '횡성군'),
+	(19, '경기도', '가평군'),
+	(20, '경기도', '고양시'),
+	(21, '경기도', '고양시'),
+	(22, '경기도', '고양시'),
+	(23, '경기도', '고양시'),
+	(24, '경기도', '과천시'),
+	(25, '경기도', '광명시'),
+	(26, '경기도', '광주시'),
+	(27, '경기도', '구리시'),
+	(28, '경기도', '군포시'),
+	(29, '경기도', '김포시'),
+	(30, '경기도', '남양주시'),
+	(31, '경기도', '동두천시'),
+	(32, '경기도', '부천시'),
+	(33, '경기도', '성남시'),
+	(34, '경기도', '성남시'),
+	(35, '경기도', '성남시'),
+	(36, '경기도', '수원시'),
+	(37, '경기도', '수원시'),
+	(38, '경기도', '수원시'),
+	(39, '경기도', '수원시'),
+	(40, '경기도', '시흥시'),
+	(41, '경기도', '안산시'),
+	(42, '경기도', '안산시'),
+	(43, '경기도', '안성시'),
+	(44, '경기도', '안양시'),
+	(45, '경기도', '안양시'),
+	(46, '경기도', '양주시'),
+	(47, '경기도', '양평군'),
+	(48, '경기도', '여주시'),
+	(49, '경기도', '연천군'),
+	(50, '경기도', '오산시'),
+	(51, '경기도', '용인시'),
+	(52, '경기도', '용인시'),
+	(53, '경기도', '용인시'),
+	(54, '경기도', '의왕시'),
+	(55, '경기도', '의정부시'),
+	(56, '경기도', '이천시'),
+	(57, '경기도', '파주시'),
+	(58, '경기도', '평택시'),
+	(59, '경기도', '포천시'),
+	(60, '경기도', '하남시'),
+	(61, '경기도', '화성시'),
+	(62, '경상남도', '거제시'),
+	(63, '경상남도', '거창군'),
+	(64, '경상남도', '고성군'),
+	(65, '경상남도', '김해시'),
+	(66, '경상남도', '남해군'),
+	(67, '경상남도', '밀양시'),
+	(68, '경상남도', '사천시'),
+	(69, '경상남도', '산청군'),
+	(70, '경상남도', '양산시'),
+	(71, '경상남도', '의령군'),
+	(72, '경상남도', '진주시'),
+	(73, '경상남도', '창녕군'),
+	(74, '경상남도', '창원시'),
+	(75, '경상남도', '창원시'),
+	(76, '경상남도', '창원시'),
+	(77, '경상남도', '창원시'),
+	(78, '경상남도', '창원시'),
+	(79, '경상남도', '통영시'),
+	(80, '경상남도', '하동군'),
+	(81, '경상남도', '함안군'),
+	(82, '경상남도', '함양군'),
+	(83, '경상남도', '합천군'),
+	(84, '경상북도', '경산시'),
+	(85, '경상북도', '경주시'),
+	(86, '경상북도', '고령군'),
+	(87, '경상북도', '구미시'),
+	(88, '경상북도', '군위군'),
+	(89, '경상북도', '김천시'),
+	(90, '경상북도', '문경시'),
+	(91, '경상북도', '봉화군'),
+	(92, '경상북도', '상주시'),
+	(93, '경상북도', '성주군'),
+	(94, '경상북도', '안동시'),
+	(95, '경상북도', '영덕군'),
+	(96, '경상북도', '영양군'),
+	(97, '경상북도', '영주시'),
+	(98, '경상북도', '영천시'),
+	(99, '경상북도', '예천군'),
+	(100, '경상북도', '울릉군'),
+	(101, '경상북도', '울진군'),
+	(102, '경상북도', '의성군'),
+	(103, '경상북도', '청도군'),
+	(104, '경상북도', '청송군'),
+	(105, '경상북도', '칠곡군'),
+	(106, '경상북도', '포항시'),
+	(107, '경상북도', '포항시'),
+	(108, '경상북도', '포항시'),
+	(109, '광주광역시', '광산구'),
+	(110, '광주광역시', '남구'),
+	(111, '광주광역시', '동구'),
+	(112, '광주광역시', '북구'),
+	(113, '광주광역시', '서구'),
+	(114, '대구광역시', '남구'),
+	(115, '대구광역시', '달서구'),
+	(116, '대구광역시', '달성군'),
+	(117, '대구광역시', '동구'),
+	(118, '대구광역시', '북구'),
+	(119, '대구광역시', '서구'),
+	(120, '대구광역시', '수성구'),
+	(121, '대구광역시', '중구'),
+	(122, '대전광역시', '대덕구'),
+	(123, '대전광역시', '동구'),
+	(124, '대전광역시', '서구'),
+	(125, '대전광역시', '유성구'),
+	(126, '대전광역시', '중구'),
+	(127, '부산광역시', '강서구'),
+	(128, '부산광역시', '금정구'),
+	(129, '부산광역시', '기장군'),
+	(130, '부산광역시', '남구'),
+	(131, '부산광역시', '동구'),
+	(132, '부산광역시', '동래구'),
+	(133, '부산광역시', '부산진구'),
+	(134, '부산광역시', '북구'),
+	(135, '부산광역시', '사상구'),
+	(136, '부산광역시', '사하구'),
+	(137, '부산광역시', '서구'),
+	(138, '부산광역시', '수영구'),
+	(139, '부산광역시', '연제구'),
+	(140, '부산광역시', '영도구'),
+	(141, '부산광역시', '중구'),
+	(142, '부산광역시', '해운대구'),
+	(143, '서울특별시', '강남구'),
+	(144, '서울특별시', '강동구'),
+	(145, '서울특별시', '강북구'),
+	(146, '서울특별시', '강서구'),
+	(147, '서울특별시', '관악구'),
+	(148, '서울특별시', '광진구'),
+	(149, '서울특별시', '구로구'),
+	(150, '서울특별시', '금천구'),
+	(151, '서울특별시', '노원구'),
+	(152, '서울특별시', '도봉구'),
+	(153, '서울특별시', '동대문구'),
+	(154, '서울특별시', '동작구'),
+	(155, '서울특별시', '마포구'),
+	(156, '서울특별시', '서대문구'),
+	(157, '서울특별시', '서초구'),
+	(158, '서울특별시', '성동구'),
+	(159, '서울특별시', '성북구'),
+	(160, '서울특별시', '송파구'),
+	(161, '서울특별시', '양천구'),
+	(162, '서울특별시', '영등포구'),
+	(163, '서울특별시', '용산구'),
+	(164, '서울특별시', '은평구'),
+	(165, '서울특별시', '종로구'),
+	(166, '서울특별시', '중구'),
+	(167, '서울특별시', '중랑구'),
+	(168, '울산광역시', '남구'),
+	(169, '울산광역시', '동구'),
+	(170, '울산광역시', '북구'),
+	(171, '울산광역시', '울주군'),
+	(172, '울산광역시', '중구'),
+	(173, '인천광역시', '강화군'),
+	(174, '인천광역시', '계양구'),
+	(175, '인천광역시', '남동구'),
+	(176, '인천광역시', '동구'),
+	(177, '인천광역시', '미추홀구'),
+	(178, '인천광역시', '부평구'),
+	(179, '인천광역시', '서구'),
+	(180, '인천광역시', '연수구'),
+	(181, '인천광역시', '옹진군'),
+	(182, '인천광역시', '중구'),
+	(183, '전라남도', '강진군'),
+	(184, '전라남도', '고흥군'),
+	(185, '전라남도', '곡성군'),
+	(186, '전라남도', '광양시'),
+	(187, '전라남도', '구례군'),
+	(188, '전라남도', '나주시'),
+	(189, '전라남도', '담양군'),
+	(190, '전라남도', '목포시'),
+	(191, '전라남도', '무안군'),
+	(192, '전라남도', '보성군'),
+	(193, '전라남도', '순천시'),
+	(194, '전라남도', '신안군'),
+	(195, '전라남도', '여수시'),
+	(196, '전라남도', '영광군'),
+	(197, '전라남도', '영암군'),
+	(198, '전라남도', '완도군'),
+	(199, '전라남도', '장성군'),
+	(200, '전라남도', '장흥군'),
+	(201, '전라남도', '진도군'),
+	(202, '전라남도', '함평군'),
+	(203, '전라남도', '해남군'),
+	(204, '전라남도', '화순군'),
+	(205, '전라북도', '고창군'),
+	(206, '전라북도', '군산시'),
+	(207, '전라북도', '김제시'),
+	(208, '전라북도', '남원시'),
+	(209, '전라북도', '무주군'),
+	(210, '전라북도', '부안군'),
+	(211, '전라북도', '순창군'),
+	(212, '전라북도', '완주군'),
+	(213, '전라북도', '익산시'),
+	(214, '전라북도', '임실군'),
+	(215, '전라북도', '장수군'),
+	(216, '전라북도', '전주시'),
+	(217, '전라북도', '전주시'),
+	(218, '전라북도', '정읍시'),
+	(219, '전라북도', '진안군'),
+	(220, '제주특별자치도', '서귀포시'),
+	(221, '제주특별자치도', '제주시'),
+	(222, '충청남도', '계룡시'),
+	(223, '충청남도', '공주시'),
+	(224, '충청남도', '금산군'),
+	(225, '충청남도', '논산시'),
+	(226, '충청남도', '당진시'),
+	(227, '충청남도', '보령시'),
+	(228, '충청남도', '부여군'),
+	(229, '충청남도', '서산시'),
+	(230, '충청남도', '서천군'),
+	(231, '충청남도', '아산시'),
+	(232, '충청남도', '예산군'),
+	(233, '충청남도', '천안시'),
+	(234, '충청남도', '천안시'),
+	(235, '충청남도', '청양군'),
+	(236, '충청남도', '태안군'),
+	(237, '충청남도', '홍성군'),
+	(238, '충청북도', '괴산군'),
+	(239, '충청북도', '단양군'),
+	(240, '충청북도', '보은군'),
+	(241, '충청북도', '영동군'),
+	(242, '충청북도', '옥천군'),
+	(243, '충청북도', '음성군'),
+	(244, '충청북도', '제천시'),
+	(245, '충청북도', '증평군'),
+	(246, '충청북도', '진천군'),
+	(247, '충청북도', '청주시'),
+	(248, '충청북도', '청주시'),
+	(249, '충청북도', '청주시'),
+	(250, '충청북도', '청주시'),
+	(251, '충청북도', '충주시');
 
 -- -------------- ONLINE_GROUP_ONCE ------------------
 
@@ -609,3 +736,176 @@ COMMENT ON COLUMN OFFLINE_CHALLENGE_REGULAR.MAX IS '정원';
 COMMENT ON COLUMN OFFLINE_CHALLENGE_REGULAR.CATEGORY IS '카테고리';
 COMMENT ON COLUMN OFFLINE_CHALLENGE_REGULAR.MEM_NO IS '회원번호';
 COMMENT ON COLUMN OFFLINE_CHALLENGE_REGULAR.TABLE_NO IS '테이블번호';
+
+-- ------------------- ALERT -----------------------
+
+-- 알림 테이블 생성
+CREATE TABLE ALERT(
+    ID_NO NUMBER PRIMARY KEY,
+    TABLE_NO NUMBER REFERENCES TABLE_NAME(TABLE_NO),
+    MEM_NO NUMBER NOT NULL REFERENCES MEMBER(MEM_NO),
+    ALERT_DATE DATE DEFAULT SYSDATE NOT NULL,
+    ALERT_TYPE NUMBER CONSTRAINT ALERT_TYPE_CK CHECK(ALERT_TYPE IN('1','2','3','4','5','6')),
+    ALERT_READ_NY CHAR(10) DEFAULT 'N' CONSTRAINT ALERT_READ_NY_CK CHECK(ALERT_READ_NY IN('Y','N'))
+);
+
+-- 알림 컬럼명
+COMMENT ON COLUMN ALERT.ID_NO IS '게시물 번호';
+COMMENT ON COLUMN ALERT.TABLE_NO IS '테이블 번호';
+COMMENT ON COLUMN ALERT.MEM_NO IS '회원 번호';
+COMMENT ON COLUMN ALERT.ALERT_DATE IS '알림 일시';
+COMMENT ON COLUMN ALERT.ALERT_TYPE IS '알림 타입';
+COMMENT ON COLUMN ALERT.ALERT_READ_NY IS '알림 상태';
+
+-- ------------------- CATEGORY ---------------------
+
+-- 카테고리 테이블 생성
+CREATE TABLE CATEGORY(
+    CATEGORY NUMBER PRIMARY KEY,
+    CATEGORY_TITLE VARCHAR2(3000) NOT NULL
+);
+
+-- 카테고리 컬럼명
+COMMENT ON COLUMN CATEGORY.CATEGORY IS '카테고리';
+COMMENT ON COLUMN CATEGORY.CATEGORY_TITLE IS '카테고리명';
+
+-- --------------------- REPLY -----------------------
+
+-- 댓글 테이블 생성
+CREATE TABLE REPLY(
+    REPLY_NO NUMBER PRIMARY KEY,
+    REPLY_CONTENT VARCHAR2(3000) NOT NULL,
+    ENROLL_DATE DATE DEFAULT SYSDATE NOT NULL,
+    MODIFY_DATE DATE DEFAULT SYSDATE,
+    DEL_NY VARCHAR2(60) DEFAULT 'N' CHECK(DEL_NY IN('Y','N')) NOT NULL,
+    REP_NY VARCHAR2(60) DEFAULT 'N' CHECK(REP_NY IN('Y','N')) NOT NULL,
+    RECOMENT_NY VARCHAR2(60) DEFAULT 'N' CHECK(RECOMENT_NY IN('Y','N')) NOT NULL,
+    REPER_NO NUMBER NOT NULL,
+    FOREIGN KEY(MEM_NO) REFERENCES MEMBER(MEM_NO),
+    FOREIGN KEY(TABLE_NO) REFERENCES TABLE_NAME(TABLE_NO),
+    FOREIGN KEY(BOARD_NO) REFERENCES BOARD(BOARD_NO)
+);
+
+-- 댓글 컬럼명
+COMMENT ON COLUMN REPLY.REPLY_NO IS '댓글번호';
+COMMENT ON COLUMN REPLY.REPLY_CONTENT IS '댓글내용';
+COMMENT ON COLUMN REPLY.ENROLL_DATE IS '작성일';
+COMMENT ON COLUMN REPLY.MODIFY_DATE IS '수정일자';
+COMMENT ON COLUMN REPLY.DEL_NY IS '삭제여부';
+COMMENT ON COLUMN REPLY.REP_NY IS '신고여부';
+COMMENT ON COLUMN REPLY.RECOMMENT_NY IS '대댓글여부';
+COMMENT ON COLUMN REPLY.REPER_NO IS '참조댓글';
+COMMENT ON COLUMN REPLY.MEM_NO IS '참조회원번호';
+COMMENT ON COLUMN REPLY.TABLE_NO IS '참조테이블번호';
+COMMENT ON COLUMN REPLY.BOARD_NO IS '참조게시판번호';
+
+-- ------------------ ENTRY_LIST ---------------------
+
+-- 참가자목록 테이블 생성
+CREATE TABLE ENTRY_LIST(
+    GROUP_NO NUMBER NOT NULL,
+    ENTRY_ID VARCHAR2(60) NOT NULL,
+    WAIT_NY DEFAULT 'N' CHECK(WAIT_NY IN('Y','N')) NOT NULL,
+    ENTRY_DATE DATE DEFAULT SYSDATE NOT NULL,
+    FOREIGN KEY(MEM_NO) REFERENCES MEMBER(MEM_NO),
+    FOREIGN KEY(TABLE_NO) REFERENCES TABLE_NAME(TABLE_NO)
+);
+
+-- 참가자목록 컬럼명
+COMMENT ON COLUMN ENTRY_LIST.GROUP_NO IS '모임번호';
+COMMENT ON COLUMN ENTRY_LIST.ENTRY_ID IS '참가자아이디';
+COMMENT ON COLUMN ENTRY_LIST.WAIT_NY IS '대기여부';
+COMMENT ON COLUMN ENTRY_LIST.ENTRY_DATE IS '참가시간';
+COMMENT ON COLUMN ENTRY_LIST.GROUP_NO IS '참조회원번호';
+COMMENT ON COLUMN ENTRY_LIST.GROUP_NO IS '참조테이블번호';
+
+-- ----------------- GROUP_MESSAGE -------------------
+
+-- 실시간채팅(그룹채팅) 테이블 생성
+CREATE TABLE GROUP_MESSAGE(
+    CHANNEL_NO NUMBER PRIMARY KEY,
+    MESSAGE_CONTENT VARCHAR2(4000) NOT NULL,
+    CREATE_AT DATE DEFAULT SYSDATE NOT NULL,
+    CHANNEL_ID VARCHAR2(1000) NOT NULL,
+    FOREIGN KEY(MEM_NO) REFERENCES MEMBER(MEM_NO)
+);
+
+-- 실시간채팅 컬럼명
+COMMENT ON COLUMN GROUP_MESSAGE.CHANNEL_NO IS '채널번호';
+COMMENT ON COLUMN GROUP_MESSAGE.MESSAGE_CONTENT IS '내용';
+COMMENT ON COLUMN GROUP_MESSAGE.CREATE_AT IS '메시지 생성시간';
+COMMENT ON COLUMN GROUP_MESSAGE.CHANNEL_ID IS '채널명';
+COMMENT ON COLUMN GROUP_MESSAGE.MEM_NO IS '참조회원번호';
+
+-- --------------------- BOARD -----------------------
+
+-- 자유게시판 글 번호 부여하기 위한 시퀀스 생성
+CREATE SEQUENCE SEQ_BOARD
+    START WITH 1
+    INCREMENT BY 1
+    NOCYCLE
+    NOCACHE;
+
+-- 자유게시판 테이블 생성
+CREATE TABLE BOARD(
+    BOARD_NO NUMBER NOT NULL,
+    BOARD_TITLE VARCHAR(50) NOT NULL,
+    BOARD_CONTENT VARCHAR(2000) NOT NULL,
+    CREATE_DATE DATE DEFAULT SYSDATE NOT NULL,
+    MODIFY_DATE DATE DEFAULT SYSDATE NOT NULL,
+    BOARD_HIT NUMBER NOT NULL,
+    BOARD_FILE VARCHAR(1000),
+    REP_NY VARCHAR(60) DEFAULT 'N' NOT NULL CONSTRAINT RPR_NY_CK CHECK(RPR_NY IN('Y','N')),
+    DEL_NY VARCHAR(1) DEFAULT 'N' NOT NULL CONSTRAINT DEL_NY_CK CHECK(DEL_NY IN('Y','N')),
+    CATEGORY NUMBER NOT NULL REFERENCES CATEGORY,
+    MEM_NO NUMBER NOT NULL REFERENCES MEMBER,
+    TABLE_NO NUMBER NOT NULL REFERENCES TABLE_NAME
+);
+
+-- 자유게시판 컬럼명
+COMMENT ON COLUMN BOARD.BOARD_NO IS '게시글 번호';
+COMMENT ON COLUMN BOARD.BOARD_TITLE IS '제목';
+COMMENT ON COLUMN BOARD.BOARD_CONTENT IS '게시글 내용';
+COMMENT ON COLUMN BOARD.CREATE_DATE IS '작성일';
+COMMENT ON COLUMN BOARD.MODIFY_DATE IS '수정일';
+COMMENT ON COLUMN BOARD.BOARD_HIT IS '조회수';
+COMMENT ON COLUMN BOARD.BOARD_FILE IS '첨부파일';
+COMMENT ON COLUMN BOARD.REP_NY IS '신고여부';
+COMMENT ON COLUMN BOARD.DEL_NY IS '삭제여부';
+COMMENT ON COLUMN BOARD.CATEGORY IS '카테고리';
+COMMENT ON COLUMN BOARD.MEM_NO IS '인덱스';
+COMMENT ON COLUMN BOARD.TABLE_NO IS '테이블 번호';
+
+-- -------------------- NOTICE -----------------------
+
+-- 공지글 번호 부여하기 위한 시퀀스 생성
+CREATE SEQUENCE SEQ_NTC
+    START WITH 1
+    INCREMENT BY 1
+    NOCYCLE
+    NOCACHE;
+
+-- 공지사항 테이블 생성
+CREATE TABLE NOTICE(
+    NTC_NO NUMBER NOT NULL,
+    NTC_WRITER VARCHAR(20) NOT NULL,
+    NTC_TITLE VARCHAR(100) NOT NULL,
+    NTC_CONTENT VARCHAR(2000) NOT NULL,
+    NTC_CREATE_DATE DATE DEFAULT SYSDATE NOT NULL,
+    NTC_UPDATE_DATE DATE DEFAULT SYSDATE NOT NULL,
+    NTC_COUNT NUMBER NOT NULL,
+    NTC_DEL_NY VARCHAR(1) DEFAULT 'N' NOT NULL CONSTRAINT DEL_NY_CK CHECK(NTC_DEL_NY IN('Y','N'))
+);
+
+-- 공지사항 컬럼명
+COMMENT ON COLUMN NOTICE.NTC_NO IS '공지사항 번호';
+COMMENT ON COLUMN NOTICE.NTC_WRITER IS '작성자';
+COMMENT ON COLUMN NOTICE.NTC_TITLE IS '공지제목';
+COMMENT ON COLUMN NOTICE.NTC_CONTENT IS '공지내용';
+COMMENT ON COLUMN NOTICE.NTC_CREATE_DATE IS '공지등록일';
+COMMENT ON COLUMN NOTICE.NTC_UPDATE_DATE IS '공지수정일';
+COMMENT ON COLUMN NOTICE.NTC_COUNT IS '조회수';
+COMMENT ON COLUMN NOTICE.NTC_DEL_NY IS '삭제여부';
+
+
+
