@@ -128,10 +128,10 @@
                   </tr>
                 </thead>
                 <tbody>
-	                    <tr>
+	                    <tr onclick="test1">
 	                        <td class="bno">5</td>
 	                        <td>카테고리</td>
-	                        <td>마지막 공지사항 제목</td>
+	                        <td><a href="detail.bo"> 게시글 내용</a></td>
 	                        <td>admin</td>
 	                        <td>10</td>
 	                        <td>2023-03-29</td>

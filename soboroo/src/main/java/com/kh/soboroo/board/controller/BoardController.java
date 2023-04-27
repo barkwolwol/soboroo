@@ -26,7 +26,9 @@ public class BoardController {
 		return "board/boardListView";
 		
 	}
-	
-	
+	@RequestMapping("detail.bo")
+	public String detailBoard() {
+		return "board/boardDetailView";
+	}
 
 }

@@ -74,10 +74,11 @@
            
             
             <div style="margin-left: 25%;">
-                <div class="avatar" style="float: left;margin-top: 15px;"><img alt="" src="../../../resources/default_profile.png" class="avatar-image"></div>
-                <br>
+                <div class="avatar" style="float: left;margin-top: 30px;"><img alt="" src="${pageContext.request.contextPath}/resources/images/default_profile.png" class="avatar-image"></div>
+                <br> 
             <div class="author">
                 <div class="write" style=" font-size: 13px;">관리자</div>
+             
                 <div class="board_name">
                     <a href="" style="color: black;">
                         카테고리 게시판
@@ -92,10 +93,12 @@
                     <a href="javascript:;" onclick="" style="margin-right: 10px; float: left;
                     font-size: 13px; color: black;">지우기</a></div>
             </div>
-
+   <hr> 
             <div   style=" width: 100%;  height: 100% ;margin-top: 50px;">
                 <div style="width: 100%; height: 100%;">
-                  
+                    <tr>
+                        
+                    </tr>
                     <tr>
                         <td colspan="4"><p style="height:150px">피자가 먹고싶네오</p></td>
                     </tr>
@@ -108,39 +111,7 @@
     
 
             <!-- 댓글 기능은 나중에 ajax 배우고 접목시킬예정! 우선은 화면구현만 해놓음 -->
-            <table id="replyArea" class="table" align="center" style="width: 50%;">
-                <thead>
-                   
-                    
-                    <tr>
-                       <td colspan="3">댓글 (<span id="rcount">3</span>) </td> 
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <tr>
-                        <th>user02</th>
-                        <td>댓글입니다.너무웃기다앙</td>
-                        <td>2023-03-03</td>
-                    </tr>
-                    <tr>
-                        <th>user01</th>
-                        <td>많이봐주세용</td>
-                        <td>2023-01-08</td>
-                    </tr>
-                    <tr>
-                        <th>admin</th>
-                        <td>댓글입니다ㅋㅋㅋ</td>
-                        <td>2022-12-02</td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">
-                            <textarea class="form-control" name="" id="content" cols="55" rows="2" style="resize:none; width:100%"></textarea>
-                        </th>
-                        <th style="vertical-align: middle"><button class="btn btn-secondary">등록하기</button></th>
-                    </tr>
-                </tbody>
-            </table>
+            
         </div>
         <br><br>
         <div style="margin-right: 50%" >
