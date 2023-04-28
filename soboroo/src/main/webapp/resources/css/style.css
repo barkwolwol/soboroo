@@ -3521,3 +3521,29 @@ label {
   background-color: rgba(0,0,0,.7);
   position: relative;
 }
+
+legend, label {
+  position: absolute;
+  left: 0;
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+.default_info legend {
+  top: 10px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="tel"] {
+  padding: 0 6px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  color: #333333;
+  background-color: #f8f8f8;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.list_wrap li {
+  list-style-type: none;
+}
