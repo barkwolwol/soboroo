@@ -36,5 +36,11 @@ public class OfflineController {
 		  return "offline/offlineDetailView";
 	   }
 	   
+	   // 오프라인 반짝모임 생성
+	   @RequestMapping("enrollOne.off")
+	   public String enrollOfflineOne() {
+		  return "offline/enrollOfflineOne";
+	   }
+	   
 	   
 }
