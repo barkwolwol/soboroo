@@ -15,8 +15,6 @@ DROP SEQUENCE SEQ_OFF_CHALLENGE_REG_NO;
 
 -- 테이블 삭제
 DROP TABLE ALERT;
-DROP TABLE TABLE_NAME;
-DROP TABLE MEMBER;
 DROP TABLE ONLINE_GROUP_ONCE;
 DROP TABLE ONLINE_GROUP_REGULAR;
 DROP TABLE ONLINE_CHALLENGE_D_DAY;
@@ -26,6 +24,10 @@ DROP TABLE OFFLINE_GROUP_REGULAR;
 DROP TABLE OFFLINE_CHALLENGE_D_DAY;
 DROP TABLE OFFLINE_CHALLENGE_REGULAR;
 
+DROP TABLE LOCAL;
+DROP TABLE CATEGORY;
+DROP TABLE MEMBER;
+DROP TABLE TABLE_NAME;
 
 -- ----------------- TABLE_NAME -------------------
 
@@ -109,6 +111,25 @@ INSERT INTO MEMBER(MEM_NO, MEM_TOKEN, MEM_ID, MEM_BIRTH, MEM_PHONE, MEM_NAME, ME
 
 -- -------------------- CATEGORY ---------------------
 
+-- 카테고리 테이블 생성
+CREATE TABLE CATEGORY(
+    CATEGORY_NO NUMBER PRIMARY KEY,
+    CATEGORY_TITLE VARCHAR2(300) NOT NULL
+);
+
+-- 카테고리 컬럼명
+COMMENT ON COLUMN CATEGORY.CATEGORY_NO IS '카테고리번호';
+COMMENT ON COLUMN CATEGORY.CATEGORY_TITLE IS '카테고리명';
+
+-- 카테고리 데이터 입력(필수 입력사항)
+INSERT INTO CATEGORY(CATEGORY_NO, CATEGORY_TITLE) VALUES(1, '교육/어학');
+INSERT INTO CATEGORY(CATEGORY_NO, CATEGORY_TITLE) VALUES(2, '취업/자격증');
+INSERT INTO CATEGORY(CATEGORY_NO, CATEGORY_TITLE) VALUES(3, '여행');
+INSERT INTO CATEGORY(CATEGORY_NO, CATEGORY_TITLE) VALUES(4, '스포츠/운동');
+INSERT INTO CATEGORY(CATEGORY_NO, CATEGORY_TITLE) VALUES(5, '요리/음식');
+INSERT INTO CATEGORY(CATEGORY_NO, CATEGORY_TITLE) VALUES(6, '문화/예술');
+INSERT INTO CATEGORY(CATEGORY_NO, CATEGORY_TITLE) VALUES(7, '영화/음악');
+INSERT INTO CATEGORY(CATEGORY_NO, CATEGORY_TITLE) VALUES(8, '기타');
 
 -- -------------------- LOCATION ---------------------
 
@@ -127,255 +148,232 @@ COMMENT ON COLUMN LOCATION.SIGUNGU IS '시군구';
 -- 지역 데이터 입력(필수 입력사항)
 INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(1, '강원도', '강릉시');
 INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(2, '강원도', '고성군');
-	(3, '강원도', '동해시'),
-	(4, '강원도', '삼척시'),
-	(5, '강원도', '속초시'),
-	(6, '강원도', '양구군'),
-	(7, '강원도', '양양군'),
-	(8, '강원도', '영월군'),
-	(9, '강원도', '원주시'),
-	(10, '강원도', '인제군'),
-	(11, '강원도', '정선군'),
-	(12, '강원도', '철원군'),
-	(13, '강원도', '춘천시'),
-	(14, '강원도', '태백시'),
-	(15, '강원도', '평창군'),
-	(16, '강원도', '홍천군'),
-	(17, '강원도', '화천군'),
-	(18, '강원도', '횡성군'),
-	(19, '경기도', '가평군'),
-	(20, '경기도', '고양시'),
-	(21, '경기도', '고양시'),
-	(22, '경기도', '고양시'),
-	(23, '경기도', '고양시'),
-	(24, '경기도', '과천시'),
-	(25, '경기도', '광명시'),
-	(26, '경기도', '광주시'),
-	(27, '경기도', '구리시'),
-	(28, '경기도', '군포시'),
-	(29, '경기도', '김포시'),
-	(30, '경기도', '남양주시'),
-	(31, '경기도', '동두천시'),
-	(32, '경기도', '부천시'),
-	(33, '경기도', '성남시'),
-	(34, '경기도', '성남시'),
-	(35, '경기도', '성남시'),
-	(36, '경기도', '수원시'),
-	(37, '경기도', '수원시'),
-	(38, '경기도', '수원시'),
-	(39, '경기도', '수원시'),
-	(40, '경기도', '시흥시'),
-	(41, '경기도', '안산시'),
-	(42, '경기도', '안산시'),
-	(43, '경기도', '안성시'),
-	(44, '경기도', '안양시'),
-	(45, '경기도', '안양시'),
-	(46, '경기도', '양주시'),
-	(47, '경기도', '양평군'),
-	(48, '경기도', '여주시'),
-	(49, '경기도', '연천군'),
-	(50, '경기도', '오산시'),
-	(51, '경기도', '용인시'),
-	(52, '경기도', '용인시'),
-	(53, '경기도', '용인시'),
-	(54, '경기도', '의왕시'),
-	(55, '경기도', '의정부시'),
-	(56, '경기도', '이천시'),
-	(57, '경기도', '파주시'),
-	(58, '경기도', '평택시'),
-	(59, '경기도', '포천시'),
-	(60, '경기도', '하남시'),
-	(61, '경기도', '화성시'),
-	(62, '경상남도', '거제시'),
-	(63, '경상남도', '거창군'),
-	(64, '경상남도', '고성군'),
-	(65, '경상남도', '김해시'),
-	(66, '경상남도', '남해군'),
-	(67, '경상남도', '밀양시'),
-	(68, '경상남도', '사천시'),
-	(69, '경상남도', '산청군'),
-	(70, '경상남도', '양산시'),
-	(71, '경상남도', '의령군'),
-	(72, '경상남도', '진주시'),
-	(73, '경상남도', '창녕군'),
-	(74, '경상남도', '창원시'),
-	(75, '경상남도', '창원시'),
-	(76, '경상남도', '창원시'),
-	(77, '경상남도', '창원시'),
-	(78, '경상남도', '창원시'),
-	(79, '경상남도', '통영시'),
-	(80, '경상남도', '하동군'),
-	(81, '경상남도', '함안군'),
-	(82, '경상남도', '함양군'),
-	(83, '경상남도', '합천군'),
-	(84, '경상북도', '경산시'),
-	(85, '경상북도', '경주시'),
-	(86, '경상북도', '고령군'),
-	(87, '경상북도', '구미시'),
-	(88, '경상북도', '군위군'),
-	(89, '경상북도', '김천시'),
-	(90, '경상북도', '문경시'),
-	(91, '경상북도', '봉화군'),
-	(92, '경상북도', '상주시'),
-	(93, '경상북도', '성주군'),
-	(94, '경상북도', '안동시'),
-	(95, '경상북도', '영덕군'),
-	(96, '경상북도', '영양군'),
-	(97, '경상북도', '영주시'),
-	(98, '경상북도', '영천시'),
-	(99, '경상북도', '예천군'),
-	(100, '경상북도', '울릉군'),
-	(101, '경상북도', '울진군'),
-	(102, '경상북도', '의성군'),
-	(103, '경상북도', '청도군'),
-	(104, '경상북도', '청송군'),
-	(105, '경상북도', '칠곡군'),
-	(106, '경상북도', '포항시'),
-	(107, '경상북도', '포항시'),
-	(108, '경상북도', '포항시'),
-	(109, '광주광역시', '광산구'),
-	(110, '광주광역시', '남구'),
-	(111, '광주광역시', '동구'),
-	(112, '광주광역시', '북구'),
-	(113, '광주광역시', '서구'),
-	(114, '대구광역시', '남구'),
-	(115, '대구광역시', '달서구'),
-	(116, '대구광역시', '달성군'),
-	(117, '대구광역시', '동구'),
-	(118, '대구광역시', '북구'),
-	(119, '대구광역시', '서구'),
-	(120, '대구광역시', '수성구'),
-	(121, '대구광역시', '중구'),
-	(122, '대전광역시', '대덕구'),
-	(123, '대전광역시', '동구'),
-	(124, '대전광역시', '서구'),
-	(125, '대전광역시', '유성구'),
-	(126, '대전광역시', '중구'),
-	(127, '부산광역시', '강서구'),
-	(128, '부산광역시', '금정구'),
-	(129, '부산광역시', '기장군'),
-	(130, '부산광역시', '남구'),
-	(131, '부산광역시', '동구'),
-	(132, '부산광역시', '동래구'),
-	(133, '부산광역시', '부산진구'),
-	(134, '부산광역시', '북구'),
-	(135, '부산광역시', '사상구'),
-	(136, '부산광역시', '사하구'),
-	(137, '부산광역시', '서구'),
-	(138, '부산광역시', '수영구'),
-	(139, '부산광역시', '연제구'),
-	(140, '부산광역시', '영도구'),
-	(141, '부산광역시', '중구'),
-	(142, '부산광역시', '해운대구'),
-	(143, '서울특별시', '강남구'),
-	(144, '서울특별시', '강동구'),
-	(145, '서울특별시', '강북구'),
-	(146, '서울특별시', '강서구'),
-	(147, '서울특별시', '관악구'),
-	(148, '서울특별시', '광진구'),
-	(149, '서울특별시', '구로구'),
-	(150, '서울특별시', '금천구'),
-	(151, '서울특별시', '노원구'),
-	(152, '서울특별시', '도봉구'),
-	(153, '서울특별시', '동대문구'),
-	(154, '서울특별시', '동작구'),
-	(155, '서울특별시', '마포구'),
-	(156, '서울특별시', '서대문구'),
-	(157, '서울특별시', '서초구'),
-	(158, '서울특별시', '성동구'),
-	(159, '서울특별시', '성북구'),
-	(160, '서울특별시', '송파구'),
-	(161, '서울특별시', '양천구'),
-	(162, '서울특별시', '영등포구'),
-	(163, '서울특별시', '용산구'),
-	(164, '서울특별시', '은평구'),
-	(165, '서울특별시', '종로구'),
-	(166, '서울특별시', '중구'),
-	(167, '서울특별시', '중랑구'),
-	(168, '울산광역시', '남구'),
-	(169, '울산광역시', '동구'),
-	(170, '울산광역시', '북구'),
-	(171, '울산광역시', '울주군'),
-	(172, '울산광역시', '중구'),
-	(173, '인천광역시', '강화군'),
-	(174, '인천광역시', '계양구'),
-	(175, '인천광역시', '남동구'),
-	(176, '인천광역시', '동구'),
-	(177, '인천광역시', '미추홀구'),
-	(178, '인천광역시', '부평구'),
-	(179, '인천광역시', '서구'),
-	(180, '인천광역시', '연수구'),
-	(181, '인천광역시', '옹진군'),
-	(182, '인천광역시', '중구'),
-	(183, '전라남도', '강진군'),
-	(184, '전라남도', '고흥군'),
-	(185, '전라남도', '곡성군'),
-	(186, '전라남도', '광양시'),
-	(187, '전라남도', '구례군'),
-	(188, '전라남도', '나주시'),
-	(189, '전라남도', '담양군'),
-	(190, '전라남도', '목포시'),
-	(191, '전라남도', '무안군'),
-	(192, '전라남도', '보성군'),
-	(193, '전라남도', '순천시'),
-	(194, '전라남도', '신안군'),
-	(195, '전라남도', '여수시'),
-	(196, '전라남도', '영광군'),
-	(197, '전라남도', '영암군'),
-	(198, '전라남도', '완도군'),
-	(199, '전라남도', '장성군'),
-	(200, '전라남도', '장흥군'),
-	(201, '전라남도', '진도군'),
-	(202, '전라남도', '함평군'),
-	(203, '전라남도', '해남군'),
-	(204, '전라남도', '화순군'),
-	(205, '전라북도', '고창군'),
-	(206, '전라북도', '군산시'),
-	(207, '전라북도', '김제시'),
-	(208, '전라북도', '남원시'),
-	(209, '전라북도', '무주군'),
-	(210, '전라북도', '부안군'),
-	(211, '전라북도', '순창군'),
-	(212, '전라북도', '완주군'),
-	(213, '전라북도', '익산시'),
-	(214, '전라북도', '임실군'),
-	(215, '전라북도', '장수군'),
-	(216, '전라북도', '전주시'),
-	(217, '전라북도', '전주시'),
-	(218, '전라북도', '정읍시'),
-	(219, '전라북도', '진안군'),
-	(220, '제주특별자치도', '서귀포시'),
-	(221, '제주특별자치도', '제주시'),
-	(222, '충청남도', '계룡시'),
-	(223, '충청남도', '공주시'),
-	(224, '충청남도', '금산군'),
-	(225, '충청남도', '논산시'),
-	(226, '충청남도', '당진시'),
-	(227, '충청남도', '보령시'),
-	(228, '충청남도', '부여군'),
-	(229, '충청남도', '서산시'),
-	(230, '충청남도', '서천군'),
-	(231, '충청남도', '아산시'),
-	(232, '충청남도', '예산군'),
-	(233, '충청남도', '천안시'),
-	(234, '충청남도', '천안시'),
-	(235, '충청남도', '청양군'),
-	(236, '충청남도', '태안군'),
-	(237, '충청남도', '홍성군'),
-	(238, '충청북도', '괴산군'),
-	(239, '충청북도', '단양군'),
-	(240, '충청북도', '보은군'),
-	(241, '충청북도', '영동군'),
-	(242, '충청북도', '옥천군'),
-	(243, '충청북도', '음성군'),
-	(244, '충청북도', '제천시'),
-	(245, '충청북도', '증평군'),
-	(246, '충청북도', '진천군'),
-	(247, '충청북도', '청주시'),
-	(248, '충청북도', '청주시'),
-	(249, '충청북도', '청주시'),
-	(250, '충청북도', '청주시'),
-	(251, '충청북도', '충주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(3, '강원도', '동해시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(4, '강원도', '삼척시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(5, '강원도', '속초시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(6, '강원도', '양구군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(7, '강원도', '양양군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(8, '강원도', '영월군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(9, '강원도', '원주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(10, '강원도', '인제군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(11, '강원도', '정선군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(12, '강원도', '철원군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(13, '강원도', '춘천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(14, '강원도', '태백시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(15, '강원도', '평창군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(16, '강원도', '홍천군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(17, '강원도', '화천군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(18, '강원도', '횡성군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(19, '경기도', '가평군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(20, '경기도', '고양시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(24, '경기도', '과천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(25, '경기도', '광명시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(26, '경기도', '광주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(27, '경기도', '구리시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(28, '경기도', '군포시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(29, '경기도', '김포시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(30, '경기도', '남양주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(31, '경기도', '동두천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(32, '경기도', '부천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(33, '경기도', '성남시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(36, '경기도', '수원시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(40, '경기도', '시흥시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(41, '경기도', '안산시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(43, '경기도', '안성시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(44, '경기도', '안양시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(46, '경기도', '양주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(47, '경기도', '양평군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(48, '경기도', '여주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(49, '경기도', '연천군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(50, '경기도', '오산시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(51, '경기도', '용인시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(54, '경기도', '의왕시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(55, '경기도', '의정부시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(56, '경기도', '이천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(57, '경기도', '파주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(58, '경기도', '평택시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(59, '경기도', '포천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(60, '경기도', '하남시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(61, '경기도', '화성시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(62, '경상남도', '거제시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(63, '경상남도', '거창군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(64, '경상남도', '고성군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(65, '경상남도', '김해시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(66, '경상남도', '남해군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(67, '경상남도', '밀양시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(68, '경상남도', '사천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(69, '경상남도', '산청군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(70, '경상남도', '양산시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(71, '경상남도', '의령군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(72, '경상남도', '진주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(73, '경상남도', '창녕군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(74, '경상남도', '창원시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(79, '경상남도', '통영시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(80, '경상남도', '하동군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(81, '경상남도', '함안군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(82, '경상남도', '함양군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(83, '경상남도', '합천군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(84, '경상북도', '경산시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(85, '경상북도', '경주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(86, '경상북도', '고령군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(87, '경상북도', '구미시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(88, '경상북도', '군위군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(89, '경상북도', '김천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(90, '경상북도', '문경시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(91, '경상북도', '봉화군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(92, '경상북도', '상주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(93, '경상북도', '성주군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(94, '경상북도', '안동시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(95, '경상북도', '영덕군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(96, '경상북도', '영양군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(97, '경상북도', '영주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(98, '경상북도', '영천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(99, '경상북도', '예천군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(100, '경상북도', '울릉군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(101, '경상북도', '울진군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(102, '경상북도', '의성군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(103, '경상북도', '청도군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(104, '경상북도', '청송군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(105, '경상북도', '칠곡군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(106, '경상북도', '포항시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(109, '광주광역시', '광산구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(110, '광주광역시', '남구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(111, '광주광역시', '동구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(112, '광주광역시', '북구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(113, '광주광역시', '서구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(114, '대구광역시', '남구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(115, '대구광역시', '달서구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(116, '대구광역시', '달성군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(117, '대구광역시', '동구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(118, '대구광역시', '북구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(119, '대구광역시', '서구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(120, '대구광역시', '수성구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(121, '대구광역시', '중구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(122, '대전광역시', '대덕구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(123, '대전광역시', '동구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(124, '대전광역시', '서구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(125, '대전광역시', '유성구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(126, '대전광역시', '중구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(127, '부산광역시', '강서구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(128, '부산광역시', '금정구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(129, '부산광역시', '기장군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(130, '부산광역시', '남구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(131, '부산광역시', '동구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(132, '부산광역시', '동래구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(133, '부산광역시', '부산진구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(134, '부산광역시', '북구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(135, '부산광역시', '사상구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(136, '부산광역시', '사하구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(137, '부산광역시', '서구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(138, '부산광역시', '수영구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(139, '부산광역시', '연제구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(140, '부산광역시', '영도구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(141, '부산광역시', '중구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(142, '부산광역시', '해운대구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(143, '서울특별시', '강남구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(144, '서울특별시', '강동구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(145, '서울특별시', '강북구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(146, '서울특별시', '강서구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(147, '서울특별시', '관악구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(148, '서울특별시', '광진구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(149, '서울특별시', '구로구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(150, '서울특별시', '금천구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(151, '서울특별시', '노원구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(152, '서울특별시', '도봉구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(153, '서울특별시', '동대문구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(154, '서울특별시', '동작구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(155, '서울특별시', '마포구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(156, '서울특별시', '서대문구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(157, '서울특별시', '서초구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(158, '서울특별시', '성동구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(159, '서울특별시', '성북구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(160, '서울특별시', '송파구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(161, '서울특별시', '양천구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(162, '서울특별시', '영등포구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(163, '서울특별시', '용산구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(164, '서울특별시', '은평구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(165, '서울특별시', '종로구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(166, '서울특별시', '중구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(167, '서울특별시', '중랑구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(168, '울산광역시', '남구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(169, '울산광역시', '동구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(170, '울산광역시', '북구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(171, '울산광역시', '울주군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(172, '울산광역시', '중구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(173, '인천광역시', '강화군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(174, '인천광역시', '계양구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(175, '인천광역시', '남동구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(176, '인천광역시', '동구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(177, '인천광역시', '미추홀구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(178, '인천광역시', '부평구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(179, '인천광역시', '서구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(180, '인천광역시', '연수구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(181, '인천광역시', '옹진군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(182, '인천광역시', '중구');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(183, '전라남도', '강진군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(184, '전라남도', '고흥군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(185, '전라남도', '곡성군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(186, '전라남도', '광양시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(187, '전라남도', '구례군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(188, '전라남도', '나주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(189, '전라남도', '담양군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(190, '전라남도', '목포시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(191, '전라남도', '무안군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(192, '전라남도', '보성군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(193, '전라남도', '순천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(194, '전라남도', '신안군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(195, '전라남도', '여수시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(196, '전라남도', '영광군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(197, '전라남도', '영암군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(198, '전라남도', '완도군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(199, '전라남도', '장성군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(200, '전라남도', '장흥군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(201, '전라남도', '진도군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(202, '전라남도', '함평군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(203, '전라남도', '해남군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(204, '전라남도', '화순군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(205, '전라북도', '고창군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(206, '전라북도', '군산시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(207, '전라북도', '김제시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(208, '전라북도', '남원시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(209, '전라북도', '무주군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(210, '전라북도', '부안군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(211, '전라북도', '순창군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(212, '전라북도', '완주군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(213, '전라북도', '익산시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(214, '전라북도', '임실군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(215, '전라북도', '장수군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(216, '전라북도', '전주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(218, '전라북도', '정읍시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(219, '전라북도', '진안군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(220, '제주특별자치도', '서귀포시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(221, '제주특별자치도', '제주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(222, '충청남도', '계룡시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(223, '충청남도', '공주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(224, '충청남도', '금산군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(225, '충청남도', '논산시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(226, '충청남도', '당진시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(227, '충청남도', '보령시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(228, '충청남도', '부여군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(229, '충청남도', '서산시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(230, '충청남도', '서천군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(231, '충청남도', '아산시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(232, '충청남도', '예산군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(233, '충청남도', '천안시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(235, '충청남도', '청양군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(236, '충청남도', '태안군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(237, '충청남도', '홍성군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(238, '충청북도', '괴산군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(239, '충청북도', '단양군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(240, '충청북도', '보은군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(241, '충청북도', '영동군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(242, '충청북도', '옥천군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(243, '충청북도', '음성군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(244, '충청북도', '제천시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(245, '충청북도', '증평군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(246, '충청북도', '진천군');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(247, '충청북도', '청주시');
+INSERT INTO LOCATION(LOCAL_NO, SIDO, SIGUNGU) VALUES(251, '충청북도', '충주시');
 
 -- -------------- ONLINE_GROUP_ONCE ------------------
 
@@ -756,18 +754,6 @@ COMMENT ON COLUMN ALERT.MEM_NO IS '회원 번호';
 COMMENT ON COLUMN ALERT.ALERT_DATE IS '알림 일시';
 COMMENT ON COLUMN ALERT.ALERT_TYPE IS '알림 타입';
 COMMENT ON COLUMN ALERT.ALERT_READ_NY IS '알림 상태';
-
--- ------------------- CATEGORY ---------------------
-
--- 카테고리 테이블 생성
-CREATE TABLE CATEGORY(
-    CATEGORY NUMBER PRIMARY KEY,
-    CATEGORY_TITLE VARCHAR2(3000) NOT NULL
-);
-
--- 카테고리 컬럼명
-COMMENT ON COLUMN CATEGORY.CATEGORY IS '카테고리';
-COMMENT ON COLUMN CATEGORY.CATEGORY_TITLE IS '카테고리명';
 
 -- --------------------- REPLY -----------------------
 
