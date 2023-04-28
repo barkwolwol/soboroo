@@ -7,6 +7,16 @@
       <meta charset="UTF-8">
       <title>Insert title here</title>
       <style>
+        @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.body-inner{
+  font-family: 'Pretendard-Regular';
+}
         #boardList {
           text-align: center;
         }
@@ -25,7 +35,6 @@
 
     <body>
       <div class="body-inner">
-
         <jsp:include page="../common/header.jsp" />
 
         <!--     <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)"> -->

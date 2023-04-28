@@ -34,6 +34,8 @@
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/colorbox/colorbox.css">
       <!-- Template styles-->
       <link rel="stylesheet" href="resources/css/style.css">
+      
+      
 
       <!-- fontawesome 라이브러리 -->
       <script src="https://kit.fontawesome.com/66bc1e54e8.js" crossorigin="anonymous"></script>
@@ -77,19 +79,19 @@
             <!--/ Top info end -->
 
             <div class="col-lg-4 col-md-4 top-social text-center text-md-right">
-              <ul class="list-unstyled">
+              <ul class="list-unstyled" >
                 <li>
                   <a title="Facebook" href="https://facebbok.com/themefisher.com">
-                    <span class="social-icon"><i class="fab fa-facebook-f"></i></span>
+                    <span class="social-icon"><img src="${pageContext.request.contextPath}/resources/images/facebook.png" style="width:18px"></span>
                   </a>
                   <a title="Twitter" href="https://twitter.com/themefisher.com">
-                    <span class="social-icon"><i class="fab fa-twitter"></i></span>
+                    <span class="social-icon"><img src="${pageContext.request.contextPath}/resources/images/twitter.png" style="width:18px"></span>
                   </a>
                   <a title="Instagram" href="https://instagram.com/themefisher.com">
-                    <span class="social-icon"><i class="fab fa-instagram"></i></span>
+                    <span class="social-icon"><img src="${pageContext.request.contextPath}/resources/images/insta.png" style="width:18px"></span>
                   </a>
                   <a title="Linkdin" href="https://github.com/themefisher.com">
-                    <span class="social-icon"><i class="fab fa-github"></i></span>
+                    <span class="social-icon"><img src="${pageContext.request.contextPath}/resources/images/github.png" style="width:18px"></span>
                   </a>
                 </li>
               </ul>
@@ -125,8 +127,7 @@
                     <ul class="nav navbar-nav mr-auto align-items-center">
 
                       <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">온라인 <i
-                            class="fa fa-angle-down"></i></a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">온라인 <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="listOne.on">반짝모임</a></li>
                           <li><a href="listReg.on">정기모임</a></li>

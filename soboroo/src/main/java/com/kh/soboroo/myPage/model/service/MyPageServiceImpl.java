@@ -1,6 +1,5 @@
 package com.kh.soboroo.myPage.model.service;
 
-/*import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,4 @@ public class MyPageServiceImpl implements MyPageService {
 	@Autowired
 	private MyPageDao myDao;
 
-	@Autowired
-	private SqlSessionTemplate sqlSession;
-	
-}*/
+}

@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;
+import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;
 
+@Controller
 public class MyPageController {
 	
-	//private MyPageServiceImpl myService;
+	@Autowired
+	private MyPageServiceImpl myService;
 
    // 마이페이지 메인 페이지(캘린더) 호출
    @RequestMapping("myCalender.my")
