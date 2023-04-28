@@ -1,10 +1,14 @@
 package com.kh.soboroo.myPage.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+//import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;
+
 public class MyPageController {
+	
+	//private MyPageServiceImpl myService;
 
    // 마이페이지 메인 페이지(캘린더) 호출
    @RequestMapping("myCalender.my")
