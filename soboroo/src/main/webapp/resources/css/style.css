@@ -133,7 +133,7 @@ a.read-more:hover {
 
 section,
 .section-padding {
-  padding: 70px 0;
+  padding: 30px 0;
   position: relative;
 }
 
@@ -3527,3 +3527,11 @@ label {
 	font-family: 'Pretendard-Regular' !important;
 } */
 
+/* 추가적인 css */
+
+#wrap{
+  width: 100vw;
+  height: 70vh;
+  background-color: rgba(0,0,0,.7);
+  position: relative;
+}
