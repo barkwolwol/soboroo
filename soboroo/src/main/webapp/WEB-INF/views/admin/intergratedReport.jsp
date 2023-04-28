@@ -10,14 +10,14 @@
 
 <link rel="shortcut icon" href="assets/img/favicon.png">
 
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/all.min.css">
 
-<link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.css">
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/style.css">
 
 </head>
 <body>
@@ -28,13 +28,13 @@
 
 <div class="header-left header-left-one">
 <a href="index.html" class="logo">
-<img src="assets/img/usermain.jpg" alt="Logo">
+<img src="${pageContext.request.contextPath}/resources/admin/img/usermain.jpg" alt="Logo">
 </a>
 <a href="index.html" class="white-logo">
-<img src="assets/img/logo-white.png" alt="Logo">
+<img src="${pageContext.request.contextPath}/resources/admin/img/logo-white.png" alt="Logo">
 </a>
 <a href="index.html" class="logo logo-small">
-<img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+<img src="${pageContext.request.contextPath}/resources/admin/img/logo-small.png" alt="Logo" width="30" height="30">
 </a>
 </div>
 
@@ -166,97 +166,92 @@
 </div>
 
 
-<div class="sidebar" id="sidebar">
-  <div class="sidebar-inner slimscroll">
-      <div id="sidebar-menu" class="sidebar-menu">
-          <ul>
-              <li class="menu-title"><span>MENU</span></li>
-              <li>
-                  <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
-              </li>
-              <li class="submenu" class="active">
-                  <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
-                          class="menu-arrow"></span></a>
-                  <ul>
-                      <li><a href="customers.html">회원 관리</a></li>
-                      <li><a href="customers3.html">정지회원 관리</a></li>
-                      <li><a href="customers4.html">탈퇴회원 관리</a></li>
-                  </ul>
-              </li>
-              <li class="submenu">
-                              <a href="#"><i data-feather="clipboard"></i> <span>모임관리</span> <span
-                              class="menu-arrow"></span></a>
-                  <ul>
-                      <li class="submenu" align="left">
-                          <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
-                          class="menu-arrow"></span></a>
-                          <ul><li><a href="invoices.html">온라인 일반 / 단기</a></li>
-                              <li><a href="invoices.html">온라인 일반 / 정기</a></li>
-                              <li><a href="invoices.html">온라인 목표 / 기간</a></li>
-                              <li><a href="invoices.html">온라인 목표 / 단위별</a></li>
-                          </ul>
-                     
-                      <li class="submenu">
-                          <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
-                          class="menu-arrow"></span></a>
-                          <ul>
-                              <li><a href="invoices.html">오프라인 일반 / 단기</a></li>
-                              <li><a href="invoices.html">오프라인 일반 / 정기</a></li>
-                              <li><a href="invoices.html">오프라인 목표 / 기간</a></li>
-                              <li><a href="invoices.html">오프라인 목표 / 단위별</a></li>
-                          </ul>
-               
-                  </ul>
-              </li>
-              <li>
-                  <a href="#"><i data-feather="alert-octagon"></i> <span>신고 관리</span><span
-                      class="menu-arrow"></span></a>
-                  <ul>
-                      <li><a href="customers2.html">통합신고 관리</a></li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="invoice-items.html"><i data-feather="star"></i> <span>게시판 관리</span></a>
-              </li>
-              <li>
-                  <a href="expenses.html"><i data-feather="package"></i> <span>문의답변</span></a>
-              </li>
-              <li>
-                  <a href="invoice-items3.html"><i data-feather="pie-chart"></i> <span>공지사항 관리</span> </a>
-              </li>
+<!-- 사이드바 시작  -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title"><span>MENU</span></li>
+                        <li>
+                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
+                        </li>
+                        <li class="submenu" class="active">
+                            <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="memberInfo.ad">회원 관리</a></li>
+                                <li><a href="susMember.ad">정지회원 관리</a></li>
+                                <li><a href="withdrawMember.ad">탈퇴회원 관리</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                                        <a href="#"><i data-feather="clipboard"></i> <span>모임관리</span> <span
+                                        class="menu-arrow"></span></a>
+                            <ul>
+                                <li class="submenu" align="left">
+                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    class="menu-arrow"></span></a>
+                                    <ul><li><a href="#">온라인 일반 / 단기</a></li>
+                                        <li><a href="#">온라인 일반 / 정기</a></li>
+                                        <li><a href="#">온라인 목표 / 기간</a></li>
+                                        <li><a href="#">온라인 목표 / 단위별</a></li>
+                                    </ul>
+                               
+                                <li class="submenu">
+                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
+                                    class="menu-arrow"></span></a>
+                                    <ul>
+                                        <li><a href="#">오프라인 일반 / 단기</a></li>
+                                        <li><a href="#">오프라인 일반 / 정기</a></li>
+                                        <li><a href="#">오프라인 목표 / 기간</a></li>
+                                        <li><a href="#">오프라인 목표 / 단위별</a></li>
+                                    </ul>
+                         
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i data-feather="alert-octagon"></i> <span>신고 관리</span><span
+                                class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="report.ad">통합신고 관리</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="board.ad"><i data-feather="star"></i> <span>게시판 관리</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i data-feather="package"></i> <span>문의답변</span></a>
+                        </li>
+                        <li>
+                            <a href="notice.ad"><i data-feather="pie-chart"></i> <span>공지사항 관리</span> </a>
+                        </li>
 
-              </li>
-
-            </ul>
+                        </li>
+					</ul>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
+        <!-- 사이드바 끝  -->
+        
+        
+        
 <div class="page-wrapper">
 <div class="content container-fluid">
 
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<h3 class="page-title">탈퇴회원 관리</h3>
+<h3 class="page-title">통합신고 관리</h3>
 <ul class="breadcrumb">
-<li class="breadcrumb-item"><a href="index.html"></a>
+<li class="breadcrumb-item"><a href="index.html">회원 / 게시판</a>
 </li>
-<li class="breadcrumb-item active"></li>
+<li class="breadcrumb-item active">댓글</li>
 </ul>
 </div>
-<div class="col-auto">
-<a href="add-customer.html" class="btn btn-primary me-1">
-<i class="fas fa-plus"></i>
-</a>
-<a class="btn btn-primary filter-btn" href="javascript:void(0);" id="filter_search">
-<i class="fas fa-filter"></i>
 </a>
 </div>
 </div>
 </div>
-
-
 <div id="filter_inputs" class="card filter-card">
 <div class="card-body pb-0">
 <div class="row">
@@ -290,232 +285,270 @@
 <table class="table table-center table-hover datatable">
 <thead class="thead-light">
 <tr>
-<th>회원이름</th>
-<th>아이디</th>
-<th>블랙여부(Y/N)</th>
-<th>블랙사유(특이사항)</th>
-<th>가입일</th>
-<th>탈퇴일</th>
-<th>상태</th>
-<th class="text-end">Actions</th>
+<th>작성자</th>
+<th>아이디(이메일)</th>
+<th>누적신고횟수</th>
+<th>신고기반자료</th>
+<th>내용</th>
+<th>작성일</th>
+<th>신고사유</th>
+<th>신고일</th>
+<th>신고자아이디</th>
+<th class="text-end">복구/삭제</th>
 </tr>
 </thead>
  <tbody>
 <tr>
 <td>
 <h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/usermain.jpg" alt="User Image"></a>
-<a href="profile.html">Brian Johnson <span>9876543210</span></a>
+<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+<a href="profile.html">촉촉초코칩<span>9876543210</span></a>
 </h2>
 </td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[email&#160;protected]</a></td>
-<td>$295</td>
-<td>신고누적횟수 초과</td>
-<td>2023-01-23</td>
-<td>2023-03-13</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
+<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+<td>1</td>
+<td>커피바리스타</td>
+<td>댓글</td>
+<td>2023-04-20 11:20:23</td>
+<td>폭언 및 욕설</td>
+<td>2023-04-20 12:20:43</td>
+<td>zxcc123@naver.com</td>
 <td class="text-end">
-<a href="edit-customer3.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> 조회</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
+<a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 
 </td>
 </tr>
 <tr>
 <td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-03.jpg" alt="User Image"></a>
-<a href="profile.html">Marie Canales <span>9876543210</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="315c5043585452505f505d5442715449505c415d541f525e5c">[email&#160;protected]</a></td>
-<td>$1750</td>
-<td>신고누적횟수 초과</td>
-<td>8 Nov 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer3.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
-</td>
-</tr>
-<tr>
-<td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-04.jpg" alt="User Image"></a>
-<a href="profile.html">Barbara Moore <span>9876543210</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9af8fbe8f8fbe8fbf7f5f5e8ffdaffe2fbf7eaf6ffb4f9f5f7">[email&#160;protected]</a></td>
-<td>$8295</td>
-<td>신고누적횟수 초과</td>
-<td>24 Oct 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer3.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
 <tr>
 <td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-05.jpg" alt="User Image"></a>
-<a href="profile.html">Greg Lynch <span>9876543210</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81e6f3e4e6edf8efe2e9c1e4f9e0ecf1ede4afe2eeec">[email&#160;protected]</a></td>
-<td>$3000</td>
-<td>신고누적횟수 초과</td>
-<td>11 Oct 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
-<a href="javascript:void(0);" class="btn btn-sm btn-white text-danger me-2" id="modal"><i class="far fa-trash-alt me-1"></i>Delete</a>
-</td>
-</tr>
-<tr>
-<td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-06.jpg" alt="User Image"></a>
-<a href="profile.html">Karlene Chaidez <span>9876543210</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6803091a040d060d0b0009010c0d12280d10090518040d460b0705">[email&#160;protected]</a></td>
- <td>-</td>
- <td>신고누적횟수 초과</td>
-<td>29 Sep 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
-<a href="javascript:void(0);" class="btn btn-sm btn-white text-danger me-2"><i class="far fa-trash-alt me-1"></i>Delete</a>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
 <tr>
 <td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-07.jpg" alt="User Image"></a>
-<a href="profile.html">John Blair <span>9876543210</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="29434641474b4548405b694c51484459454c074a4644">[email&#160;protected]</a></td>
-<td>$50</td>
-<td>신고누적횟수 초과</td>
-<td>13 Aug 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
-<a href="javascript:void(0);" class="btn btn-sm btn-white text-danger me-2"><i class="far fa-trash-alt me-1"></i>Delete</a>
-</td>
-</tr>
-<tr>
-<td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-08.jpg" alt="User Image"></a>
-<a href="profile.html">Russell Copeland <span>9876543210</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="85f7f0f6f6e0e9e9e6eaf5e0e9e4ebe1c5e0fde4e8f5e9e0abe6eae8">[email&#160;protected]</a></td>
-<td>-</td>
-<td>신고누적횟수 초과</td>
-<td>2 Jul 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
-<a href="javascript:void(0);" class="btn btn-sm btn-white text-danger me-2"><i class="far fa-trash-alt me-1"></i>Delete</a>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
 <tr>
 <td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-09.jpg" alt="User Image"></a>
-<a href="profile.html">Leatha Bailey <span>9876543210</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f39f9692879b9291929a9f968ab3968b929e839f96dd909c9e">[email&#160;protected]</a></td>
-<td>$480</td>
-<td>신고누적횟수 초과</td>
-<td>20 Jun 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
-<a href="javascript:void(0);" class="btn btn-sm btn-white text-danger me-2"><i class="far fa-trash-alt me-1"></i>Delete</a>
-</td>
-</tr>
-<tr>
-<td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-10.jpg" alt="User Image"></a>
-<a href="profile.html">Joseph Collins <span>9876543210</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="12787d6177627a717d7e7e7b7c6152776a737f627e773c717d7f">[email&#160;protected]</a></td>
-<td>$600</td>
-<td>신고누적횟수 초과</td>
-<td>9 May 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
-<a href="javascript:void(0);" class="btn btn-sm btn-white text-danger me-2"><i class="far fa-trash-alt me-1"></i>Delete</a>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
 <tr>
 <td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-11.jpg" alt="User Image"></a>
-<a href="profile.html">Jennifer Floyd <span>9876543210</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d1bbb4bfbfb8b7b4a3b7bdbea8b591b4a9b0bca1bdb4ffb2bebc">[email&#160;protected]</a></td>
-<td>-</td>
-<td>신고누적횟수 초과</td>
-<td>17 Apr 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
-<a href="javascript:void(0);" class="btn btn-sm btn-white text-danger me-2"><i class="far fa-trash-alt me-1"></i>Delete</a>
-</td>
-</tr>
-<tr>
-<td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-12.jpg" alt="User Image"></a>
-<a href="profile.html">Alex Campbell <span>9876543210</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bedfd2dbc6dddfd3cedcdbd2d2fedbc6dfd3ced2db90ddd1d3">[email&#160;protected]</a></td>
-<td>-</td>
-<td>신고누적횟수 초과</td>
-<td>30 Mar 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
 <tr>
 <td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-13.jpg" alt="User Image"></a>
-<a href="profile.html">Wendell Ward <span>9876543210</span></a>
-</h2>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a4d5f545e5f56564d5b485e7a5f425b574a565f14595557">[email&#160;protected]</a></td>
-<td>$7500</td>
-<td>신고누적횟수 초과</td>
-<td>22 Feb 2020</td>
-<td>8 Nov 2020</td>
-<td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
-<td class="text-end">
-<a href="edit-customer.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
-<a href="javascript:void(0);" class="btn btn-sm btn-white text-danger me-2"><i class="far fa-trash-alt me-1"></i>Delete</a>
+</tr>
+<tr>
+<td>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
+</td>
+</tr>
+<tr>
+<td>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
+</td>
+</tr>
+<tr>
+<td>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
+</td>
+</tr>
+<tr>
+<td>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
+</td>
+</tr>
+<tr>
+<td>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
 </tbody>
@@ -532,51 +565,19 @@
 
 
 <script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
 
-<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
 
-<script src="assets/js/feather.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/js/feather.min.js"></script>
 
-<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="assets/plugins/datatables/datatables.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.js"></script>
 
-<script src="assets/js/script.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
 
-
-<a href="javascript:void(0);" class="btn btn-sm btn-white text-danger me-2" id="modal"><i class="far fa-trash-alt me-1"></i>삭제</a>
-
-<div id="bottom-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-bottom">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="bottomModalLabel">회원 탈퇴</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h5>해당 소보루 회원 탈퇴를 진행하시겠습니까?</h5>
-        <p>탈퇴시, 서비스 이용을 하실 수 없습니다.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-bs-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary">탈퇴하기</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // 삭제 버튼 클릭 이벤트 핸들러
-  document.getElementById("modal").addEventListener("click", function() {
-    // 모달창 보이기
-    var modal = new bootstrap.Modal(document.getElementById('bottom-modal'), {
-      keyboard: false
-    });
-    modal.show();
-  });
-</script>
 
 
 <!-- 모달팝업 -->
@@ -600,6 +601,25 @@
 </div>
 
 
+<!-- 모달팝업 -->
+<div class="modal custom-modal fade" id="danger_paid" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+  <div class="modal-body">
+  <div class="form-header">
+  <h3>회원 정지</h3>
+   <p>해당 소보루 회원을 정지하시겠습니까?</p>
+   <p>탈퇴 처리시 , 서비스 이용을 하실 수 없습니다.</p>
+  </div>
+  <div class="modal-btn delete-action">
+  <div class="row">
+  <div class="col-6">
+  <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">정지</a>
+  </div>
+  <div class="col-6">
+  <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
+
+</div>
 
 
 </body>

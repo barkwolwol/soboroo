@@ -9,20 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title>soboroo admin - 게시판 관리</title>
 
-    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/all.min.css">
 
-    <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/select2/css/select2.min.css">
 
-    <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.css">
 
-    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap-datetimepicker.min.css">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/style.css">
 </head>
 
 <body>
@@ -33,13 +33,13 @@
 
             <div class="header-left header-left-one">
                 <a href="index.html" class="logo">
-                    <img src="assets/img/usermain.jpg" alt="Logo">
+                    <img src="${pageContext.request.contextPath}/resources/admin/img/usermain.jpg" alt="Logo">
                 </a>
                 <a href="index.html" class="white-logo">
-                    <img src="assets/img/logo-white.png" alt="Logo">
+                    <img src="${pageContext.request.contextPath}/resources/admin/img/logo-white.png" alt="Logo">
                 </a>
                 <a href="index.html" class="logo logo-small">
-                    <img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+                    <img src="${pageContext.request.contextPath}/resources/admin/img/logo-small.png" alt="Logo" width="30" height="30">
                 </a>
             </div>
 
@@ -191,6 +191,7 @@
 
 
 
+       <!-- 사이드바 시작  -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">
                 <div id="sidebar-menu" class="sidebar-menu">
@@ -203,9 +204,9 @@
                             <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="memberInfo.jsp">회원 관리</a></li>
-                                <li><a href="suspendmemberInfo.jsp">정지회원 관리</a></li>
-                                <li><a href="withdrawalMemberInfo.jsp">탈퇴회원 관리</a></li>
+                                <li><a href="memberInfo.ad">회원 관리</a></li>
+                                <li><a href="susMember.ad">정지회원 관리</a></li>
+                                <li><a href="withdrawMember.ad">탈퇴회원 관리</a></li>
                             </ul>
                         </li>
                         <li class="submenu">
@@ -215,20 +216,20 @@
                                 <li class="submenu" align="left">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="invoices.html">온라인 일반 / 단기</a></li>
-                                        <li><a href="invoices.html">온라인 일반 / 정기</a></li>
-                                        <li><a href="invoices.html">온라인 목표 / 기간</a></li>
-                                        <li><a href="invoices.html">온라인 목표 / 단위별</a></li>
+                                    <ul><li><a href="#">온라인 일반 / 단기</a></li>
+                                        <li><a href="#">온라인 일반 / 정기</a></li>
+                                        <li><a href="#">온라인 목표 / 기간</a></li>
+                                        <li><a href="#">온라인 목표 / 단위별</a></li>
                                     </ul>
                                
                                 <li class="submenu">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="invoices.html">오프라인 일반 / 단기</a></li>
-                                        <li><a href="invoices.html">오프라인 일반 / 정기</a></li>
-                                        <li><a href="invoices.html">오프라인 목표 / 기간</a></li>
-                                        <li><a href="invoices.html">오프라인 목표 / 단위별</a></li>
+                                        <li><a href="#">오프라인 일반 / 단기</a></li>
+                                        <li><a href="#">오프라인 일반 / 정기</a></li>
+                                        <li><a href="#">오프라인 목표 / 기간</a></li>
+                                        <li><a href="#">오프라인 목표 / 단위별</a></li>
                                     </ul>
                          
                             </ul>
@@ -237,26 +238,26 @@
                             <a href="#"><i data-feather="alert-octagon"></i> <span>신고 관리</span><span
                                 class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="intergratedReport.jsp">통합신고 관리</a></li>
+                                <li><a href="report.ad">통합신고 관리</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="boardInfo.jsp"><i data-feather="star"></i> <span>게시판 관리</span></a>
+                            <a href="board.ad"><i data-feather="star"></i> <span>게시판 관리</span></a>
                         </li>
                         <li>
-                            <a href="expenses.html"><i data-feather="package"></i> <span>문의답변</span></a>
+                            <a href="#"><i data-feather="package"></i> <span>문의답변</span></a>
                         </li>
                         <li>
-                            <a href="noticeInfo.jsp"><i data-feather="pie-chart"></i> <span>공지사항 관리</span> </a>
+                            <a href="notice.ad"><i data-feather="pie-chart"></i> <span>공지사항 관리</span> </a>
                         </li>
-          
-                        </li>
-          
 
-                    </ul>
+                        </li>
+					</ul>
                 </div>
             </div>
         </div>
+        <!-- 사이드바 끝  -->
+
 
 
         <div class="page-wrapper">
@@ -472,23 +473,23 @@
     </div>
 
 
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
 
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
 
-    <script src="assets/js/feather.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/js/feather.min.js"></script>
 
-    <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <script src="assets/plugins/select2/js/select2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/plugins/select2/js/select2.min.js"></script>
 
-    <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatables/datatables.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.js"></script>
 
-    <script src="assets/plugins/moment/moment.min.js"></script>
-    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/plugins/moment/moment.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap-datetimepicker.min.js"></script>
 
-    <script src="assets/js/script.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
 </body>
 
 </html>

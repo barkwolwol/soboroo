@@ -166,70 +166,72 @@
 </div>
 
 
-<div class="sidebar" id="sidebar">
-    <div class="sidebar-inner slimscroll">
-        <div id="sidebar-menu" class="sidebar-menu">
-            <ul>
-                <li class="menu-title"><span>MENU</span></li>
-                <li>
-                    <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
-                </li>
-                <li class="submenu" class="active">
-                    <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
-                            class="menu-arrow"></span></a>
+<!-- 사이드바 시작  -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
-                        <li><a href="customers.html">회원 관리</a></li>
-                        <li><a href="customers3.html">정지회원 관리</a></li>
-                        <li><a href="customers4.html">탈퇴회원 관리</a></li>
-                    </ul>
-                </li>
-                <li class="submenu">
-                                <a href="#"><i data-feather="clipboard"></i> <span>모임관리</span> <span
-                                class="menu-arrow"></span></a>
-                    <ul>
-                        <li class="submenu" align="left">
-                            <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
-                            class="menu-arrow"></span></a>
-                            <ul><li><a href="invoices.html">온라인 일반 / 단기</a></li>
-                                <li><a href="invoices.html">온라인 일반 / 정기</a></li>
-                                <li><a href="invoices.html">온라인 목표 / 기간</a></li>
-                                <li><a href="invoices.html">온라인 목표 / 단위별</a></li>
-                            </ul>
-                       
-                        <li class="submenu">
-                            <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
-                            class="menu-arrow"></span></a>
+                        <li class="menu-title"><span>MENU</span></li>
+                        <li>
+                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
+                        </li>
+                        <li class="submenu" class="active">
+                            <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
+                                    class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="invoices.html">오프라인 일반 / 단기</a></li>
-                                <li><a href="invoices.html">오프라인 일반 / 정기</a></li>
-                                <li><a href="invoices.html">오프라인 목표 / 기간</a></li>
-                                <li><a href="invoices.html">오프라인 목표 / 단위별</a></li>
+                                <li><a href="memberInfo.ad">회원 관리</a></li>
+                                <li><a href="susMember.ad">정지회원 관리</a></li>
+                                <li><a href="withdrawMember.ad">탈퇴회원 관리</a></li>
                             </ul>
-                 
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i data-feather="alert-octagon"></i> <span>신고 관리</span><span
-                        class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="customers2.html">통합신고 관리</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="invoice-items.html"><i data-feather="star"></i> <span>게시판 관리</span></a>
-                </li>
-                <li>
-                    <a href="expenses.html"><i data-feather="package"></i> <span>문의답변</span></a>
-                </li>
-                <li>
-                    <a href="invoice-items3.html"><i data-feather="pie-chart"></i> <span>공지사항 관리</span> </a>
-                </li>
-  
-                </li>
-</ul>
-</div>
-</div>
-</div>
+                        </li>
+                        <li class="submenu">
+                                        <a href="#"><i data-feather="clipboard"></i> <span>모임관리</span> <span
+                                        class="menu-arrow"></span></a>
+                            <ul>
+                                <li class="submenu" align="left">
+                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    class="menu-arrow"></span></a>
+                                    <ul><li><a href="#">온라인 일반 / 단기</a></li>
+                                        <li><a href="#">온라인 일반 / 정기</a></li>
+                                        <li><a href="#">온라인 목표 / 기간</a></li>
+                                        <li><a href="#">온라인 목표 / 단위별</a></li>
+                                    </ul>
+                               
+                                <li class="submenu">
+                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
+                                    class="menu-arrow"></span></a>
+                                    <ul>
+                                        <li><a href="#">오프라인 일반 / 단기</a></li>
+                                        <li><a href="#">오프라인 일반 / 정기</a></li>
+                                        <li><a href="#">오프라인 목표 / 기간</a></li>
+                                        <li><a href="#">오프라인 목표 / 단위별</a></li>
+                                    </ul>
+                         
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i data-feather="alert-octagon"></i> <span>신고 관리</span><span
+                                class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="report.ad">통합신고 관리</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="board.ad"><i data-feather="star"></i> <span>게시판 관리</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i data-feather="package"></i> <span>문의답변</span></a>
+                        </li>
+                        <li>
+                            <a href="notice.ad"><i data-feather="pie-chart"></i> <span>공지사항 관리</span> </a>
+                        </li>
+
+                        </li>
+					</ul>
+                </div>
+            </div>
+        </div>
+        <!-- 사이드바 끝  -->
 
 
 <div class="page-wrapper">
