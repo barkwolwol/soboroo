@@ -22,6 +22,10 @@
 	       <div id="login_input">
                <button type="submit" class="login_btn">카카오로 시작하기</button>
 	       </div>
+     	       
+     	   <div id="login_input">
+               <button type="submit" class="login_btn">관리자 로그인</button>
+	       </div>
 	    </div>
 	</div>
 	

@@ -53,7 +53,7 @@
                   <%-- <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/icon-image/service-icon1.png" alt="service-icon"> --%>
               </div>
               <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="detail.off?groupNum=2" target="_blank">Zero Harm Everyday</a></h3>
+                  <h3 class="service-box-title"><a href="detail.off?groupNum=2">Zero Harm Everyday</a></h3>
                   <p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for talent like. Lorem ipsum dolor suscipit.</p>
                   <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
               </div>
