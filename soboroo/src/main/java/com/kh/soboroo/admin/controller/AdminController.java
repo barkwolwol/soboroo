@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 	
 	
-	// 관리자 로그인 페이지 호출
+	// 관리자 로그인 페이지 호출 // 지금은 홈화면
 	@RequestMapping("adminLogin.me")
 	public String adminLogin() {
 		return "admin/adminIndex";	
@@ -35,6 +35,12 @@ public class AdminController {
 	@RequestMapping("withdrawMember.ad")
 	public String withdrawMember() {
 		return "admin/withdrawalMemberInfo";
+	}
+	
+	// 관리자 온라인 반짝 모임 관리 페이지 호출
+	@RequestMapping("onlineone.ad")
+	public String onlineOneInfo() {
+		return "admin/onlineOneInfo";
 	}
 	
 	

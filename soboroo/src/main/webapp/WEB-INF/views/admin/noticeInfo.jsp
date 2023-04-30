@@ -194,7 +194,7 @@
                                 <li class="submenu" align="left">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="#">온라인 일반 / 단기</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인 일반 / 반짝</a></li>
                                         <li><a href="#">온라인 일반 / 정기</a></li>
                                         <li><a href="#">온라인 목표 / 기간</a></li>
                                         <li><a href="#">온라인 목표 / 단위별</a></li>

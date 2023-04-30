@@ -8,16 +8,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 <title>soboroo admin - 회원 정보 조회</title>
 
-<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/all.min.css">
 
-<link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/select2/css/select2.min.css">
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/style.css">
 </head>
 <body>
 
@@ -27,13 +27,13 @@
 
 <div class="header-left header-left-one">
 <a href="index.html" class="logo">
-<img src="assets/img/usermain.jpg" alt="Logo">
+<img src="${pageContext.request.contextPath}/resources/admin/img/usermain.jpg" alt="Logo">
 </a>
 <a href="index.html" class="white-logo">
-<img src="assets/img/logo-white.png" alt="Logo">
+<img src="${pageContext.request.contextPath}/resources/admin/img/logo-white.png" alt="Logo">
 </a>
 <a href="index.html" class="logo logo-small">
-<img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+<img src="${pageContext.request.contextPath}/resources/admin/img/logo-small.png" alt="Logo" width="30" height="30">
 </a>
 </div>
 
@@ -89,7 +89,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-03.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-03.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Marie Canales</span> has accepted your estimate <span class="noti-title">#GTR458789</span></p>
@@ -115,7 +115,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-04.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Barbara Moore</span> declined the invoice <span class="noti-title">#RDW026896</span></p>
@@ -149,7 +149,7 @@
 <li class="nav-item dropdown has-arrow main-drop">
 <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
 <span class="user-img">
-<img src="assets/img/profiles/usermain.jpg" alt="">
+<img src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="">
 <span class="status online"></span>
 </span>
 <span>Admin</span>
@@ -191,7 +191,7 @@
                                 <li class="submenu" align="left">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="#">온라인 일반 / 단기</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인 일반 / 반짝</a></li>
                                         <li><a href="#">온라인 일반 / 정기</a></li>
                                         <li><a href="#">온라인 목표 / 기간</a></li>
                                         <li><a href="#">온라인 목표 / 단위별</a></li>
@@ -342,16 +342,16 @@
 </div>
 
 
-<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
 
-<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
 
-<script src="assets/js/feather.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/js/feather.min.js"></script>
 
-<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<script src="assets/plugins/select2/js/select2.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/select2/js/select2.min.js"></script>
 
-<script src="assets/js/script.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
 </body>
 </html>
