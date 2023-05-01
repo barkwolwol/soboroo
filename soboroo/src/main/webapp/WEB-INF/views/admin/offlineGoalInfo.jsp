@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>soboroo admin - 온라인 반짝모임 관리</title>
+<title>soboroo admin - 오프라인 목표 모임</title>
 
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
@@ -240,6 +240,7 @@
         </div>
         <!-- 사이드바 끝  -->
 
+
 <div class="page-wrapper">
 <div class="content container-fluid">
 
@@ -248,8 +249,8 @@
 <div class="col">
 <h3 class="page-title">모임관리</h3>
 <ul class="breadcrumb">
-<li class="breadcrumb-item"><a href="index.html">온라인</a></li>
-<li class="breadcrumb-item active">일반 단기</li>
+<li class="breadcrumb-item"><a href="index.html">오프라인</a></li>
+<li class="breadcrumb-item active">목표</li>
 </ul>
 </div>
 </a>

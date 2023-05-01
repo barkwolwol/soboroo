@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>soboroo admin - 온라인 반짝모임 관리</title>
+<title>soboroo admin - 온라인 정기모임 관리</title>
 
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
@@ -135,7 +135,7 @@
 <div class="media d-flex">
 <div class="avatar avatar-sm">
 <span class="avatar-title rounded-circle bg-info-light"><i class="far fa-comment"></i></span>
-</div>
+</div>ㄴ
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">You have received a new message</span></p>
 <p class="noti-time"><span class="notification-time">2 days ago</span></p>
@@ -240,6 +240,7 @@
         </div>
         <!-- 사이드바 끝  -->
 
+
 <div class="page-wrapper">
 <div class="content container-fluid">
 
@@ -249,7 +250,7 @@
 <h3 class="page-title">모임관리</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">온라인</a></li>
-<li class="breadcrumb-item active">일반 단기</li>
+<li class="breadcrumb-item active">정기</li>
 </ul>
 </div>
 </a>

@@ -191,19 +191,19 @@
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul><li><a href="onlineone.ad">온라인 일반 / 반짝</a></li>
-                                        <li><a href="#">온라인 일반 / 정기</a></li>
-                                        <li><a href="#">온라인 목표 / 기간</a></li>
-                                        <li><a href="#">온라인 목표 / 단위별</a></li>
+                                        <li><a href="onlineleg.ad">온라인 일반 / 정기</a></li>
+                                        <li><a href="onlinegoal.ad">온라인 목표 / 기간</a></li>
+                                        <li><a href="onlineDday.ad">온라인 목표 / 단위별</a></li>
                                     </ul>
                                
                                 <li class="submenu">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="#">오프라인 일반 / 단기</a></li>
-                                        <li><a href="#">오프라인 일반 / 정기</a></li>
-                                        <li><a href="#">오프라인 목표 / 기간</a></li>
-                                        <li><a href="#">오프라인 목표 / 단위별</a></li>
+                                        <li><a href="offlineone.ad">오프라인 일반 / 반짝</a></li>
+                                        <li><a href="offlineleg.ad">오프라인 일반 / 정기</a></li>
+                                        <li><a href="offlinegoal.ad">오프라인 목표 / 기간</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 목표 / 단위별</a></li>
                                     </ul>
                          
                             </ul>
