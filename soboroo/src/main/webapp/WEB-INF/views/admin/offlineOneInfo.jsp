@@ -344,6 +344,7 @@
 </div>
 </li>
 <li>
+    <!-- 카테고리 시작 -->
 <div class="multipleSelection">
 <div class="selectbox">
 <p class="mb-0"><i data-feather="bookmark" class="me-1 select-icon"></i>카테고리</p>
@@ -356,10 +357,6 @@
 <input type="text" class="form-control bg-grey" placeholder="카테고리 검색">
 </div>
 <div class="selectbox-cont">
-<label class="custom_check w-100">
-<input type="checkbox" name="category">
-<span class="checkmark"></span> 전체
-</label>
 <label class="custom_check w-100">
     <input type="checkbox" name="category">
     <span class="checkmark"></span> 교육/어학
@@ -393,6 +390,7 @@
                     <span class="checkmark"></span> 기타
                     </label>
 </div>
+<!-- 카테고리 끝 -->
 <button type="submit" class="btn w-100 btn-primary">적용</button>
 <button type="reset" class="btn w-100 btn-grey">취소</button>
 </form>
@@ -419,7 +417,7 @@
 <ul>
 <li><a href="invoices.html" class="active">모임 게시판</a></li>
 <li><a href="#">모임일정</a></li>
-<li><a href="#">모임멤버</a></li>
+<li><a href="#">모임공지사항</a></li>
 <li><a href="#">모임신고</a></li>
 </ul>
 </div>
@@ -440,13 +438,14 @@
 <div class="card-body">
 <div class="inovices-widget-header">
 <span class="inovices-widget-icon">
-<img src="${pageContext.request.contextPath}/resources/admin/img/icons/invoices-icon1.svg" alt="">
+    <img src="${pageContext.request.contextPath}/resources/admin/img/user.jpg" alt="" style="width: 30%;">
 </span>
 <div class="inovices-dash-count">
-<div class="inovices-amount"></div>
+<div class="inovices-amount">150명 참여중</div>
 </div>
 </div>
-<p class="inovices-all">모임멤버<span>50</span></p>
+
+<p class="inovices-all" style="margin-left: 15px;">모임멤버<span></span></p>
 </div>
 </div>
 </div>

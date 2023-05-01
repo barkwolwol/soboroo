@@ -408,8 +408,8 @@
 <div class="modal-content">
 <div class="modal-body">
 <div class="form-header">
-<h3>게시글 삭제</h3>
- <p>해당 게시글을 삭제하시겠습니까?</p>
+<h3>공지사항 삭제</h3>
+ <p>해당 공지사항 글을 삭제하시겠습니까?</p>
 </div>
 <div class="modal-btn delete-action">
 <div class="row">

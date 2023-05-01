@@ -432,6 +432,7 @@
                                                 <a class="btn btn-sm btn-white text-danger" href="#"
                                                     data-bs-toggle="modal" data-bs-target="#delete_paid"><i
                                                         class="far fa-trash-alt me-1"></i>삭제</a>
+                        
                                             </td>
                                         </tr>
                                     </tbody>

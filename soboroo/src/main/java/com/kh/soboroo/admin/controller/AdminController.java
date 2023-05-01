@@ -85,7 +85,6 @@ public class AdminController {
 			return "admin/offlineDdayInfo";
 		}
 		
-	
 		
 		// 관리자 통합 신고 관리 페이지 호출
 		@RequestMapping("report.ad")

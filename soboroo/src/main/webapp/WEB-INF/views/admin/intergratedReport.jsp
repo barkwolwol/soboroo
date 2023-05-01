@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 <title>soboroo admin - 통합신고관리</title>
 
-<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
@@ -76,7 +76,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/usermain.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Brian Johnson</span> paid the invoice <span class="noti-title">#DF65485</span></p>
@@ -89,7 +89,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-03.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-03.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Marie Canales</span> has accepted your estimate <span class="noti-title">#GTR458789</span></p>
@@ -115,7 +115,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-04.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Barbara Moore</span> declined the invoice <span class="noti-title">#RDW026896</span></p>
@@ -315,7 +315,7 @@
 <td>zxcc123@naver.com</td>
 <td class="text-end">
 <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+<a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 
 </td>
@@ -337,7 +337,7 @@
         <td>zxcc123@naver.com</td>
         <td class="text-end">
         <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
         <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
@@ -358,7 +358,7 @@
         <td>zxcc123@naver.com</td>
         <td class="text-end">
         <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
         <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
@@ -379,7 +379,7 @@
         <td>zxcc123@naver.com</td>
         <td class="text-end">
         <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
         <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
@@ -400,7 +400,7 @@
         <td>zxcc123@naver.com</td>
         <td class="text-end">
         <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
         <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
@@ -421,7 +421,7 @@
         <td>zxcc123@naver.com</td>
         <td class="text-end">
         <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
         <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
@@ -442,7 +442,7 @@
         <td>zxcc123@naver.com</td>
         <td class="text-end">
         <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
         <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
@@ -463,7 +463,47 @@
         <td>zxcc123@naver.com</td>
         <td class="text-end">
         <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
+        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
+</td>
+<!-- 모달팝업 -->
+<div class="modal custom-modal fade" id="danger_paid" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    <div class="modal-body">
+    <div class="form-header">
+    <h3>회원 정지</h3>
+     <p>해당 소보루 회원을 정지하시겠습니까?</p>
+     <p>정지 처리시 , 해당 기간동안 서비스 이용이 제한됩니다.</p>
+    </div>
+    <div class="modal-btn delete-action">
+    <div class="row">
+    <div class="col-6">
+    <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">정지</a>
+    </div>
+    <div class="col-6">
+    <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
+  
+  </div>
+</tr>
+<tr>
+<td>
+    <h2 class="table-avatar">
+        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+        </h2>
+        </td>
+        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+        <td>1</td>
+        <td>커피바리스타</td>
+        <td>댓글</td>
+        <td>2023-04-20 11:20:23</td>
+        <td>폭언 및 욕설</td>
+        <td>2023-04-20 12:20:43</td>
+        <td>zxcc123@naver.com</td>
+        <td class="text-end">
+        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
         <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
@@ -484,7 +524,7 @@
         <td>zxcc123@naver.com</td>
         <td class="text-end">
         <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
         <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
@@ -505,7 +545,7 @@
         <td>zxcc123@naver.com</td>
         <td class="text-end">
         <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
         <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
@@ -526,28 +566,7 @@
         <td>zxcc123@naver.com</td>
         <td class="text-end">
         <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="far fa-trash-alt me-2"></i>정지</a>
+        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
         <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
@@ -561,6 +580,12 @@
 </div>
 </div>
 
+ 
+
+
+
+ 
+  
 </div>
 
 
@@ -582,44 +607,27 @@
 
 <!-- 모달팝업 -->
 <div class="modal custom-modal fade" id="delete_paid" role="dialog">
-  <div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content">
-  <div class="modal-body">
-  <div class="form-header">
-  <h3>회원 탈퇴</h3>
-   <p>해당 소보루 회원 탈퇴를 진행하시겠습니까?</p>
-   <p>탈퇴 처리시 , 서비스 이용을 하실 수 없습니다.</p>
+    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    <div class="modal-body">
+    <div class="form-header">
+    <h3>회원 탈퇴</h3>
+     <p>해당 소보루 회원 탈퇴를 진행하시겠습니까?</p>
+     <p>탈퇴 처리시 , 서비스 이용을 하실 수 없습니다.</p>
+    </div>
+    <div class="modal-btn delete-action">
+    <div class="row">
+    <div class="col-6">
+    <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">탈퇴</a>
+    </div>
+    <div class="col-6">
+    <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
+  
   </div>
-  <div class="modal-btn delete-action">
-  <div class="row">
-  <div class="col-6">
-  <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">탈퇴</a>
-  </div>
-  <div class="col-6">
-  <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
-
-</div>
 
 
-<!-- 모달팝업 -->
-<div class="modal custom-modal fade" id="danger_paid" role="dialog">
-  <div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content">
-  <div class="modal-body">
-  <div class="form-header">
-  <h3>회원 정지</h3>
-   <p>해당 소보루 회원을 정지하시겠습니까?</p>
-   <p>탈퇴 처리시 , 서비스 이용을 하실 수 없습니다.</p>
-  </div>
-  <div class="modal-btn delete-action">
-  <div class="row">
-  <div class="col-6">
-  <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">정지</a>
-  </div>
-  <div class="col-6">
-  <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
 
-</div>
+
 
 
 </body>

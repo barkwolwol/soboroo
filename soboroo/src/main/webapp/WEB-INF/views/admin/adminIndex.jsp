@@ -244,9 +244,9 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                     <div class="dash-count">
-                                        <div class="dash-title">모임1</div>
+                                        <div class="dash-title">생성된 모임</div>
                                         <div class="dash-counts">
-                                            <p>1,642</p>
+                                            <p>50</p>
                                         </div>
                                     </div>
                                 </div>
@@ -263,14 +263,14 @@
                                         <i class="fas fa-users"></i>
                                     </span>
                                     <div class="dash-count">
-                                        <div class="dash-title">모임2</div>
+                                        <div class="dash-title">신고된 모임</div>
                                         <div class="dash-counts">
-                                            <p>100</p>
+                                            <p>10</p>
                                         </div>
                                     </div>
                                 </div>
                                 <p class="text-muted mt-3 mb-0"><span class="text-success me-1"><i
-                                    class="fas fa-arrow-up me-1"></i>20</span>조회수 증가</p>
+                                    class="fas fa-arrow-up me-1"></i>20</span>정지회원</p>
                             </div>
                         </div>
                     </div>
@@ -282,14 +282,14 @@
                                         <i class="fas fa-file-alt"></i>
                                     </span>
                                     <div class="dash-count">
-                                        <div class="dash-title">모임3</div>
+                                        <div class="dash-title">일일 방문자 수</div>
                                         <div class="dash-counts">
                                             <p>1,041</p>
                                         </div>
                                     </div>
                                 </div>
                                 <p class="text-muted mt-3 mb-0"><span class="text-success me-1"><i
-                                            class="fas fa-arrow-up me-1"></i>3.77%</span> since last week</p>
+                                            class="fas fa-arrow-up me-1"></i>3.77%</span>지난주 대비</p>
                             </div>
                         </div>
                     </div>
@@ -301,14 +301,14 @@
                                         <i class="far fa-file"></i>
                                     </span>
                                     <div class="dash-count">
-                                        <div class="dash-title">모임4</div>
+                                        <div class="dash-title">총 방문자수</div>
                                         <div class="dash-counts">
                                             <p>2,150</p>
                                         </div>
                                     </div>
                                 </div>
                                 <p class="text-muted mt-3 mb-0"><span class="text-danger me-1"><i
-                                            class="fas fa-arrow-down me-1"></i>8.68%</span> since last week</p>
+                                            class="fas fa-arrow-down me-1"></i>8.68%</span>지난주대비</p>
                             </div>
                         </div>
                     </div>
@@ -323,7 +323,7 @@
                                         <h5 class="card-title">자유게시판 관리</h5>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="invoice-items.html" class="btn-right btn btn-sm btn-outline-primary">
+                                        <a href="board.ad" class="btn-right btn btn-sm btn-outline-primary">
                                             더보기
                                         </a>
                                     </div>
@@ -534,7 +534,7 @@
                                         <h5 class="card-title">공지사항 관리</h5>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="estimates.html" class="btn-right btn btn-sm btn-outline-primary">
+                                        <a href="notice.ad" class="btn-right btn btn-sm btn-outline-primary">
                                             더보기
                                         </a>
                                     </div>
