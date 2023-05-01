@@ -97,34 +97,41 @@
             
 
 	            <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼-->
-           		<a class="btn btn-secondary btn-sm" style="float:right" href="pmtenrollForm.no">글쓰기</a>
+           		<a class="btn btn-secondary btn-sm" style="float:right" href="notenrollForm.no">글쓰기</a>
             <br></br>
-            <table id="boardList" class="table table-hover" align="center">
+            <table id="NoticeList" class="table table-hover" align="center">
                 <thead>
                   <tr>
                     <th>글번호</th>
-                    <th>분류</th>
-                    <th>내용</th>
                     <th>작성자</th>
+                    <th>제목</th>
+                    <th>내용</th>
                     <th>조회수</th>
                     <th>작성일</th>
                   </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="n" items="${ list }">
 	                    <tr>
-	                        <td class="bno">5</td>
-	                        <td>카테고리</td>
-	                        <td>마지막 공지사항 제목</td>
-	                        <td>admin</td>
-	                        <td>10</td>
-	                        <td>2023-03-29</td>
+	                        <td class="nno" name="nno">${ n.ntcNo }</td>
+	                        <td>${n.ntcWriter }</td>
+	                        <td>${n.ntcTitle}</td>
+	                        <td>${n.ntcContent }</td>
+	                        <td>${n.ntcCount }</td>
+	                        <td>${n.ntcCreateDate }</td>
 	                    </tr>
 
-                       
+                       </c:forEach>
                 </tbody>
             </table>
             <br>
-		
+		<script>
+          		$(function() {
+					$("#NoticeList>tbody>tr").click(function() {
+						location.href='detail.no?nno=' + $(this).children(".nno").text();
+					})
+				})
+          	</script>
 			
             <div id="pagingArea">
                 <ul class="pagination">

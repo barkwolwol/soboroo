@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+
+<resultMap type="Notice" id="noticeResultSet">
+	<result column = "ntc_no" property="ntcNo"/>
+	<result column = "ntc_writer" property="ntcWriter"/>
+	<result column = "ntc_title" property="ntcTitle"/>
+	<result column = "ntc_content" property="ntcContent"/>
+	<result column = "ntc_create_date" property="ntcCreateDate"/>
+	<result column = "ntc_update_date" property="ntcUpdateDate"/>
+	<result column = "ntc_count" property="ntcCount"/>
+	<result column = "ntc_del_ny" property="ntcDelNy"/>
+</resultMap>
+
+	<select id="selectNoticeListCount" resultType="_int">
+	select    
+    count(*)
+    from notice
+    where ntc_del_ny = 'N'
+	</select>	
+
+	<select id="selectNoticeList" resultMap="noticeResultSet">
+	select 
+		 ntc_no
+		,ntc_writer
+		,ntc_title
+		,ntc_content
+		,ntc_create_date
+		,ntc_update_date
+		,ntc_count
+		,ntc_del_ny
+		from notice
+		where ntc_del_ny = 'N'
+		order
+		by ntc_no desc
+
+	</select>
+
+	<update id="increaseCount">
+	update
+			notice
+		set ntc_count = ntc_count + 1
+	  where ntc_no = #{ntcNo}
+	  and ntc_del_ny = 'N'
+
+
+	</update>
+
+
+
+	<select id="selectNotice" resultMap="noticeResultSet">
+
+	select
+		   ntc_no
+		 , ntc_title
+		 , ntc_writer
+		 , to_char(ntc_create_date, 'YYYY-MM-DD') as "ntc_create_date"
+		 , ntc_content
+		 , ntc_count
+	from notice
+   where ntc_no = #{ntcNo}
+
+
+
+	</select>
+	<update id="deleteNotice">
+		update
+			   notice
+		   set ntc_del_ny = 'Y'
+		 where ntc_no = #{ntcNo}
+	</update>
+
+	<insert id="insertNotice">
+		insert 
+			into notice
+			(
+			  ntc_no
+			, ntc_title
+		    , ntc_content
+			)
+			values
+			(
+			  seq_nno.nextval
+			  , #{ntcNo}
+			  , #{ntcTitle}
+			  , #{ntcContent}
+			)
+	
+	</insert>
+
+<update id="updateNotice">
+	update
+		notice
+	set ntc_title = #{ntcTitle}
+	  , ntc_content = #{ntcContent}
+	  where ntc_no = #{ntcNo}
+
+</update>
+
+
+
+
+
+</mapper>

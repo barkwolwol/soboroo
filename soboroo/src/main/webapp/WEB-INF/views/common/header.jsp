@@ -129,7 +129,7 @@
 	              
 	                      <li class="nav-item"><a class="nav-link" href="list.bo">자유게시판</a></li>
 	                      
-	                      <li class="nav-item"><a class="nav-link" href="pmtNotice.no">공지사항</a></li>
+	                      <li class="nav-item"><a class="nav-link" href="list.no">공지사항</a></li>
 	                      
 	                      <li class="nav-item dropdown">
 							  <a href="myCalender.do" class="nav-link dropdown-toggle"
@@ -182,7 +182,7 @@
 	  <!-- initialize jQuery Library 
 	  <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>-->
 	  <!-- Bootstrap jQuery -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script>
+	  <%-- <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script> --%>
 	  
 	  <!-- 서머노트 bootstrap 	  
 	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->

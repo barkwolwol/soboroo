@@ -5,18 +5,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>soboroo | 게시글 수정 및 삭제</title>
-	
 	<!-- Favicon
-	================================================== -->
-	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
-	
- 	<!-- include libraries(jQuery, bootstrap) -->
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		================================================== -->
+	  	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 
-	<!-- include summernote css/js -->
-	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+        <!-- include libraries(jQuery, bootstrap) -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <!-- 이쪽에 헤더바 포함할꺼임 -->
+        <jsp:include page="../common/header-2.jsp" />
+        
+
+        <!-- include summernote css/js -->
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+
     <style>
         
         
@@ -145,65 +150,64 @@
     padding: 8px 0 20px;
     display: table;
 }
+
+.notbtn{
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 111200;
+    padding: 17px 21px;
+    padding: 6.5px 12px;
+    border-radius: 3px;
+    
+}
     </style>
 </head>
 <body>
-	  <!-- 이쪽에 메뉴바 포함 할꺼임 -->
-     <jsp:include page="../common/header-2.jsp"/>
-
+	
+	 <form id="updateForm" method="post" action="update.no" enctype="multipart/form-data">
+     <br>
      <div class="content">
-         <br><br>
          <div class="innerOuter">
             <div class="write-header _write_header m_sticky_toolbar">
                 <div class="header_line clearfix">
-                    <div class="board-name">게시판 수정</div>
-                    <div class="write-btn">
+                    <div class="board-name" style="margin-left: 20%;" >공지사항 수정</div>
+                    <div class="write-btn" style="margin-right: 20%;">
                         <a onclick="history.back()" class="btn btn_style">취소</a>
-                        <a href="/" class="icon_style" onclick="POST.postCancel('/');return false;"><i class="btl bt-angle-left"></i></a>
-                        <button type="button" class="_save_post save_post btn" onclick="POST.submit();return false;">
-                            확인				</button>
+                        <button type="submit" class="_save_post save_post btn" >확인</button>
                     </div>
                 </div>
             </div>
              <br>
  
-             <form id="updateForm" method="post" action="update.bo" enctype="multipart/form-data">
+            
            
                 <div class="left" style="margin-left: 25%; margin-top: 20px; display: inline-block; margin-bottom: 20px; ">
                     <div class="avatar" style="float:left;">
-                        <img  src="../../../resources/default_profile.png" class="avatar-image" >
+                        <img  src="${pageContext.request.contextPath}/resources/images/default_profile.png" class="avatar-image" >
                     </div>
                     <div class="author" style="margin-left: 50px; display: block;">
-                        <div class="write" >관리자</div>
+                        <div class="write" >${ n.ntcWriter }</div>
                     </div>
                 </div>
             
 
             <div style="width: 50%;margin: auto;">
                  <table style="width: 100%;">
-                     <tr>
-                         <th>
-                             <select style="border-bottom: 2px solid orange;">
-                                        <option>선택</option>
-                                        <option>교육/어학</option>
-                                        <option>취업/자격증</option>
-                                        <option>여행</option>
-                                        <option>스포츠/운동</option>
-                                        <option>요리/음식</option>
-                                        <option>문화/예술</option>
-                                        <option>영화/음악</option>
-                                        <option>기타</option>
-                             </select>
-                    </th>
-                         <td><input id="post_subject" name="subject" class="no-margin basic_input title_name w100p mb24" type="text" value="" placeholder="제목" ></td>
+                 
+                    <tr>
+                         <th><label for="title">제목</label></th>
+                         <td><input type="text" id="title" class="form-control" name="boardTitle" value="${ n.ntcTitle }" required></td>
                      </tr>
+                    
                     
                      <tr>
                          <th colspan="2"><label for="content" style="margin-top: 30px;">내용</label></th>
                      </tr>
                      <tr style="width: 100%;">
                          <th colspan="2">
-                            <textarea id="summernote">Hello Summernote</textarea>
+                            <textarea id="summernote">${ n.ntcContent }</textarea>
                          </th>
                      </tr>
                  </table>
@@ -215,10 +219,18 @@
                      <button type="submit" class="btn btn-primary">등록하기</button>
                      <button type="reset" class="btn btn-danger">취소하기</button>
                  </div> -->
-             </form>
+             
          </div>
          <br><br>
      </div>
+     
+     <div style="margin-left: 70%;" class="notbtn">
+            <div class="write-btn" style="margin-right: 20%;">
+                <a onclick="history.back()" class="btn btn_style" style="border: 1px solid #d3d3d3;">취소</a>
+                <button type="submit" class="_save_post save_post btn" >확인</button>
+            </div>
+        </div>
+        </form>
      <script>
 
         $(document).ready(function() {

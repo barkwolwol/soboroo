@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>soboroo | 공지사항 등록</title>
+        <title>soboroo | 공지사항 작성</title>
 		
 		<!-- Favicon
 		================================================== -->
@@ -191,7 +191,7 @@
 
 
 
-        <form id="NoticeForm" method="post" ction="" enctype="">
+        <form id="notenrollForm" method="post" action="insert.no" enctype="multipart/form-data">
             <div class="content">
                 <br><br>
                 <div class="innerOuter">
@@ -199,11 +199,8 @@
                         <div class="header_line clearfix">
                             <div class="board-name">공지사항 작성</div>
                             <div class="write-btn" style="margin-right: 20%;">
-                                <a href="" class="btn btn_style">취소</a>
-                                <a href="/" class="icon_style" onclick="POST.postCancel('/');return false;">
-                                    <i class="btl bt-angle-left"></i></a>
-                                <button type="button" class="_save_post save_post btn"
-                                    onclick="POST.submit();return false;">작성 </button>
+                                <a href="list.no" class="btn btn_style">취소</a>
+                                <button type="submit" class="_save_post save_post btn">작성 </button>
                             </div>
                         </div>
                     </div>
@@ -221,26 +218,24 @@
 
 
                 </div>
-            </div>
+           
 
 
 
             <div style="width: 50%; margin-left: 20%;">
                 <table style="width: 100%;">
                     <tr>
-                        <th>
-
-                        </th>
-                        <td><input id="post_subject" name="subject" class="no-margin basic_input title_name w100p mb24"
-                                type="text" value="" placeholder="제목"></td>
+                        <th><label for="title">제목</label></th>
+                        <td><input type="text" id="title" class="form-control" name="boardTitle" required></td>
                     </tr>
-
+                    
+                    
                     <tr>
-                        <th colspan="2"><label for="content" style="margin-top: 30px;"></label></th>
+                        <th colspan="2"><label for="content">내용</label></th>
                     </tr>
                     <tr>
                         <th colspan="2">
-                            <textarea class="form-control" name="content" rows="3" id="content"></textarea>
+                            <textarea class="form-control" required name="boardContent" id="content" rows="10" style="resize:none;"></textarea>
                         </th>
                     </tr>
 
@@ -248,22 +243,17 @@
 
                 <div class="header_line clearfix">
                     <div class="write-btn" style="margin-left: 110%;">
-                        <a href="" class="btn btn_style" style="float:left;  border: 1px solid #d3d3d3; margin-right: 5px; color: #4a4a4a; " >취소</a>
-                        <a href="/" class="icon_style" onclick="POST.postCancel('/');return false;">
-                            <i class="btl bt-angle-left"></i></a>
-                        <button type="button" class="_save_post save_post btn" onclick="POST.submit();return false;">작성
-                        </button>
+                        <a href="list.no" class="btn btn_style" style="float:left;  border: 1px solid #d3d3d3; margin-right: 5px; color: #4a4a4a; " >취소</a>
+                      
+                        <button type="submit" class="_save_post save_post btn">작성</button>
                     </div>
                 </div>
             </div>
             
-
+ </div>
             <br>
 
-            <!-- <div align="center">
-                     <button type="submit" class="btn btn-primary">등록하기</button>
-                     <button type="reset" class="btn btn-danger">취소하기</button>
-                 </div> -->
+           
         </form>
         </div>
         <br><br>
@@ -292,7 +282,7 @@
       fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
         callbacks: {
           onImageUpload : function(files){
-        	console.log("이걸타나요 제발타주세요");
+        	//console.log("이걸타나요 제발타주세요");
             sendFile(files[0],this);
           }
         }

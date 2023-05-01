@@ -202,7 +202,7 @@
         
 
 
-        <form id="enrollFormNotice" method="post" action="" enctype="">
+        <form id="enrollForm" method="post" action="insert.bo" enctype="multipart/form-data">
             <div class="content">
                 <br><br>
                 <div class="innerOuter">
@@ -210,7 +210,7 @@
                         <div class="header_line clearfix">
                             <div class="board-name">게시판 작성</div>
                             <div class="write-btn" style="margin-right: 20%;">
-                                <a href=""
+                                <a onclick="history.back()"
                                     class="btn btn_style">취소</a>
                                 <a href="/" class="icon_style" onclick="POST.postCancel('/');return false;">
                                     <i class="btl bt-angle-left"></i></a>
@@ -233,9 +233,6 @@
                 </div>
 </div>
 
-
-
-
                     <div style="width: 50%; margin-left: 20%;">
                         <table style="width: 100%;">
                             <tr>
@@ -253,13 +250,6 @@
                                     </select>
                                 </th>
 
-                                       
-
-
-
-
-
-                              
                                 <td>
                                     <input id="post_subject" name="subject"
                                         class="no-margin basic_input title_name w100p mb24" type="text" value=""
@@ -281,7 +271,7 @@
 
                         <div class="header_line clearfix">
                             <div class="write-btn" style="margin-left: 110%;">
-                                <a href=""
+                                <a onclick="history.back()"
                                     class="btn btn_style" style="float:left;  border: 1px solid #d3d3d3; margin-right: 5px;color: #4a4a4a; ">취소</a>
                                 <a href="/" class="icon_style" onclick="POST.postCancel('/');return false;">
                                     <i class="btl bt-angle-left"></i></a>
@@ -325,7 +315,7 @@
       fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
         callbacks: {
           onImageUpload : function(files){
-        	console.log("이걸타나요 제발타주세요");
+        
             sendFile(files[0],this);
           }
         }
