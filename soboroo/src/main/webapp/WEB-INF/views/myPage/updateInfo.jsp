@@ -124,7 +124,7 @@
                                                             </div>
                                                     </div>
                                                     <div class="post-footer">
-                                                        <a href="news-single.html" class="btn btn-primary">변경하기</a>
+                                                        <a href="updateNick.my" class="btn btn-primary">변경하기</a>
                                                     </div>
                                                     </form>
                                                 </div>
@@ -155,7 +155,7 @@
                                                         </div>
                                                 </div>
                                                 <div class="post-footer">
-                                                    <a href="news-single.html" class="btn btn-primary">변경하기</a>
+                                                    <a href="updateIntro.my" class="btn btn-primary">변경하기</a>
                                                 </div>
                                                 </form>
                                             </div>
@@ -177,18 +177,19 @@
                                             <br>
                                             <!-- <br></br> -->
                                             <div>
-                                                <div>
+                                               <!--  <div>
                                                     <form>
                                                         <div class="mb-3">
                                                             <input type="email" class="form-control"
                                                                 id="exampleInputEmail1" aria-describedby="emailHelp"
                                                                 style="width: 690px; padding: 5px 10px;" placeholder="비밀번호 입력">
                                                         </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="post-footer">
-                                                    <a href="news-single.html" class="btn btn-primary">탈퇴하기</a>
+                                                    <a href="deleteMember.my" class="btn btn-primary">카카오로 탈퇴하기</a>
                                                 </div>
-                                                </form>
+                                                </div>
+                                             <!--    </form> -->
                                             </div>
                                         </div>
                                     </div> <!-- post-body end -->
