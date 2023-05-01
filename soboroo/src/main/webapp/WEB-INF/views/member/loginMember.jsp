@@ -20,28 +20,12 @@
 	            <span id="titleLogo"><img src="resources/images/logo_1.png" alt=""></span>
 			</div>
 	       <div id="login_input">
-	           <form action="#" method="post">
-	               <input type="text" name="userId" placeholder="아이디 입력">
-	               <input type="password" name="userPwd" placeholder="비밀번호"> <br>
-	               <button type="submit" class="login_btn">로그인</button>
-	           </form>
+               <button type="submit" class="login_btn">카카오로 시작하기</button>
 	       </div>
-	       <div id="login_menu">
-	           <div>
-	               <a href="/Ovcos/views/loginRegister/findId.jsp" class="a1">아이디 찾기</a>
-	               <a href="/Ovcos/views/loginRegister/findPwd.jsp">비밀번호 재설정</a>
-	           </div>
+     	       
+     	   <div id="login_input">
+               <button type="submit" class="login_btn">관리자 로그인</button>
 	       </div>
-	
-	       <button id="register_btn" onclick="location.href='#">회원가입</button>
-	       <span id="test1">간편 로그인</span>
-	       <div id="login_img">
-	           <div id="naverIdLogin">
-	               <img src="${pageContext.request.contextPath}/resources/image/naver.png" alt="">
-	           </div>
-	           <img src="${pageContext.request.contextPath}/resources/image/kakao.png" alt="">
-	           <img src="${pageContext.request.contextPath}/resources/image/google.png" alt="">
-	        </div>
 	    </div>
 	</div>
 	
