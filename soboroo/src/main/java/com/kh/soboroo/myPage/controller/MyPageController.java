@@ -91,7 +91,7 @@ public class MyPageController {
 	public String myCreply() {
 		return "myPage/myCreply";
 	}
-/*
+
 	// 닉네임 변경
 	@RequestMapping("updateNick.my")
 	public String updateNick() {
@@ -110,11 +110,22 @@ public class MyPageController {
 	// 자기소개 변경
 	@RequestMapping("updateIntro.my")
 	public String updateIntro(Member m, HttpSession session, Model model) {
+	    Member loginUser = (Member) session.getAttribute("loginUser");
+	    m.setMemId(loginUser.getMemId());
+	    m.setMemIntroduce(loginUser.getMemIntroduce());
+
+		System.out.println(m +"ffffffffff");
+		
+		
 		int result = myService.updateIntro(m);
 
 		if (result > 0) {
 			Member updateIntro = myService.loginMember(m);
-
+			session.setAttribute("loginUser", updateIntro);
+			return "redirect:updateInfo.me";
+		} else {
+			
+			return "common/errorPage";
 		}
 	}
 
@@ -123,5 +134,5 @@ public class MyPageController {
 	public String deleteMem() {
 
 	}
-*/
+
 }

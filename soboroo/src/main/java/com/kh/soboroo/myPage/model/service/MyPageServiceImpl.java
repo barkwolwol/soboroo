@@ -31,8 +31,12 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Override
 	public int updateIntro(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println(m+"MM");
+		
+		int result = myDao.updateIntro(sqlSession, m);
+		System.out.println(m+"M");
+		System.out.println(result + "result");
+		return result;
 	}
 
 	@Override
@@ -46,8 +50,6 @@ public class MyPageServiceImpl implements MyPageService {
 
 		Member loginUser = myDao.loginMember(sqlSession, m);
 		
-		System.out.println(loginUser);
-		// close도 spring이 알아서 해준다
 		return loginUser;
 		
 	}

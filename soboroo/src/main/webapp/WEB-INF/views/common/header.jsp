@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  
     <!DOCTYPE html>
     <html>
 
@@ -215,7 +216,17 @@
                     </ul>
                     <ul class="nav navbar-nav ml-auto align-items-center">
                       <li class="header-get-a-quote">
+                      <c:choose>
+	               	<c:when test="${empty loginUser }">
                         <a class="btn btn-primary" href="login.me">로그인</a>
+                          </c:when>
+	               <c:otherwise>      
+		               <!-- 로그인 후-->
+		               <label>${loginUser.memId }님 환영합니다</label> &nbsp;&nbsp;
+		               <a href="myPage.me">마이페이지</a>
+		               <a href="logout.me">로그아웃</a>
+	               </c:otherwise>
+               </c:choose>     
                       </li>
                     </ul>
                   </div>

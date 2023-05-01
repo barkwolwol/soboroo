@@ -12,7 +12,7 @@ public class Member {
 	 private int memNo;
 	 private String memToken;
 	 private String memId;
-	 private Date memDate;
+	 private Date memBirth;
 	 private String memPhone;
 	 private String memName;
 	 private int memStatus;
@@ -23,13 +23,13 @@ public class Member {
 	 
 	 public Member() {}
 
-	public Member(int memNo, String memToken, String memId, Date memDate, String memPhone, String memName,
+	public Member(int memNo, String memToken, String memId, Date memBirth, String memPhone, String memName,
 			int memStatus, String memNickname, String memIntroduce, int memRprCum, String memImg) {
 		super();
 		this.memNo = memNo;
 		this.memToken = memToken;
 		this.memId = memId;
-		this.memDate = memDate;
+		this.memBirth = memBirth;
 		this.memPhone = memPhone;
 		this.memName = memName;
 		this.memStatus = memStatus;
@@ -63,12 +63,12 @@ public class Member {
 		this.memId = memId;
 	}
 
-	public Date getMemDate() {
-		return memDate;
+	public Date getMemBirth() {
+		return memBirth;
 	}
 
-	public void setMemDate(Date memDate) {
-		this.memDate = memDate;
+	public void setMemBirth(Date memBirth) {
+		this.memBirth = memBirth;
 	}
 
 	public String getMemPhone() {
@@ -129,7 +129,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [memNo=" + memNo + ", memToken=" + memToken + ", memId=" + memId + ", memDate=" + memDate
+		return "Member [memNo=" + memNo + ", memToken=" + memToken + ", memId=" + memId + ", memBirth=" + memBirth
 				+ ", memPhone=" + memPhone + ", memName=" + memName + ", memStatus=" + memStatus + ", memNickname="
 				+ memNickname + ", memIntroduce=" + memIntroduce + ", memRprCum=" + memRprCum + ", memImg=" + memImg
 				+ "]";

@@ -9,7 +9,7 @@
 		<result column="MEM_BIRTH" property="memBirth"/>
 		<result column="MEM_PHONE" property="memPhone"/>
 		<result column="MEM_NAME" property="memName"/>
-		<result column="MEM_STATUS" property="memstatus"/>
+		<result column="MEM_STATUS" property="memStatus"/>
 		<result column="MEM_NICKNAME" property="memNickname"/>
 		<result column="MEM_INTRODUCE" property="memIntroduce"/>
 	</resultMap>
@@ -27,5 +27,12 @@
 	   from member
 	  where mem_id = #{memId}
 	    and mem_status = '1'
-	</select>    
+	</select>  
+	
+	<update id="updateIntro">
+		update
+				member
+		    set mem_introduce = #{memIntroduce}
+		  where mem_id = #{memId}  		
+	</update>  
 	</mapper>

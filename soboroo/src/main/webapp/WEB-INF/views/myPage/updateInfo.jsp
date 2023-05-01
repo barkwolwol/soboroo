@@ -149,8 +149,8 @@
                                                 <div>
                                                     <form>
                                                         <div class="mb-3">
-                                                            <input type="email" class="form-control"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                            <input type="text" class="form-control"
+                                                                id="memIntroduce" name="memIntroduce"  aria-describedby="emailHelp"
                                                                 style="width: 690px; padding: 5px 10px;" placeholder="최대 1000자">
                                                         </div>
                                                 </div>
