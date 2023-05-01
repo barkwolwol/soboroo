@@ -23,25 +23,29 @@
 <link rel="stylesheet" href="https://static.onoffmix.com/css/pc/event/event-add_20.css">
 <!-- =================================== 화면 고유 끝 ===================================  -->
 <script>dataLayer=[{uid:"1415372"}]</script>    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-K5ZBGC5');</script>
-    <!-- End Google Tag Manager -->
-    <script>var OFM_JS_GA_CONTAINER = '';</script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-25312010-14"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-25312010-14');
-    </script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script>
-        OFM_JS_GA_CONTAINER = 'UA-25312010-14';
-    </script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-K5ZBGC5');</script>
+<!-- End Google Tag Manager -->
+<script>var OFM_JS_GA_CONTAINER = '';</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-25312010-14"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-25312010-14');
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script>
+	OFM_JS_GA_CONTAINER = 'UA-25312010-14';
+</script>
+
+<!-- ========================== 웹에디터 ========================== -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+
 <style>
 	.ie_end_support_popup_wrap{
 		display: none;
@@ -158,12 +162,12 @@
 
 </head>
 <body>
-	<jsp:include page="../common/header-2.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<main id="content" class="event_add">
 		<section>
 				<div class="head_area">
-				<h2>개설하기</h2>
-						</div>
+					<h2>개설하기</h2>
+				</div>
 		
 			<div class="content_area">
 			
@@ -190,13 +194,36 @@
 					</div>
 	
 					<article class="event_thumbnail">
-						<div class="thumbnail">
-							<img src="" data-default-src="resources/images/logo_3.png" alt="모임 이미지" data-time="1682652657">
-							<input type="file" class="fileupload" accept=".gif,.jpg,.jpeg,.png">
-							<button type="button" class="img_change_btn">사진변경</button>
-							<button type="button" class="img_delete_btn">삭제하기</button>
+						<div id="thumbnail11" class="thumbnail">
+							<img src="" data-default-src="resources/images/logo_3.png" alt="모임 이미지" data-time="1682652657" style="width: 300; height: 300;" id="preview">
+							<input type="file" id="test" class="fileupload" accept=".gif,.jpg,.jpeg,.png" style="display: none;" onchange="readURL(this)">
+							<button type="button" class="img_change_btn" onclick="imgUp();">사진변경</button>
+							<button type="button" class="img_delete_btn" onclick="imgDel();">삭제하기</button>
 						</div>
 					</article>
+
+					<script>
+						function imgUp(){
+							$('.fileupload').click();
+						}
+
+						function readURL(input) {
+							if(input.files && input.files[0]) {
+								var reader = new FileReader();
+								reader.onload = function(e) {
+									$("#preview").attr("src", e.target.result);
+								};
+								reader.readAsDataURL(input.files[0]);
+								document.getElementById('thumbnail11').className += ' upload';
+							}
+						}
+
+						function imgDel() {
+							$("#preview").attr("src", "resources/images/logo_3.png");
+							$("#test").val("");
+							document.getElementById('thumbnail11').className = 'thumbnail';
+						}
+					</script>
 	
 					<article class="default_info">
 						<h3>기본정보<span class="required">필수</span></h3>
@@ -207,10 +234,32 @@
 	
 								<div class="input_wrap">
 									<div class="form_row">
-										<div class="selectbox">
+										<div id="select1" class="selectbox" data-list_show="false">
 											<select name="category">
 												<option value="">카테고리 선택</option>
-												<option value="085">교육</option><option value="087">세미나/컨퍼런스</option><option value="086">강연</option><option value="090">취미/소모임</option><option value="088">문화/예술/방송</option><option value="092">공모전</option><option value="093">전시/박람회</option><option value="095">이벤트/파티</option><option value="094">패션/뷰티</option><option value="096">기타</option>                                        </select>
+												<option value="085">교육/어학</option>
+												<option value="087">취업/자격증</option>
+												<option value="086">여행</option>
+												<option value="090">스포츠/운동</option>
+												<option value="088">요리/음식</option>
+												<option value="092">문화/예술</option>
+												<option value="093">영화/음악</option>
+												<option value="095">기타</option>
+											</select>
+											<button type="button" class="selectbox_btn" onclick="select();">
+												<span id="title">카테고리 선택</span>
+											</button>
+											<ul id="select-list">
+												<li id="value0" data-value="" onclick="select(0);">카테고리 선택</li>
+												<li id="value1" data-value="085" onclick="select(1);">교육/어학</li>
+												<li id="value2" data-value="087" onclick="select(2);">취업/자격증</li>
+												<li id="value3" data-value="086" onclick="select(3);">여행</li>
+												<li id="value4" data-value="090" onclick="select(4);">스포츠/운동</li>
+												<li id="value5" data-value="088" onclick="select(5);">요리/음식</li>
+												<li id="value6" data-value="092" onclick="select(6);">문화/예술</li>
+												<li id="value7" data-value="093" onclick="select(7);">영화/음악</li>
+												<li id="value8" data-value="095" onclick="select(8);">기타</li>
+											</ul>
 										</div>
 										<input type="text" name="title" placeholder="모임명을 입력해주세요."
 											value="" maxlength="64" required
@@ -218,7 +267,69 @@
 											data-parsley-class-handler=".event_name_category .form_row">
 									</div>
 								</div>
+								
 							</fieldset>
+
+							<script>
+								function select(num) {
+									let a = $("#select1").attr("data-list_show");
+									if(a == "false"){
+										$("#select1").attr("data-list_show", true);
+										// $("#select-list").show();
+									}else{
+										$("#select1").attr("data-list_show", false);
+										// $("#select-list").hide();
+									}
+								}
+								
+								$(document).ready(function(){
+									$("#select-list").on("click","li",function(e){
+										// console.log($(e.target).data("value"));
+										// console.log($(this).data("value"));
+										console.log(this);
+										$("#title").text(this);
+									})
+    							})
+
+								// function parseType(type) {
+
+								// 	switch (type) {
+								// 	case 0:
+								// 		type = '카테고리 선택'
+								// 			break;
+								// 	case 1:
+								// 		type = 'FT01'
+								// 			break;
+								// 	case 2:
+								// 		type = 'FT02'
+								// 			break;
+								// 	case 3:
+								// 		type = 'FT03'
+								// 			break;
+								// 	case 4:
+								// 		type = 'FT04'
+								// 			break;
+								// 	case 5:
+								// 		type = '카테고리 선택'
+								// 			break;
+								// 	case 6:
+								// 		type = 'FT01'
+								// 			break;
+								// 	case 7:
+								// 		type = 'FT02'
+								// 			break;
+								// 	case 8:
+								// 		type = 'FT03'
+								// 			break;
+								// 	default:
+								// 	}
+
+								// 	return type;
+
+								// 	console.log(type);
+								// }
+							</script>
+
 							<fieldset class="contact">
 								<legend>문의 연락처</legend>
 	
@@ -245,33 +356,53 @@
 											<label for="">이메일</label>
 											<input type="text" name="email_id" class="email_id" value="">
 											<span>@</span>
-											<div class="selectbox">
+											<div id="select2" class="selectbox" data-list_show="false">
 												<select name="email_domain" class="email_domain">
 													<option value="">선택</option>
-													<option value="direct" >직접입력</option>
-													<option value="naver.com" selected>naver.com</option>
-													<option value="gmail.com" >gmail.com</option>
-													<option value="hanmail.net" >hanmail.net</option>
-													<option value="nate.com" >nate.com</option>
-													<option value="kakao.com" >kakao.com</option>
-													<option value="daum.net" >daum.net</option>
-													<option value="hotmail.com" >hotmail.com</option>
+													<option value="direct">직접입력</option>
+													<option value="naver.com" selected="">naver.com</option>
+													<option value="gmail.com">gmail.com</option>
+													<option value="hanmail.net">hanmail.net</option>
+													<option value="nate.com">nate.com</option>
+													<option value="kakao.com">kakao.com</option>
+													<option value="daum.net">daum.net</option>
+													<option value="hotmail.com">hotmail.com</option>
 												</select>
 	
 												<input type="text" class="direct_email_domain" name="direct_email_domain" placeholder="직접입력" value="">
+												<button type="button" class="selectbox_btn" onclick="select2();">
+													<span>직접입력</span>
+												</button>
+												<ul><li data-value="">선택</li>
+													<li data-value="direct">직접입력</li>
+													<li data-value="naver.com">naver.com</li>
+													<li data-value="gmail.com">gmail.com</li>
+													<li data-value="hanmail.net">hanmail.net</li>
+													<li data-value="nate.com">nate.com</li>
+													<li data-value="kakao.com">kakao.com</li>
+													<li data-value="daum.net">daum.net</li>
+													<li data-value="hotmail.com">hotmail.com</li>
+												</ul>
 											</div>
-	
-											<input type="email" name="email"
-												data-parsley-type="email"
-												data-parsley-required-message="담당자의 이메일 주소를 입력해주세요."
-												data-parsley-class-handler=".contact .email"
-												data-parsley-contactemail required
-												value="">
 										</div>
 									</div>
 								</div>
 								<p class="ex">* 모임 종료 전까지 연락처가 노출되고 임의로 입력한 경우 개인정보 도용으로 처벌받을 수 있습니다.</p>
 							</fieldset>
+
+							<script>
+								function select2(num) {
+									let a = $("#select2").attr("data-list_show");
+									if(a == "false"){
+										$("#select2").attr("data-list_show", true);
+										// $("#select-list").show();
+									}else{
+										$("#select2").attr("data-list_show", false);
+										// $("#select-list").hide();
+									}
+								}
+							</script>
+
 							<fieldset class="introduce">
 								<legend>간단한 모임소개</legend>
 	
@@ -289,17 +420,31 @@
 					<article class="event_detail">
 						<h3>상세정보<span class="required">필수</span></h3>
 	
-						<div class="editor_wrap">
-							<textarea name="content"
-								placeholder="복사하여 붙여넣기 한 이미지는 정상적으로 보이지 않을 수 있으니 '사진/파일 첨부하기' 기능을 사용하여 이미지를 삽입해 주시기 바랍니다."
-								data-parsley-contentempty
-								data-parsley-minlength="10"
-								data-parsley-minlength-message="상세 내용을 10자 이상 입력해주세요."
-								data-parsley-required-message="상세내용을 입력해주세요."
-								data-parsley-class-handler=".event_detail" required>
-							</textarea>
-						</div>
+						<div id="smarteditor">
+							<textarea name="editorTxt" id="editorTxt" 
+									  rows="10" cols="10" 
+									  placeholder="내용을 입력해주세요"
+									  style="width: 1200px"></textarea>
+						  </div>
 					</article>
+
+					<script>
+						let oEditors = []
+					
+						smartEditor = function() {
+						  console.log("Naver SmartEditor")
+						  nhn.husky.EZCreator.createInIFrame({
+							oAppRef: oEditors,
+							elPlaceHolder: "editorTxt",
+							sSkinURI: "resources/static/smarteditor/SmartEditor2Skin.html",
+							fCreator: "createSEditor2"
+						  })
+						}
+					
+						$(document).ready(function() {
+						  smartEditor();
+						})
+					</script>
 	
 					<article class="group_info" data-key="0m2ay6tl46">
 						<h3>
@@ -456,15 +601,8 @@
 	
 								<div class="input_wrap">
 									<div class="form_row">
-										<textarea type="text" class="tag_input"
-											placeholder="태그를 입력해 주세요. 예) #온오프믹스, #컬쳐데이" name="tag"
-											data-tag-editor-error-duplicate="동일한 태그가 존재합니다."
-											data-tag-editor-error-character="한자 및 특수문자는 입력되지 않습니다."
-											data-tag-editor-error-maxtag="최대 5개까지 등록할 수 있습니다."
-											data-parsley-tag data-parsley-errors-messages-disabled>
-										</textarea>
+										<textarea type="text" class="tag_input tag-editor-hidden-src" placeholder="태그를 입력해 주세요. 예) #온오프믹스, #컬쳐데이" name="tag" data-tag-editor-error-duplicate="동일한 태그가 존재합니다." data-tag-editor-error-character="한자 및 특수문자는 입력되지 않습니다." data-tag-editor-error-maxtag="최대 5개까지 등록할 수 있습니다." data-parsley-tag="" data-parsley-errors-messages-disabled="">                                    </textarea><ul class="tag-editor ui-sortable"><li style="width: 1px;">&nbsp;</li><li class="placeholder"><div>태그를 입력해 주세요. 예) #온오프믹스, #컬쳐데이</div></li></ul>
 									</div>
-									<ul class="tag-editor ui-sortable"><li style="width: 1px;">&nbsp;</li><li class="placeholder"><div>태그를 입력해 주세요. 예) #온오프믹스, #컬쳐데이</div></li></ul>
 	
 									<p class="ex">
 										<span>* 태그를 쉼표나 띄어쓰기로 구분해서 최대 5개까지 입력해 주세요.</span>
@@ -506,12 +644,12 @@
 		</section>
 	</main>
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/group_info.js"></script>
+
+
 	
-
-
 	<script src="https://static.onoffmix.com/js/pc/dist/common/class_list.js"></script>
 	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tmpl.min.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fileupload.js"></script>
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fileupload.js"></script> -->
 	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.browser.js"></script>
 	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fancybox-1.3.3.js"></script>
 	<script src="https://static.onoffmix.com/js/common/dist/plugins/moment.js"></script>
@@ -546,6 +684,14 @@
 	<script src="https://static.onoffmix.com/js/common/dist/plugins/app/app-ver-chk.js"></script>
 	<script src="https://static.onoffmix.com/js/common/dist/log/statistic.js"></script>
 	<!-- Script -->	<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"4d73c0dfa7","applicationID":"119983018","transactionName":"Z1MAZEVWDREHWkEMWl4ZI1NDXgwMSXZzKGpzWQxERVgPDgNLGjpHVVsDQA==","queueTime":2,"applicationTime":383,"atts":"SxQDEg1MHh8=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+
+	<script>
+		
+
+
+	</script>
+
+	
 
 
 
