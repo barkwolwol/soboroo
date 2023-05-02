@@ -93,10 +93,10 @@ public class MyPageController {
 	}
 
 	// 닉네임 변경
-	@RequestMapping("updateNick.my")
-	public String updateNick() {
-
-	}
+//	@RequestMapping("updateNick.my")
+//	public String updateNick() {
+//
+//	}
 
 	// 닉네임 중복체크
 	@ResponseBody
@@ -110,29 +110,30 @@ public class MyPageController {
 	// 자기소개 변경
 	@RequestMapping("updateIntro.my")
 	public String updateIntro(Member m, HttpSession session, Model model) {
-	    Member loginUser = (Member) session.getAttribute("loginUser");
+	    Member loginUser = (Member)session.getAttribute("loginUser");
 	    m.setMemId(loginUser.getMemId());
-	    m.setMemIntroduce(loginUser.getMemIntroduce());
-
-		System.out.println(m +"ffffffffff");
-		
+	   loginUser.setMemIntroduce(loginUser.getMemIntroduce());
+	    
 		
 		int result = myService.updateIntro(m);
 
 		if (result > 0) {
-			Member updateIntro = myService.loginMember(m);
+			Member updateIntro = myService.loginMember(loginUser);
 			session.setAttribute("loginUser", updateIntro);
-			return "redirect:updateInfo.me";
+			
+			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
+			
+			return "redirect:updateInfo.my";
 		} else {
 			
 			return "common/errorPage";
 		}
 	}
 
-	// 회원탈퇴
-	@RequestMapping("deleteMember.my")
-	public String deleteMem() {
-
-	}
+//	// 회원탈퇴
+//	@RequestMapping("deleteMember.my")
+//	public String deleteMem() {
+//
+//	}
 
 }

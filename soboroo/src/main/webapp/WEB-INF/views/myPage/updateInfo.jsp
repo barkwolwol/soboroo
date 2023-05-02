@@ -147,17 +147,17 @@
                                             <!-- <br></br> -->
                                             <div>
                                                 <div>
-                                                    <form>
+                                                    <form action="updateIntro.my">
                                                         <div class="mb-3">
                                                             <input type="text" class="form-control"
                                                                 id="memIntroduce" name="memIntroduce"  aria-describedby="emailHelp"
                                                                 style="width: 690px; padding: 5px 10px;" placeholder="최대 1000자">
                                                         </div>
-                                                </div>
                                                 <div class="post-footer">
-                                                    <a href="updateIntro.my" class="btn btn-primary">변경하기</a>
+                                                    <button type="submit" class="btn btn-primary">변경하기</button>
                                                 </div>
                                                 </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div> <!-- post-body end -->

@@ -35,8 +35,6 @@
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/colorbox/colorbox.css">
       <!-- Template styles-->
       <link rel="stylesheet" href="resources/css/style.css">
-      
-      
 
       <!-- fontawesome 라이브러리 -->
       <script src="https://kit.fontawesome.com/66bc1e54e8.js" crossorigin="anonymous"></script>
@@ -66,6 +64,14 @@
     </head>
 
     <body>
+    
+    <c:if test="${ not empty alertMsg }">
+		<script>
+			alert("${ alertMsg }");
+		</script>
+		<c:remove var="alertMsg" scope="session"/>
+	</c:if>
+    
 
       <div id="top-bar" class="top-bar">
         <div class="container">
