@@ -73,7 +73,7 @@
 	</c:if>
     
 
-      <div id="top-bar" class="top-bar">
+   <div id="top-bar" class="top-bar">
         <div class="container">
           <div class="row">
             <div class="col-lg-8 col-md-8">
@@ -251,6 +251,119 @@
 
 
 
+    </div>
+    <!--/ Topbar end -->
+    
+	<!-- Header start -->
+	<header id="header" class="header-two">
+	  <div class="site-navigation">
+	    <div class="container">
+	        <div class="row">
+	          <div class="col-lg-12">
+	              <nav class="navbar navbar-expand-lg navbar-light p-0">
+	                
+	                <div class="logo">
+	                    <a class="d-block" href="${pageContext.request.contextPath}">
+	                      <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/logo_1.png" alt="">
+	                    </a>
+	                </div><!-- logo end -->
+	
+	                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+	                    <span class="navbar-toggler-icon"></span>
+	                </button>
+	                
+	                <div id="navbar-collapse" class="collapse navbar-collapse">
+	                    <ul class="nav navbar-nav mr-auto align-items-center">
+	
+	                      <li class="nav-item dropdown">
+	                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">온라인 <i class="fa fa-angle-down"></i></a>
+	                          <ul class="dropdown-menu" role="menu">
+	                            <li><a href="listOne.on">반짝모임</a></li>
+	                            <li><a href="listReg.on">정기모임</a></li>
+	                            <li class="dropdown-submenu">
+	                            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">목표모임</a>
+	                            	<ul class="dropdown-menu">
+	                            		<li><a href="listGoal.on">꾸준한 습관</a></li>
+	                            		<li><a href="listDday.on">D-DAY</a></li>
+	                            	</ul>
+	                            </li>
+	                          </ul>
+	                      </li>
+	                      
+                          <li class="nav-item dropdown">
+	                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">오프라인 <i class="fa fa-angle-down"></i></a>
+	                          <ul class="dropdown-menu" role="menu">
+	                            <li><a href="listOne.off">반짝모임</a></li>
+	                            <li><a href="listReg.off">정기모임</a></li>
+	                            <li class="dropdown-submenu">
+	                            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">목표모임</a>
+	                            	<ul class="dropdown-menu">
+	                            		<li><a href="listGoal.off">꾸준한 습관</a></li>
+	                            		<li><a href="listDday.off">D-DAY</a></li>
+	                            	</ul>
+	                            </li>
+	                          </ul>
+	                      </li>
+	              
+	                      <li class="nav-item"><a class="nav-link" href="list.bo">자유게시판</a></li>
+	                      
+	                      <li class="nav-item"><a class="nav-link" href="list.no">공지사항</a></li>
+	                      
+	                      <li class="nav-item dropdown">
+							  <a href="myCalender.do" class="nav-link dropdown-toggle"
+								  data-toggle="dropdown">마이페이지 <i class="fa fa-angle-down"></i></a>
+							  <ul class="dropdown-menu" role="menu">
+								  <li><a href="myCalender.my">나의 일정</a></li>
+								  <li><a href="updateInfo.my">개인정보 수정</a></li>
+								  <li><a href="myGroup.my">참여 소모임 조회</a></li>
+								  <!-- <li><a href="myBoard.my">작성 게시글 조회</a></li> -->
+								  <li class="dropdown-submenu">
+									  <a href="#" class="dropdown-toggle" data-toggle="dropdown">작성 게시글 조회</a>
+									  <ul class="dropdown-menu">
+										  <li><a href="myBoard.my">소모임 게시글 조회</a></li>
+										  <li><a href="mybReply.my">소모임 댓글 조회</a></li>
+										  <li><a href="myCboard.my">커뮤니티 게시글 조회</a></li>
+										  <li><a href="myCreply.my">커뮤니티 댓글 조회</a></li>
+									  </ul>
+								  </li>
+							  </ul>
+	
+						  </li>
+	
+	                    </ul>
+	                    <ul class="nav navbar-nav ml-auto align-items-center">
+   	                      <li class="header-get-a-quote">
+	                          <a class="btn btn-primary" href="login.me">로그인</a>
+	                      </li>
+	                    </ul>
+	                </div>
+	              </nav>
+	          </div>
+	          <!--/ Col end -->
+	        </div>
+	        <!--/ Row end -->
+	    </div>
+	    <!--/ Container end -->
+	
+	  </div>
+	  <!--/ Navigation end -->
+	</header>
+	<!--/ Header end -->
+
+
+
+	
+	
+	  <!-- Javascript Files
+	  ================================================== -->
+	
+	  <!-- initialize jQuery Library 
+	  <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>-->
+	  <!-- Bootstrap jQuery -->
+	  <%-- <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script> --%>
+	  
+	  <!-- 서머노트 bootstrap 	  
+	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
 
 
       <!-- Javascript Files
