@@ -429,7 +429,7 @@
 							<textarea name="editorTxt" id="editorTxt" 
 									  rows="10" cols="10" 
 									  placeholder="내용을 입력해주세요"
-									  style="width: 1200px"></textarea>
+									  style="width: 1209.5px"></textarea>
 						  </div>
 					</article>
 
