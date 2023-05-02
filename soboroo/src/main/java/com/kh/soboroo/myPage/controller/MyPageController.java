@@ -93,10 +93,10 @@ public class MyPageController {
 	}
 
 	// 닉네임 변경
-//	@RequestMapping("updateNick.my")
-//	public String updateNick() {
-//
-//	}
+	@RequestMapping("updateNick.my")
+	public String updateNick() {
+		return "";
+	}
 
 	// 닉네임 중복체크
 	@ResponseBody
@@ -130,10 +130,10 @@ public class MyPageController {
 		}
 	}
 
-//	// 회원탈퇴
-//	@RequestMapping("deleteMember.my")
-//	public String deleteMem() {
-//
-//	}
+	// 회원탈퇴
+	@RequestMapping("deleteMember.my")
+	public String deleteMember() {
+		return "";
+	}
 
 }

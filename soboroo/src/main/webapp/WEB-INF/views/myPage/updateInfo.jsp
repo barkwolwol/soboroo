@@ -114,7 +114,7 @@
                                                 <!-- <br></br> -->
                                                 <div>
                                                     <div>
-                                                        <form>
+                                                        <form action="updateNick.my">
                                                             <div class="mb-3">
                                                                 <input type="email" class="form-control"
                                                                     id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -124,7 +124,7 @@
                                                             </div>
                                                     </div>
                                                     <div class="post-footer">
-                                                        <a href="updateNick.my" class="btn btn-primary">변경하기</a>
+                                                        <button type="submit" class="btn btn-primary">변경하기</button>
                                                     </div>
                                                     </form>
                                                 </div>
@@ -185,11 +185,12 @@
                                                                 style="width: 690px; padding: 5px 10px;" placeholder="비밀번호 입력">
                                                         </div>
                                                 </div> -->
+                                              <form action="deleteMember.my">
                                                 <div class="post-footer">
-                                                    <a href="deleteMember.my" class="btn btn-primary">카카오로 탈퇴하기</a>
+                                                    <button type="submit" class="btn btn-primary">변경하기</button>
                                                 </div>
                                                 </div>
-                                             <!--    </form> -->
+                                             </form>
                                             </div>
                                         </div>
                                     </div> <!-- post-body end -->

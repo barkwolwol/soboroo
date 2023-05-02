@@ -35,4 +35,4 @@
 		    set mem_introduce = #{memIntroduce}
 		  where mem_id = #{memId}  		
 	</update>  
-	</mapper>
+</mapper>

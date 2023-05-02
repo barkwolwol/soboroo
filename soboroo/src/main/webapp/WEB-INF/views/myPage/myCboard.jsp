@@ -27,8 +27,11 @@
 
         <jsp:include page="../common/header.jsp" />
 
+        
         <!--     <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)"> -->
-        <div id="banner-area" class="banner-area" style="background-color:#ff8932">
+          <div id="banner-area" class="banner-area" 
+          style="background : url('resources/images/bbb.png')"; 
+          background-repeat: no-repeat;>
           <div class="banner-text">
             <div class="container">
               <div class="row">

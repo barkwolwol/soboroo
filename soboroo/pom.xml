@@ -182,7 +182,10 @@
 		<!-- * 추가적인 라이브러리(롬복) -->
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
-		
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.12</version>
+		    <scope>provided</scope>
+		</dependency>
 		<!-- 1_5. 커넥션풀을 사용하기 위한 라이브러리 -->
 		<dependency>
 		    <groupId>commons-dbcp</groupId>
