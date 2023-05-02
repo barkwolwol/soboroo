@@ -14,10 +14,10 @@
 </resultMap>
 
 	<select id="selectNoticeListCount" resultType="_int">
-	select    
-    count(*)
-    from notice
-    where ntc_del_ny = 'N'
+		select    
+	    count(*)
+	    from notice
+	    where ntc_del_ny = 'N'
 	</select>	
 
 	<select id="selectNoticeList" resultMap="noticeResultSet">
@@ -26,11 +26,11 @@
 		,ntc_writer
 		,ntc_title
 		,ntc_content
-		,ntc_create_date
+		,to_char(ntc_create_date, 'YYYY-MM-DD') as "ntc_create_date"
 		,ntc_update_date
 		,ntc_count
 		,ntc_del_ny
-		from notice
+		from notice 
 		where ntc_del_ny = 'N'
 		order
 		by ntc_no desc
@@ -76,13 +76,14 @@
 			into notice
 			(
 			  ntc_no
+			, ntc_writer  
 			, ntc_title
 		    , ntc_content
 			)
 			values
 			(
-			  seq_nno.nextval
-			  , #{ntcNo}
+			  seq_ntc.nextval
+			  , 1
 			  , #{ntcTitle}
 			  , #{ntcContent}
 			)
@@ -94,6 +95,7 @@
 		notice
 	set ntc_title = #{ntcTitle}
 	  , ntc_content = #{ntcContent}
+	  , ntc_update_date = sysdate
 	  where ntc_no = #{ntcNo}
 
 </update>

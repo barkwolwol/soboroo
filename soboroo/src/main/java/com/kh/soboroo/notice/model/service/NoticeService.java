@@ -21,7 +21,7 @@ public interface NoticeService {
 	int insertNotice(Notice n);
 	
 	// 4. 공지사항 수정
-	int updateNotice(Notice n, int ntcNo);
+	int updateNotice(Notice n);
 	
 	// 5. 공지사항 삭제
 	int deleteNotice(int ntcNo);

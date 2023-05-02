@@ -239,7 +239,7 @@
                                 <th>
                                     <select style="border-bottom: 2px solid orange;">
                                         <option>선택</option>
-                                        <option>교육/어학</option>
+                                        <option value="1">교육/어학</option>
                                         <option>취업/자격증</option>
                                         <option>여행</option>
                                         <option>스포츠/운동</option>

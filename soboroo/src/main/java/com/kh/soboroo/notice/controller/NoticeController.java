@@ -73,7 +73,7 @@ public class NoticeController {
 		@RequestMapping("insert.no")
 		public String insertNotive(Notice n, MultipartFile upfile, HttpSession session, Model model) {
 			
-			
+			System.out.println(n);
 			int result = nService.insertNotice(n);
 			
 			if(result > 0) { 
@@ -112,7 +112,7 @@ public class NoticeController {
 			}else {
 				// 삭제 실패
 				//에러문구 담아서 에러페이지 포워딩(모델)
-				model.addAttribute("errorMsg", "게스글 삭제 실패!");
+				model.addAttribute("errorMsg", "게시글 삭제 실패!");
 				return "common/errorPage";
 			}
 			
@@ -121,14 +121,13 @@ public class NoticeController {
 	 
 		
 		@RequestMapping("update.no")
-		public String updateBoard(Notice n,int ntcNo,HttpSession session, Model model) {
+		public String updateBoard(Notice n,HttpSession session, Model model) {
 				
-		
-			int result = nService.updateNotice(n, ntcNo);
-			
+		 System.out.println(n);
+			int result = nService.updateNotice(n);
 			if(result > 0) { // 수정 성공=> 상세페이지
 				session.setAttribute("alertMsg", "게시글이 수정되었습니다.");
-				return"redirect:detail.bo?bno=" + n.getNtcNo();
+				return"redirect:detail.no?nno=" + n.getNtcNo();
 			}else { // 수정 실패 => 에러페이지 포워딩
 				model.addAttribute("errorMsg", "게시글 수정 실패");
 				return "common/errorPage";

@@ -97,16 +97,15 @@
             <div align="center">
             <nav id="topMenu" style="margin-bottom: 25px; margin-left: 10%;" >
                 <ul>
-                        <li><a class="menuLink" href="#">전체</a></li>
-                        <li><a class="menuLink" href="#">교육/어학</a></li>
-                        <li><a class="menuLink" href="#">취업/자격증</a></li>
-                        <li><a class="menuLink" href="#">여행</a></li>
-                        <li><a class="menuLink" href="#">스포츠/운동</a></li>
-                        <li><a class="menuLink" href="#">요리/음식</a></li>
-                        <li><a class="menuLink" href="#">문화/예술</a></li>
-                        <li><a class="menuLink" href="#">영화/음악</a></li>
-                        <li><a class="menuLink" href="#">성인</a></li>
-                        <li><a class="menuLink" href="#">기타</a></li>
+                        <li><a class="menuLink" href="0">전체</a></li>
+                        <li><a class="menuLink" href="1">교육/어학</a></li>
+                        <li><a class="menuLink" href="2">취업/자격증</a></li>
+                        <li><a class="menuLink" href="3">여행</a></li>
+                        <li><a class="menuLink" href="4">스포츠/운동</a></li>
+                        <li><a class="menuLink" href="5">요리/음식</a></li>
+                        <li><a class="menuLink" href="6">문화/예술</a></li>
+                        <li><a class="menuLink" href="7">영화/음악</a></li>
+                        <li><a class="menuLink" href="8">기타</a></li>
                 </ul>
             </nav>
             </div>
@@ -121,6 +120,7 @@
                   <tr>
                     <th>글번호</th>
                     <th>분류</th>
+                    <th>제목</th>
                     <th>내용</th>
                     <th>작성자</th>
                     <th>조회수</th>
@@ -128,20 +128,28 @@
                   </tr>
                 </thead>
                 <tbody>
-	                    <tr onclick="test1">
-	                        <td class="bno">5</td>
-	                        <td>카테고리</td>
-	                        <td><a href="detail.bo"> 게시글 내용</a></td>
-	                        <td>admin</td>
-	                        <td>10</td>
-	                        <td>2023-03-29</td>
+                <c:forEach var="b" items="${ list }">
+	                    <tr>
+	                        <td class="bno" name="bno">${ b.boardNo }</td>
+	                        <td>${ b.category}</td>
+	                        <td>${ b.boardTitle}</td>
+	                        <td>${ b.boardContent }</td>
+	                        <td>${ b.memNo }</td>
+	                        <td>${ b.count }</td>
+	                        <td>${ b.createDate }</td>
 	                    </tr>
 
-                       
+                     </c:forEach>  
                 </tbody>
             </table>
             <br>
-		
+		<script>
+          		$(function() {
+					$("#boardList>tbody>tr").click(function() {
+						location.href='detail.bo?bno=' + $(this).children(".bno").text();
+					})
+				})
+          	</script>
 			
             <div id="pagingArea">
                 <ul class="pagination">

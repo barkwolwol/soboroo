@@ -226,7 +226,7 @@
                 <table style="width: 100%;">
                     <tr>
                         <th><label for="title">제목</label></th>
-                        <td><input type="text" id="title" class="form-control" name="boardTitle" required></td>
+                        <td><input type="text" id="title" class="form-control" name="ntcTitle" required></td>
                     </tr>
                     
                     
@@ -235,7 +235,7 @@
                     </tr>
                     <tr>
                         <th colspan="2">
-                            <textarea class="form-control" required name="boardContent" id="content" rows="10" style="resize:none;"></textarea>
+                            <textarea class="form-control" required name="ntcContent" id="content" rows="10" style="resize:none;"></textarea>
                         </th>
                     </tr>
 

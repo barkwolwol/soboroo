@@ -168,6 +168,7 @@
 	
 	 <form id="updateForm" method="post" action="update.no" enctype="multipart/form-data">
      <br>
+     <input type="hidden" name="ntcNo" value="${ n.ntcNo }">
      <div class="content">
          <div class="innerOuter">
             <div class="write-header _write_header m_sticky_toolbar">
@@ -198,7 +199,7 @@
                  
                     <tr>
                          <th><label for="title">제목</label></th>
-                         <td><input type="text" id="title" class="form-control" name="boardTitle" value="${ n.ntcTitle }" required></td>
+                         <td><input type="text" id="title" class="form-control" name="ntcTitle" value="${ n.ntcTitle }" required></td>
                      </tr>
                     
                     
@@ -207,7 +208,7 @@
                      </tr>
                      <tr style="width: 100%;">
                          <th colspan="2">
-                            <textarea id="summernote">${ n.ntcContent }</textarea>
+                            <textarea id="summernote" name="ntcContent">${ n.ntcContent }</textarea>
                          </th>
                      </tr>
                  </table>

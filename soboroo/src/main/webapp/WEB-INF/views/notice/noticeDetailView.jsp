@@ -96,6 +96,7 @@
             
             <form id="postForm" action="" method="post">
             <input type="hidden" name="nno" value="${ n.ntcNo }">
+            <input type="hidden" name="ntcWriter" value="${ loginUser.memNo }">
             </form>
             <script>
             		function postFormSubmit(num) {
@@ -124,7 +125,7 @@
                  <td colspan="3"></td>
              </tr>
              <tr>
-                 <td colspan="4"><p style="height:150px">${ n.ntcContent }</p></td>
+                 <td colspan="4">${ n.ntcContent }</td>
              </tr>
          </table>
 
