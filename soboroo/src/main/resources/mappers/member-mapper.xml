@@ -35,4 +35,10 @@
 		    set mem_introduce = #{memIntroduce}
 		  where mem_id = #{memId}  		
 	</update>  
+	<select id="checkNick" resultType="_int">
+		select
+				count(*)
+		  from member
+		 where mem_nickname = #{checkNick} 	
+	</select>
 </mapper>

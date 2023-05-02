@@ -114,19 +114,48 @@
                                                 <!-- <br></br> -->
                                                 <div>
                                                     <div>
-                                                        <form action="updateNick.my">
+                                                        <form action="updateNick.my" id="checkNick">
                                                             <div class="mb-3">
                                                                 <input type="email" class="form-control"
-                                                                    id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                    id="exampleInputEmail1" name="memNick" aria-describedby="emailHelp"
                                                                     style="width: 690px; padding: 5px 10px;" placeholder="변경할 닉네임">
-                                                                <div id="emailHelp" class="form-text" style="padding-left: 5px;">변경 가능한 닉네임입니다.
-                                                                </div>
+                                                                <div id="checkNickname" class="form-text" style="padding-left: 5px;"></div>
                                                             </div>
                                                     </div>
                                                     <div class="post-footer">
                                                         <button type="submit" class="btn btn-primary">변경하기</button>
                                                     </div>
                                                     </form>
+                                                    
+                                                    <script>
+                                                    	$(function(){
+                                                    		const $nickInput = $("#checkNick input[name=memNick]");
+                                                    		
+                                                    		
+                                                    		$nickInput.keyup(function(){
+                                                    			console.log($nickInput.val());
+                                                    			$.ajax({
+                                                    				url:"checkNick.my",
+                                                    				data:{checkNick:$nickInput.val()},
+                                                    				success:function(result){
+                                                    					if(result == "NNNNN"){
+                                                    						$("#checkNickname").show();
+                                                    						$("#checkNickname").css("color", "red").text("이미 존재하는 닉네임입니다. 다시 입력해주세요.");
+                                                    						
+                                                    						$("#checkNick:submit").attr("disabled", true);
+                                                    					} else {
+                                                    						$("#checkNickname").show();
+                                                    						$("#checkNickname").css("color", "blue").text("사용 가능한 닉네임입니다.");
+                                                    						
+                                                    						$("#checkNick:submit").removeAttr("disabled");
+                                                    					}
+                                                    					}, error:function(){
+                                                    						console.log("ajax 통신 실패!")
+                                                    				} 
+                                                    			});
+                                                    		})
+                                                    	})
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div> <!-- post-body end -->

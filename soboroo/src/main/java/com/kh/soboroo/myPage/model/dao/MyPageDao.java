@@ -13,11 +13,11 @@ public class MyPageDao {
 	}
 	
 	public int updateIntro(SqlSessionTemplate sqlSession, Member m) {
-
-		System.out.println("다오임");
-		
 		return sqlSession.update("memberMapper.updateIntro", m);
-		
+	}
+	
+	public int checkNick(SqlSessionTemplate sqlSession, String memNickname) {
+		return sqlSession.selectOne("memberMapper.checkNick", memNickname);
 	}
 
 }

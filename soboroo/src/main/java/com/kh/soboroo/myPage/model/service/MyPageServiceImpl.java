@@ -25,8 +25,7 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Override
 	public int checkNick(String memNickname) {
-		// TODO Auto-generated method stub
-		return 0;
+		return myDao.checkNick(sqlSession, memNickname);
 	}
 
 	@Override

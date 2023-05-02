@@ -102,8 +102,9 @@ public class MyPageController {
 	@ResponseBody
 	@RequestMapping("checkNick.my")
 	public String checkNick(String checkNick) {
+		System.out.println("컨트롤러!");
 		int count = myService.checkNick(checkNick);
-
+		
 		return count > 0 ? "NNNNN" : "NNNNY";
 	}
 
