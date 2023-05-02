@@ -48,6 +48,6 @@
 		set count = count + 1
 	  where board_no = #{boardNo}
 	  and del_ny = 'N'
-		
+		</update>
 
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -295,105 +296,34 @@
 </tr>
 </thead>
 <tbody>
+<c:forEach var="n" items="${list}">
 <tr>
 <td>
 <label class="custom_check">
 <input type="checkbox" name="invoice">
 <span class="checkmark"></span>
 </label>
-<a href="#" class="items-links">10</a>
+
+<a href="list.no" class="items-links">${ n.ntcNo }</a>
 </td>
-<td>커피바리스타</td>
-<td class="text-primary">asdasd123</td>
-<td>23</td>
-<td>2023-04-20</td>
-<td>2023-04-26</td>
-<td>N</td>
+<td><a href="list.no">${n.ntcTitle}</a></td>
+<td class="text-primary">${n.ntcWriter }</td>
+<td>${n.ntcCount }</td>
+<td>${n.ntcCreateDate }</td>
+<td>${n.ntcUpdateDate }</td>
+<td>${ n.ntcDelNy }</td>
 <td class="text-end">
 <a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>공개</a>
+<a href="notenrollForm.no" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>수정</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
 </td>
 </tr>
-<tr>
-<td>
-<label class="custom_check">
-<input type="checkbox" name="invoice">
-<span class="checkmark"></span>
-</label>
-<a href="#" class="items-links">10</a>
-</td>
-<td>커피바리스타</td>
-<td class="text-primary">asdasd123</td>
-<td>23</td>
-<td>2023-04-20</td>
-<td>2023-04-26</td>
-<td>N</td>
-<td class="text-end">
-<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>공개</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
-</td>
-</tr>
-<tr>
-<td>
-<label class="custom_check">
-<input type="checkbox" name="invoice">
-<span class="checkmark"></span>
-</label>
-<a href="#" class="items-links">10</a>
-</td>
-<td>커피바리스타</td>
-<td class="text-primary">asdasd123</td>
-<td>23</td>
-<td>2023-04-20</td>
-<td>2023-04-26</td>
-<td>N</td>
-<td class="text-end">
-<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>공개</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
-</td>
-</tr>
-<tr>
-<td>
-<label class="custom_check">
-<input type="checkbox" name="invoice">
-<span class="checkmark"></span>
-</label>
-<a href="#" class="items-links">10</a>
-</td>
-<td>커피바리스타</td>
-<td class="text-primary">asdasd123</td>
-<td>23</td>
-<td>2023-04-20</td>
-<td>2023-04-26</td>
-<td>N</td>
-<td class="text-end">
-<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>공개</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
-</td>
-</tr>
-<tr>
-<td>
-<label class="custom_check">
-<input type="checkbox" name="invoice">
-<span class="checkmark"></span>
-</label>
-<a href="#" class="items-links">10</a>
-</td>
-<td>커피바리스타</td>
-<td class="text-primary">asdasd123</td>
-<td>23</td>
-<td>2023-04-20</td>
-<td>2023-04-26</td>
-<td>N</td>
-<td class="text-end">
-<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>공개</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
-</td>
-</tr>
+</c:forEach>
 </tbody>
 </table>
 </div>
 </div>
+<button style="margin-left: 45%;">작성하기</button>
 </div>
 </div>
 </div>

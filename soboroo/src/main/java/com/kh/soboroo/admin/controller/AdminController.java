@@ -1,10 +1,24 @@
 package com.kh.soboroo.admin.controller;
 
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.kh.soboroo.admin.model.service.AdminService;
+import com.kh.soboroo.admin.model.service.AdminServiceImpl;
+import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.common.template.Pagination;
+import com.kh.soboroo.notice.model.vo.Notice;
 
 @Controller
 public class AdminController {
+	
+		@Autowired
+		private AdminServiceImpl aService;
 	
 		
 		// 관리자 로그인 페이지 호출 // 지금은 홈화면
@@ -100,8 +114,19 @@ public class AdminController {
 		
 		// 관리자 공지사항 관리 페이지 호출
 		@RequestMapping("notice.ad")
-		public String noticeInfo() {
-			return "admin/noticeInfo";
+		public ModelAndView noticeInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+			
+			int listCount = aService.selectNoticeListCount(); 
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+			
+			ArrayList<Notice> list = aService.selectNoticeList(pi);
+			
+			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/noticeInfo");
+			
+			
+			return mv;
+
 		}
 		
 	
