@@ -46,6 +46,9 @@
 <!-- ========================== 웹에디터 ========================== -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
+<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+
 <style>
 	.ie_end_support_popup_wrap{
 		display: none;
@@ -338,7 +341,7 @@
 	
 												<input type="text" class="direct_email_domain" name="direct_email_domain" placeholder="직접입력" value="">
 												<button type="button" id="selectbox_btn_email" class="selectbox_btn">
-													<span id="email-title">직접입력</span>
+													<span id="email-title">선택</span>
 												</button>
 												<ul id="email-list">
 													<li data-value="선택">선택</li>
@@ -476,10 +479,14 @@
 											<input type="radio" name="open_type" id="eventPrivate" value="0" data-parsley-multiple="open_type" onclick="privateType();">
 											<label for="eventPrivate">노출안함</label>
 										</div>
-										<div>
+										<div class="input password">
 											<input type="checkbox" name="eventPw_check" id="eventPrivatePw" value="0" data-parsley-multiple="eventPw_check"  disabled>
 											<label for="eventPrivatePw">비밀번호 사용</label>
 											<input id="privatePassword" type="password" title="모임 비밀번호 입력" name="eventPw" placeholder="비밀번호 입력" disabled>
+											<span class="eyes">
+												<i class="fa fa-eye fa-lg"></i>
+											</span>
+												
 										</div>
 									</div>
 								</div>
@@ -510,30 +517,40 @@
 							if($("#eventPrivatePw").is(":checked") == true){
 								console.log("이거타냐?")
 								$("#privatePassword").attr('disabled', false);
+								$(function(){
+									$('.eyes').on('click',function(){
+										$('.input.password').toggleClass('active');
+		
+										if( $('.input.password').hasClass('active') == true ){
+											$(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.input').find('#privatePassword').attr('type',"text");
+										}
+										else{
+											$(this).find('.fa-eye-slash').attr('class',"fa fa-eye fa-lg").parents('.input').find('#privatePassword').attr('type','password');
+										}
+									});
+								});
 							}else{
 								$("#privatePassword").attr('disabled', true);
 								console.log("이거타냐?22222")
 							}
 						});
-
+						
 						
 					</script>
 	
-					<article class="group_info">
+					<article class="youth_approach_check">
 						<h3>청소년 접근제한</h3>
 						<div class="group_container">
 							<fieldset>
 								<div class="input_wrap">
 									<div class="form_row">
 										<div>
-											<input type="checkbox" name="limit_under_nineteen" id="youth_check" value="1">
-											<br>
+											<input type="checkbox" name="limit_under_nineteen" id="youth_check" value="1" data-parsley-multiple="limit_under_nineteen">
 											<label for="youth_check">만 19세 미만 접근 제한</label>
 										</div>
 									</div>
 								</div>
 							</fieldset>
-							<br>
 							<p class="ex">* 설정 시 <strong>반드시 성인인증</strong>을 해야 모임 페이지에 접근이 가능합니다.</p>
 						</div>
 					</article>
@@ -633,14 +650,14 @@
 										<!-- <ul class="tag-editor ui-sortable">
 											<li style="width: 1px;">&nbsp;</li>
 											<li class="placeholder">
-												<div name="basic">태그를 입력해 주세요. 예) #온오프믹스, #컬쳐데이</div>
+												<div>태그를 입력해 주세요. 예) #온오프믹스, #컬쳐데이</div>
 											</li>
 										</ul> -->
-										<input name='basic'>
+										<input name="tag" class="tag-editor" placeholder="태그를 입력해 주세요. 예)&nbsp; 소보루, 새로운모임">
 									</div>
 	
 									<p class="ex">
-										<span>* 태그를 쉼표나 띄어쓰기로 구분해서 최대 5개까지 입력해 주세요.</span>
+										<span>* 태그를 쉼표나 엔터로 구분해서 입력해 주세요.</span>
 										<span>* 모임 태그 입력 시 태그별 모아보기가 가능하고 검색 결과에도 반영됩니다.</span>
 									</p>
 								</div>
@@ -657,12 +674,12 @@
 					<!-- 해시 태그 정보를 저장할 input 태그. (textarea도 지원) -->
 
 					<script>
-						const input = document.querySelector('input[name=basic]');
+						const input = document.querySelector('input[name=tag]');
 						let tagify = new Tagify(input); // initialize Tagify
 						
 						// 태그가 추가되면 이벤트 발생
 						tagify.on('add', function() {
-						console.log(tagify.value); // 입력된 태그 정보 객체
+							console.log(tagify.value); // 입력된 태그 정보 객체
 						})
 					</script>
 

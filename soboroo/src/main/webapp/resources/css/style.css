@@ -3591,5 +3591,41 @@ body {
 }
 
 .exposure_setting .form_row:last-child>div:last-child {
-  width: 240px;
+  width: 270px;
+}
+
+.event_tag .tag-editor {
+  width: 100%;
+  height: auto;
+  min-height: 40px;
+  padding: 0px 0px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+}
+
+.eyes {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto 2px;
+  height: 30px;
+  font-size: 15spx;
+  cursor: pointer;
+}
+
+#privatePassword{
+  width: 120px;
+}
+
+.exposure_setting .form_row:last-child input[type="password"] {
+  margin-left: 10px;
+}
+
+.youth_approach_check {
+  display: block;
+  margin-top: 17px;
+  padding-bottom: 27px;
 }
