@@ -1,4 +1,4 @@
-/*!------------------------------------------------------------------
+ background: #ffb600;/*!------------------------------------------------------------------
 [MAIN STYLESHEET]
 
 Template Name: Constra - Construction Html5 Template
@@ -10,6 +10,8 @@ Description: Constra - Construction Html5 Template
 @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,500,500i,600,600i,700,700i,800|Open+Sans:400,400i,600,600i,700,700i,800&display=swap);
 /* Typography
 ================================================== */
+
+
 body {
   background: #fff;
   color: #555;
@@ -507,7 +509,8 @@ a[href^=tel] {
   color: #fff;
   font-family: "Montserrat", sans-serif;
   transition: 350ms;
-  font-size: 14px;
+  font-size: 13px;
+  background: #ffb600;
 }
 
 @media (max-width: 767px) {
@@ -3432,8 +3435,8 @@ label {
 
 .widget.recent-posts ul li {
  /*  border-bottom: 1px solid #dadada; */
-  padding-bottom: 15px;
-  margin-bottom: 17px;
+/*   padding-bottom: 15px; */
+  margin-bottom: 10px;
 }
 
 .widget.recent-posts ul li:last-child {
@@ -3513,7 +3516,24 @@ label {
   position: relative;
 } */
 
-/* 추가적인 css */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+ *{
+ 	font-family: 'Pretendard-Regular' !important;
+ }
+
+.position-relative, .fa, .fab, .fas{
+	font-family : "Font Awesome 6 Free" !important;
+}
+/* 추가적인 css */ 
+
+.fa-brands fa-square-facebook{
+	font-family : "Font Awesome 6 Free" !important;
+}
 
 #wrap{
   width: 100vw;

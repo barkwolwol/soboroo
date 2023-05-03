@@ -64,11 +64,11 @@
     <body>
     
     <c:if test="${ not empty alertMsg }">
-      <script>
-         alert("${ alertMsg }");
-      </script>
-      <c:remove var="alertMsg" scope="session"/>
-   </c:if>
+		<script>
+			alert("${ alertMsg }");
+		</script>
+		<c:remove var="alertMsg" scope="session"/>
+	</c:if>
     
 
    <div id="top-bar" class="top-bar">
@@ -233,6 +233,19 @@
                       </li>
                     </ul>
             
+	                </div>
+	              </nav>
+	          </div>
+	          <!--/ Col end -->
+	        </div>
+	        <!--/ Row end -->
+	    </div>
+	    <!--/ Container end -->
+	
+	  </div>
+	  <!--/ Navigation end -->
+	</header>
+	<!--/ Header end -->
                    </div>
                  </nav>
              </div>

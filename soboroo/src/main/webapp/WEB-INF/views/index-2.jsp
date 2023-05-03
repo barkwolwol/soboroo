@@ -18,9 +18,9 @@
 	<%-- <jsp:include page="common/header.jsp"/>
 	<jsp:include page="common/footer.jsp"/> --%>
 	
-	<div class="body-inner">
 
 	    <jsp:include page="common/header.jsp"/>
+	<div class="body-inner">
 
 		<div class="banner-carousel banner-carousel-2 mb-0" style="height: 300px;">
 			  <div class="banner-carousel-item" style="background-image:url(${pageContext.request.contextPath}/resources/images/logo_3.png); height: 300px;">

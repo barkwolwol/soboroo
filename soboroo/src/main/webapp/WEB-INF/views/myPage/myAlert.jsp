@@ -7,6 +7,16 @@
       <meta charset="UTF-8">
       <title>Insert title here</title>
       <style>
+        @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.body-inner{
+  font-family: 'Pretendard-Regular';
+}
         #boardList {
           text-align: center;
         }
@@ -19,19 +29,19 @@
           width: fit-content;
           margin: auto;
         }
+
       </style>
     </head>
 
     <body>
         <jsp:include page="../common/header.jsp" />
+        
       <div class="body-inner">
 
-
-        
         <!--     <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)"> -->
-          <div id="banner-area" class="banner-area" 
-          style="background : url('resources/images/bbb.png')"; 
-          background-repeat: no-repeat;>
+        <div id="banner-area" class="banner-area" 
+        style="background-image: url(https://images.unsplash.com/photo-1625233583974-28b93466d22f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)"; 
+        background-repeat: no-repeat;>
           <div class="banner-text">
             <div class="container">
               <div class="row">
@@ -108,7 +118,7 @@
                   <div class="post-body">
                     <div class="entry-header">
                       <h2 class="entry-title">
-                        작성한 커뮤니티 게시글
+                        나의 알림
                       </h2>
                     </div><!-- header end -->
 
@@ -117,59 +127,45 @@
                         <!-- <br><br> -->
                         <div class="innerOuter">
                           <br>
-                          <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼-->
-                          <c:if test="${ not empty loginUser }">
-                            <a class="btn btn-secondary btn-sm" style="float:right" href="enrollForm.bo">글쓰기</a>
-                          </c:if>
-                          <!-- <br></br> --><!--  -->
+                          <!-- <br></br> -->
                           <table id="boardList" class="table table-hover" align="center">
                             <thead>
                               <tr>
-                                <th>글번호</th>
-                                <th>제목</th>
-                                <th>작성자</th>
-                                <th>조회수</th>
-                                <th>작성일</th>
+                              	<th><input type="checkbox"></th>
+                                <th>내용</th>
+                                <th>날짜</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <td class="bno">5</td>
-                                <td>커뮤니티입니다5</td>
-                                <td>user01</td>
-                                <td>0</td>
+                                <td><input type="checkbox"></td>
+                                <td>XXX님이 회원님의 소모임에 참가했습니다.</td>
                                 <td>2023.03.17</td>
                               </tr>
                               <tr>
-                                <td class="bno">4</td>
-                                <td>커뮤니티입니다4</td>
-                                <td>admin</td>
-                                <td>10</td>
+                                <td><input type="checkbox"></td>
+                                <td>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</td>
                                 <td>2023.03.16</td>
                               </tr>
                               <tr>
-                                <td class="bno">3</td>
-                                <td>커뮤니티입니다3</td>
-                                <td>user01</td>
-                                <td>0</td>
+                                <td><input type="checkbox"></td>
+                                <td>XXX님이 회원님의 소모임 게시글에 댓글을 남겼습니다.</td>
                                 <td>2023.03.15</td>
                               </tr>
                               <tr>
-                                <td class="bno">2</td>
-                                <td>커뮤니티입니다2</td>
-                                <td>user01</td>
-                                <td>0</td>
+                                <td><input type="checkbox"></td>
+                                <td>XXX님의 소모임에 참여되었습니다.</td>
                                 <td>2023.03.14</td>
                               </tr>
                               <tr>
-                                <td class="bno">1</td>
-                                <td>커뮤니티입니다1</td>
-                                <td>user01</td>
-                                <td>0</td>
+                                <td><input type="checkbox"></td>
+                                <td>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</td>
                                 <td>2023.03.14</td>
                               </tr>
                             </tbody>
                           </table>
+                          <a href="news-single.html" class="btn btn-primary" style="margin-left: 85%;">삭제하기</a>
+                          
 
 
                         </div>
@@ -188,6 +184,9 @@
                         </li>
                       </ul>
                     </nav>
+
+                    <!-- </div> --><!-- Content Col end -->
+
                   </div><!-- Main row end -->
 
                 </div><!-- Container end -->

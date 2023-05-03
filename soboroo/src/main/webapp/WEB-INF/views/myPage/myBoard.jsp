@@ -23,18 +23,23 @@
         </head>
 
         <body>
+                <jsp:include page="../common/header.jsp" />
+                
             <div class="body-inner">
 
-                <jsp:include page="../common/header.jsp" />
 
-                <!--     <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)"> -->
-                <div id="banner-area" class="banner-area" style="background-color:black">
+
+                
+               <!--     <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)"> -->
+                <div id="banner-area" class="banner-area" 
+                style="background-image: url(https://images.unsplash.com/photo-1599249300635-da2e60b2a0ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)"; 
+                background-repeat: no-repeat;>
                     <div class="banner-text">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="banner-heading">
-                                        <h1 class="banner-title">MyPage</h1>
+                                        <h1 class="banner-title">마이페이지</h1>
                                     </div>
                                 </div><!-- Col end -->
                             </div><!-- Row end -->
@@ -55,7 +60,7 @@
                                             <li class="d-flex align-items-center">
                                                 <div class="posts-thumb">
                                                     <a href="#"><img loading="lazy" alt="img"
-                                                            src="images/news/news1.jpg"></a>
+                                                            src="${pageContext.request.contextPath}/resources/images/news/news1.jpg"></a>
                                                 </div>
                                                 <div class="post-info">
                                                     <h4 class="entry-title">
@@ -67,7 +72,7 @@
                                             <li class="d-flex align-items-center">
                                                 <div class="posts-thumb">
                                                     <a href="#"><img loading="lazy" alt="img"
-                                                            src="images/news/news2.jpg"></a>
+                                                            src="${pageContext.request.contextPath}/resources/images/news/news2.jpg"></a>
                                                 </div>
                                                 <div class="post-info">
                                                     <h4 class="entry-title">
@@ -79,7 +84,7 @@
                                             <li class="d-flex align-items-center">
                                                 <div class="posts-thumb">
                                                     <a href="#"><img loading="lazy" alt="img"
-                                                            src="images/news/news3.jpg"></a>
+                                                            src="${pageContext.request.contextPath}/resources/images/news/news3.jpg"></a>
                                                 </div>
                                                 <div class="post-info">
                                                     <h4 class="entry-title">
@@ -103,7 +108,7 @@
                                     <div class="post-body">
                                         <div class="entry-header">
                                             <h2 class="entry-title">
-                                                <a href="news-single.html">작성한 소모임 게시글</a>
+                                               작성한 소모임 게시글
                                             </h2>
                                         </div><!-- header end -->
 
