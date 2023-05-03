@@ -23,9 +23,10 @@
         </head>
 
         <body>
+                <jsp:include page="../common/header.jsp" />
+                
             <div class="body-inner">
 
-                <jsp:include page="../common/header.jsp" />
 
 
                 

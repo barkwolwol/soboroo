@@ -40,6 +40,8 @@
       <script src="https://kit.fontawesome.com/66bc1e54e8.js" crossorigin="anonymous"></script>
 
       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+      <!-- <script src="https://code.jquery.com/jquery-3.3.1/slim.min.js"></script> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -47,17 +49,14 @@
         .popover-body li {
           list-style: none;
         }
-
         .popover-body div {
           padding: 5px 7px 5px;
           border-bottom: 1px solid #ddd;
         }
-
         .popover-body a {
           padding: 3px 10px 3px;
           float: right;
         }
-
       </style>
 
     </head>

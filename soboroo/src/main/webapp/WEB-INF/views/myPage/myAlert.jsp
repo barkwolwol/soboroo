@@ -34,8 +34,9 @@
     </head>
 
     <body>
-      <div class="body-inner">
         <jsp:include page="../common/header.jsp" />
+        
+      <div class="body-inner">
 
         <!--     <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)"> -->
         <div id="banner-area" class="banner-area" 

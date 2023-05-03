@@ -7,7 +7,7 @@
             <meta charset="UTF-8">
             <title>Insert title here</title>
         </head>
-        <style>
+       <!--  <style>
             form {
                 max-width: 300px;
                 margin: 0;
@@ -21,15 +21,17 @@
                 margin-bottom: 5px;
                 font-weight: bold;
             }
-        </style>
+        </style> -->
 
         <body>
-            <div class="body-inner">
 
                 <jsp:include page="../common/header.jsp" />
-
-                <!--     <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)"> -->
-                <div id="banner-area" class="banner-area" style="background-color:#ff8932">
+            
+            <div class="body-inner">
+				
+                 <div id="banner-area" class="banner-area" 
+            style="background-image: url()"; 
+            background-repeat: no-repeat;>
                     <div class="banner-text">
                         <div class="container">
                             <div class="row">
