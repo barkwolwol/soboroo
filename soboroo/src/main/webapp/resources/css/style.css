@@ -3521,3 +3521,122 @@ label {
   background-color: rgba(0,0,0,.7);
   position: relative;
 }
+
+legend, label {
+  position: absolute;
+  left: 0;
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+.default_info legend {
+  top: 10px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="tel"] {
+  padding: 0 6px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  color: #333333;
+  background-color: #f8f8f8;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.list_wrap li {
+  list-style-type: none;
+}
+
+.selectbox li {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 11;
+  list-style: none;
+}
+
+.selectbox ul {
+  padding-left: 0;
+}
+
+.default_info .introduce .input_wrap::before {
+  content: attr(data-text_length);
+  right: 27px;
+}
+
+input[type="checkbox"][disabled]+label, input[type="checkbox"][disabled="disabled"]+label, input[type="checkbox"].disabled+label, input[type="radio"][disabled]+label, input[type="radio"][disabled="disabled"]+label, input[type="radio"].disabled+label {
+  color: #cccccc;
+  cursor: no-drop;
+}
+
+input[type="text"][disabled], input[type="text"][disabled="disabled"], input[type="text"].disabled, input[type="email"][disabled], input[type="email"][disabled="disabled"], input[type="email"].disabled, input[type="password"][disabled], input[type="password"][disabled="disabled"], input[type="password"].disabled, input[type="number"][disabled], input[type="number"][disabled="disabled"], input[type="number"].disabled, input[type="tel"][disabled], input[type="tel"][disabled="disabled"], input[type="tel"].disabled {
+  border: 1px solid #d8d8d8;
+  background-color: #fdfdfd;
+  cursor: no-drop;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="tel"] {
+  padding: 0 6px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  color: #333333;
+  background-color: #f8f8f8;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+body {
+  letter-spacing: -1px;
+}
+
+.exposure_setting .form_row:last-child>div:last-child {
+  width: 270px;
+}
+
+.event_tag .tag-editor {
+  width: 100%;
+  height: auto;
+  min-height: 40px;
+  padding: 0px 0px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+}
+
+.eyes {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto 2px;
+  height: 30px;
+  font-size: 15spx;
+  cursor: pointer;
+}
+
+#privatePassword{
+  width: 120px;
+}
+
+.exposure_setting .form_row:last-child input[type="password"] {
+  margin-left: 10px;
+}
+
+.youth_approach_check {
+  display: block;
+  margin-top: 17px;
+  padding-bottom: 27px;
+}
+
+.group_info .time_place_wrap .place_search_input .addr_1 {
+  width: calc( 100% );
+}
+
+.group_info .time_place_wrap .place_search .addr_reset_btn {
+  width: 34px;
+  height: 34px;
+  top: 2px;
+  right: 5px;
+}
