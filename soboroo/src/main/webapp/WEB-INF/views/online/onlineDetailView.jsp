@@ -87,7 +87,7 @@
               <li>
                 <p class="project-link">
                   <br>
-                  <a class="btn btn-primary" target="_blank" href="#">참가하기</a>
+                  <a class="btn btn-primary" target="_blank" href="#">참가하기</a> 	<!-- 클릭시, 참가취소 로 변경되게끔! 인원수가 찬 경우, 대기하기로 출력하기 -->
                 </p>
               </li>
             </ul>

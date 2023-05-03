@@ -53,10 +53,7 @@
             Width: 20%;
         }
 
- ul li {
-    display: inline-block;
-    
-}
+
 #topMenu {            
         height: 30px; 
         width: 100%; 
@@ -88,12 +85,22 @@
 <body>
 	  <!-- 이쪽에 헤더바 포함할꺼임 -->
     <jsp:include page="../common/header.jsp"/>
-
+<div id="banner-area" class="banner-area" style="background-image:url(https://rabbitstamp.com/_dj/img/sub_banner_img09.jpg)">
+                    <div class="banner-text">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="banner-heading">
+                                       
+                                    </div>
+                                </div><!-- Col end -->
+                            </div><!-- Row end -->
+                        </div><!-- Container end -->
+                    </div><!-- Banner text end -->
+                </div><!-- Banner area end -->
     <div class="content">
         <br><br>
         <div class="innerOuter" style="padding:5% 10%;">
-            <h2>게시판</h2>
-            <br>
             <div align="center">
             <nav id="topMenu" style="margin-bottom: 25px; margin-left: 10%;" >
                 <ul>

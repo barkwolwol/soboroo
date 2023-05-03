@@ -73,21 +73,21 @@
          </div>   
            
             
-            <div style="margin-left: 25%;">
+            <div style="margin-left: 20%; margin-right: 20%">
                 <div class="avatar" style="float: left;margin-top: 30px;"><img alt="" src="${pageContext.request.contextPath}/resources/images/default_profile.png" class="avatar-image"></div>
                 <br> 
             <div class="author">
                 <div class="write" style=" font-size: 13px;">관리자</div>
              
                 <div class="board_name">
-                    <a href="" style="color: black;">
+                    <a href="list.bo" style="color: black;">
                         카테고리 게시판
                     </a>
                 </div>
                 <div class="date body_font_color_70" style="float: left; 
-                font-size: 13px; margin-left: 5px;">1일전</div>
+                font-size: 13px; margin-left: 5px;">${ b.createDate }</div>
                 <div class="hit-count body_font_color_70" style="float: left;
-                font-size: 13px; margin-left: 10px;">조회수 3</div>
+                font-size: 13px; margin-left: 10px;">조회수 ${ b.count }</div>
                 <div class="tools txt"><a href="" style="margin-right: 10px;float: left;
                     font-size: 13px; margin-left: 5px; color: black;" >수정</a>
                     <a href="javascript:;" onclick="" style="margin-right: 10px; float: left;
@@ -97,18 +97,18 @@
    <table id="contentArea" align="center" class="table">
     <tr>
         <th width="100">카테고리</th>
-        <td colspan="3">운동</td>
+        <td colspan="3">${ b.category }</td>
     </tr>
     
     <tr>
         <th width="100">제목</th>
-        <td colspan="3">게시글 제목입니다</td>
+        <td colspan="3">${ b.boardTitle }</td>
     </tr>
     <tr>
         <th>작성자</th>
-        <td>user01</td>
+        <td>${b.memNo }</td>
         <th>작성일</th>
-        <td>2023-03-31</td>
+        <td>${ b.createDate }</td>
     </tr>
     <tr>
         <th>첨부파일</th>
@@ -124,20 +124,20 @@
         <td colspan="3"></td>
     </tr>
     <tr>
-        <td colspan="4"><p style="height:150px">피자가 먹고싶네오</p></td>
+        <td colspan="4">${ b.boardContent }</td>
     </tr>
+    
 </table>
 
-            
+              <div style="margin-right: 50%" >
+        <a class="btn btn-secondary" style="float:right" href="list.bo">목록으로</a>
+    </div>   
     
-
+<br><br><br><br>
             <!-- 댓글 기능은 나중에 ajax 배우고 접목시킬예정! 우선은 화면구현만 해놓음 -->
             
         </div>
-        <br><br>
-        <div style="margin-right: 50%" >
-        <a class="btn btn-secondary" style="float:right" href="">목록으로</a>
-    </div>
+   
     </div>
 
     <!-- 이쪽에 푸터바 포함할꺼임 -->

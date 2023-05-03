@@ -96,13 +96,45 @@
 
         </div><!-- Row end -->
 		
+		
+		
+		
+		
 		<!-- 여기부터는 참가버튼 누른 경우에만 보여야 함 -->
 		<hr>
 		
 		<div>
-		
+			<table border="1" align="center">
+				<tbody>
+					<tr>
+						<th colspan="3">참가자 리스트</th>
+					</tr>
+					<tr>
+						<th>인덱스</th>
+						<th width="300px">닉네임</th>
+						<th>참가시간</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>[사진] 감스트이꼴황대인</td>
+						<td>2023-05-01 14:31:23</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>[사진] 돌종국드뎌각성</td>
+						<td>2023-05-01 17:25:54</td>
+					</tr>
+					<tr>
+						<td colspan="3">29명/30명</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<!-- 버튼 여부에 따라 보이는 부분 끝 -->
+		
+		
+		
+		
 		
       	<hr>
       	
