@@ -318,6 +318,7 @@
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
+                                    <c:forEach var="b" items="${list})">
                                     <tbody>
                                         <tr>
                                             <td>
@@ -325,14 +326,14 @@
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="#" class="items-links">10</a>
+                                                <a href="#" class="items-links">${ b.boardNo}</a>
                                             </td>
-                                            <td>커피바리스타</td>
+                                            <td>${ b.boardTitle}</td>
                                             <td class="text-primary">asdasd123</td>
-                                            <td>23</td>
-                                            <td>2023-04-20</td>
-                                            <td>2023-04-26</td>
-                                            <td>N</td>
+                                            <td>${ b.count}</td>
+                                            <td>${ b.createDate}</td>
+                                            <td>${ b.modifyDate}</td>
+                                            <td>${ b.delNy }</td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -435,6 +436,7 @@
                         
                                             </td>
                                         </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

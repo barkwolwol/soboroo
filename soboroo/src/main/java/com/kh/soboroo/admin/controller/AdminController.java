@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.soboroo.admin.model.service.AdminService;
 import com.kh.soboroo.admin.model.service.AdminServiceImpl;
 import com.kh.soboroo.admin.model.vo.Admin;
+import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.notice.model.vo.Notice;
@@ -112,9 +113,21 @@ public class AdminController {
 		
 		// 관리자 게시글 관리 페이지 호출
 		@RequestMapping("board.ad")
-		public String boardInfo() {
-			return "admin/boardInfo";
-		}
+		public ModelAndView boardInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+				
+				int listCount = aService.selectBoardListCount(); 
+				
+				PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+				
+				ArrayList<Board> list = aService.selectBoardList(pi);
+				
+				mv.addObject("pi", pi).addObject("list", list).setViewName("admin/boardInfo");
+				
+				
+				return mv;
+			}
+		
+		
 		
 		// 관리자 공지사항 관리 페이지 호출
 		@RequestMapping("notice.ad")
@@ -132,6 +145,8 @@ public class AdminController {
 			return mv;
 
 		}
+		
+
 		
 		
 	
