@@ -198,9 +198,9 @@
 	
 	
 	  <!-- Google Map API Key-->
-	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer="defer"></script>
+	  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer="defer"></script> -->
 	  <!-- Google Map Plugin-->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/google-map/map.js" defer="defer"></script>
+	  <!-- <script src="${pageContext.request.contextPath}/resources/plugins/google-map/map.js" defer="defer"></script> -->
 	
 	  <!-- Template custom -->
 	  <script src="${pageContext.request.contextPath}/resources/js/script.js"></script>

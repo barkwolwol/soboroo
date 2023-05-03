@@ -22,7 +22,8 @@
 <!-- OFM Style -->
 <link rel="stylesheet" href="https://static.onoffmix.com/css/pc/event/event-add_20.css">
 <!-- =================================== 화면 고유 끝 ===================================  -->
-<script>dataLayer=[{uid:"1415372"}]</script>    <!-- Google Tag Manager -->
+<script>dataLayer=[{uid:"1415372"}]</script>    
+<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -47,6 +48,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<!-- ========================== 카카오맵 ========================== -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=071cb893f324a293ed6ab2146c806ac5"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
 
 
 <style>
@@ -166,25 +173,19 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
+
 	<main id="content" class="event_add">
 		<section>
-				<div class="head_area">
-					<h2>개설하기</h2>
-				</div>
+			<div class="head_area">
+				<h2>개설하기</h2>
+			</div>
 		
 			<div class="content_area">
 			
-				<form id="allForm" 
-					action="https://api.onoffmix.com/v1/event/ManageEvent/add"
-					method="POST" target="_self" encType="multipart/form-data"
-					data-preview="/event/preview"
-					data-preview-mobile="/event/preview_mobile"
-					data-draft="https://api.onoffmix.com/v1/event/ManageEvent/draft"
-					data-has-draft="2023-04-28 11:41"
-					data-hpp-max="300000"
-					data-event_method_type="advance"
-					data-open_type="open"
-				>
+				<form id="allForm" action="https://api.onoffmix.com/v1/event/ManageEvent/add" method="POST" target="_self"
+					encType="multipart/form-data" data-preview="/event/preview" data-preview-mobile="/event/preview_mobile"
+					data-draft="https://api.onoffmix.com/v1/event/ManageEvent/draft" data-has-draft="2023-04-28 11:41"
+					data-hpp-max="300000" data-event_method_type="advance" data-open_type="open">
 	
 					<div class="input_hidden_wrap" style="display:none">
 						<input type="hidden" name="proc" value="createBaseEvent">
@@ -265,10 +266,8 @@
 												<li id="value8" data-value="기타">기타</li>
 											</ul>
 										</div>
-										<input type="text" name="title" placeholder="모임명을 입력해주세요."
-											value="" maxlength="64" required
-											data-parsley-required-message="모임명을 입력해주세요."
-											data-parsley-class-handler=".event_name_category .form_row">
+										<input type="text" name="title" placeholder="모임명을 입력해주세요." value="" maxlength="64" required
+											data-parsley-required-message="모임명을 입력해주세요." data-parsley-class-handler=".event_name_category .form_row">
 									</div>
 								</div>
 								
@@ -459,9 +458,211 @@
 							<span class="group_title">그룹 정보<span class="required">필수</span></span>
 							<span class="field_title">기간/장소 정보<span class="required">필수</span></span>
 						</h3>
-	
 
+						<div class="group_container ui-sortable">
+						<fieldset data-map="true" data-datepicker_set="true" data-group_setting="true" data-pay_host_num=""
+							data-pay_host_name="" data-bank_code="0" data-usemap="true" data-is_free="true" data-existgroupattenduser=""
+							class="open"> 
+							<input type="hidden" name="groupIdx[-1]" value="-1"> 
+							<input type="hidden" name="groupisShowAttend[-1]" value="1"> 
+							<input type="hidden" name="groupisShowStandby[-1]" value="1"> 
+							<input type="hidden" name="groupisShowPrivate[-1]" value="0"> 
+							<div class="input_wrap">
+								<div class="form_row">
+									<div class="group_name"> 
+										<input type="text" name="groupName[-1]" title="그룹명 입력" data-parsley-required-message="그룹명을 입력해주세요." data-parsley-group="group_name" data-parsley-group_name_check="" required="" value="" maxlength="16" placeholder="그룹명 입력">
+									</div>
+									<div class="group_capacity"> 
+										<input type="text" name="groupCapacity[-1]" class="capacity" title="모집 정원 입력" data-parsley-required-message="모집 정원을 입력해주세요." required="" placeholder="모집 정원 입력" maxlength="7" value=""> 
+									</div>
+									<div class="group_add_remove_btn"> 
+										<button type="button" class="add">그룹설정</button> 
+									</div>
+								</div>
+							</div>
+							<div class="group_option"> 
+								<input type="hidden" class="mapX" name="mapX[-1]" value=""> 
+								<input type="hidden" class="mapY" name="mapY[-1]" value=""> 
+								<input type="hidden" class="sido" name="sido[-1]" value="서울특별시">
+								<input type="hidden" class="gugun" name="gugun[-1]" value="강남구"> 
+								<input type="hidden" class="dong" name="dong[-1]" value="">
+								<div class="time_place_wrap">
+									<div class="date_input" style="display: none"> 
+										<input type="hidden" name="eventStartDateTime_date[-1]" required="" value="">
+										<input type="hidden" name="eventStartDateTime_time[-1]" required="" value="">
+										<input type="hidden" name="eventEndDateTime_date[-1]" required="" value=""> 
+										<input type="hidden" name="eventEndDateTime_time[-1]" required="" value=""> 
+										<input type="hidden" name="recruitStartDateTime_date[-1]" required="" value="">
+										<input type="hidden" name="recruitStartDateTime_time[-1]" required="" value="">
+										<input type="hidden" name="recruitEndDateTime_date[-1]" required="" value=""> 
+										<input type="hidden" name="recruitEndDateTime_time[-1]" required="" value=""> 
+									</div>
+									<div class="form_row" id="eventDateTime_-1">
+										<div class="date_time_wrap event"> 
+											<label for="">모임기간</label> 
+											<input type="text" id="meetingDate" placeholder="모임기간을 선택하세요." value="" data-parsley-required-message="모임기간을 선택해주세요." data-parsley-class-handler="#eventDateTime_-1" autocomplete="off" readonly="" required="">
+										</div>
+									</div>
+									<div class="form_row" id="recruitDateTime_-1">
+										<div class="date_time_wrap apply"> 
+											<label for="">신청기간</label> 
+											<input type="text" placeholder="신청기간을 선택하세요." value="" data-parsley-required-message="신청기간을 선택해주세요." data-parsley-class-handler="#recruitDateTime_-1" autocomplete="off" readonly="" required="">
+										</div>
+									</div>
+									<p class="ex">* 참여 신청 및 취소는 신청 기간에만 가능합니다.</p>
+									<div class="form_row">
+										<div class="place_check"> 
+											<input type="checkbox" id="noUseMap[-1]" name="addr_yn[-1]" value="0" class="noUseMap"> 
+											<label for="noUseMap[-1]">장소 없음</label> 
+										</div>
+										<div> 
+											<span> 
+												<input type="radio" id="no_place[-1]" name="no_place[-1]" value="0" checked=""> 
+												<label for="no_place[-1]">장소 없음/미정</label>
+											</span> 
+											<span> 
+												<input type="radio" id="online[-1]" name="no_place[-1]" value="1"> 
+												<label for="online[-1]">온라인</label> 
+											</span> 
+										</div>
+									</div>
+									<div class="form_row place_search">
+										<div class="place_search_input" data-input_type="text"> 
+											<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+											<input type="text" id="address_kakao" class="addr_1 ui-autocomplete-input" placeholder="장소명, 주소를 검색해 주세요." name="group_address[-1]" data-parsley-map_checked="" data-parsley-required-message="장소명, 주소를 검색하거나 지도에서 선택해주세요. 장소가 없는 경우 ‘장소 없음’을 선택해주세요." value="" required="" autocomplete="off"> 
+											<button type="button" class="addr_reset_btn">주소 초기화</button>
+											<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="display: none;"></ul>
+										</div>
+									</div>
+									<div class="form_row place_search">
+										<div class="place_search_input" data-input_type="text"> 
+											<input type="text" class="addr_2" name="group_location[-1]" placeholder="나머지 주소를 입력해 주세요." value="">
+										</div>
+									</div>
+									<div class="form_row map">
+										<div id="map" style="width:628px;height:254px;"></div>
+									</div>
+								</div>
+								<div class="person_apply_wrap">
+									<div class="form_row select_apply" data-input_type="radio">
+										<div class="op_h"> <span>선정방법</span>
+											<div class="help_tip"> <span> <span>선착순</span> 신청 순서대로 참여확정자로 신청됩니다. <span>개설자 선정</span> 대기자로 신청되고
+													개설자의 승인을 통해 참여확정자로 변경됩니다. </span> </div>
+										</div>
+										<div class="op_c">
+											<div> <input type="radio" id="groupAuthorizeType[-1]_01" name="groupAuthorizeType[-1]" value="01"
+													checked=""> <label for="groupAuthorizeType[-1]_01"
+													title="개설자 통장입금 결제인 경우 설정을 변경할 수 없습니다.">선착순</label> </div>
+											<div> <input type="radio" id="groupAuthorizeType[-1]_02" name="groupAuthorizeType[-1]" value="02">
+												<label for="groupAuthorizeType[-1]_02" title="개설자 통장입금 결제인 경우 설정을 변경할 수 없습니다.">개설자 선정</label>
+											</div>
+										</div>
+									</div>
+									<div class="form_row" data-input_type="text">
+										<div class="op_h"> <span>동반인원</span>
+											<div class="help_tip"> <span> <span>없음</span> 본인만 신청 가능합니다. <span>1명 이상</span> 본인 외 동반인원수를 선택하여
+													신청가능합니다. </span> </div>
+										</div>
+										<div class="op_c numberbox"> <input type="text" name="groupMemberPerAttend[-1]"
+												class="numberbox_input companion" placeholder="없음" data-max_num="29" value=""> <span
+												class="plus"></span><span class="minus"></span> </div>
+									</div>
+									<div class="form_row over_capacity" data-input_type="radio">
+										<div class="op_h"> <span>정원초과 모집</span>
+											<div class="help_tip"> <span> <span>허용</span> 정원을 초과해도 대기자로 신청자를 받습니다. 결원 발생 시 대기자가 참여확정자로 자동 변경될 수
+													있습니다. <span>허용안함</span> 정원까지만 신청자를 받고 더 이상 신청자를 받지 않습니다. </span> </div>
+										</div>
+										<div class="op_c">
+											<div> <input type="radio" id="group_overcapacity[-1]_01" name="group_overcapacity[-1]" value="1"
+													checked=""> <label for="group_overcapacity[-1]_01"
+													title="정원초과 모집이 불가능한 경우 설정을 변경할 수 없습니다.">허용</label> </div>
+											<div> <input type="radio" id="group_overcapacity[-1]_02" name="group_overcapacity[-1]" value="0">
+												<label for="group_overcapacity[-1]_02" title="정원초과 모집이 불가능한 경우 설정을 변경할 수 없습니다.">허용안함</label>
+											</div>
+										</div>
+									</div>
+									<div class="form_row over_capacity_pay" data-input_type="radio">
+										<div class="op_h"> <span>정원초과 결제</span>
+											<div class="help_tip"> <span> <span>허용</span> 정원이 초과한 후 대기자로 신청 시 결제할 수 있습니다. 결원 발생 시 결제한 대기자가
+													참여확정자로 자동 변경될 수 있습니다. <span>허용안함</span> 정원이 초과한 후 대기자로 신청 시 결제할 수 없습니다(미결제 대기자 상태로 신청만 가능).
+													선정방법이 개설자 선정인 경우 정원초과 결제 허용 선택은 불가합니다. </span> </div>
+										</div>
+										<div class="op_c">
+											<div> <input type="radio" id="group_overpay[-1]_01" name="group_overpay[-1]" value="1" checked="">
+												<label for="group_overpay[-1]_01">허용</label> </div>
+											<div> <input type="radio" id="group_overpay[-1]_02" name="group_overpay[-1]" value="0"> <label
+													for="group_overpay[-1]_02">허용안함</label> </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						</div>
+
+						<div class="form_row group_num_select_check" data-group_select_num="0" style="display: none;">
+							<div class="selectbox" data-list_show="false">
+								<select class="group_num_select" name="selectableGroupLimit">
+								</select>
+							</div>
+						</div>
 					</article>
+
+					<script>
+						var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+						var options = { //지도를 생성할 때 필요한 기본 옵션
+							center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+							level: 3 //지도의 레벨(확대, 축소 정도)
+						};
+
+						var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+						// 지도를 생성합니다    
+						var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+						// 주소-좌표 변환 객체를 생성합니다
+						var geocoder = new kakao.maps.services.Geocoder();
+
+						// 주소로 좌표를 검색합니다
+						geocoder.addressSearch($("#address_kakao").val(), function(result, status) {
+
+							// 정상적으로 검색이 완료됐으면 
+							if (status === kakao.maps.services.Status.OK) {
+
+								var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+								// 결과값으로 받은 위치를 마커로 표시합니다
+								var marker = new kakao.maps.Marker({
+									map: map,
+									position: coords
+								});
+
+								// 인포윈도우로 장소에 대한 설명을 표시합니다
+								var infowindow = new kakao.maps.InfoWindow({
+									content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+								});
+								infowindow.open(map, marker);
+
+								// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+								map.setCenter(coords);
+							} 
+						});    
+					</script>
+
+					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+					<script>
+					window.onload = function(){
+						document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
+							//카카오 지도 발생
+							new daum.Postcode({
+								oncomplete: function(data) { //선택시 입력값 세팅
+									document.getElementById("address_kakao").value = data.address; // 주소 넣기
+									document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+								}
+							}).open();
+						});
+					}
+					</script>
+
 	
 					<article class="exposure_setting">
 						<h3>모임 노출 설정</h3>
@@ -570,70 +771,39 @@
 	
 										<div class="list_wrap">
 											<ul>
-																						<li>
-													<input type="checkbox"
-														id="field_A0001" value="A0001"
-														name="interest_field[]"
-														 >
-													<label for="field_A0001">
-														교육/어학                                                </label>
+												<li>
+													<input type="checkbox" id="field_A0001" value="A0001" name="interest_field[]">
+													<label for="field_A0001">교육/어학 </label>
 												</li>
-																						<li>
-													<input type="checkbox"
-														id="field_A0002" value="A0002"
-														name="interest_field[]"
-														 >
-													<label for="field_A0002">
-														취업/자격증                                              </label>
+												<li>
+													<input type="checkbox" id="field_A0002" value="A0002" name="interest_field[]">
+													<label for="field_A0002">취업/자격증 </label>
 												</li>
-																						<li>
-													<input type="checkbox"
-														id="field_A0003" value="A0003"
-														name="interest_field[]"
-														 >
-													<label for="field_A0003">
-														여행                                                </label>
+												<li>
+													<input type="checkbox" id="field_A0003" value="A0003" name="interest_field[]">
+													<label for="field_A0003">여행 </label>
 												</li>
-																						<li>
-													<input type="checkbox"
-														id="field_A0004" value="A0004"
-														name="interest_field[]"
-														 >
-													<label for="field_A0004">
-														스포츠/운동                                                </label>
+												<li>
+													<input type="checkbox" id="field_A0004" value="A0004" name="interest_field[]">
+													<label for="field_A0004">스포츠/운동 </label>
 												</li>
-																						<li>
-													<input type="checkbox"
-														id="field_A0005" value="A0005"
-														name="interest_field[]"
-														 >
-													<label for="field_A0005">
-														요리/음식                                                </label>
+												<li>
+													<input type="checkbox" id="field_A0005" value="A0005" name="interest_field[]">
+													<label for="field_A0005">요리/음식 </label>
 												</li>
-																						<li>
-													<input type="checkbox"
-														id="field_A0006" value="A0006"
-														name="interest_field[]"
-														 >
-													<label for="field_A0006">
-														문화/예술                                                </label>
+												<li>
+													<input type="checkbox" id="field_A0006" value="A0006" name="interest_field[]">
+													<label for="field_A0006">문화/예술 </label>
 												</li>
-																						<li>
-													<input type="checkbox"
-														id="field_A0007" value="A0007"
-														name="interest_field[]"
-														 >
-													<label for="field_A0007">
-														영화/음악                                                </label>
+												<li>
+													<input type="checkbox" id="field_A0007" value="A0007" name="interest_field[]">
+													<label for="field_A0007">영화/음악 </label>
 												</li>
-																						<li>
-													<input type="checkbox"
-														id="field_A0008" value="A0008"
-														name="interest_field[]"
-														 >
-													<label for="field_A0008">
-														기타                                                </label>
+												<li>
+													<input type="checkbox" id="field_A0008" value="A0008" name="interest_field[]">
+													<label for="field_A0008">기타 </label>
 												</li>
+											</ul>
 										</div>
 									</div>
 									
@@ -715,52 +885,52 @@
 		</section>
 	</main>
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/group_info.js"></script>
-
-
-	
-	<script src="https://static.onoffmix.com/js/pc/dist/common/class_list.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tmpl.min.js"></script>
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fileupload.js"></script> -->
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.browser.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fancybox-1.3.3.js"></script>
-	<script src="https://static.onoffmix.com/js/common/dist/plugins/moment.js"></script>
-	<script src="https://static.onoffmix.com/js/common/dist/plugins/daterangepicker_2020.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery-ui-autocompleteBox.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/webeditor/SE2.3.4.O10204/js/HuskyEZCreator.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.caret.min.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tag-editor.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/parsley.min.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/map_2020.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_img.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/pay_host.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/additional_info.js"></script>
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_informing.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_tag.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_setup_validation.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/event/event-add_2020.js"></script>
+	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_img.js"></script>
+	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tmpl.min.js"></script>
 	
-	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/editor.js"></script>
+
+
+	
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/class_list.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fileupload.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.browser.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fancybox-1.3.3.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/common/dist/plugins/moment.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/common/dist/plugins/daterangepicker_2020.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery-ui-autocompleteBox.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/webeditor/SE2.3.4.O10204/js/HuskyEZCreator.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.caret.min.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tag-editor.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/parsley.min.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/map_2020.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/pay_host.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/additional_info.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_tag.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_setup_validation.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/event-add_2020.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/editor.js"></script> -->
+
 	<!-- Plugin  -->
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/owl.carousel.min.js"></script>
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/owl.carousel.min.js"></script> -->
+
 	<!-- Script -->
-	<script src="https://static.onoffmix.com/js/pc/dist/common/common.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/header.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/main/sliderRotate.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/main/main.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/today-seen.js"></script>
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/common.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/header.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/main/sliderRotate.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/main/main.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/today-seen.js"></script> -->
 
 	<!-- PC Common Script -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/common.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/header.js"></script> -->
-	<script src="https://static.onoffmix.com/js/common/dist/plugins/app/app-ver-chk.js"></script>
-	<script src="https://static.onoffmix.com/js/common/dist/log/statistic.js"></script>
-	<!-- Script -->	<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"4d73c0dfa7","applicationID":"119983018","transactionName":"Z1MAZEVWDREHWkEMWl4ZI1NDXgwMSXZzKGpzWQxERVgPDgNLGjpHVVsDQA==","queueTime":2,"applicationTime":383,"atts":"SxQDEg1MHh8=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/common.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/header.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/common/dist/plugins/app/app-ver-chk.js"></script> -->
+	<!-- <script src="https://static.onoffmix.com/js/common/dist/log/statistic.js"></script> -->
 
-	
-
-
-
-
+	<!-- Script -->
+	<script
+		type="text/javascript">window.NREUM || (NREUM = {}); NREUM.info = { "beacon": "bam.nr-data.net", "licenseKey": "4d73c0dfa7", "applicationID": "119983018", "transactionName": "Z1MAZEVWDREHWkEMWl4ZI1NDXgwMSXZzKGpzWQxERVgPDgNLGjpHVVsDQA==", "queueTime": 2, "applicationTime": 383, "atts": "SxQDEg1MHh8=", "errorBeacon": "bam.nr-data.net", "agent": "" }
+	</script>
 
 	<jsp:include page="../common/footer.jsp"/>
 	

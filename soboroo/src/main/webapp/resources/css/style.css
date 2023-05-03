@@ -3629,3 +3629,14 @@ body {
   margin-top: 17px;
   padding-bottom: 27px;
 }
+
+.group_info .time_place_wrap .place_search_input .addr_1 {
+  width: calc( 100% );
+}
+
+.group_info .time_place_wrap .place_search .addr_reset_btn {
+  width: 34px;
+  height: 34px;
+  top: 2px;
+  right: 5px;
+}
