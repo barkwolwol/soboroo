@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-   <!-- jQuery 라이브러리 -->
+	<title>soboroo | 자유게시판</title>
+	
+	<!-- Favicon
+	================================================== -->
+	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+	
+    <!-- jQuery 라이브러리 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- 부트스트랩에서 제공하고 있는 스타일 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -47,10 +53,7 @@
             Width: 20%;
         }
 
- ul li {
-    display: inline-block;
-    margin-left: 1%;
-}
+
 #topMenu {            
         height: 30px; 
         width: 100%; 
@@ -58,7 +61,6 @@
 #topMenu ul li {              
         list-style: none;          
         color: white;             
-        background-color: #2d2d2d;  
         float: left;               
         line-height: 30px;         
         vertical-align: middle;     
@@ -66,7 +68,7 @@
 }
 #topMenu .menuLink {                             
         text-decoration:none;                      
-        color: white;                            
+        color: rgb(0, 0, 0);                            
         display: block;                           
         width: 100px;                          
         font-size: 12px;                           
@@ -75,7 +77,7 @@
 }
 #topMenu .menuLink:hover {           
         color: orange   ;            
-        background-color: #4d4d4d;  
+        background-color: #ffffff;  
 }
 
     </style>
@@ -83,23 +85,34 @@
 <body>
 	  <!-- 이쪽에 헤더바 포함할꺼임 -->
     <jsp:include page="../common/header.jsp"/>
-
+<div id="banner-area" class="banner-area" style="background-image:url(https://rabbitstamp.com/_dj/img/sub_banner_img09.jpg)">
+                    <div class="banner-text">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="banner-heading">
+                                       
+                                    </div>
+                                </div><!-- Col end -->
+                            </div><!-- Row end -->
+                        </div><!-- Container end -->
+                    </div><!-- Banner text end -->
+                </div><!-- Banner area end -->
     <div class="content">
         <br><br>
         <div class="innerOuter" style="padding:5% 10%;">
-            <h2>게시판</h2>
-            <br>
             <div align="center">
             <nav id="topMenu" style="margin-bottom: 25px; margin-left: 10%;" >
                 <ul>
-                        <li><a class="menuLink" href="#">전체</a></li>
-                        <li><a class="menuLink" href="#">운동</a></li>
-                        <li><a class="menuLink" href="#">공부</a></li>
-                        <li><a class="menuLink" href="#">카테고리</a></li>
-                        <li><a class="menuLink" href="#">카테고리</a></li>
-                        <li><a class="menuLink" href="#">카테고리</a></li>
-                        <li><a class="menuLink" href="#">카테고리</a></li>
-                        <li><a class="menuLink" href="#">카테고리</a></li>
+                        <li><a class="menuLink" href="0">전체</a></li>
+                        <li><a class="menuLink" href="1">교육/어학</a></li>
+                        <li><a class="menuLink" href="2">취업/자격증</a></li>
+                        <li><a class="menuLink" href="3">여행</a></li>
+                        <li><a class="menuLink" href="4">스포츠/운동</a></li>
+                        <li><a class="menuLink" href="5">요리/음식</a></li>
+                        <li><a class="menuLink" href="6">문화/예술</a></li>
+                        <li><a class="menuLink" href="7">영화/음악</a></li>
+                        <li><a class="menuLink" href="8">기타</a></li>
                 </ul>
             </nav>
             </div>
@@ -107,45 +120,43 @@
 
 
 	            <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼-->
-           		<a class="btn btn-secondary btn-sm" style="float:right" href="enrollForm.bo">글쓰기</a>
+           		<a class="btn btn-secondary btn-sm" style="float:right" href="enroll.bo">글쓰기</a>
             <br></br>
             <table id="boardList" class="table table-hover" align="center">
                 <thead>
                   <tr>
                     <th>글번호</th>
-                    <th>
-                        <select name="" id="">
-                            <option value="" style="">카테고리</option>
-                            <option value="">전체</option>
-                            <option value="">전체</option>
-                            <option value="">전체</option>
-                            <option value="">전체</option>
-                            <option value="">전체</option>
-                            <option value="">전체</option>
-                            <option value="">전체</option>
-                        </select>
-                    </th>
+                    <th>분류</th>
                     <th>제목</th>
+                    <th>내용</th>
                     <th>작성자</th>
                     <th>조회수</th>
                     <th>작성일</th>
                   </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="b" items="${ list }">
 	                    <tr>
-	                        <td class="bno">5</td>
-	                        <td>카테고리</td>
-	                        <td>마지막 공지사항 제목</td>
-	                        <td>admin</td>
-	                        <td>10</td>
-	                        <td>2023-03-29</td>
+	                        <td class="bno" name="bno">${ b.boardNo }</td>
+	                        <td>${ b.category}</td>
+	                        <td>${ b.boardTitle}</td>
+	                        <td>${ b.boardContent }</td>
+	                        <td>${ b.memNo }</td>
+	                        <td>${ b.count }</td>
+	                        <td>${ b.createDate }</td>
 	                    </tr>
 
-                       
+                     </c:forEach>  
                 </tbody>
             </table>
             <br>
-		
+		<script>
+          		$(function() {
+					$("#boardList>tbody>tr").click(function() {
+						location.href='detail.bo?bno=' + $(this).children(".bno").text();
+					})
+				})
+          	</script>
 			
             <div id="pagingArea">
                 <ul class="pagination">
