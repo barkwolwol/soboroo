@@ -44,10 +44,10 @@
 	
 	<update id="increaseCount">
 		update
-			board
-		set count = count + 1
-	  where board_no = #{boardNo}
-	  and del_ny = 'N'
+				board
+		   set count = count + 1
+		 where board_no = #{boardNo}
+		   and del_ny = 'N'
 	</update>
 	
 	<select id="selectBoard" resultMap="boardResultSet">
@@ -58,9 +58,9 @@
 			 , to_char(create_date, 'YYYY-MM-DD') as "create_date"
 			 , board_content
 			 , count
-			 , table_no
-		from board
-	   where board_no = #{boardNo}
+		 	 , table_no
+		  from board
+		 where board_no = #{boardNo}
 	</select>
 
 </mapper>
