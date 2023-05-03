@@ -24,7 +24,7 @@ public class BoardController {
 	@RequestMapping("list.bo")
 	public ModelAndView selectBoardList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 		int listCount = bService.selectBoardListCount();
-		 System.out.println(listCount);
+		 //System.out.println(listCount);
 		
 		  PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		  
@@ -57,7 +57,16 @@ public class BoardController {
 		 return mv;
 	 }
 	 
-	
+	 @RequestMapping("boardupdate.bo")
+		public String updateForm() {
+			return "board/boardUpdateForm";	// 포워딩(모델)	
+		}
+	 
+	 @RequestMapping("enroll.bo")
+		public String enrollForm() {
+			return "board/boardEnrollForm";
+			
+		}
 	
 	
 	

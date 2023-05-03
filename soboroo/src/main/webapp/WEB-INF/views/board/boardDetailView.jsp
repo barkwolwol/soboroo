@@ -88,11 +88,24 @@
                 font-size: 13px; margin-left: 5px;">${ b.createDate }</div>
                 <div class="hit-count body_font_color_70" style="float: left;
                 font-size: 13px; margin-left: 10px;">조회수 ${ b.count }</div>
-                <div class="tools txt"><a href="" style="margin-right: 10px;float: left;
-                    font-size: 13px; margin-left: 5px; color: black;" >수정</a>
-                    <a href="javascript:;" onclick="" style="margin-right: 10px; float: left;
-                    font-size: 13px; color: black;">지우기</a></div>
+                <div class="tools txt"> 
+                <a  type="button" style="margin-right: 10px;float: left; font-size: 13px; margin-left: 5px; color: orange; font-weight: 900;"  onclick="postFormSubmit(1);" >수정</a>
+                <a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onclick="postFormSubmit(2);">지우기</a></div>
             </div>
+            
+            <form id="postForm" action="" method="post">
+            <input type="hidden" name="nno" value="${b.boardNo }">
+            <input type="hidden" name="ntcWriter" value="${ loginUser.memNo }">
+            </form>
+            <script>
+            		function postFormSubmit(num) {
+						if(num == 1){	//수정하기 클릭시 
+							$("#postForm").attr("action", "updateForm.bo").submit();
+						}else{	//삭제하기 클릭시
+							$("#postForm").attr("action", "delete.bo").submit();
+						}
+					}
+            	</script>
    <br><br>
    <table id="contentArea" align="center" class="table">
     <tr>
