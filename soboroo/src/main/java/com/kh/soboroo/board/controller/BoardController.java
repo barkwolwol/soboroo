@@ -12,7 +12,6 @@ import com.kh.soboroo.board.model.service.BoardServiceImpl;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
-import com.kh.soboroo.notice.model.vo.Notice;
 
 
 @Controller
