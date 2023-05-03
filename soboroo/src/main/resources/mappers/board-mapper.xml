@@ -40,14 +40,14 @@
 	  where del_ny = 'N'
 	  order
 		 by board_no desc
-
 	</select>
+	
 	<update id="increaseCount">
-	update
+		update
 			board
 		set count = count + 1
-	  where board_no = #{boardNo}
-	  and del_ny = 'N'
-		</update>
+		 where board_no = #{boardNo}
+		 and del_ny = 'N'
+	</update>
 
 </mapper>

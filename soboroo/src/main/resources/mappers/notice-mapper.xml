@@ -87,7 +87,7 @@
 			  , 1
 			  , #{ntcTitle}
 			  , #{ntcContent}
-			  , 0
+			  , default
 			)
 	
 	</insert>
