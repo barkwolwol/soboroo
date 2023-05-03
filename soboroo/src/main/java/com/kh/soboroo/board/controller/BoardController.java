@@ -16,7 +16,7 @@ import com.kh.soboroo.notice.model.vo.Notice;
 
 
 @Controller
-public class boardController {
+public class BoardController {
 
 	@Autowired
 	private BoardServiceImpl bService;
