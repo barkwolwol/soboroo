@@ -19,5 +19,9 @@ public class MyPageDao {
 	public int checkNick(SqlSessionTemplate sqlSession, String memNickname) {
 		return sqlSession.selectOne("memberMapper.checkNick", memNickname);
 	}
+	
+	public int updateNick(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updateNick", m);
+	}
 
 }

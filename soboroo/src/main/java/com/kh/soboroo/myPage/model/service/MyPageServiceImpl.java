@@ -19,8 +19,7 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Override
 	public int updateNick(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+		return myDao.updateNick(sqlSession, m);
 	}
 
 	@Override
@@ -30,11 +29,7 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Override
 	public int updateIntro(Member m) {
-		System.out.println(m+"MM");
-		
 		int result = myDao.updateIntro(sqlSession, m);
-		System.out.println(m+"M");
-		System.out.println(result + "result");
 		return result;
 	}
 

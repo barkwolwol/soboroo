@@ -94,15 +94,29 @@ public class MyPageController {
 
 	// 닉네임 변경
 	@RequestMapping("updateNick.my")
-	public String updateNick() {
-		return "";
+	public String updateNick(Member m, HttpSession session, Model model) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		m.setMemId(loginUser.getMemId());
+		loginUser.setMemIntroduce(loginUser.getMemIntroduce());
+		
+		int result = myService.updateNick(m);
+		
+		if(result > 0) {
+			Member updateNick = myService.loginMember(loginUser);
+			session.setAttribute("loginUser", updateNick);
+			
+			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
+			
+			return "redirect:updateInfo.my";		
+		} else {
+			return "common/errorPage";
+		}
 	}
 
 	// 닉네임 중복체크
 	@ResponseBody
 	@RequestMapping("checkNick.my")
 	public String checkNick(String checkNick) {
-		System.out.println("컨트롤러!");
 		int count = myService.checkNick(checkNick);
 		
 		return count > 0 ? "NNNNN" : "NNNNY";
@@ -114,7 +128,6 @@ public class MyPageController {
 	    Member loginUser = (Member)session.getAttribute("loginUser");
 	    m.setMemId(loginUser.getMemId());
 	   loginUser.setMemIntroduce(loginUser.getMemIntroduce());
-	    
 		
 		int result = myService.updateIntro(m);
 

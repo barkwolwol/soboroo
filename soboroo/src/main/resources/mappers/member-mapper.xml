@@ -41,4 +41,10 @@
 		  from member
 		 where mem_nickname = #{checkNick} 	
 	</select>
+	<update id="updateNick">
+		update
+			   member
+		   set mem_nickname = #{memNickname}
+		 where mem_id = #{memId}  	   
+	</update>
 </mapper>
