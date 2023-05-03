@@ -39,9 +39,7 @@
       <!-- fontawesome 라이브러리 -->
       <script src="https://kit.fontawesome.com/66bc1e54e8.js" crossorigin="anonymous"></script>
 
-
       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-      
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -223,16 +221,15 @@
                     </ul>
                     <ul class="nav navbar-nav ml-auto align-items-center">
                       <li class="header-get-a-quote">
-                      <c:choose>
-	               	<c:when test="${empty loginUser }">
+                      <c:choose> <c:when test="${empty loginUser }">
                         <a class="btn btn-primary" href="login.me">로그인</a>
                           </c:when>
-	               <c:otherwise>      
-		               <!-- 로그인 후-->
-		               <label>${loginUser.memId }님 환영합니다</label> &nbsp;&nbsp;
-		               <a href="myPage.me">마이페이지</a>
-		               <a href="logout.me">로그아웃</a>
-	               </c:otherwise>
+                  <c:otherwise>      
+                     <!-- 로그인 후-->
+                     <label>${loginUser.memId }님 환영합니다</label> &nbsp;&nbsp;
+                     <a href="myPage.me">마이페이지</a>
+                     <a href="logout.me">로그아웃</a>
+                  </c:otherwise>
                </c:choose>     
                       </li>
                     </ul>
@@ -250,21 +247,34 @@
 	  <!--/ Navigation end -->
 	</header>
 	<!--/ Header end -->
+                   </div>
+                 </nav>
+             </div>
+             <!--/ Col end -->
+           </div>
+           <!--/ Row end -->
+       </div>
+       <!--/ Container end -->
+   
+     </div>
+     <!--/ Navigation end -->
+   </header>
+   <!--/ Header end -->
 
 
 
-	
-	
-	  <!-- Javascript Files
-	  ================================================== -->
-	
-	  <!-- initialize jQuery Library 
-	  <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>-->
-	  <!-- Bootstrap jQuery -->
-	  <%-- <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script> --%>
-	  
-	  <!-- 서머노트 bootstrap 	  
-	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+   
+   
+     <!-- Javascript Files
+     ================================================== -->
+   
+     <!-- initialize jQuery Library 
+     <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>-->
+     <!-- Bootstrap jQuery -->
+     <%-- <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script> --%>
+     
+     <!-- 서머노트 bootstrap      
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
 
 
       <!-- Javascript Files
