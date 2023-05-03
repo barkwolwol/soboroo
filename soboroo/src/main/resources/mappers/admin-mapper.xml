@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="adminMapper">
+	
+	<resultMap type="Admin" id="adminResultSet">
+		<result column = "ntc_no" property="ntcNo"/>
+		<result column = "ntc_writer" property="ntcWriter"/>
+		<result column = "ntc_title" property="ntcTitle"/>
+		<result column = "ntc_content" property="ntcContent"/>
+		<result column = "ntc_create_date" property="ntcCreateDate"/>
+		<result column = "ntc_update_date" property="ntcUpdateDate"/>
+		<result column = "ntc_count" property="ntcCount"/>
+		<result column = "ntc_del_ny" property="ntcDelNy"/>
+	</resultMap>
+	
+	<select id="selectNoticeListCount" resultType="_int">
+		select    
+	    count(*)
+	    from notice
+	    where ntc_del_ny = 'N'
+	</select>	
+	
+	<select id="selectNoticeList" resultMap="adminResultSet">
+			select 
+		 ntc_no
+		,ntc_writer
+		,ntc_title
+		,ntc_content
+		,to_char(ntc_create_date, 'YYYY-MM-DD') as "ntc_create_date"
+		,ntc_update_date
+		,ntc_count
+		,ntc_del_ny
+		from notice 
+		where ntc_del_ny = 'N'
+		order
+		by ntc_no desc
+
+	</select>
+	
+	
+
+
+</mapper>
