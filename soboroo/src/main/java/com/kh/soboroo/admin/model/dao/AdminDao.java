@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.soboroo.admin.model.vo.Admin;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.notice.model.vo.Notice;
 
@@ -29,7 +30,6 @@ public class AdminDao {
 	public int selectNoticeListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.selectNoticeListCount");
 	}
-	
 	
 
 
