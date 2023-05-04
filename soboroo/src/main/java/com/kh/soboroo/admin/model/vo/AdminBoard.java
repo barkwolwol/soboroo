@@ -13,7 +13,7 @@ public class AdminBoard {
 	
 
 	// 게시판 관리
-	private int boardNo;
+	private String boardNo;
 	private String boardTitle;
 	private String boardContent;
 	private String createDate;

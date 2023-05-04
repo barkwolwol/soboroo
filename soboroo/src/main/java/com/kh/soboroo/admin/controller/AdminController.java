@@ -27,11 +27,28 @@ public class AdminController {
 		private AdminServiceImpl aService;
 	
 		
-		// 관리자 로그인 페이지 호출 // 지금은 홈화면
-		@RequestMapping("adminLogin.me")
-		public String adminLogin() {
-			return "admin/adminIndex";	
-		}
+		// 관리자 홈페이지 공지사항 
+		@RequestMapping("adminHome.nt")
+		public ModelAndView adminLogin(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+			
+			int listCount = aService.selectNoticeListCount(); 
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+			
+			ArrayList<AdminNotice> list = aService.selectNoticeList(pi);
+			
+			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/adminIndex");
+			
+			
+			return mv;
+
+		} 
+		
+		
+		
+		
+		
+		
 			
 		// 관리자 회원 관리 페이지 호출
 		@RequestMapping("memberInfo.ad")

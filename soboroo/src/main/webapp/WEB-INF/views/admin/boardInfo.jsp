@@ -318,7 +318,7 @@
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
-                                     <c:forEach var="b" items="${list})">
+                                     <c:forEach var="b" items="${list}">
                                     <tbody>
                                         <tr>
                                             <td>
@@ -326,14 +326,14 @@
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="#" class="items-links">${ b.boardNo}</a>
+                                                <a href="list.bo" class="items-links">${b.boardNo}</a>
                                             </td>
-                                            <td>${ b.boardTitle}</td>
+                                            <td><a href="list.bo">${b.boardTitle}</a></td>
                                             <td class="text-primary">asdasd123</td>
-                                            <td>${ b.count}</td>
-                                            <td>${ b.createDate}</td>
-                                            <td>${ b.modifyDate}</td>
-                                            <td>${ b.delNy }</td>
+                                            <td>${b.count}</td>
+                                            <td>${b.createDate}</td>
+                                            <td>${b.modifyDate}</td>
+                                            <td>${b.delNy }</td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -343,103 +343,9 @@
                                                         class="far fa-trash-alt me-1"></i>삭제</a>
                                             </td>
                                         </tr>
-                                          </c:forEach>
-                                        <tr>
-                                            <td>
-                                        
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="#" class="items-links">10</a>
-                                            </td>
-                                            <td>커피바리스타</td>
-                                            <td class="text-primary">asdasd123</td>
-                                            <td>23</td>
-                                            <td>2023-04-20</td>
-                                            <td>2023-04-26</td>
-                                            <td>N</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i>복원</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>삭제</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="#" class="items-links">10</a>
-                                            </td>
-                                            <td>커피바리스타</td>
-                                            <td class="text-primary">asdasd123</td>
-                                            <td>23</td>
-                                            <td>2023-04-20</td>
-                                            <td>2023-04-26</td>
-                                            <td>N</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i>복원</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>삭제</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="#" class="items-links">10</a>
-                                            </td>
-                                            <td>커피바리스타</td>
-                                            <td class="text-primary">asdasd123</td>
-                                            <td>23</td>
-                                            <td>2023-04-20</td>
-                                            <td>2023-04-26</td>
-                                            <td>N</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i>복원</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>삭제</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="#" class="items-links">10</a>
-                                            </td>
-                                            <td>커피바리스타</td>
-                                            <td class="text-primary">asdasd123</td>
-                                            <td>23</td>
-                                            <td>2023-04-20</td>
-                                            <td>2023-04-26</td>
-                                            <td>N</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i>복원</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>삭제</a>
-                        
-                                            </td>
-                                        </tr>
-                                          
+                                         
                                     </tbody>
+                                    </c:forEach>
                                 </table>
                             </div>
                         </div>

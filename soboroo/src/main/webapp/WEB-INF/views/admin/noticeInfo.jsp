@@ -313,8 +313,8 @@
 <td>${n.ntcUpdateDate }</td>
 <td>${ n.ntcDelNy }</td>
 <td class="text-end">
-<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>공개</a>
-<a href="notupdate.no" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>수정</a>
+<a href="notenrollForm.no" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>작성</a>
+<a href="notupdate.no" class="btn btn-sm btn-white text-warning"><i class="far fa-edit me-1"></i>수정</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
 </td>
 </tr>
@@ -323,7 +323,6 @@
 </table>
 </div>
 </div>
-<a href="notenrollForm.no" class="btn btn-primary paid-continue-btn" style="width: 10%; margin-left: 40%;">작성하기</a>
 </div>
 </div>
 </div>
