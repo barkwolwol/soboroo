@@ -19,7 +19,7 @@ public class Board {
 	private int count;
 	private String repNy;
 	private String delNy;
-	private int category;
-	private int memNo;
+	private String category;
+	private String memNo;
 	private int tableNo;
 }

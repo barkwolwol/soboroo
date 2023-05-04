@@ -15,6 +15,7 @@
 		<result column = "category" property = "category"/>
 		<result column = "mem_no" property = "memNo"/>
 		<result column = "table_no" property = "tableNo"/>
+		<result column = "mem_nickname" property ="memNo"/>
 	</resultMap>
 		
 	<select id="selectBoardListCount" resultType="_int">
@@ -25,7 +26,7 @@
 	</select>	
 	
 	<select id="selectBoardList" resultMap="boardResultSet">
-		select
+			select
 		    board_no
 		  , board_title
 		  , board_content
@@ -33,10 +34,12 @@
 		  , modify_date
 		  , count
 		  , del_ny
-		  , category
-		  , mem_no
+		  , category_title as "category"
+		  , mem_nickname
 		  , table_no
-	   from board
+	   from board b
+       join member using (mem_no)
+       join category c on (b.category = c.category_no)
 	  where del_ny = 'N'
 	  order
 		 by board_no desc
@@ -53,14 +56,38 @@
 	<select id="selectBoard" resultMap="boardResultSet">
 		select
 			   board_no
-			 , category
+			 , category_title as "category"
 			 , board_title
+             , mem_nickname
 			 , to_char(create_date, 'YYYY-MM-DD') as "create_date"
 			 , board_content
 			 , count
 		 	 , table_no
-		  from board
+		  from board b
+          join category c on (b.category = c.category_no)
+          join member using(mem_no)
 		 where board_no = #{boardNo}
 	</select>
+	
+	<insert id="insertBoard">
+		insert into
+		    board
+		    (
+		        board_no
+		      , board_title
+		      , board_content
+		      , category
+		      , mem_no
+		    )
+		    values
+		    (
+		    seq_board.nextval
+		  , #{ boardTitle }
+		  , #{ boardContent }
+		  , #{ category}
+		  , 1 
+    		)
+	
+	</insert>
 
 </mapper>

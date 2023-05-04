@@ -77,7 +77,7 @@
                 <div class="avatar" style="float: left;margin-top: 30px;"><img alt="" src="${pageContext.request.contextPath}/resources/images/default_profile.png" class="avatar-image"></div>
                 <br> 
             <div class="author">
-                <div class="write" style=" font-size: 13px;">관리자</div>
+                <div class="write" style=" font-size: 13px;">${b.memNo} </div>
              
                 <div class="board_name">
                     <a href="list.bo" style="color: black;">

@@ -214,7 +214,7 @@
                                     class="btn btn_style">취소</a>
                                 <a href="/" class="icon_style" onclick="POST.postCancel('/');return false;">
                                     <i class="btl bt-angle-left"></i></a>
-                                <button type="button" class="_save_post save_post btn"onclick="POST.submit();return false;">작성 </button>
+                                <button type="submit" class="_save_post save_post btn"onclick="POST.submit();return false;">작성 </button>
                             </div>
                         </div>
                     </div>
@@ -237,21 +237,21 @@
                         <table style="width: 100%;">
                             <tr>
                                 <th>
-                                    <select style="border-bottom: 2px solid orange;">
+                                    <select name="category" style="border-bottom: 2px solid orange;">
                                         <option>선택</option>
                                         <option value="1">교육/어학</option>
-                                        <option>취업/자격증</option>
-                                        <option>여행</option>
-                                        <option>스포츠/운동</option>
-                                        <option>요리/음식</option>
-                                        <option>문화/예술</option>
-                                        <option>영화/음악</option>
-                                        <option>기타</option>
+                                        <option value="2">취업/자격증</option>
+                                        <option value="3">여행</option>
+                                        <option value="4">스포츠/운동</option>
+                                        <option value="5">요리/음식</option>
+                                        <option value="6">문화/예술</option>
+                                        <option value="7">영화/음악</option>
+                                        <option value="8">기타</option>
                                     </select>
                                 </th>
 
                                 <td>
-                                    <input id="post_subject" name="subject"
+                                    <input id="post_subject" name="boardTitle"
                                         class="no-margin basic_input title_name w100p mb24" type="text" value=""
                                         placeholder="제목">
                                     </td>
@@ -262,7 +262,7 @@
                             </tr>
                             <tr >
                                 <th colspan="2">
-                                    <textarea class="form-control" name="content" rows="3" id="content"></textarea>
+                                    <textarea class="form-control" name="boardContent" rows="3" id="content"></textarea>
                                 </th>
                             </tr>
                             
@@ -275,22 +275,18 @@
                                     class="btn btn_style" style="float:left;  border: 1px solid #d3d3d3; margin-right: 5px;color: #4a4a4a; ">취소</a>
                                 <a href="/" class="icon_style" onclick="POST.postCancel('/');return false;">
                                     <i class="btl bt-angle-left"></i></a>
-                                <button type="button" class="_save_post save_post btn"onclick="POST.submit();return false;">작성 </button>
+                                <button type="submit" class="_save_post save_post btn"onclick="POST.submit();return false;">작성 </button>
                             </div>
                         </div>
 
                     </div>
 
                     <br>
+   
 
-                    <!-- <div align="center">
-                     <button type="submit" class="btn btn-primary">등록하기</button>
-                     <button type="reset" class="btn btn-danger">취소하기</button>
-                 </div> -->
-        </form>
-        </div>
         <br><br>
-        </div>
+
+        </form>
         <script>
            $(function(){
          var editor = $('#content').summernote({

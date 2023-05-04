@@ -1,7 +1,6 @@
 package com.kh.soboroo.board.model.dao;
 
 import java.util.ArrayList;
-
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -24,7 +23,7 @@ public class BoardDao {
 		int limit = pi.getBoardLimit();
 		//System.out.println("limit" + limit);
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardList");
+		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardList", null, rowBounds);
 	}
 
 	public int increaseCount(SqlSessionTemplate sqlSession, int boardNo) {
@@ -33,6 +32,9 @@ public class BoardDao {
 
 	public Board selectBoard(SqlSessionTemplate sqlSession, int boardNo) {
 		return sqlSession.selectOne("boardMapper.selectBoard", boardNo);
+	}
+	public int insertBoard(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.insert("boardMapper.insertBoard", b);
 	}
 
 }

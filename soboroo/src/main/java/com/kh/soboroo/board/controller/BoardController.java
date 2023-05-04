@@ -2,8 +2,12 @@ package com.kh.soboroo.board.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,11 +26,13 @@ public class BoardController {
 	
 	@RequestMapping("list.bo")
 	public ModelAndView selectBoardList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+		//System.out.println(category);
 		int listCount = bService.selectBoardListCount();
 		 //System.out.println(listCount);
 		
 		  PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		  
+		 
 		  ArrayList<Board> list = bService.selectBoardList(pi);
 		  
 		  mv.addObject("pi", pi).addObject("list",
@@ -66,6 +72,21 @@ public class BoardController {
 			return "board/boardEnrollForm";
 			
 		}
+	 
+	 @RequestMapping("insert.bo")
+	 public String insertBoard(Board b, HttpSession session, Model model) {
+		 
+		 int result = bService.insertBoard(b);
+		 
+		 if(result > 0) {
+			 session.setAttribute("alertMsg", "게시글이 성공적으로 등록되었습니다.");
+			 return "redirect:list.bo";
+		 }else {
+			 model.addAttribute("errorMsg", "게시글 등록 실패");
+			 return "common/errorPage";
+		 }
+		 
+	 }
 	
 	
 	
