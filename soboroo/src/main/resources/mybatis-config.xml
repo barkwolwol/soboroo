@@ -9,6 +9,7 @@
 	</settings>
 
 	<typeAliases>
+		<typeAlias type="com.kh.soboroo.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.soboroo.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.soboroo.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.soboroo.admin.model.vo.AdminNotice" alias="AdminNotice"/>
@@ -17,6 +18,7 @@
 	
 	
 	<mappers>
+	 	<mapper resource="/mappers/member-mapper.xml"/>
 		<mapper resource="/mappers/notice-mapper.xml"/>
 		<mapper resource="/mappers/board-mapper.xml"/>  
 		<mapper resource="/mappers/admin-mapper.xml"/>  

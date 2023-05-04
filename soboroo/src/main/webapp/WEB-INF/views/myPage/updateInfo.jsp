@@ -7,7 +7,7 @@
             <meta charset="UTF-8">
             <title>Insert title here</title>
         </head>
-        <style>
+       <!--  <style>
             form {
                 max-width: 300px;
                 margin: 0;
@@ -21,21 +21,23 @@
                 margin-bottom: 5px;
                 font-weight: bold;
             }
-        </style>
+        </style> -->
 
         <body>
-            <div class="body-inner">
 
                 <jsp:include page="../common/header.jsp" />
-
-                <!--     <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)"> -->
-                <div id="banner-area" class="banner-area" style="background-color:black">
+            
+            <div class="body-inner">
+				
+                 <div id="banner-area" class="banner-area" 
+            style="background-image: url()"; 
+            background-repeat: no-repeat;>
                     <div class="banner-text">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="banner-heading">
-                                        <h1 class="banner-title">MyPage</h1>
+                                        <h1 class="banner-title">마이페이지</h1>
                                     </div>
                                 </div><!-- Col end -->
                             </div><!-- Row end -->
@@ -56,7 +58,7 @@
                                             <li class="d-flex align-items-center">
                                                 <div class="posts-thumb">
                                                     <a href="#"><img loading="lazy" alt="img"
-                                                            src="images/news/news1.jpg"></a>
+                                                            src="${pageContext.request.contextPath}/resources/images/news/news1.jpg"></a>
                                                 </div>
                                                 <div class="post-info">
                                                     <h4 class="entry-title">
@@ -68,7 +70,7 @@
                                             <li class="d-flex align-items-center">
                                                 <div class="posts-thumb">
                                                     <a href="#"><img loading="lazy" alt="img"
-                                                            src="images/news/news2.jpg"></a>
+                                                            src="${pageContext.request.contextPath}/resources/images/news/news2.jpg"></a>
                                                 </div>
                                                 <div class="post-info">
                                                     <h4 class="entry-title">
@@ -80,7 +82,7 @@
                                             <li class="d-flex align-items-center">
                                                 <div class="posts-thumb">
                                                     <a href="#"><img loading="lazy" alt="img"
-                                                            src="images/news/news3.jpg"></a>
+                                                            src="${pageContext.request.contextPath}/resources/images/news/news3.jpg"></a>
                                                 </div>
                                                 <div class="post-info">
                                                     <h4 class="entry-title">
@@ -100,10 +102,10 @@
 
                                 <div class="post">
 
-                                    <div class="post-body" style="padding-top:20px">
+                                    <div class="post-body">
                                         <div class="entry-header">
                                             <h2 class="entry-title">
-                                                <a href="news-single.html">닉네임 변경</a>
+                                                닉네임 변경
                                             </h2>
                                         </div><!-- header end -->
 
@@ -114,19 +116,50 @@
                                                 <!-- <br></br> -->
                                                 <div>
                                                     <div>
-                                                        <form>
+                                                        <form action="updateNick.my" id="checkNick">
                                                             <div class="mb-3">
-                                                                <input type="email" class="form-control"
-                                                                    id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                <input type="text" class="form-control"
+                                                                    id="exampleInputEmail1" name="memNickname" aria-describedby="emailHelp"
                                                                     style="width: 690px; padding: 5px 10px;" placeholder="변경할 닉네임">
-                                                                <div id="emailHelp" class="form-text" style="padding-left: 5px;">변경 가능한 닉네임입니다.
-                                                                </div>
+                                                                <div id="nickCheck" class="form-text" style="padding-left: 5px;"></div>
                                                             </div>
-                                                    </div>
                                                     <div class="post-footer">
-                                                        <a href="news-single.html" class="btn btn-primary">변경하기</a>
+                                                        <button type="submit" class="btn btn-primary">변경하기</button>
                                                     </div>
                                                     </form>
+                                                    </div>
+                                                    
+                                                    
+                                                    <script>
+                                                    	$(function(){
+                                                    		const $nickInput = $("#checkNick input[name=memNickname]");
+                                                    		console.log($nickInput.val());
+                                                    		
+                                                    		
+                                                    		$nickInput.keyup(function(){
+                                                    			
+                                                    			$.ajax({
+                                                    				url:"checkNick.my",
+                                                    				data:{checkNick:$nickInput.val()},
+                                                    				success:function(result){
+                                                    					if(result == "NNNNN"){
+                                                    						$("#nickCheck").show();
+                                                    						$("#nickCheck").css("color", "#ff8932").text("이미 존재하는 닉네임입니다. 다시 입력해주세요.");
+                                                    						
+                                                    						$("#checkNick").find(":submit").attr("disabled", true);
+                                                    					} else {
+                                                    						$("#nickCheck").show();
+                                                    						$("#nickCheck").css("color", "#ff8932").text("사용 가능한 닉네임입니다.");
+                                                    						
+                                                    						$("#checkNick").find(":submit").removeAttr("disabled");
+                                                    					}
+                                                    					}, error:function(){
+                                                    						console.log("ajax 통신 실패!")
+                                                    				} 
+                                                    			});
+                                                    		})
+                                                    	})
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div> <!-- post-body end -->
@@ -136,7 +169,7 @@
                                 <div class="post">
                                     <div class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="news-single.html">자기소개 변경</a>
+                                            자기소개 변경
                                         </h2>
                                     </div><!-- header end -->
 
@@ -147,17 +180,17 @@
                                             <!-- <br></br> -->
                                             <div>
                                                 <div>
-                                                    <form>
+                                                    <form action="updateIntro.my">
                                                         <div class="mb-3">
-                                                            <input type="email" class="form-control"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                            <input type="text" class="form-control"
+                                                                id="memIntroduce" name="memIntroduce"  aria-describedby="emailHelp"
                                                                 style="width: 690px; padding: 5px 10px;" placeholder="최대 1000자">
                                                         </div>
-                                                </div>
                                                 <div class="post-footer">
-                                                    <a href="news-single.html" class="btn btn-primary">변경하기</a>
+                                                    <button type="submit" class="btn btn-primary">변경하기</button>
                                                 </div>
                                                 </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div> <!-- post-body end -->
@@ -167,7 +200,7 @@
                                 <div class="post">
                                     <div class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="news-single.html">회원 탈퇴</a>
+                                            회원 탈퇴
                                         </h2>
                                     </div><!-- header end -->
 
@@ -177,18 +210,20 @@
                                             <br>
                                             <!-- <br></br> -->
                                             <div>
-                                                <div>
+                                               <!--  <div>
                                                     <form>
                                                         <div class="mb-3">
                                                             <input type="email" class="form-control"
                                                                 id="exampleInputEmail1" aria-describedby="emailHelp"
                                                                 style="width: 690px; padding: 5px 10px;" placeholder="비밀번호 입력">
                                                         </div>
-                                                </div>
+                                                </div> -->
+                                              <form action="deleteMember.my">
                                                 <div class="post-footer">
-                                                    <a href="news-single.html" class="btn btn-primary">변경하기</a>
+                                                    <button type="submit" class="btn btn-primary">변경하기</button>
                                                 </div>
-                                                </form>
+                                                </div>
+                                             </form>
                                             </div>
                                         </div>
                                     </div> <!-- post-body end -->
