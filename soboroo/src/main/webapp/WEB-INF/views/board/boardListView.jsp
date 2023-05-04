@@ -104,15 +104,15 @@
             <div align="center">
             <nav id="topMenu" style="margin-bottom: 25px; margin-left: 10%;" >
                 <ul>
-                        <li><a class="menuLink" href="0">전체</a></li>
-                        <li><a class="menuLink" href="1">교육/어학</a></li>
-                        <li><a class="menuLink" href="2">취업/자격증</a></li>
-                        <li><a class="menuLink" href="3">여행</a></li>
-                        <li><a class="menuLink" href="4">스포츠/운동</a></li>
-                        <li><a class="menuLink" href="5">요리/음식</a></li>
-                        <li><a class="menuLink" href="6">문화/예술</a></li>
-                        <li><a class="menuLink" href="7">영화/음악</a></li>
-                        <li><a class="menuLink" href="8">기타</a></li>
+                        <li><a class="menuLink" href="board?sb_cate=0">전체</a></li>
+                        <li><a class="menuLink" href="board?sb_cate=1">교육/어학</a></li>
+                        <li><a class="menuLink" href="board?sb_cate=2">취업/자격증</a></li>
+                        <li><a class="menuLink" href="board?sb_cate=3">여행</a></li>
+                        <li><a class="menuLink" href="board?sb_cate=4">스포츠/운동</a></li>
+                        <li><a class="menuLink" href="board?sb_cate=5">요리/음식</a></li>
+                        <li><a class="menuLink" href="board?sb_cate=6">문화/예술</a></li>
+                        <li><a class="menuLink" href="board?sb_cate=7">영화/음악</a></li>
+                        <li><a class="menuLink" href="board?sb_cate=8">기타</a></li>
                 </ul>
             </nav>
             </div>
