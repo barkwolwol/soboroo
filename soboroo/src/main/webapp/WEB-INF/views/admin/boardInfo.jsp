@@ -82,7 +82,7 @@
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
                                                 <img class="avatar-img rounded-circle" alt=""
-                                                    src="assets/img/profiles/usermain.jpg">
+                                                    src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg">
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details"><span class="noti-title">Brian Johnson</span>
@@ -98,7 +98,7 @@
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
                                                 <img class="avatar-img rounded-circle" alt=""
-                                                    src="assets/img/profiles/avatar-03.jpg">
+                                                    src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-03.jpg">
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details"><span class="noti-title">Marie Canales</span>
@@ -131,7 +131,7 @@
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
                                                 <img class="avatar-img rounded-circle" alt=""
-                                                    src="assets/img/profiles/avatar-04.jpg">
+                                                    src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg">
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details"><span class="noti-title">Barbara Moore</span>
@@ -170,7 +170,7 @@
                 <li class="nav-item dropdown has-arrow main-drop">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                         <span class="user-img">
-                            <img src="assets/img/profiles/usermain.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="">
                             <span class="status online"></span>
                         </span>
                         <span>Admin</span>
@@ -318,7 +318,7 @@
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
-                                    <c:forEach var="b" items="${list})">
+                                     <c:forEach var="b" items="${list})">
                                     <tbody>
                                         <tr>
                                             <td>
@@ -343,8 +343,10 @@
                                                         class="far fa-trash-alt me-1"></i>삭제</a>
                                             </td>
                                         </tr>
+                                          </c:forEach>
                                         <tr>
                                             <td>
+                                        
                                                 <label class="custom_check">
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
@@ -436,7 +438,7 @@
                         
                                             </td>
                                         </tr>
-                                        </c:forEach>
+                                          
                                     </tbody>
                                 </table>
                             </div>

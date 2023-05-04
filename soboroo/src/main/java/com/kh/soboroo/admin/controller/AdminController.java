@@ -2,6 +2,7 @@ package com.kh.soboroo.admin.controller;
 
 import java.util.ArrayList;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.soboroo.admin.model.service.AdminService;
 import com.kh.soboroo.admin.model.service.AdminServiceImpl;
-import com.kh.soboroo.admin.model.vo.Admin;
-import com.kh.soboroo.board.model.vo.Board;
+import com.kh.soboroo.admin.model.vo.AdminBoard;
+import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
-import com.kh.soboroo.notice.model.vo.Notice;
+
 
 @Controller
 public class AdminController {
@@ -119,7 +120,7 @@ public class AdminController {
 				
 				PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 				
-				ArrayList<Board> list = aService.selectBoardList(pi);
+				ArrayList<AdminBoard> list = aService.selectBoardList(pi);
 				
 				mv.addObject("pi", pi).addObject("list", list).setViewName("admin/boardInfo");
 				
@@ -137,7 +138,7 @@ public class AdminController {
 			
 			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 			
-			ArrayList<Notice> list = aService.selectNoticeList(pi);
+			ArrayList<AdminNotice> list = aService.selectNoticeList(pi);
 			
 			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/noticeInfo");
 			

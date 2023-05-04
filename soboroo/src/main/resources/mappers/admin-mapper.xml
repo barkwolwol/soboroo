@@ -3,7 +3,7 @@
 
 <mapper namespace="adminMapper">
 	
-	<resultMap type="Admin" id="adminResultSet">
+	<resultMap type="AdminNotice" id="adminResultSet">
 		<result column = "ntc_no" property="ntcNo"/>
 		<result column = "ntc_writer" property="ntcWriter"/>
 		<result column = "ntc_title" property="ntcTitle"/>
@@ -14,7 +14,7 @@
 		<result column = "ntc_del_ny" property="ntcDelNy"/>
 	</resultMap>
 	
-	<resultMap type="Admin" id="adminResultSet2">
+	<resultMap type="AdminBoard" id="adminResultSet2">
 		<result column = "board_no" property = "boardNo"/>
 		<result column = "board_title" property = "boardTitle"/>
 		<result column = "board_content" property = "boardContent"/>

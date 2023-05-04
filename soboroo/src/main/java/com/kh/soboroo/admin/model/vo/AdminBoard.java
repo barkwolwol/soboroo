@@ -9,20 +9,9 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Admin {
+public class AdminBoard {
 	
-	
-	// 공지사항 관리
-	private int ntcNo;
-	private String ntcWriter;
-	private String ntcTitle;
-	private String ntcContent;
-	private String ntcCreateDate;
-	private String ntcUpdateDate;
-	private int ntcCount;
-	private String ntcDelNy;
-	
-	
+
 	// 게시판 관리
 	private int boardNo;
 	private String boardTitle;
