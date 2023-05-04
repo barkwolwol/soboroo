@@ -1,1 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "mybatis-3-mapper.dtd" >
+ <mapper namespace="memberMapper">
+	<resultMap id="memberResultSet" type="Member">
+		<result column="MEM_NO" property="memNo"/>
+		<result column="MEM_ID" property="memId"/>
+		<result column="MEM_BIRTH" property="memBirth"/>
+		<result column="MEM_PHONE" property="memPhone"/>
+		<result column="MEM_NAME" property="memName"/>
+		<result column="MEM_STATUS" property="memStatus"/>
+		<result column="MEM_NICKNAME" property="memNickname"/>
+		<result column="MEM_INTRODUCE" property="memIntroduce"/>
+	</resultMap>
+ 
+
+	<select id="loginMember" resultMap="memberResultSet">
+	select
+	        MEM_ID
+	      , MEM_BIRTH
+	      , MEM_PHONE
+	      , MEM_NAME
+	      , MEM_NICKNAME
+	      , MEM_INTRODUCE
+	      , mem_status
+	   from member
+	  where mem_id = #{memId}
+	    and mem_status = '1'
+	</select>  
+	
+	<update id="updateIntro">
+		update
+				member
+		    set mem_introduce = #{memIntroduce}
+		  where mem_id = #{memId}  		
+	</update>  
+	<select id="checkNick" resultType="_int">
+		select
+				count(*)
+		  from member
+		 where mem_nickname = #{checkNick} 	
+	</select>
+	<update id="updateNick">
+		update
+			   member
+		   set mem_nickname = #{memNickname}
+		 where mem_id = #{memId}  	   
+	</update>
+</mapper>
