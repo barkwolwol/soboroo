@@ -21,7 +21,8 @@
 		select 
 			   count(*)
 	      from reply
-	     where del_ny='N'		   
+	     where del_ny='N'
+	       and mem_no = #{memNo}		   
 	</select>
 	
 	<select id="selectReplyList" resultMap="replyResultSet">

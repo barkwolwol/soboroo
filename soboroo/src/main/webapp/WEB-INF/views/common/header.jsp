@@ -178,8 +178,8 @@
                               <li><a href="myGroup.my">참여 소모임 조회</a></li>
                               <li><a href="myBoard.my">소모임 게시글 조회</a></li>
                               <li><a href="mybReply.my">소모임 댓글 조회</a></li>
-                              <li><a href="myCboard.my">커뮤니티 게시글 조회</a></li>
-                              <li><a href="myCreply.my">커뮤니티 댓글 조회</a></li>
+                              <li><a href="communityList.my">커뮤니티 게시글 조회</a></li>
+                              <li><a href="communityReplyList.my">커뮤니티 댓글 조회</a></li>
                             </ul>
                           <li><a href="updateInfo.my">개인정보 수정</a></li>
                       </li>
@@ -187,7 +187,7 @@
 
                     </li>
                     <li class="nav-item"><i class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
-                        data-bs-trigger="focus" title="최신 알림" data-html="true" data-content="
+                        data-trigger="focus" title="최신 알림" data-html="true" data-content="
                         
                         <div>
                         <li>XXX님이 회원님의 소모임에 참가했습니다.</li>

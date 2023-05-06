@@ -67,7 +67,8 @@
 		select
 				count(*)
 		   from board
-		  where del_ny='N' 		
+		  where del_ny='N' 	
+		    and mem_no = #{memNo}	
 	</select>
 	
 	

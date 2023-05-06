@@ -162,7 +162,7 @@ public class MyPageController {
 	public ModelAndView selectList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session){
 		Member loginUser = (Member)session.getAttribute("loginUser");
 
-		int listCount = myService.selectListCount();
+		int listCount = myService.selectListCount(loginUser);
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		
@@ -191,7 +191,7 @@ public class MyPageController {
 	public ModelAndView selectcommunityReplyList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session){
 		Member loginUser = (Member)session.getAttribute("loginUser");
 
-		int listCount = myService.selectReplyListCount();
+		int listCount = myService.selectReplyListCount(loginUser);
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		

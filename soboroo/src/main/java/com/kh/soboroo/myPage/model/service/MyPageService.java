@@ -23,11 +23,11 @@ public interface MyPageService {
 
 	Member loginMember(Member m);
 	
-	int selectListCount();
+	int selectListCount(Member loginUser);
 	
 	ArrayList<Board> selectList(Member loginUser, PageInfo pi);
 	
-	int selectReplyListCount();
+	int selectReplyListCount(Member loginUser);
 	
 	ArrayList<Reply> selectReplyList(Member loginUser, PageInfo pi);
 }

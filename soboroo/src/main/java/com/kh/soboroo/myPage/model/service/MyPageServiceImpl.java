@@ -54,8 +54,8 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public int selectListCount() {
-		return myDao.selectListCount(sqlSession);
+	public int selectListCount(Member loginUser) {
+		return myDao.selectListCount(sqlSession, loginUser);
 	}
 
 	@Override
@@ -65,8 +65,8 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public int selectReplyListCount() {
-		return myDao.selectReplyListCount(sqlSession);
+	public int selectReplyListCount(Member loginUser) {
+		return myDao.selectReplyListCount(sqlSession, loginUser);
 	}
 
 	@Override

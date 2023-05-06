@@ -30,8 +30,8 @@ public class MyPageDao {
 		return sqlSession.update("memberMapper.updateNick", m);
 	}
 	
-	public int selectListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("boardMapper.selectListCount");
+	public int selectListCount(SqlSessionTemplate sqlSession, Member loginUser) {
+		return sqlSession.selectOne("boardMapper.selectListCount", loginUser);
 	}
 	
 	public ArrayList<Board> selectList(SqlSessionTemplate sqlSession, Member loginUser, PageInfo pi){
@@ -42,8 +42,8 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectList", loginUser, rowBounds);
 	}
 	
-	public int selectReplyListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("replyMapper.selectReplyListCount");
+	public int selectReplyListCount(SqlSessionTemplate sqlSession, Member loginUser) {
+		return sqlSession.selectOne("replyMapper.selectReplyListCount", loginUser);
 	}
 	
 	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, Member loginUser, PageInfo pi){
