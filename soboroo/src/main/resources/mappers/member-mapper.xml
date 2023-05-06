@@ -17,7 +17,9 @@
 
 	<select id="loginMember" resultMap="memberResultSet">
 	select
-	        MEM_ID
+	   		MEM_NO
+	   	  , MEM_TOKEN	
+	      , MEM_ID
 	      , MEM_BIRTH
 	      , MEM_PHONE
 	      , MEM_NAME
@@ -26,7 +28,7 @@
 	      , mem_status
 	   from member
 	  where mem_id = #{memId}
-	    and mem_status = '1'
+	    and mem_status in ('1', '5')
 	</select>  
 	
 	<update id="updateIntro">

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "mybatis-3-mapper.dtd" >
+<mapper namespace="replyMapper">
+	<resultMap id="replyResultSet" type="Reply">
+		<result column="REPLY_NO" property="replyNo"/>
+		<result column="REPLY_CONTENT" property="replyContent"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="DEL_NY" property="delNy"/>
+		<result column="REP_NY" property="repNy"/>
+		<result column="RECOMMENT_NY" property="recommentNy"/>
+		<result column="REPER_NO" property="reperNo"/>
+		<result column="GROUP_BOARD_NO" property="groupBoardNo"/>
+		<result column="MEM_NO" property="memNo"/>
+		<result column="TABLE_NO" property="tableNo"/>
+	</resultMap>
+
+	<select id="selectReplyListCount" resultType="_int">
+		select 
+			   count(*)
+	      from reply
+	     where del_ny='N'		   
+	</select>
+	
+	<select id="selectReplyList" resultMap="replyResultSet">
+		select
+			   r.reply_no,
+			   r.reply_content,
+			   to_char(r.enroll_date, 'YYYY-MM-DD') as "enroll_date"
+		  from reply r
+		  join member m
+		    on r.mem_no = m.mem_no
+		 where r.del_ny='N'
+		   and r.mem_no = #{memNo}
+		 order by r.reply_no desc
+	</select>
+	</mapper>

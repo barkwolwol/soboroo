@@ -1,6 +1,11 @@
 package com.kh.soboroo.myPage.model.service;
 
+import java.util.ArrayList;
+
+import com.kh.soboroo.board.model.vo.Board;
+import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.member.model.vo.Member;
+import com.kh.soboroo.reply.model.vo.Reply;
 
 public interface MyPageService {
 	
@@ -17,4 +22,12 @@ public interface MyPageService {
 	int deleteMember(String memId);
 
 	Member loginMember(Member m);
+	
+	int selectListCount();
+	
+	ArrayList<Board> selectList(Member loginUser, PageInfo pi);
+	
+	int selectReplyListCount();
+	
+	ArrayList<Reply> selectReplyList(Member loginUser, PageInfo pi);
 }

@@ -1,5 +1,8 @@
 package com.kh.soboroo.myPage.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +10,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.soboroo.board.model.vo.Board;
+import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;
+import com.kh.soboroo.reply.model.vo.Reply;
 
 @Controller
 public class MyPageController {
@@ -149,5 +157,50 @@ public class MyPageController {
 	public String deleteMember() {
 		return "";
 	}
+	
+	@RequestMapping("communityList.my")
+	public ModelAndView selectList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session){
+		Member loginUser = (Member)session.getAttribute("loginUser");
+
+		int listCount = myService.selectListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		
+		ArrayList<Board> list = myService.selectList(loginUser, pi);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/myCboard");
+		return mv;
+	}
+	
+	/*
+	@RequestMapping("groupBoardList.my")
+	public ModelAndView selectBoardList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session){
+		Member loginUser = (Member)session.getAttribute("loginUser");
+
+		int listCount = myService.selectListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		
+		ArrayList<Board> list = myService.selectBoardList(loginUser, pi);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/myBoard");
+		return mv;
+	}*/
+	
+	@RequestMapping(value = "communityReplyList.my", produces = "application/json; charset=utf-8")
+	public ModelAndView selectcommunityReplyList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session){
+		Member loginUser = (Member)session.getAttribute("loginUser");
+
+		int listCount = myService.selectReplyListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		
+		ArrayList<Reply> list = myService.selectReplyList(loginUser, pi);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/myCreply");
+		return mv;
+	}
+	
+	
 
 }

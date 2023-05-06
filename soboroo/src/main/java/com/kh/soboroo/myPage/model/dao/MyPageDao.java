@@ -1,9 +1,15 @@
 package com.kh.soboroo.myPage.model.dao;
 
+import java.util.ArrayList;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.soboroo.board.model.vo.Board;
+import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.member.model.vo.Member;
+import com.kh.soboroo.reply.model.vo.Reply;
 
 @Repository
 public class MyPageDao {
@@ -22,6 +28,31 @@ public class MyPageDao {
 	
 	public int updateNick(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.updateNick", m);
+	}
+	
+	public int selectListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("boardMapper.selectListCount");
+	}
+	
+	public ArrayList<Board> selectList(SqlSessionTemplate sqlSession, Member loginUser, PageInfo pi){
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.selectList", loginUser, rowBounds);
+	}
+	
+	public int selectReplyListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("replyMapper.selectReplyListCount");
+	}
+	
+	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, Member loginUser, PageInfo pi){
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("replyMapper.selectReplyList", loginUser, rowBounds);
+		
 	}
 
 }

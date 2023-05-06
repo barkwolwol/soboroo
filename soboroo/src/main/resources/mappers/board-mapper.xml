@@ -62,5 +62,29 @@
 		  from board
 		 where board_no = #{boardNo}
 	</select>
+	
+	<select id="selectListCount" resultType="_int">
+		select
+				count(*)
+		   from board
+		  where del_ny='N' 		
+	</select>
+	
+	
+	<select id="selectList" resultMap="boardResultSet">
+	   SELECT 
+      b.board_no,
+      b.board_title,
+      b.count,
+      to_char(b.create_date, 'YYYY-MM-DD') as "create_date"
+    FROM board b
+    JOIN member m
+      ON b.mem_no = m.mem_no
+    WHERE b.del_ny = 'N'
+      AND m.mem_no = #{memNo}
+    ORDER BY b.board_no DESC
+	</select>
+	
+
 
 </mapper>

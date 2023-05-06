@@ -117,59 +117,44 @@
                         <!-- <br><br> -->
                         <div class="innerOuter">
                           <br>
-                          <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼-->
-                          <c:if test="${ not empty loginUser }">
-                            <a class="btn btn-secondary btn-sm" style="float:right" href="enrollForm.bo">글쓰기</a>
-                          </c:if>
-                          <!-- <br></br> --><!--  -->
                           <table id="boardList" class="table table-hover" align="center">
                             <thead>
                               <tr>
                                 <th>글번호</th>
                                 <th>제목</th>
-                                <th>작성자</th>
                                 <th>조회수</th>
                                 <th>작성일</th>
                               </tr>
                             </thead>
-                            <tbody>
-                              <tr>
-                                <td class="bno">5</td>
-                                <td>커뮤니티입니다5</td>
-                                <td>user01</td>
-                                <td>0</td>
-                                <td>2023.03.17</td>
-                              </tr>
-                              <tr>
-                                <td class="bno">4</td>
-                                <td>커뮤니티입니다4</td>
-                                <td>admin</td>
-                                <td>10</td>
-                                <td>2023.03.16</td>
-                              </tr>
-                              <tr>
-                                <td class="bno">3</td>
-                                <td>커뮤니티입니다3</td>
-                                <td>user01</td>
-                                <td>0</td>
-                                <td>2023.03.15</td>
-                              </tr>
-                              <tr>
-                                <td class="bno">2</td>
-                                <td>커뮤니티입니다2</td>
-                                <td>user01</td>
-                                <td>0</td>
-                                <td>2023.03.14</td>
-                              </tr>
-                              <tr>
-                                <td class="bno">1</td>
-                                <td>커뮤니티입니다1</td>
-                                <td>user01</td>
-                                <td>0</td>
-                                <td>2023.03.14</td>
-                              </tr>
-                            </tbody>
+                           <tbody align="center">
+	                            <c:choose>
+	                            	<c:when test="${empty list }">
+	                            		<tr>
+	                            			<td colspan="4" align="center" style="pointer-events: none;">작성한 게시글이 없습니다.</td>
+	                            		</tr>
+	                            	</c:when>
+	                            	<c:otherwise>
+	                            	<c:forEach var="g" items="${list}">
+	                                <tr>
+	                                    <td class="bno">${g.boardNo }</td>
+	                                    <td>${g.boardTitle }</td>
+	                                    <td>${g.count }</td>
+	                                    <td>${g.createDate }</td>
+	                                </tr>
+										 </c:forEach>
+										 </c:otherwise>
+	                            </c:choose>
+	                            </tbody>
+	  
                           </table>
+                          
+                          <script>
+                           	$(function(){
+                           		$("#boardList>tbody>tr").click(function(){
+                           			location.href='detail.bo?bno=' + $(this).children(".bno").text();
+                           		})
+                           	})
+                           </script>
 
 
                         </div>
@@ -178,14 +163,30 @@
 
                     <nav class="paging" aria-label="Page navigation example" style="margin: auto;">
                       <ul class="pagination" style="padding-left: 270px; padding-top: 10px;">
-                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i
-                              class="fas fa-angle-double-right"></i></a>
-                        </li>
+                                                          <c:set var="currentPage" value="${pi.currentPage + 1}" />
+                                            
+                                            
+                                            	<c:choose>
+                		<c:when test="${ pi.currentPage eq 1 }">
+                    		<li class="page-item disabled"><a class="page-link" href="">Previous</a></li>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<li class="page-item"><a class="page-link" href="communityList.my?cpage=${ pi.currentPage - 1 }">Previous</a></li>
+                    	</c:otherwise>
+                    </c:choose>
+                    
+                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                    	<li class="page-item"><a class="page-link" href="communityList.my?cpage=${ p }">${ p }</a></li>
+					</c:forEach>
+                    
+                    <c:choose>
+                    	<c:when test="${ pi.currentPage eq pi.maxPage }">
+                    		<li class="page-item disabled"><a class="page-link" href="">Next</a></li>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<li class="page-item"><a class="page-link" href="communityList.my?cpage=${ pi.currentPage + 1 }">Next</a></li>
+                    	</c:otherwise>
+                    </c:choose>	
                       </ul>
                     </nav>
                   </div><!-- Main row end -->
