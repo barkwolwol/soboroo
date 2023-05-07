@@ -54,5 +54,13 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("replyMapper.selectReplyList", loginUser, rowBounds);
 		
 	}
+	
+	public ArrayList<Reply> selectGroupReplyList(SqlSessionTemplate sqlSession, Member loginUser, PageInfo pi){
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("replyMapper.selectGroupReplyList", loginUser, rowBounds);
+	}
 
 }

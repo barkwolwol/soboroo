@@ -172,21 +172,6 @@ public class MyPageController {
 		return mv;
 	}
 	
-	/*
-	@RequestMapping("groupBoardList.my")
-	public ModelAndView selectBoardList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session){
-		Member loginUser = (Member)session.getAttribute("loginUser");
-
-		int listCount = myService.selectListCount();
-		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
-		
-		ArrayList<Board> list = myService.selectBoardList(loginUser, pi);
-		
-		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/myBoard");
-		return mv;
-	}*/
-	
 	@RequestMapping(value = "communityReplyList.my", produces = "application/json; charset=utf-8")
 	public ModelAndView selectcommunityReplyList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session){
 		Member loginUser = (Member)session.getAttribute("loginUser");
@@ -198,6 +183,20 @@ public class MyPageController {
 		ArrayList<Reply> list = myService.selectReplyList(loginUser, pi);
 		
 		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/myCreply");
+		return mv;
+	}
+	
+	@RequestMapping(value="groupBoardList.my", produces="application/json; charset=utf-8")
+	public ModelAndView selectGroupBoardList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int listCount = myService.selectReplyListCount(loginUser);
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		
+		ArrayList<Reply> list = myService.selectGroupReplyList(loginUser, pi);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/mybReply");
 		return mv;
 	}
 	

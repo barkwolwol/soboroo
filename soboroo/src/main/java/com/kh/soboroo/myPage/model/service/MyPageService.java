@@ -30,4 +30,6 @@ public interface MyPageService {
 	int selectReplyListCount(Member loginUser);
 	
 	ArrayList<Reply> selectReplyList(Member loginUser, PageInfo pi);
+	
+	ArrayList<Reply> selectGroupReplyList(Member loginUser, PageInfo pi);
 }

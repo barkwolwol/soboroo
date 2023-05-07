@@ -19,6 +19,16 @@
                     width: fit-content;
                     margin: auto;
                 }
+                
+                .table{
+          table-layout : fixed;
+        }
+      	
+      	.table td {
+      	   text-overflow : ellipsis;
+      	   overflow: hidden;
+      	   white-space : nowrap;	
+      	}
             </style>
         </head>
 

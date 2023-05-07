@@ -73,6 +73,11 @@ public class MyPageServiceImpl implements MyPageService {
 	public ArrayList<Reply> selectReplyList(Member loginUser, PageInfo pi) {
 		return myDao.selectReplyList(sqlSession, loginUser, pi);
 	}
+
+	@Override
+	public ArrayList<Reply> selectGroupReplyList(Member loginUser, PageInfo pi) {
+		return myDao.selectGroupReplyList(sqlSession, loginUser, pi);
+	}
 	
 
 }
