@@ -53,6 +53,13 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=22931d135d75b509838f23be2834c5c7&libraries=services"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+<!-- ========================== flatpickr ========================== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="js/flatpickr.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+
 
 <style>
 	.ie_end_support_popup_wrap{
@@ -195,7 +202,68 @@
 						<input type="hidden" name="bannerDelete" value="0">
 						<input type="hidden" name="cnt_grp_open_n" value="0">
 					</div>
-	
+					
+					<article class="exposure_setting">
+						<h3>기본설정<span class="required">필수</span></h3>
+						<div class="group_container">
+							<fieldset>
+								<div class="input_wrap">
+									<div class="form_origin">
+										<div id="onoff" class="selectbox" data-list_show="false">
+											<select name="category">
+												<option value="">온/오프라인 선택</option>
+												<option value="085">온라인</option>
+												<option value="087">오프라인</option>
+											</select>
+											<button type="button" id="selectbox_btn_onoff" class="selectbox_btn">
+												<span id="onoff-title">온/오프라인 선택</span>
+											</button>
+											<ul id="onoff-list">
+												<li id="value0" data-value="카테고리 선택">온/오프라인 선택</li>
+												<li id="value1" data-value="온라인">온라인</li>
+												<li id="value2" data-value="오프라인">오프라인</li>
+											</ul>
+										</div>
+									</div>
+									<div class="form_origin">
+										<div id="period" class="selectbox" data-list_show="false">
+											<select name="category">
+												<option value="">기간 선택</option>
+												<option value="085">반짝모임</option>
+												<option value="087">정기모임</option>
+											</select>
+											<button type="button" id="selectbox_btn_period" class="selectbox_btn">
+												<span id="period-title">기간 선택</span>
+											</button>
+											<ul id="period-list">
+												<li id="value0" data-value="카테고리 선택">기간 선택</li>
+												<li id="value1" data-value="온라인">반짝모임</li>
+												<li id="value2" data-value="오프라인">정기모임</li>
+											</ul>
+										</div>
+									</div>
+									<div class="form_origin">
+										<div id="goal" class="selectbox" data-list_show="false">
+											<select name="category">
+												<option value="">목표 선택</option>
+												<option value="085">꾸준한 습관</option>
+												<option value="087">D-DAY</option>
+											</select>
+											<button type="button" id="selectbox_btn_goal" class="selectbox_btn">
+												<span id="goal-title">목표 선택</span>
+											</button>
+											<ul id="goal-list">
+												<li id="value0" data-value="카테고리 선택">목표 선택</li>
+												<li id="value1" data-value="온라인">꾸준한 습관</li>
+												<li id="value2" data-value="오프라인">D-DAY</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</article>
+
 					<article class="event_thumbnail">
 						<div id="thumbnail11" class="thumbnail">
 							<img src="" data-default-src="resources/images/logo_3.png" alt="모임 이미지" data-time="1682652657" style="width: 300; height: 300;" id="preview">
@@ -204,6 +272,35 @@
 							<button type="button" class="img_delete_btn" onclick="imgDel();">삭제하기</button>
 						</div>
 					</article>
+
+					<script>
+						$(document).ready(function(){
+							$("#onoff-list").on("click","li",function(e){
+								console.log($(e.target).data("value"));
+								$("#onoff-title").text($(e.target).data("value"));
+							})
+						})
+						$('#selectbox_btn_onoff').click(function(event){ event.stopPropagation(); $('#onoff-list').toggle(); })
+						$(document).click(function(){ $('#onoff-list').hide(); })
+
+						$(document).ready(function(){
+							$("#period-list").on("click","li",function(e){
+								console.log($(e.target).data("value"));
+								$("#period-title").text($(e.target).data("value"));
+							})
+						})
+						$('#selectbox_btn_period').click(function(event){ event.stopPropagation(); $('#period-list').toggle(); })
+						$(document).click(function(){ $('#period-list').hide(); })
+
+						$(document).ready(function(){
+							$("#goal-list").on("click","li",function(e){
+								console.log($(e.target).data("value"));
+								$("#goal-title").text($(e.target).data("value"));
+							})
+						})
+						$('#selectbox_btn_goal').click(function(event){ event.stopPropagation(); $('#goal-list').toggle(); })
+						$(document).click(function(){ $('#goal-list').hide(); })
+					</script>
 
 					<script>
 						function imgUp(){
@@ -312,12 +409,7 @@
 										</div>
 										<div class="phone">
 											<label for="">전화번호</label>
-											<input type="text" name="ownerPhone_body"
-												maxlength="20"
-												data-parsley-pattern="^[\d\-\s]*$"
-												data-parsley-required-message="담당자의 전화번호를 입력해주세요."
-												data-parsley-class-handler=".contact .phone" required
-												value="">
+											<input type="text" name="ownerPhone_body" oninput="autoHyphen2(this)" maxlength="13" required value="">
 										</div>
 										<div id="emailBox" class="email ">
 											<label for="">이메일</label>
@@ -357,6 +449,14 @@
 								</div>
 								<p class="ex">* 모임 종료 전까지 연락처가 노출되고 임의로 입력한 경우 개인정보 도용으로 처벌받을 수 있습니다.</p>
 							</fieldset>
+
+							<script>
+								const autoHyphen2 = (target) => {
+									target.value = target.value
+									.replace(/[^0-9]/g, '')
+									.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+								}
+							</script>
 
 							<script>
 								// function selectEmail(num) {
@@ -510,9 +610,9 @@
 										<div class="form_row" id="recruitDateTime_-1">
 											<div class="date_time_wrap apply">
 												<label for="">신청기간</label>
-												<input type="text" placeholder="신청기간을 선택하세요." value=""
+												<input type="text" id="joiningDate" placeholder="신청기간을 선택하세요." value=""
 													data-parsley-required-message="신청기간을 선택해주세요."
-													data-parsley-class-handler="#recruitDateTime_-1" autocomplete="off" readonly="" required="">
+													data-parsley-class-handler="#recruitDateTime_-1" autocomplete="off" required="">
 											</div>
 										</div>
 										<p class="ex">* 참여 신청 및 취소는 신청 기간에만 가능합니다.</p>
@@ -535,23 +635,21 @@
 										<div class="form_row place_search">
 											<div class="place_search_input" data-input_type="text">
 												<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-												<input type="text" id="address" class="addr_1 ui-autocomplete-input"
-													placeholder="장소명, 주소를 검색해 주세요." name="group_address[-1]" required="" autocomplete="off">
+												<input type="text" id="address" class="addr_1 ui-autocomplete-input" placeholder="장소명, 주소를 검색해 주세요." name="group_address" required="" readonly>
 												<button type="button" class="addr_reset_btn">주소 초기화</button>
-												<button type="button" id="searchBtn">검색</button>
+												<button type="button" id="searchBtn" style="display: none;">검색</button>
 												<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all"
 													id="ui-id-1" tabindex="0" style="display: none;"></ul>
 											</div>
 										</div>
 										<div class="form_row place_search">
 											<div class="place_search_input" data-input_type="text">
-												<input type="text" class="addr_2" name="group_location[-1]" placeholder="나머지 주소를 입력해 주세요."
+												<input type="text" class="addr_2" name="address_detail" placeholder="나머지 주소를 입력해 주세요."
 													value="">
 											</div>
 										</div>
 										<div class="form_row map">
-											<div id="map1" style="width:628px;height:254px;"></div>
-											<div id="map2" style="width:628px;height:254px;"></div>
+											<div id="map1" style="width:628px; height:254px; display: block;"></div>
 										</div>
 									</div>
 									<div class="person_apply_wrap">
@@ -627,6 +725,27 @@
 						</div>
 					</article>
 
+					<script>
+						var dateSelector = document.querySelector('#meetingDate');
+						var joiningDate = document.querySelector('#joiningDate');
+						flatpickr.localize(flatpickr.l10ns.ko);
+
+						flatpickr(dateSelector);
+						dateSelector.flatpickr({
+							mode: "range",
+							minDate: "today",
+							dateFormat: "Y-m-d",
+							local: 'ko'
+						});
+
+						joiningDate.flatpickr({
+							mode: "range",
+							minDate: "today",
+							dateFormat: "Y-m-d",
+							local: 'ko'
+						});
+					</script>
+
 					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 					<script>
@@ -640,18 +759,15 @@
 					</script>
 				
 					<script>
-					window.onload = function(){
-						document.getElementById("address").addEventListener("click", function(){ //주소입력칸을 클릭하면
-							//카카오 지도 발생
+						$("#address").click(function(){
 							new daum.Postcode({
 								oncomplete: function(data) { //선택시 입력값 세팅
 									document.getElementById("address").value = data.address; // 주소 넣기
-									document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+									// document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+									$('#searchBtn').click();
 								}
-							}).open()
-						});
-						
-					}
+							}).open();
+						})
 					</script>
 					
 					<script>
@@ -661,13 +777,9 @@
 							level: 3 // 지도의 확대 레벨
 						};  
 					
-					
-					$('#searchBtn').click(function(){
+					$('#searchBtn').click(function search(){
 						// 버튼을 click했을때
-						$("#map1").remove();
-
 						// 지도를 생성합니다    
-						var map = new kakao.maps.Map(mapContainer, mapOption); 
 						
 						// 주소-좌표 변환 객체를 생성합니다
 						var geocoder = new kakao.maps.services.Geocoder();
@@ -713,7 +825,6 @@
 							} 
 						});  
 					});
-					  
 					</script>
 
 	
@@ -941,6 +1052,9 @@
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_informing.js"></script>
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_img.js"></script>
 	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tmpl.min.js"></script>
+
+
+
 	
 
 
@@ -984,6 +1098,7 @@
 	<script
 		type="text/javascript">window.NREUM || (NREUM = {}); NREUM.info = { "beacon": "bam.nr-data.net", "licenseKey": "4d73c0dfa7", "applicationID": "119983018", "transactionName": "Z1MAZEVWDREHWkEMWl4ZI1NDXgwMSXZzKGpzWQxERVgPDgNLGjpHVVsDQA==", "queueTime": 2, "applicationTime": 383, "atts": "SxQDEg1MHh8=", "errorBeacon": "bam.nr-data.net", "agent": "" }
 	</script>
+
 
 	<jsp:include page="../common/footer.jsp"/>
 	
