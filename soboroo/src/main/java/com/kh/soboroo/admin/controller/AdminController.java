@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.soboroo.admin.model.service.AdminService;
 import com.kh.soboroo.admin.model.service.AdminServiceImpl;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
+import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
@@ -44,22 +45,35 @@ public class AdminController {
 
 		} 
 		
-		
-		
-		
-		
-		
 			
 		// 관리자 회원 관리 페이지 호출
 		@RequestMapping("memberInfo.ad")
-		public String memberInfo() {
-			return "admin/memberInfo";
+		public ModelAndView memberInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+			
+			PageInfo pi = Pagination.getPageInfo(0,currentPage, 10, 10);
+			
+			ArrayList<AdminMember> list = aService.selectMemberList(pi);
+			
+			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/memberInfo");
+			
+			return mv;
+			
 		}
+		
+		
+		
+		
 		
 		// 관리자 회원 정보 수정 페이지 호출
 		@RequestMapping("updateInfo.ad")
 		public String updateMemberInfo() {
 			return "admin/updateMemberInfo";
+		}
+		
+		// 관리자 회원 신고 정보 조회 페이지 호출
+		@RequestMapping("updateReport.ad")
+		public String updateReportInfo() {
+			return "admin/updateReport";
 		}
 		
 		// 관리자 정지 회원 페이지 호출
@@ -158,7 +172,6 @@ public class AdminController {
 			ArrayList<AdminNotice> list = aService.selectNoticeList(pi);
 			
 			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/noticeInfo");
-			
 			
 			return mv;
 

@@ -14,6 +14,7 @@
 		<typeAlias type="com.kh.soboroo.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.soboroo.admin.model.vo.AdminNotice" alias="AdminNotice"/>
 		<typeAlias type="com.kh.soboroo.admin.model.vo.AdminBoard" alias="AdminBoard"/>
+		<typeAlias type="com.kh.soboroo.admin.model.vo.AdminMember" alias="AdminMember"/>
 	</typeAliases>
 	
 	

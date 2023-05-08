@@ -3,6 +3,7 @@ package com.kh.soboroo.admin.model.service;
 import java.util.ArrayList;
 
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.kh.soboroo.admin.model.dao.AdminDao;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
+import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.common.model.vo.PageInfo;
 
 
@@ -45,6 +47,13 @@ public class AdminServiceImpl implements AdminService {
 	public int selectBoardListCount() {
 		
 		return aDao.selectBoardListCount(sqlSession);
+	}
+
+	
+	@Override
+	public ArrayList<AdminMember> selectMemberList(PageInfo pi) {
+	
+		return aDao.selectMemberList(sqlSession,pi);
 	}
 	
 

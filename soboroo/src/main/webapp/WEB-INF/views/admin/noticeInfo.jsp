@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+
+  <!-- Favicon
+   ================================================== -->
+   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+   
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -30,13 +35,13 @@
 <div class="header header-one">
 
 <div class="header-left header-left-one">
-<a href="index.html" class="logo">
+<a href="adminHome.nt" class="logo">
 <img src="${pageContext.request.contextPath}/resources/admin/img/usermain.jpg" alt="Logo">
 </a>
-<a href="index.html" class="white-logo">
+<a href="adminHome.nt" class="white-logo">
 <img src="${pageContext.request.contextPath}/resources/admin/img/logo-white.png" alt="Logo">
 </a>
-<a href="index.html" class="logo logo-small">
+<a href="adminHome.nt" class="logo logo-small">
 <img src="${pageContext.request.contextPath}/resources/admin/img/logo-small.png" alt="Logo" width="30" height="30">
 </a>
 </div>
@@ -177,7 +182,7 @@
                     <ul>
                         <li class="menu-title"><span>MENU</span></li>
                         <li>
-                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
+                            <a href="adminHome.nt"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
                             <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span

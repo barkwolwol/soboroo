@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-
-  <!-- Favicon
-   ================================================== -->
-   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>soboroo admin - 회원 정보 조회</title>
+<title>Jassa - Bootstrap Admin HTML Template</title>
 
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
@@ -93,7 +89,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-03.jpg">
+<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-03.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Marie Canales</span> has accepted your estimate <span class="noti-title">#GTR458789</span></p>
@@ -119,7 +115,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg">
+<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-04.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Barbara Moore</span> declined the invoice <span class="noti-title">#RDW026896</span></p>
@@ -153,7 +149,7 @@
 <li class="nav-item dropdown has-arrow main-drop">
 <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
 <span class="user-img">
-<img src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="">
+<img src="assets/img/profiles/usermain.jpg" alt="">
 <span class="status online"></span>
 </span>
 <span>Admin</span>
@@ -237,6 +233,7 @@
         </div>
         <!-- 사이드바 끝  -->
 
+
 <div class="page-wrapper">
 <div class="content container-fluid">
 
@@ -245,28 +242,29 @@
 <div class="col-sm-12">
 <h3 class="page-title">정보 수정</h3>
 <ul class="breadcrumb">
-
+<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+<li class="breadcrumb-item"><a href="customers.html">Customers</a></li>
+<li class="breadcrumb-item active">Edit Customers</li>
 </ul>
 </div>
 </div>
 </div>
 
-
 <div class="row">
 <div class="col-md-12">
 <div class="card">
 <div class="card-body">
-<h4 class="card-title">회원 정보 조회</h4>
+<h4 class="card-title">회원 신고 조회</h4>
 <form action="#">
 <div class="row">
 <div class="col-md-6">
 <div class="form-group">
 <label>회원 이름</label>
-<input type="text" class="form-control" value="관리자" readonly>
+<input type="text" class="form-control" value="관리자2" readonly>
 </div>
 <div class="form-group">
 <label>회원 이메일</label>
-<input type="email" class="form-control" value="aaa@naver.com">
+<input type="email" class="form-control" value="admin2@naver.com">
 </div>
 <div class="form-group">
 <label>참가중인 모임</label>
@@ -278,15 +276,15 @@
 </div>
 
 <div class="form-group">
-    <label>누적 신고 횟수</label>
+    <label>신고사유</label>
     <select class="select">
-    <option selected>0회</option>
-    <option>1회</option>
-    <option>2회</option>
-    <option>3회</option>
-    </select>
+        <option selected>욕설</option>
+        <option>음란물 유포</option>
+        <option>불법정보 유포</option>
+        <option>명예훼손</option>
+        <option>기타</option>
+        </select>
     </div>
-
 
 </div>
 
@@ -302,12 +300,14 @@
 <div class="form-group">
 <label>회원 상태</label>
 <select class="select">
-<option selected>관리자</option>
+<option selected>일반회원</option>
 <option>휴먼회원</option>
 <option>정지회원</option>
-<option>일반회원</option>
+<option>관리자</option>
 <option>탈퇴회원</option>
 </select>
+</div>
+</div>
 </div>
 </div>
 </div>

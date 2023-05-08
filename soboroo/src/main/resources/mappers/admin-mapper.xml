@@ -28,6 +28,20 @@
 		<result column = "table_no" property = "tableNo"/>
 	</resultMap>
 	
+	<resultMap type="AdminMember" id="adminMemResultSet">
+		<result column="mem_no" property="memNo"/>
+		<result column="mem_token" property="memToken"/>
+		<result column="mem_id" property="memId"/>
+		<result column="mem_birth" property="memBirth"/>
+		<result column="mem_phone" property="memPhone"/>
+		<result column="mem_name" property="memName"/>
+		<result column="mem_status" property="memStatus"/>
+		<result column="mem_nickname" property="memNickname"/>
+		<result column="mem_introduce" property="memIntroduce"/>
+		<result column="mem_rpr_count" property="memRprCount"/>
+		<result column="mem_img" property="memImg"/>
+	</resultMap>
+	
 	<select id="selectNoticeListCount" resultType="_int">
 		select    
 	    count(*)
@@ -76,6 +90,23 @@
 	  where del_ny = 'N'
 	  order
 		 by board_no desc
+	</select>
+	
+	<select id="selectMemberList" resultMap="adminMemResultSet">
+		select
+		      mem_no
+		    , mem_token
+		    , mem_id
+		    , to_char(mem_birth, 'YYYY-MM-DD') as "mem_birth"
+		    , mem_phone
+		    , mem_name
+		    , mem_status
+		    , mem_nickname
+		    , mem_introduce
+		    , mem_rpr_count
+		    , mem_img
+      from member
+
 	</select>
 	
 
