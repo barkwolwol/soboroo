@@ -151,12 +151,20 @@
 		document.addEventListener('DOMContentLoaded', function() {
 			var calendarEl = document.getElementById('calendar');
 			var calendar = new FullCalendar.Calendar(calendarEl, {
-				initialView : 'dayGridMonth'
+				initialView : 'dayGridMonth',
 			/*  headerToolbar: {
 			   left: 'none',
 			   center: 'title'
 			   //right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
 			 } */
+			 events:[
+				 {
+					 title : '일정',
+					 start : '2023-05-08',
+					 end : '2023-05-10'
+				 }
+			 ],
+			 editable : false
 			});
 			calendar.render();
 		});
