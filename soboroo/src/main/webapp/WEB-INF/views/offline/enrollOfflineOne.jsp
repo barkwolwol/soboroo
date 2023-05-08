@@ -56,9 +56,8 @@
 <!-- ========================== flatpickr ========================== -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="js/flatpickr.js"></script>
-<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/confetti.css">
 
 
 <style>
@@ -603,16 +602,16 @@
 											<div class="date_time_wrap event">
 												<label for="">모임기간</label>
 												<input type="text" id="meetingDate" placeholder="모임기간을 선택하세요." value=""
-													data-parsley-required-message="모임기간을 선택해주세요." data-parsley-class-handler="#eventDateTime_-1"
-													autocomplete="off" readonly="" required="">
+													data-parsley-required-message="모임기간을 선택해주세요." 
+													data-parsley-class-handler="#eventDateTime_-1" autocomplete="off" readonly="" required="">
 											</div>
 										</div>
 										<div class="form_row" id="recruitDateTime_-1">
 											<div class="date_time_wrap apply">
 												<label for="">신청기간</label>
-												<input type="text" id="joiningDate" placeholder="신청기간을 선택하세요." value=""
+												<input type="text" id="applyDate" placeholder="신청기간을 선택하세요." value=""
 													data-parsley-required-message="신청기간을 선택해주세요."
-													data-parsley-class-handler="#recruitDateTime_-1" autocomplete="off" required="">
+													data-parsley-class-handler="#recruitDateTime_-1" autocomplete="off" readonly="" required="">
 											</div>
 										</div>
 										<p class="ex">* 참여 신청 및 취소는 신청 기간에만 가능합니다.</p>
@@ -638,14 +637,12 @@
 												<input type="text" id="address" class="addr_1 ui-autocomplete-input" placeholder="장소명, 주소를 검색해 주세요." name="group_address" required="" readonly>
 												<button type="button" class="addr_reset_btn">주소 초기화</button>
 												<button type="button" id="searchBtn" style="display: none;">검색</button>
-												<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all"
-													id="ui-id-1" tabindex="0" style="display: none;"></ul>
+												<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="display: none;"></ul>
 											</div>
 										</div>
 										<div class="form_row place_search">
 											<div class="place_search_input" data-input_type="text">
-												<input type="text" class="addr_2" name="address_detail" placeholder="나머지 주소를 입력해 주세요."
-													value="">
+												<input type="text" class="addr_2" name="address_detail" placeholder="나머지 주소를 입력해 주세요." value="">
 											</div>
 										</div>
 										<div class="form_row map">
@@ -726,19 +723,19 @@
 					</article>
 
 					<script>
-						var dateSelector = document.querySelector('#meetingDate');
-						var joiningDate = document.querySelector('#joiningDate');
+						var meetingDate = document.querySelector('#meetingDate');
+						var applyDate = document.querySelector('#applyDate');
 						flatpickr.localize(flatpickr.l10ns.ko);
 
-						flatpickr(dateSelector);
-						dateSelector.flatpickr({
+						flatpickr(meetingDate);
+						meetingDate.flatpickr({
 							mode: "range",
 							minDate: "today",
 							dateFormat: "Y-m-d",
 							local: 'ko'
 						});
 
-						joiningDate.flatpickr({
+						applyDate.flatpickr({
 							mode: "range",
 							minDate: "today",
 							dateFormat: "Y-m-d",
