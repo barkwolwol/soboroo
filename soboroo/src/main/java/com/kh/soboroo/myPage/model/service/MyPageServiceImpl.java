@@ -57,6 +57,13 @@ public class MyPageServiceImpl implements MyPageService {
 	public int selectListCount(Member loginUser) {
 		return myDao.selectListCount(sqlSession, loginUser);
 	}
+	
+	@Override
+	public int selectGroupBoardListCount(Member loginUser) {
+		return myDao.selectGroupBoardListCount(sqlSession, loginUser);
+	}
+	
+
 
 	@Override
 	public ArrayList<Board> selectList(Member loginUser, PageInfo pi) {
@@ -78,6 +85,6 @@ public class MyPageServiceImpl implements MyPageService {
 	public ArrayList<Reply> selectGroupReplyList(Member loginUser, PageInfo pi) {
 		return myDao.selectGroupReplyList(sqlSession, loginUser, pi);
 	}
-	
+
 
 }

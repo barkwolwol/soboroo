@@ -203,14 +203,14 @@
 											</c:when>
 											<c:otherwise>
 												<li class="page-item"><a class="page-link"
-													href="groupBoardList.my?cpage=${ pi.currentPage - 1 }">Previous</a></li>
+													href="groupBoardReplyList.my?cpage=${ pi.currentPage - 1 }">Previous</a></li>
 											</c:otherwise>
 										</c:choose>
 
 										<c:forEach var="p" begin="${ pi.startPage }"
 											end="${ pi.endPage }">
 											<li class="page-item"><a class="page-link"
-												href="groupBoardList.my?cpage=${ p }">${ p }</a></li>
+												href="groupBoardReplyList.my?cpage=${ p }">${ p }</a></li>
 										</c:forEach>
 
 										<c:choose>
@@ -220,7 +220,7 @@
 											</c:when>
 											<c:otherwise>
 												<li class="page-item"><a class="page-link"
-													href="groupBoardList.my?cpage=${ pi.currentPage + 1 }">Next</a></li>
+													href="groupBoardReplyList.my?cpage=${ pi.currentPage + 1 }">Next</a></li>
 											</c:otherwise>
 										</c:choose>
 									</ul>

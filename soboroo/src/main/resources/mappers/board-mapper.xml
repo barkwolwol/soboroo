@@ -71,6 +71,23 @@
 		    and mem_no = #{memNo}	
 	</select>
 	
+	<select id="selectGroupBoardListCount" resultType="_int">
+		SELECT count(*) FROM ONLINE_GROUP_ONCE WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		UNION ALL
+		SELECT count(*) FROM ONLINE_GROUP_REGULAR WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		UNION ALL
+		SELECT count(*) FROM ONLINE_CHALLENGE_D_DAY WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		UNION ALL
+		SELECT count(*) FROM ONLINE_CHALLENGE_REGULAR WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		UNION ALL
+		SELECT count(*) FROM OFFLINE_GROUP_ONCE WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		UNION ALL
+		SELECT count(*) FROM OFFLINE_GROUP_REGULAR WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		UNION ALL
+		SELECT count(*) FROM OFFLINE_CHALLENGE_D_DAY WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		UNION ALL
+		SELECT count(*) FROM OFFLINE_CHALLENGE_REGULAR WHERE DEL_NY='N' AND MEM_NO=#{memNo};
+	</select>
 	
 	<select id="selectList" resultMap="boardResultSet">
 	   SELECT 

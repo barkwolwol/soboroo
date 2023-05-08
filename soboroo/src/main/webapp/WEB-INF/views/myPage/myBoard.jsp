@@ -207,7 +207,7 @@
 											</c:when>
 											<c:otherwise>
 												<li class="page-item"><a class="page-link"
-													href="communityList.my?cpage=${ pi.currentPage - 1 }">Previous</a></li>
+													href="groupBoardList.my?cpage=${ pi.currentPage - 1 }">Previous</a></li>
 											</c:otherwise>
 										</c:choose>
 
@@ -215,7 +215,7 @@
 											end="${ pi.endPage }">
 
 											<li class="page-item"><a class="page-link"
-												href="communityList.my?cpage=${ p }">${ p }</a></li>
+												href="groupBoardList.my?cpage=${ p }">${ p }</a></li>
 										</c:forEach>
 
 										<c:choose>
@@ -225,7 +225,7 @@
 											</c:when>
 											<c:otherwise>
 												<li class="page-item"><a class="page-link"
-													href="communityList.my?cpage=${ pi.currentPage + 1 }">Next</a></li>
+													href="groupBoardList.my?cpage=${ pi.currentPage + 1 }">Next</a></li>
 											</c:otherwise>
 										</c:choose>
 										<!-- <li class="page-item"><a class="page-link" href="#"><i

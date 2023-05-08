@@ -19,6 +19,14 @@ import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;
+import com.kh.soboroo.offliine.model.vo.OfflineChallengeDday;
+import com.kh.soboroo.offliine.model.vo.OfflineChallengeRegular;
+import com.kh.soboroo.offliine.model.vo.OfflineGroupOnce;
+import com.kh.soboroo.offliine.model.vo.OfflineGroupRegular;
+import com.kh.soboroo.online.model.vo.OnlineChallengeDday;
+import com.kh.soboroo.online.model.vo.OnlineChallengeRegular;
+import com.kh.soboroo.online.model.vo.OnlineGroupOnce;
+import com.kh.soboroo.online.model.vo.OnlineGroupRegular;
 import com.kh.soboroo.reply.model.vo.Reply;
 
 @Controller
@@ -172,6 +180,38 @@ public class MyPageController {
 		return mv;
 	}
 	
+	@RequestMapping(value="groupBoardList.my", produces="application/json; charset=utf-8")
+	public ModelAndView selectGroupBoardList(@RequestParam(value="cpage", defaultValue="1")int currentPage, ModelAndView mv, HttpSession session) {
+
+	    Member loginUser = (Member)session.getAttribute("loginUser");
+
+	    int listCount = myService.selectGroupBoardListCount(loginUser);
+
+	    PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+
+	    ArrayList<OfflineChallengeDday> list1 = myService.OfflineChallengeDday(loginUser, pi);
+	    ArrayList<OfflineChallengeRegular> list2 = myService.OfflineChallengeRegular(loginUser, pi);
+	    ArrayList<OfflineGroupOnce> list3 = myService.OfflineGroupOnce(loginUser, pi);
+	    ArrayList<OfflineGroupRegular> list4 = myService.OfflineGroupRegular(loginUser, pi);
+	    ArrayList<OnlineChallengeDday> list5 = myService.OnlineChallengeDday(loginUser, pi);
+	    ArrayList<OnlineChallengeRegular> list6 = myService.OnlineChallengeRegular(loginUser, pi);
+	    ArrayList<OnlineGroupOnce> list7 = myService.OnlineGroupOnce(loginUser, pi);
+	    ArrayList<OnlineGroupRegular> list8 = myService.OnlineGroupRegular(loginUser, pi);
+
+	    // 필수 정보만을 포함하는 새로운 배열 생성
+	    ArrayList<MyPost> combinedList = new ArrayList<>();
+
+	    // list1의 각 요소를 MyPost 객체로 변환하여 combinedList에 추가
+	    for (Board1 board1 : list1) {
+	        combinedList.add(new MyPost(board1.getPostId(), board1.getTitle(), board1.getAuthor(), board1.getDate()));
+	    }
+
+	    // list2, list3, ..., list8도 동일한 방식으로 추가
+
+	    mv.addObject("pi", pi).addObject("list", combinedList).setViewName("myPage/myBoard");
+	    return mv;
+	}
+	
 	@RequestMapping(value = "communityReplyList.my", produces = "application/json; charset=utf-8")
 	public ModelAndView selectcommunityReplyList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session){
 		Member loginUser = (Member)session.getAttribute("loginUser");
@@ -186,8 +226,8 @@ public class MyPageController {
 		return mv;
 	}
 	
-	@RequestMapping(value="groupBoardList.my", produces="application/json; charset=utf-8")
-	public ModelAndView selectGroupBoardList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
+	@RequestMapping(value="groupBoardReplyList..my", produces="application/json; charset=utf-8")
+	public ModelAndView selectGroupBoardReplyList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		int listCount = myService.selectReplyListCount(loginUser);
@@ -200,6 +240,6 @@ public class MyPageController {
 		return mv;
 	}
 	
-	
+
 
 }

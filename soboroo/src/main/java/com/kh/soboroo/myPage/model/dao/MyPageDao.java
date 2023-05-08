@@ -34,6 +34,10 @@ public class MyPageDao {
 		return sqlSession.selectOne("boardMapper.selectListCount", loginUser);
 	}
 	
+	public int selectGroupBoardListCount(SqlSessionTemplate sqlSession, Member loginUser) {
+		return sqlSession.selectOne("boardMapper.selectGroupBoardListCount", loginUser);
+	}
+	
 	public ArrayList<Board> selectList(SqlSessionTemplate sqlSession, Member loginUser, PageInfo pi){
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
