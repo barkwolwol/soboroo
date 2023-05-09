@@ -325,7 +325,7 @@
 <td>${m.memNickname }</td>
 <td>${m.memBirth }</td>
 <td class="text-end">
-<a href="updateInfo.ad" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>상태변경</a>
+<a href="updateInfo.ad" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 
 </td>

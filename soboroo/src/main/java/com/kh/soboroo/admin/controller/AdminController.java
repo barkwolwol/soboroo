@@ -63,7 +63,6 @@ public class AdminController {
 		
 		
 		
-		
 		// 관리자 회원 정보 수정 페이지 호출
 		@RequestMapping("updateInfo.ad")
 		public String updateMemberInfo() {
