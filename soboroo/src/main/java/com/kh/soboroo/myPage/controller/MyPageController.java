@@ -19,14 +19,15 @@ import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;
-import com.kh.soboroo.offliine.model.vo.OfflineChallengeDday;
-import com.kh.soboroo.offliine.model.vo.OfflineChallengeRegular;
-import com.kh.soboroo.offliine.model.vo.OfflineGroupOnce;
-import com.kh.soboroo.offliine.model.vo.OfflineGroupRegular;
-import com.kh.soboroo.online.model.vo.OnlineChallengeDday;
-import com.kh.soboroo.online.model.vo.OnlineChallengeRegular;
-import com.kh.soboroo.online.model.vo.OnlineGroupOnce;
-import com.kh.soboroo.online.model.vo.OnlineGroupRegular;
+import com.kh.soboroo.myPage.model.vo.MyPage;
+import com.kh.soboroo.myPage.model.vo.OfflineChallengeDday;
+import com.kh.soboroo.myPage.model.vo.OfflineChallengeRegular;
+import com.kh.soboroo.myPage.model.vo.OfflineGroupOnce;
+import com.kh.soboroo.myPage.model.vo.OfflineGroupRegular;
+import com.kh.soboroo.myPage.model.vo.OnlineChallengeDday;
+import com.kh.soboroo.myPage.model.vo.OnlineChallengeRegular;
+import com.kh.soboroo.myPage.model.vo.OnlineGroupOnce;
+import com.kh.soboroo.myPage.model.vo.OnlineGroupRegular;
 import com.kh.soboroo.reply.model.vo.Reply;
 
 @Controller
@@ -189,27 +190,100 @@ public class MyPageController {
 
 	    PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 
-	    ArrayList<OfflineChallengeDday> list1 = myService.OfflineChallengeDday(loginUser, pi);
-	    ArrayList<OfflineChallengeRegular> list2 = myService.OfflineChallengeRegular(loginUser, pi);
-	    ArrayList<OfflineGroupOnce> list3 = myService.OfflineGroupOnce(loginUser, pi);
-	    ArrayList<OfflineGroupRegular> list4 = myService.OfflineGroupRegular(loginUser, pi);
-	    ArrayList<OnlineChallengeDday> list5 = myService.OnlineChallengeDday(loginUser, pi);
-	    ArrayList<OnlineChallengeRegular> list6 = myService.OnlineChallengeRegular(loginUser, pi);
-	    ArrayList<OnlineGroupOnce> list7 = myService.OnlineGroupOnce(loginUser, pi);
-	    ArrayList<OnlineGroupRegular> list8 = myService.OnlineGroupRegular(loginUser, pi);
+	    ArrayList<OfflineChallengeDday> list1 = myService.selectOfflineChallengeDday(loginUser, pi);
+	    ArrayList<OfflineChallengeRegular> list2 = myService.selectOfflineChallengeRegular(loginUser, pi);
+	    ArrayList<OfflineGroupOnce> list3 = myService.selectOfflineGroupOnce(loginUser, pi);
+	    ArrayList<OfflineGroupRegular> list4 = myService.selectOfflineGroupRegular(loginUser, pi);
+	    ArrayList<OnlineChallengeDday> list5 = myService.selectOnlineChallengeDday(loginUser, pi);
+	    ArrayList<OnlineChallengeRegular> list6 = myService.selectOnlineChallengeRegular(loginUser, pi);
+	    ArrayList<OnlineGroupOnce> list7 = myService.selectOnlineGroupOnce(loginUser, pi);
+	    ArrayList<OnlineGroupRegular> list8 = myService.selectOnlineGroupRegular(loginUser, pi);
 
+	    System.out.println(list4);
 	    // 필수 정보만을 포함하는 새로운 배열 생성
-	    ArrayList<MyPost> combinedList = new ArrayList<>();
-
-	    // list1의 각 요소를 MyPost 객체로 변환하여 combinedList에 추가
-	    for (Board1 board1 : list1) {
-	        combinedList.add(new MyPost(board1.getPostId(), board1.getTitle(), board1.getAuthor(), board1.getDate()));
+	     ArrayList<Object> combinedList = new ArrayList<>();
+	   // MyPage combinedList = new MyPage();
+	     
+	     combinedList.add(list1);
+	     combinedList.add(list2);
+	     combinedList.add(list3);
+	     combinedList.add(list4);
+	     combinedList.add(list5);
+	     combinedList.add(list6);
+	     combinedList.add(list7);
+	     combinedList.add(list8);
+	     
+	     System.out.println(combinedList);
+		    mv.addObject("pi", pi).addObject("list", combinedList).setViewName("myPage/myBoard");
+		    
+		    return mv;
+/*
+	    for (OfflineChallengeDday offlineChallengeDday : list1) {
+	    	MyPage myPage = new MyPage();
+	        myPage.setOffChallengeRegNo(offlineChallengeDday.getOffChallengeDNo());
+	        myPage.setOffChallengeRegTitle(offlineChallengeDday.getOffChallengeDTitle());
+	        myPage.setOffChallengeRegDate(offlineChallengeDday.getOffChallengeDDate());
+	        combinedList.add(myPage);
 	    }
 
-	    // list2, list3, ..., list8도 동일한 방식으로 추가
-
-	    mv.addObject("pi", pi).addObject("list", combinedList).setViewName("myPage/myBoard");
-	    return mv;
+	    for (OfflineChallengeRegular OfflineChallengeRegular : list2) {
+	    	MyPage myPage = new MyPage();
+	        myPage.setOffChallengeRegNo(OfflineChallengeRegular.getOffChallengeRegNo());
+	        myPage.setOffChallengeRegTitle(OfflineChallengeRegular.getOffChallengeRegTitle());
+	        myPage.setOffChallengeRegDate(OfflineChallengeRegular.getOffChallengeRegDate());
+	        combinedList.add(myPage);
+	    }
+	    
+	    for (OfflineGroupOnce OfflineGroupOnce : list3) {
+	    	MyPage myPage = new MyPage();
+	        myPage.setOffChallengeRegNo(OfflineGroupOnce.getOffGroupOnceNo());
+	        myPage.setOffChallengeRegTitle(OfflineGroupOnce.getOffGroupOnceTitle());
+	        myPage.setOffChallengeRegDate(OfflineGroupOnce.getOffGroupOnceDate());
+	        combinedList.add(myPage);
+	    }
+	    
+	    for (OfflineGroupRegular OfflineGroupRegular : list4) {
+	    	MyPage myPage = new MyPage();
+	        myPage.setOffChallengeRegNo(OfflineGroupRegular.getOffGroupRegNo());
+	        myPage.setOffChallengeRegTitle(OfflineGroupRegular.getOffGroupRegTitle());
+	        myPage.setOffChallengeRegDate(OfflineGroupRegular.getOffGroupRegDate());
+	        combinedList.add(myPage);
+	    }
+	    
+	    for (OnlineChallengeDday OnlineChallengeDday : list5) {
+	    	MyPage myPage = new MyPage();
+	        myPage.setOffChallengeRegNo(OnlineChallengeDday.getOnChallengeDNo());
+	        myPage.setOffChallengeRegTitle(OnlineChallengeDday.getOnChallengeDTitle());
+	        myPage.setOffChallengeRegDate(OnlineChallengeDday.getOnChallengeDDate());
+	        combinedList.add(myPage);
+	    }
+	    
+	    for (OnlineChallengeRegular OnlineChallengeRegular : list6) {
+	    	MyPage myPage = new MyPage();
+	        myPage.setOffChallengeRegNo(OnlineChallengeRegular.getOnChallengeRegNo());
+	        myPage.setOffChallengeRegTitle(OnlineChallengeRegular.getOnChallengeRegTitle());
+	        myPage.setOffChallengeRegDate(OnlineChallengeRegular.getOnChallengeRegDate());
+	        combinedList.add(myPage);
+	    }
+	    
+	    
+	    for (OnlineGroupOnce OnlineGroupOnce : list7) {
+	    	MyPage myPage = new MyPage();
+	        myPage.setOffChallengeRegNo(OnlineGroupOnce.getOnGroupOnceNo());
+	        myPage.setOffChallengeRegTitle(OnlineGroupOnce.getOnGroupOnceTitle());
+	        myPage.setOffChallengeRegDate(OnlineGroupOnce.getOnGroupOnceDate());
+	        combinedList.add(myPage);
+	    }
+	    
+	    for (OnlineGroupRegular OnlineGroupRegular : list8) {
+	    	MyPage myPage = new MyPage();
+	        myPage.setOffChallengeRegNo(OnlineGroupRegular.getOnGroupRegNo());
+	        myPage.setOffChallengeRegTitle(OnlineGroupRegular.getOnGroupRegTitle());
+	        myPage.setOffChallengeRegDate(OnlineGroupRegular.getOnGroupRegDate());
+	        combinedList.add(myPage);
+	    }
+*/		
+	    
 	}
 	
 	@RequestMapping(value = "communityReplyList.my", produces = "application/json; charset=utf-8")
@@ -226,7 +300,7 @@ public class MyPageController {
 		return mv;
 	}
 	
-	@RequestMapping(value="groupBoardReplyList..my", produces="application/json; charset=utf-8")
+	@RequestMapping(value="groupBoardReplyList.my", produces="application/json; charset=utf-8")
 	public ModelAndView selectGroupBoardReplyList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		

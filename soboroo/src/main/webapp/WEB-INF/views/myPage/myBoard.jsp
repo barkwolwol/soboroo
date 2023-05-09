@@ -146,8 +146,7 @@
 													<tr>
 														<th>글번호</th>
 														<th>제목</th>
-														<th>조회수</th>
-														<th>작성일</th>
+														<th>모임일</th>
 													</tr>
 												</thead>
 												<tbody align="center">
@@ -161,10 +160,9 @@
 														<c:otherwise>
 															<c:forEach var="g" items="${list}">
 																<tr>
-																	<td class="bno">${g.boardNo }</td>
-																	<td>${g.boardTitle }</td>
-																	<td>${g.count }</td>
-																	<td>${g.createDate }</td>
+																	<td class="bno">${g.no }</td>
+																	<td>${g.title }</td>
+																	<td>${g.date }</td>
 																</tr>
 															</c:forEach>
 														</c:otherwise>

@@ -15,7 +15,7 @@
 	<div class="body-inner">
 
 		<div id="banner-area" class="banner-area"
-			style="background-image: url()" ; 
+			style="background-image: url(https://images.unsplash.com/photo-1525283427788-dab44a627fe0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80)" ; 
             background-repeat:no-repeat;>
 			<div class="banner-text">
 				<div class="container">

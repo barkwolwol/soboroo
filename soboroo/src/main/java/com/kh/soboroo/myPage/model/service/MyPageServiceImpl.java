@@ -11,6 +11,14 @@ import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.dao.MyPageDao;
 import com.kh.soboroo.myPage.model.vo.MyPage;
+import com.kh.soboroo.myPage.model.vo.OfflineChallengeDday;
+import com.kh.soboroo.myPage.model.vo.OfflineChallengeRegular;
+import com.kh.soboroo.myPage.model.vo.OfflineGroupOnce;
+import com.kh.soboroo.myPage.model.vo.OfflineGroupRegular;
+import com.kh.soboroo.myPage.model.vo.OnlineChallengeDday;
+import com.kh.soboroo.myPage.model.vo.OnlineChallengeRegular;
+import com.kh.soboroo.myPage.model.vo.OnlineGroupOnce;
+import com.kh.soboroo.myPage.model.vo.OnlineGroupRegular;
 import com.kh.soboroo.reply.model.vo.Reply;
 
 @Service
@@ -75,6 +83,46 @@ public class MyPageServiceImpl implements MyPageService {
 	public int selectReplyListCount(Member loginUser) {
 		return myDao.selectReplyListCount(sqlSession, loginUser);
 	}
+	
+	@Override
+	public ArrayList<OfflineChallengeRegular> selectOfflineChallengeRegular(Member loginUser, PageInfo pi) {
+		return myDao.selectOfflineChallengeRegular(sqlSession, loginUser, pi);
+	}
+	
+	@Override
+	public ArrayList<OfflineChallengeDday> selectOfflineChallengeDday(Member loginUser, PageInfo pi) {
+		return myDao.selectOfflineChallengeDday(sqlSession, loginUser, pi);
+	}
+
+	@Override
+	public ArrayList<OfflineGroupOnce> selectOfflineGroupOnce(Member loginUser, PageInfo pi) {
+		return myDao.selectOfflineGroupOnce(sqlSession, loginUser, pi);
+	}
+
+	@Override
+	public ArrayList<OfflineGroupRegular> selectOfflineGroupRegular(Member loginUser, PageInfo pi) {
+		return myDao.selectOfflineGroupRegular(sqlSession, loginUser, pi);
+	}
+
+	@Override
+	public ArrayList<OnlineChallengeDday> selectOnlineChallengeDday(Member loginUser, PageInfo pi) {
+		return myDao.selectOnlineChallengeDday(sqlSession, loginUser, pi);
+	}
+
+	@Override
+	public ArrayList<OnlineChallengeRegular> selectOnlineChallengeRegular(Member loginUser, PageInfo pi) {
+		return myDao.selectOnlineChallengeRegular(sqlSession, loginUser, pi);
+	}
+
+	@Override
+	public ArrayList<OnlineGroupOnce> selectOnlineGroupOnce(Member loginUser, PageInfo pi) {
+		return myDao.selectOnlineGroupOnce(sqlSession, loginUser, pi);
+	}
+
+	@Override
+	public ArrayList<OnlineGroupRegular> selectOnlineGroupRegular(Member loginUser, PageInfo pi) {
+		return myDao.selectOnlineGroupRegular(sqlSession, loginUser, pi);
+	}
 
 	@Override
 	public ArrayList<Reply> selectReplyList(Member loginUser, PageInfo pi) {
@@ -85,6 +133,8 @@ public class MyPageServiceImpl implements MyPageService {
 	public ArrayList<Reply> selectGroupReplyList(Member loginUser, PageInfo pi) {
 		return myDao.selectGroupReplyList(sqlSession, loginUser, pi);
 	}
+
+	
 
 
 }

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="myPageMapper">
+
+<resultMap type="MyPage" id="myPageResultSet">
+	<result column = "count" property="count"/>
+	<result column = "del_ny" property="delNy"/>
+	<result column = "mem_no" property="memNo"/>
+	<result column = "no" property="no"/>
+	<result column = "title" property="title"/>
+	<result column = "date" property="date"/>
+	<result column = "tableNo" property="tableNo"/>
+</resultMap>
+
+	<select id="selectGroupBoardListCount" resultType="_int">
+		SELECT SUM(cnt)
+		FROM (
+		    SELECT COUNT(*) AS cnt FROM ONLINE_GROUP_ONCE WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM ONLINE_GROUP_REGULAR WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM ONLINE_CHALLENGE_D_DAY WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM ONLINE_CHALLENGE_REGULAR WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM OFFLINE_GROUP_ONCE WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM OFFLINE_GROUP_REGULAR WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM OFFLINE_CHALLENGE_D_DAY WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM OFFLINE_CHALLENGE_REGULAR WHERE DEL_NY='N' AND MEM_NO=#{memNo}
+		)
+
+	</select>
+	
+	<select id="selectOfflineChallengeRegular" resultMap="myPageResultSet">
+		         
+         select OFF_CHALLENGE_D_NO as "no",
+                OFF_CHALLENGE_D_TITLE as "title",
+                OFF_CHALLENGE_D_DATE as "date",
+                TABLE_NO as "tableNo"
+           from OFFLINE_CHALLENGE_D_DAY
+				    WHERE del_ny = 'N'
+				      AND mem_no = #{memNo}    
+                
+	</select>
+	
+	<select id="selectOfflineChallengeDday" resultMap="myPageResultSet">
+	         
+         select OFF_CHALLENGE_REG_NO as "no",
+                OFF_CHALLENGE_REG_TITLE as "title",
+                OFF_CHALLENGE_REG_DATE as "date",
+                TABLE_NO as "tableNo"
+           from OFFLINE_CHALLENGE_REGULAR
+				    WHERE del_ny = 'N'
+				      AND mem_no = #{memNo}   
+	</select>
+	
+	<select id="selectOfflineGroupOnce" resultMap="myPageResultSet">
+	         select OFF_GROUP_ONCE_NO as "no",
+                OFF_GROUP_ONCE_TITLE as "title",
+                OFF_GROUP_ONCE_DATE as "date",
+                TABLE_NO as "tableNo"
+           from OFFLINE_GROUP_ONCE
+				    WHERE del_ny = 'N'
+				      AND mem_no = #{memNo}    
+	</select>
+	
+	<select id="selectOfflineGroupRegular" resultMap="myPageResultSet">
+	         select OFF_GROUP_REG_NO as "no",
+                OFF_GROUP_REG_TITLE as "title",
+                OFF_GROUP_REG_DATE as "date",
+                TABLE_NO as "tableNo"
+           from OFFLINE_GROUP_REGULAR
+				    WHERE del_ny = 'N'
+				      AND mem_no = #{memNo}    
+	</select>
+	
+	<select id="selectOnlineChallengeDday" resultMap="myPageResultSet">
+	 select ON_CHALLENGE_D_NO as "no",
+                ON_CHALLENGE_D_TITLE as "title",
+                ON_CHALLENGE_D_DATE as "date",
+                TABLE_NO as "tableNo" 
+           from online_challenge_D_DAY
+				    WHERE del_ny = 'N'
+				      AND mem_no = #{memNo}    
+	</select>
+	
+	
+	<select id="selectOnlineChallengeRegular" resultMap="myPageResultSet">
+	select ON_CHALLENGE_REG_NO as "no",
+                ON_CHALLENGE_REG_TITLE as "title",
+                ON_CHALLENGE_REG_DATE as "date",
+                TABLE_NO as "tableNo"
+           from online_challenge_regular
+				    WHERE del_ny = 'N'
+				      AND mem_no = #{memNo} 
+	</select>
+	
+	<select id="selectOnlineGroupOnce" resultMap="myPageResultSet">
+	 select ON_GROUP_ONCE_NO as "no",
+                ON_GROUP_ONCE_TITLE as "title",
+                ON_GROUP_ONCE_DATE as "date",
+                TABLE_NO as "tableNo"
+           from online_group_once
+				    WHERE del_ny = 'N'
+				      AND mem_no = #{memNo} 
+	</select>
+	
+	<select id="selectOnlineGroupRegular" resultMap="myPageResultSet">
+	        select ON_GROUP_REG_NO as "no",
+                ON_GROUP_REG_TITLE as "title",
+                ON_GROUP_REG_DATE as "date",
+                TABLE_NO as "table"
+            from online_group_regular
+				    WHERE del_ny = 'N'
+				      AND mem_no = #{memNo}   
+	</select>
+</mapper>

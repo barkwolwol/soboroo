@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.member.model.vo.Member;
+import com.kh.soboroo.myPage.model.vo.OfflineChallengeDday;
+import com.kh.soboroo.myPage.model.vo.OfflineChallengeRegular;
+import com.kh.soboroo.myPage.model.vo.OfflineGroupOnce;
+import com.kh.soboroo.myPage.model.vo.OfflineGroupRegular;
+import com.kh.soboroo.myPage.model.vo.OnlineChallengeDday;
+import com.kh.soboroo.myPage.model.vo.OnlineChallengeRegular;
+import com.kh.soboroo.myPage.model.vo.OnlineGroupOnce;
+import com.kh.soboroo.myPage.model.vo.OnlineGroupRegular;
 import com.kh.soboroo.reply.model.vo.Reply;
 
 public interface MyPageService {
@@ -30,6 +38,15 @@ public interface MyPageService {
 	int selectReplyListCount(Member loginUser);
 	
 	int selectGroupBoardListCount(Member loginUser);
+	
+	ArrayList<OfflineChallengeDday> selectOfflineChallengeDday(Member loginUser, PageInfo pi);
+	ArrayList<OfflineChallengeRegular> selectOfflineChallengeRegular(Member loginUser, PageInfo pi);
+	ArrayList<OfflineGroupOnce> selectOfflineGroupOnce(Member loginUser, PageInfo pi);
+	ArrayList<OfflineGroupRegular> selectOfflineGroupRegular(Member loginUser, PageInfo pi);
+	ArrayList<OnlineChallengeDday> selectOnlineChallengeDday(Member loginUser, PageInfo pi);
+	ArrayList<OnlineChallengeRegular> selectOnlineChallengeRegular(Member loginUser, PageInfo pi);
+	ArrayList<OnlineGroupOnce> selectOnlineGroupOnce(Member loginUser, PageInfo pi);
+	ArrayList<OnlineGroupRegular> selectOnlineGroupRegular(Member loginUser, PageInfo pi);
 	
 	ArrayList<Reply> selectReplyList(Member loginUser, PageInfo pi);
 	
