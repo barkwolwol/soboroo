@@ -20,7 +20,7 @@
 	            <span id="titleLogo"><img src="resources/images/logo_1.png" alt=""></span>
 			</div>
 	       <div id="login_input">
-               <button type="submit" class="login_btn"><a href="loginMember.my">카카오로 시작하기</a></button>
+               <button type="submit" class="login_btn"><a href="#">카카오로 시작하기</a></button>
 	       </div>
      	       
      	   <div id="login_input">

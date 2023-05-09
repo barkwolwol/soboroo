@@ -606,7 +606,7 @@
 													data-parsley-class-handler="#eventDateTime_-1" autocomplete="off" readonly="" required="">
 											</div>
 										</div>
-										<div class="form_row" id="recruitDateTime_-1">
+										<div class="form_row">
 											<div class="date_time_wrap apply">
 												<label for="">신청기간</label>
 												<input type="text" id="applyDate" placeholder="신청기간을 선택하세요." value=""
@@ -650,7 +650,7 @@
 										</div>
 									</div>
 									<div class="person_apply_wrap">
-										<div class="form_row select_apply" data-input_type="radio">
+										<!-- <div class="form_row select_apply" data-input_type="radio">
 											<div class="op_h"> <span>선정방법</span>
 												<div class="help_tip"> <span> <span>선착순</span> 신청 순서대로 참여확정자로 신청됩니다. <span>개설자 선정</span> 대기자로
 														신청되고
@@ -666,8 +666,8 @@
 														선정</label>
 												</div>
 											</div>
-										</div>
-										<div class="form_row" data-input_type="text">
+										</div> -->
+										<!-- <div class="form_row" data-input_type="text">
 											<div class="op_h"> <span>동반인원</span>
 												<div class="help_tip"> <span> <span>없음</span> 본인만 신청 가능합니다. <span>1명 이상</span> 본인 외 동반인원수를 선택하여
 														신청가능합니다. </span> </div>
@@ -675,7 +675,7 @@
 											<div class="op_c numberbox"> <input type="text" name="groupMemberPerAttend[-1]"
 													class="numberbox_input companion" placeholder="없음" data-max_num="29" value=""> <span
 													class="plus"></span><span class="minus"></span> </div>
-										</div>
+										</div> -->
 										<div class="form_row over_capacity" data-input_type="radio">
 											<div class="op_h"> <span>정원초과 모집</span>
 												<div class="help_tip"> <span> <span>허용</span> 정원을 초과해도 대기자로 신청자를 받습니다. 결원 발생 시 대기자가 참여확정자로 자동
@@ -691,22 +691,6 @@
 														value="0">
 													<label for="group_overcapacity[-1]_02" title="정원초과 모집이 불가능한 경우 설정을 변경할 수 없습니다.">허용안함</label>
 												</div>
-											</div>
-										</div>
-										<div class="form_row over_capacity_pay" data-input_type="radio">
-											<div class="op_h"> <span>정원초과 결제</span>
-												<div class="help_tip"> <span> <span>허용</span> 정원이 초과한 후 대기자로 신청 시 결제할 수 있습니다. 결원 발생 시 결제한 대기자가
-														참여확정자로 자동 변경될 수 있습니다. <span>허용안함</span> 정원이 초과한 후 대기자로 신청 시 결제할 수 없습니다(미결제 대기자 상태로 신청만
-														가능).
-														선정방법이 개설자 선정인 경우 정원초과 결제 허용 선택은 불가합니다. </span> </div>
-											</div>
-											<div class="op_c">
-												<div> <input type="radio" id="group_overpay[-1]_01" name="group_overpay[-1]" value="1"
-														checked="">
-													<label for="group_overpay[-1]_01">허용</label>
-												</div>
-												<div> <input type="radio" id="group_overpay[-1]_02" name="group_overpay[-1]" value="0"> <label
-														for="group_overpay[-1]_02">허용안함</label> </div>
 											</div>
 										</div>
 									</div>
@@ -741,6 +725,11 @@
 							dateFormat: "Y-m-d",
 							local: 'ko'
 						});
+					</script>
+
+					<script>
+						
+
 					</script>
 
 					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
