@@ -19,6 +19,7 @@ import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
+import com.kh.soboroo.member.model.vo.Member;
 
 
 @Controller
@@ -69,16 +70,74 @@ public class AdminController {
 			return "admin/updateMemberInfo";
 		}
 		
+		
+		// 회원 정보 수정
+		@RequestMapping("updateMem.ad")
+		public String updateMem(Member m, HttpSession session, Model model) {
+			
+			int result = aService.updateMem(m);
+			
+			if(result > 0) { // 수정 성공
+				
+				// db로부터 수정된 회원 정보를 다시 조회해서
+				// session에 loginUser라는 키값으로 덮어 씌워줘야됨
+				
+//				Member updateMem = 
+//				session.setAttribute("loginUser", updateMem);
+//				
+				// alert 띄워 줄 문구 담기
+				
+				session.setAttribute("alertMsg", "성공적으로 회원정보 변경 되었습니다.");
+								
+				return "redirect:memberInfo.ad";
+				
+			}else { // 수정 실패
+				
+				model.addAttribute("errorMsg", "회원정보 변경 실패!");
+				return "common/errorPage";
+			}
+			
+			
+		}
+		
+		
+		
 		// 관리자 회원 신고 정보 조회 페이지 호출
 		@RequestMapping("updateReport.ad")
 		public String updateReportInfo() {
 			return "admin/updateReport";
 		}
 		
+		
+		
+//		@RequestMapping("memberInfo.ad")
+//		public ModelAndView memberInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+//			
+//			PageInfo pi = Pagination.getPageInfo(0,currentPage, 10, 10);
+//			
+//			ArrayList<AdminMember> list = aService.selectMemberList(pi);
+//			
+//			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/memberInfo");
+//			
+//			return mv;
+//			
+//		}
+		
+		
+		
 		// 관리자 정지 회원 페이지 호출
 		@RequestMapping("susMember.ad")
-		public String suspendMember() {
-			return "admin/suspendMemberInfo";
+		public ModelAndView suspendMember(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+			
+			PageInfo pi = Pagination.getPageInfo(0, currentPage, 10, 10);
+			
+			ArrayList<AdminMember> list = aService.selectSusMemberList(pi);
+			
+			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/suspendMemberInfo");
+			
+			return mv;
+			
+			
 		}
 		
 		// 관리자 탈퇴 회원 페이지 호출

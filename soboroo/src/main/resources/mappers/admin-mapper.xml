@@ -40,6 +40,8 @@
 		<result column="mem_introduce" property="memIntroduce"/>
 		<result column="mem_rpr_count" property="memRprCount"/>
 		<result column="mem_img" property="memImg"/>
+		<result column="mem_enroll_date" property="memEnrollDate"/>
+		<result column="mem_update_date" property="memUpdateDate"/>
 	</resultMap>
 	
 	<select id="selectNoticeListCount" resultType="_int">
@@ -105,8 +107,25 @@
 		    , mem_introduce
 		    , mem_rpr_count
 		    , mem_img
+		    , mem_enroll_date
+		    , mem_update_date
       from member
 
+	</select>
+	
+	
+	<select id="selectSusMemberList" resultMap="adminMemResultSet">
+			select 
+	        mem_name
+	     ,  mem_id
+	     ,  mem_rpr_count
+	     ,  to_char(mem_update_date,'YYYY-MM-DD')
+	     ,  to_char(mem_update_date + 7 ,'YYYY-MM-DD') as mem_suspension_date
+	     ,  mem_status
+     from member 
+	where mem_status = 3
+	
+	
 	</select>
 	
 

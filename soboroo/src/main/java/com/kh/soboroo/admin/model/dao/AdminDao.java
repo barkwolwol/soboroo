@@ -11,6 +11,7 @@ import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.member.model.vo.Member;
 
 @Repository
 public class AdminDao {
@@ -67,6 +68,25 @@ public class AdminDao {
 		
 		return (ArrayList)sqlSession.selectList("adminMapper.selectMemberList", null, rowBounds);
 		
+		
+	}
+	
+	public int updateMem(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.update("adminMapper.updateMem",m);
+		
+	}
+	
+	public ArrayList<AdminMember> selectSusMemberList(SqlSessionTemplate sqlSession, PageInfo pi){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		
+		
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectSusMemberList", null, rowBounds);
 		
 	}
 	

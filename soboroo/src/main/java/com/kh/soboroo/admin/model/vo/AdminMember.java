@@ -26,5 +26,7 @@ public class AdminMember {
 	private String memIntroduce;
 	private int memRprCount;
 	private String memImg;
+	private Date memEnrollDate;
+	private Date memUpdateDate;
 
 }

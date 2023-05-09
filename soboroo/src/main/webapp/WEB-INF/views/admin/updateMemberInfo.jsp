@@ -257,7 +257,9 @@
 <div class="card">
 <div class="card-body">
 <h4 class="card-title">회원 정보 조회</h4>
-<form action="#">
+
+
+<form action="updateMem.ad">
 <div class="row">
 <div class="col-md-6">
 <div class="form-group">
@@ -265,26 +267,17 @@
 <input type="text" class="form-control" value="관리자" readonly>
 </div>
 <div class="form-group">
-<label>회원 이메일</label>
+<label>회원 아이디</label>
 <input type="email" class="form-control" value="aaa@naver.com">
 </div>
 <div class="form-group">
-<label>참가중인 모임</label>
-<select class="select">
-<option selected>온라인 일반/정기</option>
-<option>오프라인 일반/정기</option>
-<option>오프라인 목표/기간별</option>
+
 </select>
 </div>
 
 <div class="form-group">
     <label>누적 신고 횟수</label>
-    <select class="select">
-    <option selected>0회</option>
-    <option>1회</option>
-    <option>2회</option>
-    <option>3회</option>
-    </select>
+    <input type="text" class="form-control" value="0회" readonly>
     </div>
 
 

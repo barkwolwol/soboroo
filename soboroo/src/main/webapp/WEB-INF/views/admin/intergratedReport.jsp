@@ -263,7 +263,7 @@
 <div class="col-sm-6 col-md-3">
 <div class="form-group">
 <label>Name</label>
-<input type="text" class="form-control">
+<input type="text" class="form-control" >
 </div>
 </div>
 <div class="col-sm-6 col-md-3">

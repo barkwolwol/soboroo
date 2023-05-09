@@ -299,6 +299,8 @@
 <th>상태</th>
 <th>닉네임</th>
 <th>생년월일</th>
+<th>회원가입일</th>
+<th>상태변경일</th>
 <th class="text-end">Actions</th>
 </tr>
 </thead>
@@ -307,8 +309,8 @@
 <tr>
 <td>
 <h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-<a href="profile.html">${m.memName }<span>${m.memNo}</span></a>
+<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/Slogo.png" alt="User Image"></a>
+<a href="profile.html">${m.memName }<span>soboroo ${m.memNo}</span></a>
 </h2>
 </td>
 <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">${m.memId }</a></td>
@@ -324,6 +326,8 @@
 </c:choose>
 <td>${m.memNickname }</td>
 <td>${m.memBirth }</td>
+<td>${m.memEnrollDate }</td>
+<td>${m.memUpdateDate }</td>
 <td class="text-end">
 <a href="updateInfo.ad" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>

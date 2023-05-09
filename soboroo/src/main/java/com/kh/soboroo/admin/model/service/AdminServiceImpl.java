@@ -13,6 +13,7 @@ import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.member.model.vo.Member;
 
 
 @Service
@@ -55,6 +56,22 @@ public class AdminServiceImpl implements AdminService {
 	
 		return aDao.selectMemberList(sqlSession,pi);
 	}
+
+	@Override
+	public int updateMem(Member m) {
+
+		int result = aDao.updateMem(sqlSession,m);
+		
+		return result;
+	}
+
+	@Override
+	public ArrayList<AdminMember> selectSusMemberList(PageInfo pi) {
+		
+		return aDao.selectSusMemberList(sqlSession, pi);
+	}
+	
+	
 	
 
 }
