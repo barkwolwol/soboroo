@@ -160,7 +160,7 @@
 														<c:otherwise>
 															<c:forEach var="g" items="${list}">
 																<tr>
-																	<td class="bno">${g.no }</td>
+																	<td class="bno">${g.no }</td> 
 																	<td>${g.title }</td>
 																	<td>${g.date }</td>
 																</tr>

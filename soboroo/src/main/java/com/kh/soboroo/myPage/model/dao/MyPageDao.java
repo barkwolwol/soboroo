@@ -51,7 +51,7 @@ public class MyPageDao {
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("myPageMapper.selectList", loginUser, rowBounds);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectList", loginUser, rowBounds);
 	}
 	
 	public ArrayList<OfflineChallengeRegular> selectOfflineChallengeRegular(SqlSessionTemplate sqlSession, Member loginUser, PageInfo pi) {

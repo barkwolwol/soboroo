@@ -204,14 +204,30 @@ public class MyPageController {
 	     ArrayList<Object> combinedList = new ArrayList<>();
 	   // MyPage combinedList = new MyPage();
 	     
-	     combinedList.add(list1);
-	     combinedList.add(list2);
-	     combinedList.add(list3);
-	     combinedList.add(list4);
-	     combinedList.add(list5);
-	     combinedList.add(list6);
-	     combinedList.add(list7);
-	     combinedList.add(list8);
+	     if(!list1.isEmpty()) {
+	    	 combinedList.addAll(list1);
+	     }
+	     if(!list2.isEmpty()) {
+	    	 combinedList.addAll(list2);
+	     }
+	     if(!list3.isEmpty()) {
+	    	 combinedList.addAll(list3);
+	     }
+	     if(!list4.isEmpty()) {
+	    	 combinedList.addAll(list4);
+	     }
+	     if(!list5.isEmpty()) {
+	    	 combinedList.addAll(list5);
+	     }
+	     if(!list6.isEmpty()) {
+	    	 combinedList.addAll(list6);
+	     }
+	     if(!list7.isEmpty()) {
+	    	 combinedList.addAll(list7);
+	     }
+	     if(!list8.isEmpty()) {
+	    	 combinedList.addAll(list8);
+	     }
 	     
 	     System.out.println(combinedList);
 		    mv.addObject("pi", pi).addObject("list", combinedList).setViewName("myPage/myBoard");
