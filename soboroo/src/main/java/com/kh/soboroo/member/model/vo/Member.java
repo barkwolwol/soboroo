@@ -8,10 +8,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author user1
+ *
+ */
 public class Member {
 	 private int memNo;
 	 private String memToken;
 	 private String memId;
+	 private String memPwd;
 	 private Date memBirth;
 	 private String memPhone;
 	 private String memName;
@@ -22,6 +27,29 @@ public class Member {
 	 private String memImg;
 	 
 	 public Member() {}
+	 
+	 
+	 
+
+	public Member(int memNo, String memToken, String memId, String memPwd, Date memBirth, String memPhone,
+			String memName, int memStatus, String memNickname, String memIntroduce, int memRprCum, String memImg) {
+		super();
+		this.memNo = memNo;
+		this.memToken = memToken;
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memBirth = memBirth;
+		this.memPhone = memPhone;
+		this.memName = memName;
+		this.memStatus = memStatus;
+		this.memNickname = memNickname;
+		this.memIntroduce = memIntroduce;
+		this.memRprCum = memRprCum;
+		this.memImg = memImg;
+	}
+
+
+
 
 	public Member(int memNo, String memToken, String memId, Date memBirth, String memPhone, String memName,
 			int memStatus, String memNickname, String memIntroduce, int memRprCum, String memImg) {
@@ -127,6 +155,23 @@ public class Member {
 		this.memImg = memImg;
 	}
 
+	
+	
+	
+	public String getMemPwd() {
+		return memPwd;
+	}
+
+
+
+
+	public void setMemPwd(String memPwd) {
+		this.memPwd = memPwd;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "Member [memNo=" + memNo + ", memToken=" + memToken + ", memId=" + memId + ", memBirth=" + memBirth
@@ -135,5 +180,7 @@ public class Member {
 				+ "]";
 	}
 	 
+	
+	
 	 
 }

@@ -8,29 +8,32 @@
 <link rel="stylesheet" href="resources/css/loginStyle.css">
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	
 	<div id="wrap">
-	    <div class="popup_area">
-	        <div id="login_box">
-	            <span id="title">소소하지만 보람찬 당신의 하루</span>
-	            <span id="titleLogo"><img src="resources/images/logo_1.png" alt=""></span>
+		<div class="popup_area">
+			<div id="login_box">
+				<span id="title">소소하지만 보람찬 당신의 하루</span>
+				<span id="titleLogo"><img src="resources/images/logo_1.png" alt=""></span>
 			</div>
-	       <div id="login_input">
-               <button type="submit" class="login_btn" onclick="loginWithKakao();">카카오로 시작하기</a></button>
-	       </div>
-     	       
-     	   <div id="login_input">
-               <button type="submit" class="login_btn">관리자 로그인</button>
-	       </div>
-	    </div>
+			<div id="login_input">
+				<button type="submit" class="login_btn" onclick="kakaoLogin();">카카오로 시작하기</a></button>
+			</div>
+	
+			<div id="login_input">
+				<button type="submit" class="login_btn">관리자 로그인</button>
+			</div>
+
+			<div id="login_input">
+				<button type="submit" class="login_btn"><a href="enrollForm.me">회원가입</a></button>
+			</div>
+		</div>
 	</div>
 
-	<!-- 카카오 로그인 -->              
-	<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
 	<script type="text/javascript">
 		//초기화 시키기. 
 		$(document).ready(function(){	
@@ -44,10 +47,98 @@
 		Kakao.Auth.authorize({
 			redirectUri: 'http://localhost:3500/soboroo/loginpage_kakao_callback'
 			});
-	  	}
+		  }
+	</script>
+	
+	<script>
+		function kakaoLogin() {
+			Kakao.Auth.login({
+				success: function (response) {
+				Kakao.API.request({
+					url: '/v2/user/me',
+					success: function (response) {
+						console.log(response);
+						kakaoLoginPro(response);
+					},
+					fail: function (error) {
+						console.log(error);
+					},
+				})
+			},
+				fail: function (error) {
+					console.log(error);
+				},
+			})
+		}
+
+		function kakaoLoginPro(response){
+			var data = {id:response.id,email:response.kakao_account.email}
+			$.ajax({
+				type : 'POST',
+				url : '/user/kakaoLoginPro.do',
+				data : data,
+				dataType : 'json',
+				success : function(data){
+					console.log(data);
+					if(data.JavaData == "YES"){
+						alert("로그인되었습니다.");
+						location.href = '/user/usermain.do'
+					}else if(data.JavaData == "register"){
+						$("#kakaoEmail").val(response.kakao_account.email);
+						$("#kakaoId").val(response.id);
+						$("#kakaoForm").submit();
+					}else{
+						alert("로그인에 실패했습니다");
+					}
+					
+				},
+				error: function(xhr, status, error){
+					alert("로그인에 실패했습니다."+error);
+				}
+			});
+		}
 	</script>
 
-	<script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script> -->
+
+	<!-- <script type="text/javascript">
 		var kakao_message = new Object();   
 		$(document).ready(function(){	
 			var ACCESS_TOKEN= $("#access_token").val();
@@ -94,7 +185,7 @@
 			});
 		});
 		
-	</script>
+	</script> -->
 	
 	<jsp:include page="../common/footer.jsp"/>
 </body>

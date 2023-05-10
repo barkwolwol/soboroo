@@ -6,6 +6,7 @@
 	<resultMap id="memberResultSet" type="Member">
 		<result column="MEM_NO" property="memNo"/>
 		<result column="MEM_ID" property="memId"/>
+		<result column="MEM_PWD" property="memPwd"/>
 		<result column="MEM_BIRTH" property="memBirth"/>
 		<result column="MEM_PHONE" property="memPhone"/>
 		<result column="MEM_NAME" property="memName"/>
@@ -13,6 +14,36 @@
 		<result column="MEM_NICKNAME" property="memNickname"/>
 		<result column="MEM_INTRODUCE" property="memIntroduce"/>
 	</resultMap>
+	
+	<insert id="insertMember">
+		insert
+		  into test_member
+		     (
+		       mem_no
+		     , mem_id
+		     , mem_pwd
+		     , mem_name
+		     )
+	    values
+	         (
+	           SEQ_TEST_MEM_NO.NEXTVAL
+	         , #{memId}
+	         , #{memPwd}
+	         , #{memName}
+	        )
+	</insert>
+	
+	<select id="idCheck" resultType="_int">
+		select
+		       count(*) as "count"
+		  from test_member
+		 where mem_id = #{checkId}
+	</select>
+	
+	
+	
+	
+	
  
 
 	<select id="loginMember" resultMap="memberResultSet">

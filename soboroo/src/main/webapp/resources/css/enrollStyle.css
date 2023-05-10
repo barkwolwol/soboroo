@@ -1,0 +1,61 @@
+#wrap{
+    width: 100vw;
+    height: 90vh !important;
+    background-color: rgba(0,0,0,.7);
+    position: relative;
+}
+
+.popup_area{
+    position: absolute;
+    width: 450px;
+    height: 530px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0,0,0,.55);
+    padding: 50px 65px 70px;
+    box-shadow: 1px 2px 4px rgb(0 0 0 / 25%);
+    text-align: center;
+}
+
+.popup_area span{
+    display: block;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+#titleLogo img{
+    width: 260px;
+    height: 80px;
+    margin: 20px;
+}
+
+#title{
+    font-size: 0.9rem;
+}
+#text_org{
+    color: #ff7920;
+    /*color: rgb(67, 115, 176);*/
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 0.8rem;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.login_btn{
+    width: 260px;
+    height: 45px;
+    margin-top: 10px;
+    background-color:#ff7920;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+

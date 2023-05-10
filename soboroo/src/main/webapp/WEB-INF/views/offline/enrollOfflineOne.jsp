@@ -47,6 +47,7 @@
 <!-- ========================== 웹에디터 ========================== -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
+
 <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
 <!-- ========================== 카카오맵 ========================== -->
