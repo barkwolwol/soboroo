@@ -240,6 +240,19 @@ public class MyPageController {
 				
 	}
 	
+	@RequestMapping(value="selectMySchedule.my", produces="application/json; charset=utf-8")
+	public ModelAndView selectMySchedule(ModelAndView mv, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		ArrayList<Object> list = myService.selectMySchedule(loginUser);
+		
+		System.out.println(list);
+		
+		mv.addObject("list", list).setViewName("myPage/myCalender");
+		
+		return mv;
+	}
+	
 
 
 }

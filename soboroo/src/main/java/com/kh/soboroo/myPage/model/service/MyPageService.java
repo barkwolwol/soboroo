@@ -49,4 +49,6 @@ public interface MyPageService {
 	int selectMyGroupListCount(Member loginUser);
 	
 	ArrayList<EntryList> selectMyGroupList(Member loginUser, PageInfo pi);
+	
+	ArrayList<Object> selectMySchedule(Member loginUser);
 }

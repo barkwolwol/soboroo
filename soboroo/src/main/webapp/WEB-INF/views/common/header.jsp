@@ -170,7 +170,7 @@
                         <a href="myCalender.do" class="nav-link dropdown-toggle" data-toggle="dropdown">마이페이지 <i
                             class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="myCalender.my">나의 일정</a></li>
+                          <li><a href="selectMySchedule.my">나의 일정</a></li>
                           <li><a href="myAlert.my">나의 알림</a></li>
                           <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">나의 활동 내역</a>

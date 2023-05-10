@@ -143,7 +143,7 @@
 												<thead>
 													<tr>
 														<th>글번호</th>
-														<!-- <th>제목</th> -->
+														<th>제목</th>
 														<th>모임일</th>
 													</tr>
 												</thead>
@@ -159,6 +159,7 @@
 															<c:forEach var="g" items="${list}">
 																<tr>
 																	<td class="bno">${g.groupNo }</td>
+																	<td class="bno">${g.groupTitle }</td>
 																	<td>${g.entryDate }</td>
 																</tr>
 															</c:forEach>

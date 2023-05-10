@@ -15,6 +15,7 @@ import lombok.ToString;
 public class EntryList {
 	 private int groupNo;
 	 private String entryId;
+	 private String groupTitle;
 	 private String waitNy;
 	 private Date entryDate;
 	 private int memNo;

@@ -96,6 +96,9 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("myPageMapper.selectMyGroupList", loginUser, rowBounds);
 	}
 	
+	public ArrayList<Object> selectMySchedule(SqlSessionTemplate sqlSession, Member loginUser){
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectMySchedule", loginUser);
+	}
 	
 	
 	

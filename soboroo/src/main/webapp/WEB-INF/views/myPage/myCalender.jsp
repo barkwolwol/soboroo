@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,33 +148,28 @@
 	</div>
 	<!-- Body inner end -->
 
-	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			var calendarEl = document.getElementById('calendar');
-			var calendar = new FullCalendar.Calendar(calendarEl, {
-				initialView : 'dayGridMonth',
-			/*  headerToolbar: {
-			   left: 'none',
-			   center: 'title'
-			   //right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-			 } */
-			 events:[
-				 {
-					 title : '일정',
-					 start : '2023-06-08',
-					 end : '2023-06-10'
-				 },
-				 {
-					 title : '일정',
-					 start : '2023-05-08',
-					 end : '2023-05-10'
-				 }
-			 ],
-			 editable : false
-			});
-			calendar.render();
-		});
-	</script>
+<script language="javascript">
+  var list = [
+    <c:forEach var="item" items="${list}">
+      {
+        title: '${item.title}',
+        start: '${item.date}',
+        end: '${item.date}'
+      }<c:if test="${!loop.last}">,</c:if>
+    </c:forEach>
+  ];
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: list,
+      editable: false
+    });
+    calendar.render();
+  });
+</script>
+
 
 
 

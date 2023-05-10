@@ -109,5 +109,10 @@ public class MyPageServiceImpl implements MyPageService {
 		return myDao.selectMyGroupList(sqlSession, loginUser, pi);
 	}
 
+	@Override
+	public ArrayList<Object> selectMySchedule(Member loginUser) {
+		return myDao.selectMySchedule(sqlSession, loginUser);
+	}
+
 
 }

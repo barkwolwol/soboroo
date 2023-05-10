@@ -14,10 +14,11 @@
 </resultMap>
 
 <resultMap type="EntryList" id="entryListResultSet">
-	<result column="group_no" property="groupNo"/>
+	<result column="group_no" property="no"/>
+	<result column="group_title" property="title"/>
 	<result column="entry_id" property="entryId"/>
 	<result column="wait_ny" property="waitNy"/>
-	<result column="entry_date" property="entryDate"/>
+	<result column="entry_date" property="date"/>
 	<result column="mem_no" property="memNo"/>
 	<result column="table_no" property="tableNo"/>
 </resultMap>
@@ -89,9 +90,48 @@
 	</select>
 	
 	<select id="selectMyGroupList" resultMap="entryListResultSet">
-	select group_no, entry_date
+	select group_no, group_title, entry_date
         from entry_list
         where mem_no = #{memNo}
           and wait_ny='N'
-          </select>
+     </select>
+     
+     <select id="selectMySchedule" resultMap="myPageResultSet">
+SELECT * FROM (
+  SELECT "no", "title", "date" FROM (
+    SELECT OFF_CHALLENGE_D_NO as "no", OFF_CHALLENGE_D_TITLE as "title", OFF_CHALLENGE_D_Date as "date"
+    FROM OFFLINE_CHALLENGE_D_DAY
+    WHERE del_ny = 'N' AND mem_no = #{memNo}
+    UNION
+    SELECT OFF_CHALLENGE_REG_NO as "no", OFF_CHALLENGE_REG_TITLE as "title", OFF_CHALLENGE_REG_Date as "date"
+    FROM OFFLINE_CHALLENGE_REGULAR
+    WHERE del_ny = 'N' AND mem_no = #{memNo}
+    UNION
+    SELECT OFF_GROUP_ONCE_NO as "no", OFF_GROUP_ONCE_TITLE as "title", OFF_GROUP_ONCE_Date as "date"
+    FROM OFFLINE_GROUP_ONCE
+    WHERE del_ny = 'N' AND mem_no = #{memNo}
+    UNION
+    SELECT OFF_GROUP_REG_NO as "no", OFF_GROUP_REG_TITLE as "title",  OFF_GROUP_REG_Date as "date"
+    FROM OFFLINE_GROUP_REGULAR
+    WHERE del_ny = 'N' AND mem_no = #{memNo}
+    UNION
+    SELECT ON_CHALLENGE_D_NO as "no", ON_CHALLENGE_D_TITLE as "title", ON_CHALLENGE_D_Date as "date"
+    FROM online_challenge_D_DAY
+    WHERE del_ny = 'N' AND mem_no = #{memNo}
+    UNION
+    SELECT ON_CHALLENGE_REG_NO as "no", ON_CHALLENGE_REG_TITLE as "title",ON_CHALLENGE_REG_Date as "date"
+    FROM online_challenge_regular
+    WHERE del_ny = 'N' AND mem_no = #{memNo}
+    UNION
+    SELECT ON_GROUP_ONCE_NO as "no", ON_GROUP_ONCE_TITLE as "title", ON_GROUP_ONCE_Date as "date"
+    FROM online_group_once
+    WHERE del_ny = 'N' AND mem_no = #{memNo}
+    UNION
+    SELECT ON_GROUP_REG_NO as "no", ON_GROUP_REG_TITLE as "title", ON_GROUP_REG_Date as "date"
+    FROM online_group_regular
+    WHERE del_ny = 'N' AND mem_no = #{memNo}
+  )
+) ORDER BY "date" DESC
+
+     </select>
 </mapper>
