@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.entryList.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.dao.MyPageDao;
 import com.kh.soboroo.myPage.model.vo.MyPage;
@@ -72,7 +73,6 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 
-
 	@Override
 	public ArrayList<Board> selectList(Member loginUser, PageInfo pi) {
 		
@@ -82,46 +82,6 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public int selectReplyListCount(Member loginUser) {
 		return myDao.selectReplyListCount(sqlSession, loginUser);
-	}
-	
-	@Override
-	public ArrayList<OfflineChallengeRegular> selectOfflineChallengeRegular(Member loginUser, PageInfo pi) {
-		return myDao.selectOfflineChallengeRegular(sqlSession, loginUser, pi);
-	}
-	
-	@Override
-	public ArrayList<OfflineChallengeDday> selectOfflineChallengeDday(Member loginUser, PageInfo pi) {
-		return myDao.selectOfflineChallengeDday(sqlSession, loginUser, pi);
-	}
-
-	@Override
-	public ArrayList<OfflineGroupOnce> selectOfflineGroupOnce(Member loginUser, PageInfo pi) {
-		return myDao.selectOfflineGroupOnce(sqlSession, loginUser, pi);
-	}
-
-	@Override
-	public ArrayList<OfflineGroupRegular> selectOfflineGroupRegular(Member loginUser, PageInfo pi) {
-		return myDao.selectOfflineGroupRegular(sqlSession, loginUser, pi);
-	}
-
-	@Override
-	public ArrayList<OnlineChallengeDday> selectOnlineChallengeDday(Member loginUser, PageInfo pi) {
-		return myDao.selectOnlineChallengeDday(sqlSession, loginUser, pi);
-	}
-
-	@Override
-	public ArrayList<OnlineChallengeRegular> selectOnlineChallengeRegular(Member loginUser, PageInfo pi) {
-		return myDao.selectOnlineChallengeRegular(sqlSession, loginUser, pi);
-	}
-
-	@Override
-	public ArrayList<OnlineGroupOnce> selectOnlineGroupOnce(Member loginUser, PageInfo pi) {
-		return myDao.selectOnlineGroupOnce(sqlSession, loginUser, pi);
-	}
-
-	@Override
-	public ArrayList<OnlineGroupRegular> selectOnlineGroupRegular(Member loginUser, PageInfo pi) {
-		return myDao.selectOnlineGroupRegular(sqlSession, loginUser, pi);
 	}
 
 	@Override
@@ -134,7 +94,20 @@ public class MyPageServiceImpl implements MyPageService {
 		return myDao.selectGroupReplyList(sqlSession, loginUser, pi);
 	}
 
+	@Override
+	public ArrayList<Object> selectTestList(Member loginUser, PageInfo pi) {
+		return myDao.selectTestList(sqlSession, loginUser, pi);
+	}
+
+	@Override
+	public int selectMyGroupListCount(Member loginUser) {
+		return myDao.selectMyGroupListCount(sqlSession, loginUser);
+	}
 	
+	@Override
+	public ArrayList<EntryList> selectMyGroupList (Member loginUser, PageInfo pi){
+		return myDao.selectMyGroupList(sqlSession, loginUser, pi);
+	}
 
 
 }

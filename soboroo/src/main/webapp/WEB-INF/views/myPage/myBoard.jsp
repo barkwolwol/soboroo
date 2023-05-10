@@ -146,7 +146,7 @@
 													<tr>
 														<th>글번호</th>
 														<th>제목</th>
-														<th>모임일</th>
+														<th>등록일</th>
 													</tr>
 												</thead>
 												<tbody align="center">
@@ -162,7 +162,7 @@
 																<tr>
 																	<td class="bno">${g.no }</td> 
 																	<td>${g.title }</td>
-																	<td>${g.date }</td>
+																	<td>${g.enrollDate }</td>
 																</tr>
 															</c:forEach>
 														</c:otherwise>
@@ -209,7 +209,7 @@
 											</c:otherwise>
 										</c:choose>
 
-										<c:forEach var="p" begin="${ pi.startPage + 1 }"
+										<c:forEach var="p" begin="${ pi.startPage }"
 											end="${ pi.endPage }">
 
 											<li class="page-item"><a class="page-link"

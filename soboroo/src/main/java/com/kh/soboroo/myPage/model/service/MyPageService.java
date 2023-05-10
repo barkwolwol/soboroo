@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.entryList.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeDday;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeRegular;
@@ -39,16 +40,13 @@ public interface MyPageService {
 	
 	int selectGroupBoardListCount(Member loginUser);
 	
-	ArrayList<OfflineChallengeDday> selectOfflineChallengeDday(Member loginUser, PageInfo pi);
-	ArrayList<OfflineChallengeRegular> selectOfflineChallengeRegular(Member loginUser, PageInfo pi);
-	ArrayList<OfflineGroupOnce> selectOfflineGroupOnce(Member loginUser, PageInfo pi);
-	ArrayList<OfflineGroupRegular> selectOfflineGroupRegular(Member loginUser, PageInfo pi);
-	ArrayList<OnlineChallengeDday> selectOnlineChallengeDday(Member loginUser, PageInfo pi);
-	ArrayList<OnlineChallengeRegular> selectOnlineChallengeRegular(Member loginUser, PageInfo pi);
-	ArrayList<OnlineGroupOnce> selectOnlineGroupOnce(Member loginUser, PageInfo pi);
-	ArrayList<OnlineGroupRegular> selectOnlineGroupRegular(Member loginUser, PageInfo pi);
-	
 	ArrayList<Reply> selectReplyList(Member loginUser, PageInfo pi);
 	
 	ArrayList<Reply> selectGroupReplyList(Member loginUser, PageInfo pi);
+	
+	ArrayList<Object> selectTestList(Member loginUser, PageInfo pi);
+	
+	int selectMyGroupListCount(Member loginUser);
+	
+	ArrayList<EntryList> selectMyGroupList(Member loginUser, PageInfo pi);
 }

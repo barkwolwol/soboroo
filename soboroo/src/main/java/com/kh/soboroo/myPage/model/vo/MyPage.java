@@ -1,6 +1,8 @@
 package com.kh.soboroo.myPage.model.vo;
 
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,8 @@ public class MyPage {
 	private int memNo;
 	private int no;
 	private String title;
-	private String date;
+	private Date date;
+	private Date enrollDate;
 	private int tableNo;
 
 }	

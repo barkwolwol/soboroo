@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
+import com.kh.soboroo.entryList.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;
 import com.kh.soboroo.myPage.model.vo.MyPage;
@@ -185,121 +186,15 @@ public class MyPageController {
 	public ModelAndView selectGroupBoardList(@RequestParam(value="cpage", defaultValue="1")int currentPage, ModelAndView mv, HttpSession session) {
 
 	    Member loginUser = (Member)session.getAttribute("loginUser");
-
+	    
 	    int listCount = myService.selectGroupBoardListCount(loginUser);
-
+	    
 	    PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+	    ArrayList<Object> list = myService.selectTestList(loginUser, pi);
+	    
+	    mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/myBoard");
+		return mv;
 
-	    ArrayList<OfflineChallengeDday> list1 = myService.selectOfflineChallengeDday(loginUser, pi);
-	    ArrayList<OfflineChallengeRegular> list2 = myService.selectOfflineChallengeRegular(loginUser, pi);
-	    ArrayList<OfflineGroupOnce> list3 = myService.selectOfflineGroupOnce(loginUser, pi);
-	    ArrayList<OfflineGroupRegular> list4 = myService.selectOfflineGroupRegular(loginUser, pi);
-	    ArrayList<OnlineChallengeDday> list5 = myService.selectOnlineChallengeDday(loginUser, pi);
-	    ArrayList<OnlineChallengeRegular> list6 = myService.selectOnlineChallengeRegular(loginUser, pi);
-	    ArrayList<OnlineGroupOnce> list7 = myService.selectOnlineGroupOnce(loginUser, pi);
-	    ArrayList<OnlineGroupRegular> list8 = myService.selectOnlineGroupRegular(loginUser, pi);
-
-	    System.out.println(list4);
-	    // 필수 정보만을 포함하는 새로운 배열 생성
-	     ArrayList<Object> combinedList = new ArrayList<>();
-	   // MyPage combinedList = new MyPage();
-	     
-	     if(!list1.isEmpty()) {
-	    	 combinedList.addAll(list1);
-	     }
-	     if(!list2.isEmpty()) {
-	    	 combinedList.addAll(list2);
-	     }
-	     if(!list3.isEmpty()) {
-	    	 combinedList.addAll(list3);
-	     }
-	     if(!list4.isEmpty()) {
-	    	 combinedList.addAll(list4);
-	     }
-	     if(!list5.isEmpty()) {
-	    	 combinedList.addAll(list5);
-	     }
-	     if(!list6.isEmpty()) {
-	    	 combinedList.addAll(list6);
-	     }
-	     if(!list7.isEmpty()) {
-	    	 combinedList.addAll(list7);
-	     }
-	     if(!list8.isEmpty()) {
-	    	 combinedList.addAll(list8);
-	     }
-	     
-	     System.out.println(combinedList);
-		    mv.addObject("pi", pi).addObject("list", combinedList).setViewName("myPage/myBoard");
-		    
-		    return mv;
-/*
-	    for (OfflineChallengeDday offlineChallengeDday : list1) {
-	    	MyPage myPage = new MyPage();
-	        myPage.setOffChallengeRegNo(offlineChallengeDday.getOffChallengeDNo());
-	        myPage.setOffChallengeRegTitle(offlineChallengeDday.getOffChallengeDTitle());
-	        myPage.setOffChallengeRegDate(offlineChallengeDday.getOffChallengeDDate());
-	        combinedList.add(myPage);
-	    }
-
-	    for (OfflineChallengeRegular OfflineChallengeRegular : list2) {
-	    	MyPage myPage = new MyPage();
-	        myPage.setOffChallengeRegNo(OfflineChallengeRegular.getOffChallengeRegNo());
-	        myPage.setOffChallengeRegTitle(OfflineChallengeRegular.getOffChallengeRegTitle());
-	        myPage.setOffChallengeRegDate(OfflineChallengeRegular.getOffChallengeRegDate());
-	        combinedList.add(myPage);
-	    }
-	    
-	    for (OfflineGroupOnce OfflineGroupOnce : list3) {
-	    	MyPage myPage = new MyPage();
-	        myPage.setOffChallengeRegNo(OfflineGroupOnce.getOffGroupOnceNo());
-	        myPage.setOffChallengeRegTitle(OfflineGroupOnce.getOffGroupOnceTitle());
-	        myPage.setOffChallengeRegDate(OfflineGroupOnce.getOffGroupOnceDate());
-	        combinedList.add(myPage);
-	    }
-	    
-	    for (OfflineGroupRegular OfflineGroupRegular : list4) {
-	    	MyPage myPage = new MyPage();
-	        myPage.setOffChallengeRegNo(OfflineGroupRegular.getOffGroupRegNo());
-	        myPage.setOffChallengeRegTitle(OfflineGroupRegular.getOffGroupRegTitle());
-	        myPage.setOffChallengeRegDate(OfflineGroupRegular.getOffGroupRegDate());
-	        combinedList.add(myPage);
-	    }
-	    
-	    for (OnlineChallengeDday OnlineChallengeDday : list5) {
-	    	MyPage myPage = new MyPage();
-	        myPage.setOffChallengeRegNo(OnlineChallengeDday.getOnChallengeDNo());
-	        myPage.setOffChallengeRegTitle(OnlineChallengeDday.getOnChallengeDTitle());
-	        myPage.setOffChallengeRegDate(OnlineChallengeDday.getOnChallengeDDate());
-	        combinedList.add(myPage);
-	    }
-	    
-	    for (OnlineChallengeRegular OnlineChallengeRegular : list6) {
-	    	MyPage myPage = new MyPage();
-	        myPage.setOffChallengeRegNo(OnlineChallengeRegular.getOnChallengeRegNo());
-	        myPage.setOffChallengeRegTitle(OnlineChallengeRegular.getOnChallengeRegTitle());
-	        myPage.setOffChallengeRegDate(OnlineChallengeRegular.getOnChallengeRegDate());
-	        combinedList.add(myPage);
-	    }
-	    
-	    
-	    for (OnlineGroupOnce OnlineGroupOnce : list7) {
-	    	MyPage myPage = new MyPage();
-	        myPage.setOffChallengeRegNo(OnlineGroupOnce.getOnGroupOnceNo());
-	        myPage.setOffChallengeRegTitle(OnlineGroupOnce.getOnGroupOnceTitle());
-	        myPage.setOffChallengeRegDate(OnlineGroupOnce.getOnGroupOnceDate());
-	        combinedList.add(myPage);
-	    }
-	    
-	    for (OnlineGroupRegular OnlineGroupRegular : list8) {
-	    	MyPage myPage = new MyPage();
-	        myPage.setOffChallengeRegNo(OnlineGroupRegular.getOnGroupRegNo());
-	        myPage.setOffChallengeRegTitle(OnlineGroupRegular.getOnGroupRegTitle());
-	        myPage.setOffChallengeRegDate(OnlineGroupRegular.getOnGroupRegDate());
-	        combinedList.add(myPage);
-	    }
-*/		
-	    
 	}
 	
 	@RequestMapping(value = "communityReplyList.my", produces = "application/json; charset=utf-8")
@@ -328,6 +223,21 @@ public class MyPageController {
 		
 		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/mybReply");
 		return mv;
+	}
+	
+	@RequestMapping(value = "selectMyGroup.my", produces="application/json; charset=utf-8")
+	public ModelAndView selectMyGroup(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int listCount = myService.selectMyGroupListCount(loginUser);
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		
+		ArrayList<EntryList> list = myService.selectMyGroupList(loginUser, pi);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/myGroup");
+		return mv;
+				
 	}
 	
 
