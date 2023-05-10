@@ -3,6 +3,7 @@ package com.kh.soboroo.admin.controller;
 import java.util.ArrayList;
 
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +40,16 @@ public class AdminController {
 			
 			ArrayList<AdminNotice> list = aService.selectNoticeList(pi);
 			
+			ArrayList<AdminBoard> list2 = aService.selectBoardList(pi);
+			
 			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/adminIndex");
 			
 			
 			return mv;
 
 		} 
+		
+		
 		
 			
 		// 관리자 회원 관리 페이지 호출
@@ -197,8 +202,18 @@ public class AdminController {
 		
 		// 관리자 통합 신고 관리 페이지 호출
 		@RequestMapping("report.ad")
-		public String intergrateReport() {
-			return "admin/intergratedReport";
+		public ModelAndView intergrateReport(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+			
+			PageInfo pi = Pagination.getPageInfo(0,currentPage, 10, 5);
+			
+			ArrayList<AdminMember> list = aService.selectReportList(pi);
+			
+			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/intergratedReport");
+			
+			
+			return mv;
+			
+			
 		}
 		
 		// 관리자 게시글 관리 페이지 호출

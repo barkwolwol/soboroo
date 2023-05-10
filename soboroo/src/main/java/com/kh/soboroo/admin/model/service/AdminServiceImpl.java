@@ -70,6 +70,12 @@ public class AdminServiceImpl implements AdminService {
 		
 		return aDao.selectSusMemberList(sqlSession, pi);
 	}
+
+	@Override
+	public ArrayList<AdminMember> selectReportList(PageInfo pi) {
+		
+		return aDao.selectReportList(sqlSession,pi);
+	}
 	
 	
 	

@@ -302,175 +302,30 @@
 <th class="text-end">복구/삭제</th>
 </tr>
 </thead>
+<c:forEach var="r" items="${list}">
  <tbody>
 <tr>
 <td>
 <h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-<a href="profile.html">촉촉초코칩<span>9876543210</span></a>
+<a href="#" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
+<a href="#">${r.memNickname }<span>${r.memNo }</span></a>
 </h2>
 </td>
 <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-<td>1</td>
-<td>커피바리스타</td>
+<td>${r.memRprCount }</td>
+<td>${r.boardTitle }</td>
 <td>댓글</td>
 <td>2023-04-20 11:20:23</td>
 <td>폭언 및 욕설</td>
 <td>2023-04-20 12:20:43</td>
-<td>zxcc123@naver.com</td>
+<td>${r.reportId }</td>
 <td class="text-end">
 <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
 <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
+</td>
+</tr>
 
-</td>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
 <!-- 모달팝업 -->
 <div class="modal custom-modal fade" id="danger_paid" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
@@ -490,91 +345,9 @@
     <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
   
   </div>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
 </td>
 </tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
-<tr>
-<td>
-    <h2 class="table-avatar">
-        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-        <a href="profile.html">촉촉초코칩<span>9876543210</span></a>
-        </h2>
-        </td>
-        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
-        <td>1</td>
-        <td>커피바리스타</td>
-        <td>댓글</td>
-        <td>2023-04-20 11:20:23</td>
-        <td>폭언 및 욕설</td>
-        <td>2023-04-20 12:20:43</td>
-        <td>zxcc123@naver.com</td>
-        <td class="text-end">
-        <a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-        <a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-        <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
+</c:forEach>
 </tbody>
 </table>
 </div>

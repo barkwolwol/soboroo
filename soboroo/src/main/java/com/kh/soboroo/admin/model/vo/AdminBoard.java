@@ -24,6 +24,6 @@ public class AdminBoard {
 	private int category;
 	private int memNo;
 	private int tableNo;
-	
+	private String categoryTitle;
 
 }

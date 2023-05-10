@@ -351,6 +351,7 @@
                                                 <th class="text-right">더보기</th>
                                             </tr>
                                         </thead>
+                                        <c:forEach var="b" items="${list2}">
                                         <tbody>
                                             <tr>
                                                 <td>
@@ -358,12 +359,12 @@
                                                         <a href="profile.html"><img
                                                                 class="avatar avatar-sm me-2 avatar-img rounded-circle"
                                                                 src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg"
-                                                                alt="User Image">Barbara Moore</a>
+                                                                alt="User Image">${b.memNickname}</a>
                                                     </h2>
                                                 </td>
-                                                <td>$118</td>
-                                                <td>23 Nov 2020</td>
-                                                <td><span class="badge bg-success-light">여행</span></td>
+                                                <td>${b.count }</td>
+                                                <td>${b.createDate }</td>
+                                                <td><span class="badge bg-success-light">${b.categoryTitle }</span></td>
                                                 <td class="text-right">
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle"
@@ -528,6 +529,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
+                                        </c:forEach>
                                     </table>
                                 </div>
                             </div>

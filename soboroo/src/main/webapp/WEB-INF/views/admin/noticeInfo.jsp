@@ -311,7 +311,7 @@
 
 <a href="list.no" class="items-links">${ n.ntcNo }</a>
 </td>
-<td><a href="list.no">${n.ntcTitle}</a></td>
+<td><a href="detail.no?nno=${n.ntcNo }">${n.ntcTitle}</a></td>
 <td class="text-primary">${n.ntcWriter }</td>
 <td>${n.ntcCount }</td>
 <td>${n.ntcCreateDate }</td>

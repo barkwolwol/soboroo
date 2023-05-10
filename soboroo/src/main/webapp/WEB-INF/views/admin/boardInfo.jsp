@@ -331,7 +331,7 @@
                                                 </label>
                                                 <a href="list.bo" class="items-links">${b.boardNo}</a>
                                             </td>
-                                            <td><a href="list.bo">${b.boardTitle}</a></td>
+                                            <td><a href="detail.bo?bno=${b.boardNo }">${b.boardTitle}</a></td>
                                             <td class="text-primary">asdasd123</td>
                                             <td>${b.count}</td>
                                             <td>${b.createDate}</td>

@@ -44,6 +44,26 @@
 		<result column="mem_update_date" property="memUpdateDate"/>
 	</resultMap>
 	
+	<resultMap type="AdminCategory" id="adminCategoryResultSet">
+			<result column="category_no" property="categoryNo"/>
+			<result column="category_title" property="categoryTitle"/>
+	</resultMap>
+	
+	<resultMap type="AdminReply" id="adminReplyResultSet">
+		<result column="reply_no" property="replyNo"/>
+		<result column="reply_content" property="replyContent"/>
+		<result column="enroll_date" property="enrollDate"/>
+		<result column="modify_date" property="modifyDate"/>
+		<result column="del_ny" property="delNy"/>
+		<result column="rep_ny" property="repNy"/>
+		<result column="recomment_ny" property="recommentNy"/>
+		<result column="reper_no" property="reperNo"/>
+		<result column="group_board_no" property="groupBoardNo"/>
+		<result column="mem_no" property="memNo"/>
+		<result column="table_no" property="tableNo"/>
+	</resultMap>
+	
+	
 	<select id="selectNoticeListCount" resultType="_int">
 		select    
 	    count(*)
@@ -52,19 +72,19 @@
 	</select>	
 	
 	<select id="selectNoticeList" resultMap="adminResultSet">
-			select 
-		 ntc_no
-		,ntc_writer
-		,ntc_title
-		,ntc_content
-		,to_char(ntc_create_date, 'YYYY-MM-DD') as "ntc_create_date"
-		,ntc_update_date
-		,ntc_count
-		,ntc_del_ny
-		from notice 
-		where ntc_del_ny = 'N'
-		order
-		by ntc_no desc
+		select 
+		  ntc_no
+		, ntc_writer
+		, ntc_title
+		, ntc_content
+		, to_char(ntc_create_date, 'YYYY-MM-DD') as "ntc_create_date"
+		, ntc_update_date
+		, ntc_count
+		, ntc_del_ny
+	from notice 
+	where ntc_del_ny = 'N'
+	order
+	by ntc_no desc
 
 	</select>
 	
@@ -85,10 +105,13 @@
 		  , modify_date
 		  , count
 		  , del_ny
-		  , category
 		  , mem_no
 		  , table_no
+		  , category_title
+		  , mem_name
 	   from board
+	   join category on (board.category = category.category_no)
+	   join member using(mem_no)
 	  where del_ny = 'N'
 	  order
 		 by board_no desc
@@ -127,6 +150,29 @@
 	
 	
 	</select>
+	
+	
+	<select id="selectReportList" resultMap="adminMemResultSet">
+		select 
+        mem_nickname
+      , mem_id
+      , mem_rpr_count
+      , board_title
+      , board_content
+      , reply_content
+      , to_char(create_date,'YYYY-MM-DD')
+      , to_char(enroll_date, 'YYYY-MM-DD')
+      , sysdate
+      , mem_id as "report_id"
+     from member
+     join board using(mem_no)
+     join reply using(mem_no)
+     where mem_rpr_count != 0
+	
+	</select>
+	
+	
+	
 	
 
 </mapper>

@@ -13,6 +13,8 @@ import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.member.model.vo.Member;
 
+import sun.jvm.hotspot.debugger.Page;
+
 @Repository
 public class AdminDao {
 	
@@ -87,6 +89,19 @@ public class AdminDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return (ArrayList)sqlSession.selectList("adminMapper.selectSusMemberList", null, rowBounds);
+		
+	}
+	
+	public ArrayList<AdminMember> selectReportList(SqlSessionTemplate sqlSession, PageInfo pi){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectReportList", null, rowBounds);
+		
 		
 	}
 	

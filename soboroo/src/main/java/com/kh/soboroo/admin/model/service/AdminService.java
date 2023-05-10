@@ -45,6 +45,9 @@ public interface AdminService {
 	ArrayList<AdminMember> selectSusMemberList(PageInfo pi);
 	
 	
+	// 관리자 통합신고 관리
+	ArrayList<AdminMember> selectReportList(PageInfo pi);
+	
 	
 	
 }

@@ -315,7 +315,7 @@
 <a class="btn btn-sm btn-white text-success" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-edit me-1"></i>복구</a>
 
 </td>
-</tr>
+</tr> 
 
 </td>
 </tr>
