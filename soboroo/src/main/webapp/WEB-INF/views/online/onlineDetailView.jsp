@@ -10,6 +10,15 @@
 	<!-- Favicon
 	================================================== -->
 	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+	
+	<style>
+		.entry-list-me {
+      		width: auto;
+      		height: 200px;
+			border: 1px solid red;
+			/*margin-top: 50px;*/
+		}
+	</style>
 </head>
 <body>
   <div class="body-inner">
@@ -42,15 +51,22 @@
 
         <div class="row">
           <div class="col-lg-8">
-            <div id="page-slider" class="page-slider small-bg">
-              <div class="item">
-                <img loading="lazy" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/online/coffee1.jpg" alt="모임소개이미지1" />
+            <div id="page-slider" class="page-slider small-bg" style="background-color: rgb(241, 238, 237);">
+              <div class="item" style="height: 550px;">
+                <img loading="lazy" style="max-width: 100%; max-height: 550px; margin: auto;" src="${pageContext.request.contextPath}/resources/images/online/coffee1.jpg" alt="모임소개이미지1" />
               </div>
 
-              <div class="item">
-                <img loading="lazy" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/online/coffee2.jpg" alt="모임소개이미지2" />
+              <div class="item" style="height: 550px;">
+                <img loading="lazy" style="max-width: 100%; max-height: 550px; margin: auto;" src="${pageContext.request.contextPath}/resources/images/online/coffee2.jpg" alt="모임소개이미지2" />
+              </div>
+              
+              <div class="item" style="height: 550px;">
+                <img loading="lazy" style="max-width: 100%; max-height: 550px; margin: auto;" src="${pageContext.request.contextPath}/resources/images/online/penguin.jpg" alt="모임소개이미지3" />
               </div>
             </div><!-- Page slider end -->
+            
+            <div class="entry-list-me"></div>
+            
           </div><!-- Slider col end -->
 
           <div class="col-lg-4 mt-5 mt-lg-0">
