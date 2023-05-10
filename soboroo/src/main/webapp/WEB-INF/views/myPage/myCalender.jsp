@@ -159,7 +159,11 @@
       {
         title: '${item.title}',
         start: '${item.date}',
-        end: '${item.date}'
+        end: (function() {
+          var startDate = new Date('${item.date}');
+          var endDate = new Date(startDate.getTime() + 2 * 24 * 60 * 60 * 1000);
+          return endDate.toISOString().split('T')[0];
+        })()
       }<c:if test="${!loop.last}">,</c:if>
     </c:forEach>
   ];
@@ -173,7 +177,8 @@
     });
     calendar.render();
   });
-</script> -->
+</script>
+ -->
 <!-- <script language="javascript">
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
@@ -200,22 +205,35 @@
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
-      events: [
-        {
-          title: '반복 일정',  // 반복 일정의 제목
-          start: '2023-05-15',  // 반복 일정의 시작 날짜
-          end: '2023-05-31',    // 반복 일정의 종료 날짜
-          // 반복 설정
-          daysOfWeek: [1, 3, 5]  // 반복 요일 (월요일, 수요일, 금요일)
-          // startTime: '09:00:00',  // 반복 시작 시간
-          // endTime: '10:00:00'     // 반복 종료 시간
-        }
-      ],
-      editable: false
+      editable: false,
+      events: generateRecurringEvents('2023-05-15', '2023-06-01', [1, 3, 5])
     });
     calendar.render();
   });
+
+  function generateRecurringEvents(startDate, endDate, recurringDays) {
+    var events = [];
+    var currentDate = new Date(startDate);
+    var lastDate = new Date(endDate);
+    lastDate.setDate(lastDate.getDate() + 1); // 종료 날짜도 포함하기 위해 1일 추가
+
+    while (currentDate < lastDate) {
+      if (recurringDays.includes(currentDate.getDay())) {
+        var event = {
+          title: '반복 일정',
+          start: currentDate.toISOString().split('T')[0], // 날짜만 포맷
+          end: currentDate.toISOString().split('T')[0] // 날짜만 포맷
+        };
+        events.push(event);
+      }
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    return events;
+  }
 </script>
+
+
 
 
 

@@ -1,14 +1,17 @@
 package com.kh.soboroo.myPage.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,6 +74,7 @@ public class MyPageController {
 	// 마이페이지 알림 호출
 	@RequestMapping("myAlert.my")
 	public String myAlert() {
+		
 		return "myPage/myAlert";
 	}
 
@@ -123,7 +127,7 @@ public class MyPageController {
 			Member updateNick = myService.loginMember(loginUser);
 			session.setAttribute("loginUser", updateNick);
 			
-			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
+			session.setAttribute("updateBellIcon", "updateBellIcon");
 			
 			return "redirect:updateInfo.my";		
 		} else {
@@ -253,6 +257,16 @@ public class MyPageController {
 		return mv;
 	}
 	
+	@ResponseBody
+	@RequestMapping("removeRingSession")
+	public void removeRingSession(HttpServletRequest request, Principal principal) {
+	  if (principal != null) {
+	    HttpSession session = request.getSession(false); // 현재 요청과 연결된 세션을 가져옴
+	    if (session != null && session.getAttribute("loginUser").equals(principal.getName())) {
+	      session.invalidate(); // 세션 무효화
+	    }
+	}
 
+	 }
 
 }

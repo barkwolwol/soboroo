@@ -44,6 +44,8 @@
       <!-- <script src="https://code.jquery.com/jquery-3.3.1/slim.min.js"></script> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <%-- 
+      <script src="${pageContext.request.contextPath}/resources/js/alarm.js"></script> --%>
 
       <style>
         .popover-body li {
@@ -57,6 +59,20 @@
           padding: 3px 10px 3px;
           float: right;
         }
+        
+ .visually-hidden {
+  display: none !important;
+}
+
+   .position-absolute {
+  transition: all 0.3s ease-in-out;
+  visibility: visible;
+}
+
+
+.position-absolute.show {
+  visibility: visible;
+} 
       </style>
 
     </head>
@@ -69,7 +85,45 @@
 		</script>
 		<c:remove var="alertMsg" scope="session"/>
 	</c:if>
-    
+	
+	<c:if test="${not empty updateBellIcon}">
+	<script>
+			$(function() {
+				updateBellIcon();
+			});
+	</script>
+</c:if>  
+<script>
+  function updateBellIcon() {
+    $(".bg-danger").removeClass("visually-hidden");
+
+    $(".fa-bell").on("click", function() {
+      removeRedPoint();
+    });
+  }
+
+  function removeRedPoint() {
+	  $(".bg-danger").addClass("visually-hidden");
+
+	  $.ajax({
+	    type: "POST",
+	    url: "removeRingSession",
+	    success: function(data) {
+	      console.log("Session invalidated");
+	      $(".bg-danger").addClass("visually-hidden");
+	    },
+	    error: function(xhr, status, error) {
+	      console.log("AJAX 통신 실패!");
+	      console.log("Status: " + status);
+	      console.log("Error: " + error);
+	    }
+	  });
+	}
+
+ 
+</script>
+
+
 
    <div id="top-bar" class="top-bar">
         <div class="container">
@@ -182,42 +236,85 @@
                               <li><a href="communityReplyList.my">커뮤니티 댓글 조회</a></li>
                             </ul>
                           <li><a href="updateInfo.my">개인정보 수정</a></li>
-                      </li>
                     </ul>
-
-                    </li>
-                    <li class="nav-item"><i class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
-                        data-trigger="focus" title="최신 알림" data-html="true" data-content="
-                        
-                        <div>
-                        <li>XXX님이 회원님의 소모임에 참가했습니다.</li>
-                      </div>
-                        <div>
-                        <li>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</li>
-                      </div>
-                        <div>
-                        <li>XXX님이 회원님의 소모임 게시글에 댓글을 남겼습니다.</li>
-                      </div>
-                        <div>
-                        <li>XXX님의 소모임에 참여되었습니다.</li>
-                      </div>
-                        <div>
-                        <li>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</li>
-                      </div>
-                      <a href='myAlert.my'>더보기</a>
-                      " data-placement="bottom">
-                      </i>
-                          <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"></span>
                       </li>
-                     
-
-                    <script>
-                      $(function () {
-                        $('[data-toggle="popover"]').popover()
-                      });
-                    </script>
-
+						<li class="nav-item">
+						  <i id="bellIcon" class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
+						    data-trigger="focus" title="최신 알림" data-html="true"
+						    data-content="<div>XXX님이 회원님의 소모임에 참가했습니다.</div>
+						                  <div>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</div>
+						                  <div>XXX님이 회원님의 소모임 게시글에 댓글을 남겼습니다.</div>
+						                  <div>XXX님의 소모임에 참여되었습니다.</div>
+						                  <div>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</div>
+						                  <a href='myAlert.my'>더보기</a>" data-placement="bottom"></i>
+						  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"></span>
+						</li>
                     </ul>
+<script>
+  $(function() {
+    $('[data-toggle="popover"]').popover();
+
+    // 닉네임 변경 시 팝오버 처리
+    $(document).ready(function() {
+      var updateBellIcon = '<%= session.getAttribute("updateBellIcon") %>';
+      if (updateBellIcon === "updateBellIcon") {
+        var redPoint = $('.bg-danger');
+        var bellIcon = $('#bellIcon');
+        
+        redPoint.removeClass('visually-hidden');
+        bellIcon.popover('hide');
+
+        // 개인정보 수정 메시지 추가
+        var popoverContent = bellIcon.next('.popover-body').html();
+        if (popoverContent && popoverContent.indexOf('개인정보가 수정되었습니다.') === -1) {
+          popoverContent += '<div>개인정보가 수정되었습니다.</div>';
+          bellIcon.next('.popover-body').html(popoverContent);
+        }
+
+        // 팝오버가 표시된 후에 세션 속성을 제거
+        removeUpdateBellIcon();
+      }
+    });
+
+    // 홈페이지 접속 시 초기 상태 설정
+    var redPoint = $('.bg-danger');
+    var bellIcon = $('#bellIcon');
+
+    redPoint.addClass('visually-hidden');
+
+    // 팝오버 닫힘 처리
+    $(document).on('click', function(event) {
+      if (!bellIcon.is(event.target) && bellIcon.has(event.target).length === 0) {
+        bellIcon.popover('hide');
+      }
+    });
+
+    // 세션 속성 제거 함수
+    function removeUpdateBellIcon() {
+      $.ajax({
+        type: 'POST',
+        url: 'removeRingSession',
+        success: function() {
+          console.log('updateBellIcon removed');
+        },
+        error: function(xhr, status, error) {
+          console.log('Failed to remove updateBellIcon');
+          console.log('Status: ' + status);
+          console.log('Error: ' + error);
+        }
+      });
+    }
+  }); 
+</script>
+
+
+
+
+
+
+
+
+
                     <ul class="nav navbar-nav ml-auto align-items-center">
                       <li class="header-get-a-quote">
                       <c:choose> <c:when test="${empty loginUser }">
