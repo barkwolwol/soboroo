@@ -185,4 +185,20 @@
 	   from  dual
 	</select>
 
+	<update id="updateBoard">
+		update
+		 	board
+		set board_title = #{boardTitle}
+		  , board_content = #{boardContent}
+		  , modify_date = sysdate
+	  where board_no = #{boardNo}
+	</update>
+	
+	<update id="deleteBoard">
+		update
+			   board
+		   set del_ny = 'Y'
+		 where board_no = #{boardNo}
+	</update>
+	
 </mapper>

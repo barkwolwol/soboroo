@@ -123,15 +123,7 @@
         <th>작성일</th>
         <td>${ b.createDate }</td>
     </tr>
-     <tr>
-        <th>첨부파일</th>
-        <td colspan="3">
-            <!-- 첨부파일이 없는 경우 -->
-                    첨부파일이 없습니다.
-            <!-- 첨부파일이 있는 경우-->
-            <a href="" download="">피자.png</a>
-        </td>
-    </tr>
+    
     <tr>
         <th>내용</th>
         <td colspan="3"></td>
@@ -181,66 +173,7 @@
         <br><br>
     </div>
     
-    <script>
-    	$(function() {
-			selectReplyList();  // 화면이 랜더링 되자마자 댓글 조회를 하겠다
-			
-		})
-		
-		function addReply() { // 댓글작성용 ajax
-			if($("#content").val().trim().length != 0) { //유효한 댓글 작성시 => insert ajax 요청
-				
-				$.ajax({
-					url:"rinsert.bo",
-					data:{
-						refBoardNo: ${b.boardNo},
-						replyContent: $("#content").val(),
-						replyWriter: '${loginUser.userId}'  //문자열은 이렇게 묶어야함
-					}, success:function(status){
-						
-						if(status == "success"){
-							selectReplyList();
-							$("#content").val("");
-						}
-						
-						
-					}, error:function(){
-						console.log("댓글 작성용 ajax 통신 실패!");
-					}
-				})
-				
-			}else{
-				alertify.alert("댓글 작성 후 등록 요청해주세요")
-			}
-		}
-		
-		function selectReplyList() {	//해당 게시글에 딸린 댓글리스트 조회용 ajax
-    		$.ajax({
-    			url:"rlist.bo",
-    			data:{bno:${b.boardNo}},
-    			success: function(list){
-    				console.log(list);
-    				
-    				let value = "";
-    				for(let i in list){
-    					value += "<tr>"
-    					  		+ "<th>" + list[i].replyWriter +"</th>"
-    					  		+ "<td>" + list[i].replyContent +"</td>"
-    					  		+ "<td>" + list[i].replycreateDate +"</td>"
-    					  		+ "</tr>";
-    				
-    			 	$("#replyArea tbody").html(value);
-    			 	$("#rcount").text(list.length);
-    				}
-    			}, error:function(){
-    				console.log("댓글 조회용 리스트 ajax 통신 실패");
-    			}
-    		});
-			
-		}
-		
-		
-    </script>
+    
     
             
         </div>

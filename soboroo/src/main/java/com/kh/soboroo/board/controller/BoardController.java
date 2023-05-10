@@ -24,6 +24,7 @@ import com.kh.soboroo.board.model.service.BoardServiceImpl;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
+import com.kh.soboroo.notice.model.vo.Notice;
 
 
 @Controller
@@ -124,6 +125,40 @@ public class BoardController {
 			// 해당 게시글 조회 후 셋팅
 			model.addAttribute("b", bService.selectBoard(bno));
 			return "board/boardUpdateForm";	// 포워딩(모델)	
+		}
+	 
+		@RequestMapping("update.bo")
+		public String updateNotice(Board b,HttpSession session, Model model) {
+				
+		 System.out.println(b);
+			int result = bService.updateBoard(b);
+			System.out.println(result);
+			if(result > 0) { // 수정 성공=> 상세페이지
+				session.setAttribute("alertMsg", "게시글이 수정되었습니다.");
+				return"redirect:detail.bo?bno=" + b.getBoardNo();
+			}else { // 수정 실패 => 에러페이지 포워딩
+				model.addAttribute("errorMsg", "게시글 수정 실패");
+				return "common/errorPage";
+			}
+		}
+		@RequestMapping("delete.bo")
+		public String deleteNotice(int bno, String filePath, HttpSession session, Model model) {
+			
+			int result = bService.deleteBoard(bno);
+			
+			if(result > 0) {
+				// 삭제 성공
+	
+				// 게시판 리스트 페이지 list.bo url 재요청
+				session.setAttribute("alertMsg", "성공적으로 게시글이 삭제 되었습니다");
+				return "redirect:list.bo?category=0";
+			}else {
+				// 삭제 실패
+				//에러문구 담아서 에러페이지 포워딩(모델)
+				model.addAttribute("errorMsg", "게시글 삭제 실패!");
+				return "common/errorPage";
+			}
+			
 		}
 	
 }

@@ -154,6 +154,7 @@
 
 
      <form id="updateForm" method="post" action="update.bo" enctype="multipart/form-data">
+     <input type="hidden" name="boardNo" value="${ b.boardNo }"/>
      <div class="content">
          <div class="innerOuter">
             <div class="write-header _write_header m_sticky_toolbar">
@@ -167,7 +168,6 @@
             </div>
              <br>
  
-            <form id="updateForm" method="post" action="update.bo" enctype="multipart/form-data">
                 <div class="left" style="margin-left: 25%; margin-top: 20px; display: inline-block; margin-bottom: 20px; ">
                     <div class="avatar" style="float:left;">
                         <img  src="${pageContext.request.contextPath}/resources/images/default_profile.png" class="avatar-image" >
@@ -198,18 +198,15 @@
                      </tr>
                      <tr style="width: 100%;">
                          <th colspan="2">
-                            <textarea id="summernote">${b.boardContent }</textarea>
+                            <textarea id="summernote" name="boardContent">${b.boardContent }</textarea>
                          </th>
                      </tr>
                  </table>
             </div>
-        
                  <br>
- 
-               
-             </form>
          </div>
      </div>
+             </form>
     <script>
      $(document).ready(function() {
          $('#summernote').summernote();

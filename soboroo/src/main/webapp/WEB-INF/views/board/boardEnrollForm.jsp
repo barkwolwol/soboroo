@@ -259,7 +259,7 @@
                             </tr>
 
                             <tr>
-                                <th colspan="2"><label for="content" ></label></th>
+                                <th colspan="2"><label for="content" style="position: ;"></label></th>
                             </tr>
                             
                             <tr >
