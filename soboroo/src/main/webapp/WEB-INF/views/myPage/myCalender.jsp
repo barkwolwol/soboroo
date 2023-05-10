@@ -9,10 +9,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<script
-	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
 
 </head>
+<style>
+.fc-event-title-container{
+	line-height:13px;
+}
+</style>
 
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -107,7 +111,7 @@
 						</div>
 						<!-- Sidebar Col end -->
 
-						<div class="col-lg-8 mb-5 mb-lg-0 order-0 order-lg-1">
+						<div class="col-lg-8 mb-5 mb-lg-0 order-0 order-lg-1" style="padding:0px;">
 							<div class="post" id="calender">
 
 
@@ -148,7 +152,8 @@
 	</div>
 	<!-- Body inner end -->
 
-<script language="javascript">
+
+<!-- <script language="javascript">
   var list = [
     <c:forEach var="item" items="${list}">
       {
@@ -168,7 +173,50 @@
     });
     calendar.render();
   });
+</script> -->
+<!-- <script language="javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: [
+        {
+          title: '반복 일정',  // 반복 일정의 제목
+          start: '2023-05-15',  // 반복 일정의 시작 날짜
+          end: '2023-06-15',    // 반복 일정의 종료 날짜
+          // 반복 설정
+          daysOfWeek: [1, 3, 5]  // 반복 요일 (월요일, 수요일, 금요일)
+         // startTime: '09:00:00',  // 반복 시작 시간
+         // endTime: '10:00:00'     // 반복 종료 시간
+        }
+      ],
+      editable: false
+    });
+    calendar.render();
+  });
+</script> -->
+<script language="javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: [
+        {
+          title: '반복 일정',  // 반복 일정의 제목
+          start: '2023-05-15',  // 반복 일정의 시작 날짜
+          end: '2023-05-31',    // 반복 일정의 종료 날짜
+          // 반복 설정
+          daysOfWeek: [1, 3, 5]  // 반복 요일 (월요일, 수요일, 금요일)
+          // startTime: '09:00:00',  // 반복 시작 시간
+          // endTime: '10:00:00'     // 반복 종료 시간
+        }
+      ],
+      editable: false
+    });
+    calendar.render();
+  });
 </script>
+
 
 
 
