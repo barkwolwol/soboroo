@@ -225,13 +225,15 @@
             <div style="width: 50%; margin-left: 20%;">
                 <table style="width: 100%;">
                     <tr>
-                        <th><label for="title">제목</label></th>
-                        <td><input type="text" id="title" class="form-control" name="ntcTitle" required></td>
+                        <td>
+                                    <input id="post_subject" name="ntcTitle" style="margin-bottom: 50px;"
+                                        class="no-margin basic_input title_name w100p mb24" type="text" value=""
+                                        placeholder="제목">
+                                    </td>
                     </tr>
                     
                     
                     <tr>
-                        <th colspan="2"><label for="content">내용</label></th>
                     </tr>
                     <tr>
                         <th colspan="2">

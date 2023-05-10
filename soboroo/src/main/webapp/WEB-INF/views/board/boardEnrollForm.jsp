@@ -203,6 +203,7 @@
 
 
         <form id="enrollForm" method="post" action="insert.bo" enctype="multipart/form-data">
+        <input type="hidden" name = "memNo" value="${loginUser.userNo }"/>
             <div class="content">
                 <br><br>
                 <div class="innerOuter">
@@ -234,10 +235,10 @@
 </div>
 
                     <div style="width: 50%; margin-left: 20%;">
-                        <table style="width: 100%;">
+                        <table style="width: 100%; " >
                             <tr>
                                 <th>
-                                    <select name="category" style="border-bottom: 2px solid orange;">
+                                    <select name="category" style="border-bottom: 2px solid orange; margin-bottom: 50px;" >
                                         <option>선택</option>
                                         <option value="1">교육/어학</option>
                                         <option value="2">취업/자격증</option>
@@ -251,19 +252,21 @@
                                 </th>
 
                                 <td>
-                                    <input id="post_subject" name="boardTitle"
+                                    <input id="post_subject" name="boardTitle" style="margin-bottom: 50px;"
                                         class="no-margin basic_input title_name w100p mb24" type="text" value=""
                                         placeholder="제목">
                                     </td>
                             </tr>
 
                             <tr>
-                                <th colspan="2"><label for="content" style="margin-top: 30px;"></label></th>
+                                <th colspan="2"><label for="content" ></label></th>
                             </tr>
+                            
                             <tr >
                                 <th colspan="2">
                                     <textarea class="form-control" name="boardContent" rows="3" id="content"></textarea>
                                 </th>
+                                
                             </tr>
                             
                         </table>

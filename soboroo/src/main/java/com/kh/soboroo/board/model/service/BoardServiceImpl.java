@@ -1,6 +1,7 @@
 package com.kh.soboroo.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -20,13 +21,13 @@ public class BoardServiceImpl implements BoardService{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int selectBoardListCount() {
-		return bDao.selectBoardListCount(sqlSession);
+	public int selectBoardListCount(int category) {
+		return bDao.selectBoardListCount(sqlSession, category);
 	}
 
 	@Override
-	public ArrayList<Board> selectBoardList(PageInfo pi) {
-		return bDao.selectBoardList(sqlSession, pi);
+	public ArrayList<Board> selectBoardList(PageInfo pi, int category) {
+		return bDao.selectBoardList(sqlSession, pi, category);
 	}
 
 	@Override
@@ -55,5 +56,23 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int selectSearchCount(HashMap<String, String> map) {
+		return bDao.selectSearchCount(sqlSession, map);
+	}
+
+	@Override
+	public ArrayList<Board> selectSearchList(HashMap<String, String> map, PageInfo pi) {
+		return bDao.selectSearchList(sqlSession, map, pi);
+	}
+
+	@Override
+	public int updateUpload(int uploadNo) {
+		// TODO Auto-generated method stub
+		return bDao.updateUpload(sqlSession, uploadNo);
+	}
+
+	
 
 }

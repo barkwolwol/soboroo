@@ -22,4 +22,7 @@ public class Board {
 	private String category;
 	private String memNo;
 	private int tableNo;
+	private String originName;
+	private String changeName;
+	private String finalName;
 }

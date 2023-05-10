@@ -121,7 +121,7 @@ public class NoticeController {
 	 
 		
 		@RequestMapping("update.no")
-		public String updateBoard(Notice n,HttpSession session, Model model) {
+		public String updateNotice(Notice n,HttpSession session, Model model) {
 				
 		 System.out.println(n);
 			int result = nService.updateNotice(n);

@@ -1,6 +1,8 @@
 package com.kh.soboroo.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,11 +13,11 @@ import com.kh.soboroo.common.model.vo.PageInfo;
 @Repository
 public class BoardDao {
 
-	public int selectBoardListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("boardMapper.selectBoardListCount");
+	public int selectBoardListCount(SqlSessionTemplate sqlSession, int category) {
+		return sqlSession.selectOne("boardMapper.selectBoardListCount", category);
 	}
 
-	public ArrayList<Board> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Board> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi, int category) {
 		// 몇 개의 게시글을 건너 뛸껀지
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		
@@ -23,7 +25,7 @@ public class BoardDao {
 		int limit = pi.getBoardLimit();
 		//System.out.println("limit" + limit);
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardList", category, rowBounds);
 	}
 
 	public int increaseCount(SqlSessionTemplate sqlSession, int boardNo) {
@@ -36,5 +38,22 @@ public class BoardDao {
 	public int insertBoard(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.insert("boardMapper.insertBoard", b);
 	}
+
+	public int selectSearchCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("boardMapper.selectSearchCount", map);
+	}
+
+	public ArrayList<Board> selectSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+	     int limit = pi.getBoardLimit();
+	      
+	      RowBounds rowBounds = new RowBounds(offset, limit);
+	      return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList", map, rowBounds);
+	}
+
+	public int updateUpload(SqlSessionTemplate sqlSession, int uploadNo) {
+		return sqlSession.update("boardMapper.updateUpload",uploadNo);
+	}
+
 
 }

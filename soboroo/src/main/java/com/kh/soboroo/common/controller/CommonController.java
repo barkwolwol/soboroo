@@ -3,10 +3,12 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,8 +18,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.soboroo.common.model.service.CommonServiceImpl;
+
 @Controller
 public class CommonController {
+	
+	@Autowired
+	private CommonServiceImpl cService;
+	
+	
+	
 	@ResponseBody
 	@RequestMapping("insertImg.co")
 	   public ResponseEntity<?> insertNewsImg(@RequestParam("file") MultipartFile multi, HttpServletRequest request, HttpSession session) {
@@ -39,7 +49,19 @@ public class CommonController {
 	         
 	         String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
 	         
-	         finalName = "resources/uploadFiles/"+changeName;
+	         finalName = "/resources/uploadFiles/"+changeName;
+	         
+	         // upload table insert
+	         
+	         HashMap<String, String> map = new HashMap<String, String>();
+	         map.put("originName", originName);
+	         map.put("changeName", finalName);
+	        
+	         
+	         int result = cService.insertUpload(map);
+	         // currval 세션에 담기
+	         int uploadNo = cService.selectUploadNo();
+	         session.setAttribute("uploadNo", uploadNo);
 	         
 	         System.out.println(finalName);
 	         

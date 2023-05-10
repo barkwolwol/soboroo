@@ -5,6 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>soboroo | 게시글 수정 및 삭제</title>
+	
+	
 	<!-- Favicon
 		================================================== -->
 	  	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
@@ -197,18 +199,19 @@
             <div style="width: 50%;margin: auto;">
                  <table style="width: 100%;">
                  
-                    <tr>
-                         <th><label for="title">제목</label></th>
-                         <td><input type="text" id="title" class="form-control" name="ntcTitle" value="${ n.ntcTitle }" required></td>
-                     </tr>
-                    
+                     <tr>
+                        <td>
+                                    <input id="post_subject" name="ntcTitle" style="margin-bottom: 50px;"
+                                        class="no-margin basic_input title_name w100p mb24" type="text" value="${ n.ntcTitle }">
+                                    </td>
+                    </tr>
+                     
                     
                      <tr>
-                         <th colspan="2"><label for="content" style="margin-top: 30px;">내용</label></th>
                      </tr>
                      <tr style="width: 100%;">
                          <th colspan="2">
-                            <textarea id="summernote" name="ntcContent">${ n.ntcContent }</textarea>
+                                 <textarea id="summernote" name="ntcContent">${ n.ntcContent }</textarea>
                          </th>
                      </tr>
                  </table>
@@ -216,10 +219,7 @@
         
                  <br>
  
-                 <!-- <div align="center">
-                     <button type="submit" class="btn btn-primary">등록하기</button>
-                     <button type="reset" class="btn btn-danger">취소하기</button>
-                 </div> -->
+                
              
          </div>
          <br><br>
@@ -233,13 +233,12 @@
         </div>
         </form>
      <script>
+     $(document).ready(function() {
+         $('#summernote').summernote();
+         });
 
-        $(document).ready(function() {
-        $('#summernote').summernote();
-        });
 
-
-     </script>
+        </script>
      <!-- 이쪽에 푸터바 포함할꺼임 -->
      <jsp:include page="../common/footer.jsp"/>
 </body>
