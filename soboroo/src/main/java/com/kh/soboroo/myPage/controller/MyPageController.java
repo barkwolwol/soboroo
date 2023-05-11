@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.entryList.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
+import com.kh.soboroo.myPage.model.service.MailSendService;
 import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;
 import com.kh.soboroo.myPage.model.vo.MyPage;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeDday;
@@ -39,6 +41,10 @@ public class MyPageController {
 
 	@Autowired
 	private MyPageServiceImpl myService;
+	
+	@Autowired
+	private MailSendService mailService;
+	
 	
 	
 	/*
@@ -80,7 +86,14 @@ public class MyPageController {
 
 	// 마이페이지 정보수정 페이지 호출
 	@RequestMapping("updateInfo.my")
-	public String updateInfo() {
+	public String updateInfo(Member m, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		return "myPage/checkEmail";
+	}
+	
+	@RequestMapping("update.my")
+	public String update(Member m, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		return "myPage/updateInfo";
 	}
 
@@ -267,6 +280,24 @@ public class MyPageController {
 	    }
 	}
 
+	  
 	 }
+	//이메일 인증
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheck(String email) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
+		return mailService.joinEmail(email);
+		
+			
+	}
+	
+	@ResponseBody
+	@RequestMapping("getEmailAddress")
+	public String getEmailAddress(Member m, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		return "myPage/checkEmail";
+	}
 
 }
