@@ -92,59 +92,27 @@ public class MemberController {
 		
 	}
 	
-//	@RequestMapping(value="/kakaoLoginPro.do", method=RequestMethod.POST)
-//	public Map<String, Object> kakaoLoginPro(@RequestParam Map<String,Object> paramMap,HttpSession session) throws SQLException, Exception {
-//		System.out.println("paramMap:" + paramMap);
-//		Map <String, Object> resultMap = new HashMap<String, Object>();
-//		
-//		Map<String, Object> kakaoConnectionCheck = MemberService.kakaoConnectionCheck(paramMap);
-//		if(kakaoConnectionCheck == null) { //일치하는 이메일 없으면 가입
-//			resultMap.put("JavaData", "register");
-//		}else if(kakaoConnectionCheck.get("KAKAOLOGIN") == null && kakaoConnectionCheck.get("EMAIL") != null) { //이메일 가입 되어있고 카카오 연동 안되어 있을시
-//			System.out.println("kakaoLogin");
-//			MemberService.setKakaoConnection(paramMap);
-//			Map<String, Object> loginCheck = MemberService.userKakaoLoginPro(paramMap);
-//			session.setAttribute("userInfo", loginCheck);
-//			resultMap.put("JavaData", "YES");
-//		}else{
-//			Map<String, Object> loginCheck = MemberService.userKakaoLoginPro(paramMap);
-//			session.setAttribute("userInfo", loginCheck);
-//			resultMap.put("JavaData", "YES");
-//		}
-//		
-//		return resultMap;
-//	}
-	   
-	//카카오톡 로그인.. 
-//	@RequestMapping(value = "/loginpage_kakao_callback", method = RequestMethod.GET)
-//	public String loginpage_kakao_callback(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws Exception {
-//		UrlPathHelper urlPathHelper = new UrlPathHelper();
-//		String originalURL = urlPathHelper.getOriginatingRequestUri(request);
-//		Map<String, String[]> paramMap = request.getParameterMap();
-//		Iterator keyData = paramMap.keySet().iterator();
-//		CommonData dto = new CommonData();
-//		while (keyData.hasNext()) {
-//			String key = ((String) keyData.next());
-//			String[] value = paramMap.get(key);
-//			dto.put(key, value[0].toString());
-//		}
-//		String url = "https://kauth.kakao.com/oauth/token";
-//		RestTemplate restTemplate = new RestTemplate();
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//		LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
-//		map.add("client_id", "0ec377592349e9b86510090df869a4da");
-//		String redirect_url = "http://localhost:3500/soboroo/loginpage_kakao_callback";
-//		map.add("redirect_uri", redirect_url);
-//		map.add("grant_type", "authorization_code");
-//		map.add("code", dto.get("code"));
-//		System.out.println(map);
-//	     
-//		HttpEntity<LinkedMultiValueMap<String, String>> request2 = new HttpEntity<LinkedMultiValueMap<String, String>>(map, headers);
-//		CommonData response2 = restTemplate.postForObject(url, request2, CommonData.class);
-//		map.clear();
-//		model.addAttribute("access_token", response2.get("access_token"));
-//		return "redirect:/";
-//	}
+	@RequestMapping(value="/loginpage_kakao_callback", method=RequestMethod.GET)
+	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
+		System.out.println("#########" + code);
+		String access_Token = mService.getAccessToken(code);
+        
+		// 위에서 만든 코드 아래에 코드 추가
+		HashMap<String, Object> userInfo = mService.getUserInfo(access_Token);
+		System.out.println("###access_Token#### : " + access_Token);
+		System.out.println("###nickname#### : " + userInfo.get("nickname"));
+		System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
+		System.out.println("###thumbnail_image#### : " + userInfo.get("thumbnail_image"));
+		
+		System.out.println("###email#### : " + userInfo.get("email"));
+		System.out.println("###age_range#### : " + userInfo.get("age_range"));
+		System.out.println("###birthday#### : " + userInfo.get("birthday"));
+		System.out.println("###gender#### : " + userInfo.get("gender"));
+        
+		return "redirect:/";
+    	}
+	
+	
+	
 
 }
