@@ -313,6 +313,7 @@
                                         <tr>
                                             <th>게시글번호</th>
                                             <th>게시글제목</th>
+                                            <th>카테고리</th>
                                             <th>작성자</th>
                                             <th>조회수</th>
                                             <th>작성일</th>
@@ -331,8 +332,10 @@
                                                 </label>
                                                 <a href="list.bo" class="items-links">${b.boardNo}</a>
                                             </td>
+                                                
                                             <td><a href="detail.bo?bno=${b.boardNo }">${b.boardTitle}</a></td>
-                                            <td class="text-primary">asdasd123</td>
+                                            <td>${b.categoryTitle}</td>
+                                            <td class="text-primary">${b.memId}</td>
                                             <td>${b.count}</td>
                                             <td>${b.createDate}</td>
                                             <td>${b.modifyDate}</td>

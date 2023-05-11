@@ -154,7 +154,7 @@
 <li class="nav-item dropdown has-arrow main-drop">
 <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
 <span class="user-img">
-<img src="assets/img/profiles/usermain.jpg" alt="">
+<img src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="">
 <span class="status online"></span>
 </span>
 <span>Admin</span>
@@ -311,11 +311,11 @@
 <a href="#">${r.memNickname }<span>${r.memNo }</span></a>
 </h2>
 </td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">[asds123@naver.com]</a></td>
+<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">${r.memId }</a></td>
 <td>${r.memRprCount }</td>
 <td>${r.boardTitle }</td>
-<td>댓글</td>
-<td>2023-04-20 11:20:23</td>
+<td>${r.replyContent }</td>
+<td>${r.createDate }</td>
 <td>폭언 및 욕설</td>
 <td>2023-04-20 12:20:43</td>
 <td>${r.reportId }</td>

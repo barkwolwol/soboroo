@@ -31,7 +31,7 @@ public class AdminController {
 	
 		
 		// 관리자 홈페이지 공지사항 
-		@RequestMapping("adminHome.nt")
+		@RequestMapping("adminHome.ad")
 		public ModelAndView adminLogin(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 			
 			int listCount = aService.selectNoticeListCount(); 
@@ -44,7 +44,8 @@ public class AdminController {
 			
 			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/adminIndex");
 			
-			
+			mv.addObject("pi", pi).addObject("list2", list2).setViewName("admin/adminIndex");
+	
 			return mv;
 
 		} 
@@ -114,21 +115,7 @@ public class AdminController {
 		}
 		
 		
-		
-//		@RequestMapping("memberInfo.ad")
-//		public ModelAndView memberInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
-//			
-//			PageInfo pi = Pagination.getPageInfo(0,currentPage, 10, 10);
-//			
-//			ArrayList<AdminMember> list = aService.selectMemberList(pi);
-//			
-//			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/memberInfo");
-//			
-//			return mv;
-//			
-//		}
-		
-		
+
 		
 		// 관리자 정지 회원 페이지 호출
 		@RequestMapping("susMember.ad")

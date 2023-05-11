@@ -26,4 +26,5 @@ public class AdminReply {
 	private int memNo;
 	private int tableNo;
 	
+	
 }

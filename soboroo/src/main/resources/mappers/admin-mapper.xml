@@ -26,6 +26,9 @@
 		<result column = "category" property = "category"/>
 		<result column = "mem_no" property = "memNo"/>
 		<result column = "table_no" property = "tableNo"/>
+		<result column = "category_title" property = "categoryTitle"/>
+		<result column="mem_nickname" property="memNickname"/>
+		<result column="mem_id" property="memId"/>
 	</resultMap>
 	
 	<resultMap type="AdminMember" id="adminMemResultSet">
@@ -42,6 +45,11 @@
 		<result column="mem_img" property="memImg"/>
 		<result column="mem_enroll_date" property="memEnrollDate"/>
 		<result column="mem_update_date" property="memUpdateDate"/>
+		<result column="board_title" property="boardTitle"/>
+		<result column="board_content" property="boardContent"/>
+		<result column="reply_content" property="replyContent"/>
+		<result column="create_date" property="createDate"/>
+		<result column="enroll_date" property="enrollDate"/>
 	</resultMap>
 	
 	<resultMap type="AdminCategory" id="adminCategoryResultSet">
@@ -108,7 +116,8 @@
 		  , mem_no
 		  , table_no
 		  , category_title
-		  , mem_name
+		  , mem_nickname
+		  , mem_id
 	   from board
 	   join category on (board.category = category.category_no)
 	   join member using(mem_no)

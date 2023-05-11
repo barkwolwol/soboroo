@@ -28,5 +28,12 @@ public class AdminMember {
 	private String memImg;
 	private Date memEnrollDate;
 	private Date memUpdateDate;
+	
+	private String board_title; // 게시글 제목
+    private String board_content; // 신고기반자료 게시글 내용
+    private String reply_content; // 신고기반자료 댓글 내용
+    private Date create_date; // 게시글 작성일
+    private Date enoll_date;  // 댓글 작성일
+    
 
 }

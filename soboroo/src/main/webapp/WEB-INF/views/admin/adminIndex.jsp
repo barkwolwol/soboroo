@@ -345,10 +345,11 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>작성회원</th>
+                                                <th>게시글제목</th>
                                                 <th>조회수</th>
                                                 <th>작성날짜</th>
                                                 <th>카테고리</th>
-                                                <th class="text-right">더보기</th>
+                                                <th class="text-right">삭제여부</th>
                                             </tr>
                                         </thead>
                                         <c:forEach var="b" items="${list2}">
@@ -358,178 +359,26 @@
                                                     <h2 class="table-avatar">
                                                         <a href="profile.html"><img
                                                                 class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg"
+                                                                src="${pageContext.request.contextPath}/resources/admin/img/Slogo.png"
                                                                 alt="User Image">${b.memNickname}</a>
                                                     </h2>
                                                 </td>
+                                                <td>${b.boardTitle}</td>
                                                 <td>${b.count }</td>
                                                 <td>${b.createDate }</td>
-                                                <td><span class="badge bg-success-light">${b.categoryTitle }</span></td>
+                                                <td><span class="badge bg-success-light">${b.categoryTitle}</span></td>
                                                 <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="view-invoice.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone Invoice</a>
+                                                    ${b.delNy}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="profile.html"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-06.jpg"
-                                                                alt="User Image">Karlene Chaidez</a>
-                                                    </h2>
-                                                </td>
-                                                <td>$222</td>
-                                                <td>18 Nov 2020</td>
-                                                <td><span class="badge bg-info-light">스포츠</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="view-invoice.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                        </div>
-                                                    </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="profile.html"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-08.jpg"
-                                                                alt="User Image">Russell Copeland</a>
-                                                    </h2>
-                                                </td>
-                                                <td>$347</td>
-                                                <td>10 Nov 2020</td>
-                                                <td><span class="badge bg-warning-light">언어/직무</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="view-invoice.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                             </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="profile.html"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-10.jpg"
-                                                                alt="User Image">Joseph Collins</a>
-                                                    </h2>
-                                                </td>
-                                                <td>$826</td>
-                                                <td>25 Sep 2020</td>
-                                                <td><span class="badge bg-danger-light">취업/교육</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="view-invoice.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="#"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-11.jpg"
-                                                                alt="User Image">Jennifer Floyd</a>
-                                                    </h2>
-                                                </td>
-                                                <td>$519</td>
-                                                <td>18 Sep 2020</td>
-                                                <td><span class="badge bg-success-light">여행</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="view-invoice.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            </c:forEach>
                                         </tbody>
-                                        </c:forEach>
                                     </table>
                                 </div>
                             </div>
@@ -558,40 +407,31 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>작성자</th>
+                                                <th>공지사항번호</th>
                                                 <th>작성제목</th>
                                                 <th>작성일</th>
                                                 <th>조회수</th>
-                                                <th>상태</th>
-                                                <th class="text-right">더보기</th> 
+                                                <th class="text-right">상태</th> 
                                             </tr>
                                         </thead>
                                         <c:forEach var="n" items="${list}">
                                         <tbody>
                                             <tr>
+                                               
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="profile.html"><img
                                                                 class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-05.jpg"
+                                                                src="${pageContext.request.contextPath}/resources/admin/img/Slogo.png"
                                                                 alt="User Image">${n.ntcWriter }</a>
                                                     </h2>
                                                 </td>
+                                                <td>${n.ntcNo}</td>
                                                 <td>${n.ntcTitle}</td>
                                                 <td>${n.ntcCreateDate }</td>
                                                 <td>${n.ntcCount }</td>
-                                                <td><span class="badge bg-info-light">${ n.ntcDelNy }</span></td>
                                                 <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="notenrollForm.no"><i
-                                                                    class="far fa-edit me-2"></i>작성</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>삭제</a>
-                                                            <a class="dropdown-item" href="list.no"><i
-                                                                    class="far fa-eye me-2"></i>보기</a>
+                                                    <span class="badge bg-info-light">${ n.ntcDelNy }</span>
                                             
                                                         </div>
                                                     </div>

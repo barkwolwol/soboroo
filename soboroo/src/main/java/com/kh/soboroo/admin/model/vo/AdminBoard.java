@@ -25,5 +25,7 @@ public class AdminBoard {
 	private int memNo;
 	private int tableNo;
 	private String categoryTitle;
+	private String memNickname;
+	private String memId;
 
 }
