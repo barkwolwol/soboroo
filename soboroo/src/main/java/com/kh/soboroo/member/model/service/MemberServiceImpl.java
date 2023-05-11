@@ -151,7 +151,9 @@ public class MemberServiceImpl implements MemberService {
 
 			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
-
+			
+			String id = element.getAsJsonObject().get("id").getAsString();
+			
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 			String profile_image = properties.getAsJsonObject().get("profile_image").getAsString();
 			String thumbnail_image = properties.getAsJsonObject().get("thumbnail_image").getAsString();
@@ -161,10 +163,11 @@ public class MemberServiceImpl implements MemberService {
 			String birthday = kakao_account.getAsJsonObject().get("birthday").getAsString();
 			String gender = kakao_account.getAsJsonObject().get("gender").getAsString();
 
+			userInfo.put("id", id);
+			
 			userInfo.put("nickname", nickname);
 			userInfo.put("profile_image", profile_image);
 			userInfo.put("thumbnail_image", thumbnail_image);
-			
 			
 			userInfo.put("email", email);
 			userInfo.put("age_range", age_range);
@@ -175,6 +178,10 @@ public class MemberServiceImpl implements MemberService {
 			e.printStackTrace();
 		}
 		return userInfo;
+	}
+
+	public int checkConnection(HashMap<String, Object> userInfo) {
+		return mDao.checkConnection(sqlSession, userInfo);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.kh.soboroo.member.model.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +20,10 @@ public class MemberDao {
 	
 	public int idCheck(SqlSessionTemplate sqlSession, String checkId) {
 		return sqlSession.selectOne("memberMapper.idCheck", checkId);
+	}
+
+	public int checkConnection(SqlSessionTemplate sqlSession, HashMap<String, Object> userInfo) {
+		return sqlSession.selectOne("memberMapper.checkConnection", userInfo);
 	}
 
 }
