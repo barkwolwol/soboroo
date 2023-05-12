@@ -28,7 +28,7 @@ public interface MyPageService {
 	int updateIntro(Member m);
 	
 	// 회원탈퇴 서비스
-	int deleteMember(String memId);
+	int deleteMember(Member m);
 
 	Member loginMember(Member m);
 	

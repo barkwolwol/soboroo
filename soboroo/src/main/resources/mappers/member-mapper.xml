@@ -49,4 +49,9 @@
 		   set mem_nickname = #{memNickname}
 		 where mem_id = #{memId}  	   
 	</update>
+	<update id="deleteMember">
+		update member
+		   set mem_status = 4
+		 where mem_id=#{memId}   
+	</update>
 </mapper>

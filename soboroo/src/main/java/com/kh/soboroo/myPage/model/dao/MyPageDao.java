@@ -31,6 +31,11 @@ public class MyPageDao {
 		return sqlSession.update("memberMapper.updateIntro", m);
 	}
 	
+	public int deleteMember(SqlSessionTemplate sqlSession, Member m) {
+		System.out.println("컨트롤러"+m);
+		return sqlSession.update("memberMapper.deleteMember", m);
+	}
+	
 	public int checkNick(SqlSessionTemplate sqlSession, String memNickname) {
 		return sqlSession.selectOne("memberMapper.checkNick", memNickname);
 	}

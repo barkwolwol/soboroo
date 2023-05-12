@@ -178,17 +178,32 @@
 									          code = data;
 									          // 성공한 경우 추가로 처리할 내용 작성
 									          
-									          // JSP로 이동
-									          window.location.href = 'update.my'; // 컨트롤러를 통해 JSP로 이동
-									        },
+									         },
 									        error: function() {
 									          console.log("이메일 전송 실패");
 									          // 실패한 경우 추가로 처리할 내용 작성
 									        }
 									      });
 									    });
-									  });
-									</script>
+									    
+									    
+									    $('#inputPassword5').blur(function () {
+									        const inputCode = $(this).val();
+									        const $resultMsg = $('#passwordHelpBlock');
+									        
+									        if (inputCode === code) {
+									        	
+									        	alert("이메일 인증이 완료되었습니다.");
+									        	 // JSP로 이동
+										          window.location.href = 'update.my'; // 컨트롤러를 통해 JSP로 이동
+										        
+									        } else {
+									          $resultMsg.html('인증번호가 불일치합니다. 다시 확인해주세요!');
+									          $resultMsg.css('color', 'red');
+									        }
+									      });
+									    });
+									  </script>
 										
 								</div>
 							</div>

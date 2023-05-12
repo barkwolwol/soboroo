@@ -142,7 +142,7 @@ public class MyPageController {
 			
 			session.setAttribute("updateBellIcon", "updateBellIcon");
 			
-			return "redirect:updateInfo.my";		
+			return "redirect:update.my";		
 		} else {
 			return "common/errorPage";
 		}
@@ -172,7 +172,7 @@ public class MyPageController {
 			
 			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
 			
-			return "redirect:updateInfo.my";
+			return "redirect:update.my";
 		} else {
 			
 			return "common/errorPage";
@@ -181,9 +181,26 @@ public class MyPageController {
 
 	// 회원탈퇴
 	@RequestMapping("deleteMember.my")
-	public String deleteMember() {
-		return "";
+	public String deleteMember(Member m, HttpSession session) {
+	    Member loginUser = (Member)session.getAttribute("loginUser");
+	    m.setMemId(loginUser.getMemId());
+	    loginUser.setMemStatus(loginUser.getMemStatus());
+	    
+	    int result = myService.deleteMember(m);
+	    
+	    if(result > 0) {
+	        //Member deleteMember = myService.loginMember(loginUser);
+	        session.removeAttribute("loginUser");
+	        
+	        session.setAttribute("alertMsg", "회원 탈퇴되었습니다. 이용해주셔서 감사합니다.");
+	        
+	        return "redirect:/";
+	    } else {
+	        session.setAttribute("alertMsg", "회원 탈퇴에 실패하였습니다.");
+	        return "redirect:update.my";
+	    }
 	}
+
 	
 	@RequestMapping("communityList.my")
 	public ModelAndView selectList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session){

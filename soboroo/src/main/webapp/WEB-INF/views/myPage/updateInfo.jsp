@@ -126,69 +126,65 @@
 													</div>
 												</form>
 											</div>
-<script>
-	$(function() {
-		const $nickInput = $("#checkNick input[name=memNickname]");
-		const $submitButton = $("#checkNick :submit");
+											<script>
+												$(function() {
+													const $nickInput = $("#checkNick input[name=memNickname]");
+													const $submitButton = $("#checkNick :submit");
+											
+													function updateButtonState() {
+														const inputValue = $nickInput.val().trim();
+											
+														if (inputValue === "") {
+															$submitButton.prop("disabled", true);
+															$("#nickCheck").hide();
+														} else if (inputValue.length > 15) {
+															$nickInput.val(inputValue.substr(0, 15));
+														} else {
+															$submitButton.prop("disabled", false);
+															$("#nickCheck").css("color", "#ff8932").text("사용 가능한 닉네임입니다.");
+														}
+													}
+											
+													$nickInput.on('input', function() {
+														const inputValue = $nickInput.val().replace(/\s/g, ""); // 공백 제거
+											
+														$nickInput.val(inputValue); // 제거된 공백으로 값 업데이트
+														updateButtonState();
+											
+														const trimmedValue = inputValue.trim();
+											
+														if (trimmedValue === "") {
+															$("#nickCheck").hide();
+															return;
+														}
+											
+														$.ajax({
+															url: "checkNick.my",
+															data: {
+																checkNick: trimmedValue
+															},
+															success: function(result) {
+																if (result === "NNNNN") {
+																	$("#nickCheck").show();
+																	$("#nickCheck").css("color", "#ff8932").text("이미 존재하는 닉네임입니다. 다시 입력해주세요.");
+																	$submitButton.prop("disabled", true);
+																} else {
+																	$("#nickCheck").show();
+																	if (trimmedValue.length <= 15) {
+																		$("#nickCheck").css("color", "#ff8932").text("사용 가능한 닉네임입니다.");
+																	}
+																}
+															},
+															error: function() {
+																console.log("ajax 통신 실패!");
+															}
+														});
+													});
+											
+													updateButtonState();
+												});
+											</script>
 
-		function updateButtonState() {
-			const inputValue = $nickInput.val().trim();
-
-			if (inputValue === "") {
-				$submitButton.prop("disabled", true);
-				$("#nickCheck").hide();
-			} else if (inputValue.length > 15) {
-				$nickInput.val(inputValue.substr(0, 15));
-			} else {
-				$submitButton.prop("disabled", false);
-				$("#nickCheck").css("color", "#ff8932").text("사용 가능한 닉네임입니다.");
-			}
-		}
-
-		$nickInput.on('input', function() {
-			const inputValue = $nickInput.val().replace(/\s/g, ""); // 공백 제거
-
-			$nickInput.val(inputValue); // 제거된 공백으로 값 업데이트
-			updateButtonState();
-
-			const trimmedValue = inputValue.trim();
-
-			if (trimmedValue === "") {
-				$("#nickCheck").hide();
-				return;
-			}
-
-			$.ajax({
-				url: "checkNick.my",
-				data: {
-					checkNick: trimmedValue
-				},
-				success: function(result) {
-					if (result === "NNNNN") {
-						$("#nickCheck").show();
-						$("#nickCheck").css("color", "#ff8932").text("이미 존재하는 닉네임입니다. 다시 입력해주세요.");
-						$submitButton.prop("disabled", true);
-					} else {
-						$("#nickCheck").show();
-						if (trimmedValue.length <= 15) {
-							$("#nickCheck").css("color", "#ff8932").text("사용 가능한 닉네임입니다.");
-						}
-					}
-				},
-				error: function() {
-					console.log("ajax 통신 실패!");
-				}
-			});
-		});
-
-		updateButtonState();
-	});
-</script>
-
-
-
-							
-							
 										</div>
 									</div>
 								</div>
@@ -223,51 +219,20 @@
 												</div>
 												<script>
 													$("#memIntroduce")
-															.on(
-																	"input",
-																	function(e) {
-																		let content = $(
-																				this)
-																				.val();
+															.on("input",function(e) {
+																		let content = $(this).val();
 
-																		if (content.length == 0
-																				|| content === '') {
-																			$(
-																					".textCount")
-																					.text(
-																							'0자');
+																		if (content.length == 0|| content === '') {
+																			$(".textCount").text('0자');
 																		} else {
-																			$(
-																					".textCount")
-																					.text(
-																							content.length
-																									+ '자');
+																			$(".textCount").text(content.length+ '자');
 																		}
 
 																		if (content.length > 200) {
-																			$(
-																					this)
-																					.val(
-																							content
-																									.substring(
-																											0,
-																											200));
-																			$(
-																					".textLengthCount")
-																					.css(
-																							"color",
-																							"#ff8932")
-																					.text(
-																							"자기소개는 200자까지 입력 가능합니다.");
+																			$(this).val(content.substring(0,200));
+																			$(".textLengthCount").css("color","#ff8932").text("자기소개는 200자까지 입력 가능합니다.");
 																		} else {
-																			$(
-																					".textLengthCount")
-																					.css(
-																							"color",
-																							"")
-																					.text(
-																							content.length
-																									+ '자/200자');
+																			$(".textLengthCount").css("color","").text(content.length + '자/200자');
 																		}
 																	});
 												</script>
@@ -294,11 +259,25 @@
 								<div class="content">
 									<br>
 									<div>
-										<form action="deleteMember.my">
 											<div class="post-footer">
-												<button type="submit" class="btn btn-primary">탈퇴하기</button>
+												<button type="submit" class="btn btn-primary" id="deleteMem">탈퇴하기</button>
 											</div>
-										</form>
+											
+											<script>
+												$(function(){
+													$("#deleteMem").on("click", function(){
+														if (confirm("탈퇴 후 복구가 불가능합니다. 정말 탈퇴하시겠습니까?") == true){    //확인
+
+														     location.href="deleteMember.my"
+
+														 }else{   //취소
+															 alert("회원 탈퇴를 취소하셨습니다.");
+														     return false;
+
+														 }
+													})
+												})
+											</script>
 									</div>
 								</div>
 							</div>
