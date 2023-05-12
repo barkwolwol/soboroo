@@ -21,6 +21,7 @@
 <!-- =================================== 화면 고유 시작 ===================================  -->
 <!-- OFM Style -->
 <link rel="stylesheet" href="https://static.onoffmix.com/css/pc/event/event-add_20.css">
+<link rel="stylesheet" href="resources/css/enrollGroupStyle.css">
 <!-- =================================== 화면 고유 끝 ===================================  -->
 <script>dataLayer=[{uid:"1415372"}]</script>    
 <!-- Google Tag Manager -->
@@ -60,121 +61,6 @@
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/confetti.css">
 
-
-<style>
-	.ie_end_support_popup_wrap{
-		display: none;
-		width: 900px;
-		height: 608px;
-		padding: 62px 100px 0;
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		border: 1px solid #c8c8c8;
-		box-sizing: border-box;
-		text-align: center;
-		letter-spacing: -1px;
-		line-height: 28px;
-		color: #333;
-		z-index: 1000;
-		background-color: #fff;
-	}
-	.ie_end_support_popup_wrap h1{
-		margin-bottom: 37px;
-		font-size: 24px;
-		font-weight: bold;
-		color: #4195f5;
-		letter-spacing: -1.2px
-	}
-	.ie_end_support_popup_wrap p{
-		font-size: 16px;
-	}
-	.ie_end_support_popup_wrap p + p{margin-top: 10px;}
-	.ie_end_support_popup_wrap p span{ font-weight: bold; }
-	.ie_end_support_popup_wrap p span:last-child{ color: #4195f5;  }
-	.browser_link{
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		padding: 0 15px; 
-		margin-top: 39px;
-		border-top: 1px solid #d8d8d8;
-	}
-	.browser_link > span{
-		display: block;
-		width: 100%;
-		margin-top: 36px;
-		margin-bottom: 24px;
-		font-size: 16px;
-		font-weight: bold;
-	}
-	.browser_link a{
-		display: block;
-		width: 140px;
-		height: 160px;
-		font-size: 14px;
-		font-weight: bold;
-		line-height: 20px;
-		letter-spacing: 0;
-		background-color: #f7f8fa;
-		border-radius: 10px;
-	}
-	.browser_link a span{
-		display: block;
-		font-weight: normal;
-		letter-spacing: -1px;
-		color: #666;
-	}
-	.browser_link a::before{
-		content: "";
-		display: block;
-		width: 72px;
-		height: 72px;
-		margin: 21px auto 9px;
-		background-repeat: no-repeat;
-		background-size: 100%;
-	}
-	.browser_link a:nth-child(2)::before{background-image: url("https://static.onoffmix.com/images/pc/ie_end_support_popup/chrome.png");}
-	.browser_link a:nth-child(3)::before{background-image: url("https://static.onoffmix.com/images/pc/ie_end_support_popup/edge.png");}
-	.browser_link a:nth-child(4)::before{background-image: url("https://static.onoffmix.com/images/pc/ie_end_support_popup/whale.png");}
-	.browser_link a:nth-child(5)::before{background-image: url("https://static.onoffmix.com/images/pc/ie_end_support_popup/firefox.png");}
-	.ie_end_support_popup_wrap button{
-		display: block;
-		width: 24px;
-		height: 24px;
-		position: absolute;
-		top: 19px;
-		right: 19px;
-		cursor: pointer;
-		border: 0 none;
-		overflow: hidden;
-		text-indent: -9999rem;
-		background-color: transparent;
-		background-image: url("https://static.onoffmix.com/images/pc/svg/menu-close-gray.svg");
-	}
-	.close_check{
-		position: absolute;
-		right: 21px;
-		bottom: 15px;
-	}
-	.close_check input{
-		width: 13px;
-		height: 13px;
-		vertical-align: middle;
-		border-color: rgba(0, 0, 0, 0.2);
-	}
-	.close_check label{
-		margin-left: 7px;
-		font-size: 12px;
-		letter-spacing: -1px;
-		line-height: 14px;
-		vertical-align: middle;
-		color: #333;
-	}
-</style>
-
-
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -182,7 +68,7 @@
 	<main id="content" class="event_add">
 		<section>
 			<div class="head_area">
-				<h2>개설하기</h2>
+				<h2>오프라인 반짝모임 개설하기</h2>
 			</div>
 		
 			<div class="content_area">
@@ -212,8 +98,8 @@
 										<div id="onoff" class="selectbox" data-list_show="false">
 											<select name="category">
 												<option value="">온/오프라인 선택</option>
-												<option value="085">온라인</option>
-												<option value="087">오프라인</option>
+												<option value="">온라인</option>
+												<option value="">오프라인</option>
 											</select>
 											<button type="button" id="selectbox_btn_onoff" class="selectbox_btn">
 												<span id="onoff-title">온/오프라인 선택</span>
@@ -229,16 +115,16 @@
 										<div id="period" class="selectbox" data-list_show="false">
 											<select name="category">
 												<option value="">기간 선택</option>
-												<option value="085">반짝모임</option>
-												<option value="087">정기모임</option>
+												<option value="">반짝모임</option>
+												<option value="">정기모임</option>
 											</select>
 											<button type="button" id="selectbox_btn_period" class="selectbox_btn">
 												<span id="period-title">기간 선택</span>
 											</button>
 											<ul id="period-list">
-												<li id="value0" data-value="카테고리 선택">기간 선택</li>
-												<li id="value1" data-value="온라인">반짝모임</li>
-												<li id="value2" data-value="오프라인">정기모임</li>
+												<li id="value0" data-value="기간 선택">기간 선택</li>
+												<li id="value1" data-value="반짝모임">반짝모임</li>
+												<li id="value2" data-value="정기모임">정기모임</li>
 											</ul>
 										</div>
 									</div>
@@ -246,16 +132,16 @@
 										<div id="goal" class="selectbox" data-list_show="false">
 											<select name="category">
 												<option value="">목표 선택</option>
-												<option value="085">꾸준한 습관</option>
-												<option value="087">D-DAY</option>
+												<option value="">꾸준한 습관</option>
+												<option value="">D-DAY</option>
 											</select>
 											<button type="button" id="selectbox_btn_goal" class="selectbox_btn">
 												<span id="goal-title">목표 선택</span>
 											</button>
 											<ul id="goal-list">
-												<li id="value0" data-value="카테고리 선택">목표 선택</li>
-												<li id="value1" data-value="온라인">꾸준한 습관</li>
-												<li id="value2" data-value="오프라인">D-DAY</li>
+												<li id="value0" data-value="목표 선택">목표 선택</li>
+												<li id="value1" data-value="꾸준한 습관">꾸준한 습관</li>
+												<li id="value2" data-value="D-DAY">D-DAY</li>
 											</ul>
 										</div>
 									</div>
@@ -651,32 +537,6 @@
 										</div>
 									</div>
 									<div class="person_apply_wrap">
-										<!-- <div class="form_row select_apply" data-input_type="radio">
-											<div class="op_h"> <span>선정방법</span>
-												<div class="help_tip"> <span> <span>선착순</span> 신청 순서대로 참여확정자로 신청됩니다. <span>개설자 선정</span> 대기자로
-														신청되고
-														개설자의 승인을 통해 참여확정자로 변경됩니다. </span> </div>
-											</div>
-											<div class="op_c">
-												<div> <input type="radio" id="groupAuthorizeType[-1]_01" name="groupAuthorizeType[-1]"
-														value="01" checked=""> <label for="groupAuthorizeType[-1]_01"
-														title="개설자 통장입금 결제인 경우 설정을 변경할 수 없습니다.">선착순</label> </div>
-												<div> <input type="radio" id="groupAuthorizeType[-1]_02" name="groupAuthorizeType[-1]"
-														value="02">
-													<label for="groupAuthorizeType[-1]_02" title="개설자 통장입금 결제인 경우 설정을 변경할 수 없습니다.">개설자
-														선정</label>
-												</div>
-											</div>
-										</div> -->
-										<!-- <div class="form_row" data-input_type="text">
-											<div class="op_h"> <span>동반인원</span>
-												<div class="help_tip"> <span> <span>없음</span> 본인만 신청 가능합니다. <span>1명 이상</span> 본인 외 동반인원수를 선택하여
-														신청가능합니다. </span> </div>
-											</div>
-											<div class="op_c numberbox"> <input type="text" name="groupMemberPerAttend[-1]"
-													class="numberbox_input companion" placeholder="없음" data-max_num="29" value=""> <span
-													class="plus"></span><span class="minus"></span> </div>
-										</div> -->
 										<div class="form_row over_capacity" data-input_type="radio">
 											<div class="op_h"> <span>정원초과 모집</span>
 												<div class="help_tip"> <span> <span>허용</span> 정원을 초과해도 대기자로 신청자를 받습니다. 결원 발생 시 대기자가 참여확정자로 자동
@@ -967,13 +827,6 @@
 	
 								<div class="input_wrap">
 									<div class="form_row">
-										<!-- <textarea type="text" class="tag_input tag-editor-hidden-src" placeholder="태그를 입력해 주세요. 예) #온오프믹스, #컬쳐데이" name="tag" data-tag-editor-error-duplicate="동일한 태그가 존재합니다." data-tag-editor-error-character="한자 및 특수문자는 입력되지 않습니다." data-tag-editor-error-maxtag="최대 5개까지 등록할 수 있습니다." data-parsley-tag="" data-parsley-errors-messages-disabled=""></textarea> -->
-										<!-- <ul class="tag-editor ui-sortable">
-											<li style="width: 1px;">&nbsp;</li>
-											<li class="placeholder">
-												<div>태그를 입력해 주세요. 예) #온오프믹스, #컬쳐데이</div>
-											</li>
-										</ul> -->
 										<input name="tag" class="tag-editor" placeholder="태그를 입력해 주세요. 예)&nbsp; 소보루, 새로운모임">
 									</div>
 	
@@ -1039,12 +892,6 @@
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_informing.js"></script>
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_img.js"></script>
 	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tmpl.min.js"></script>
-
-
-
-	
-
-
 	
 	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/class_list.js"></script> -->
 	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fileupload.js"></script> -->

@@ -18,7 +18,7 @@
 		<result column="MEM_INTRODUCE" property="memIntroduce"/>
 		<result column="MEM_RPR_COUNT" property="memRprCount"/>
 		<result column="MEM_IMG" property="memImg"/>
-		<result column="ADULT_NY" property="adultNY"/>
+		<result column="MEM_ADULT_NY" property="memAdultNY"/>
 	</resultMap>
 	
 	<select id="checkConnection" resultType="_int">
@@ -44,7 +44,7 @@
 		     , mem_nickname
 		     , mem_introduce
 		     , mem_img
-		     , adult_ny
+		     , mem_adult_ny
 		     )
 	    values
 	         (
@@ -60,7 +60,7 @@
 	         , #{memNickname}
 	         , #{memIntroduce}
 	         , #{memImg}
-	         , #{adultNY}
+	         , #{memAdultNY}
 	        )
 	</insert>
 	
@@ -79,7 +79,7 @@
 		     , mem_introduce
 		     , mem_rpr_count
 		     , mem_img
-		     , adult_ny
+		     , mem_adult_ny
 		  from member
 		 where kakao_id = #{id}
 	</select>  

@@ -124,7 +124,7 @@ public class MemberController {
 	    m.setMemNickname((String)userInfo.get("nickname"));
 	    m.setMemImg((String)userInfo.get("profile_image"));
 	    m.setMemEmail((String)userInfo.get("email"));
-	    m.setAdultNY(((String)userInfo.get("age_range")));
+	    m.setMemAdultNY(((String)userInfo.get("age_range")));
 	    m.setMemBirth(((String)userInfo.get("birthday")));
 	    m.setMemGender((String)userInfo.get("gender"));
 

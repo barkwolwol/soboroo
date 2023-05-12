@@ -1,7 +1,5 @@
 package com.kh.soboroo.member.model.vo;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +26,6 @@ public class Member {
 	 private String memIntroduce;
 	 private int memRprCount;
 	 private String memImg;
-	 private String adultNY;
+	 private String memAdultNY;
 	 
 }
