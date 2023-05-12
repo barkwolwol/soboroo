@@ -88,7 +88,7 @@
                 <div class="write" style=" font-size: 13px;">${b.memNo} </div>
              
                 <div class="board_name">
-                    <a href="list.bo" style="color: black;">
+                    <a href="list.bo?category=0" style="color: black;">
                         카테고리 게시판
                     </a>
                 </div>
@@ -97,8 +97,10 @@
                 <div class="hit-count body_font_color_70" style="float: left;
                 font-size: 13px; margin-left: 10px;">조회수 ${ b.count }</div>
                 <div class="tools txt"> 
+                <c:if test="${not empty loginUser }"> 
                 <a  type="button" style="margin-right: 10px;float: left; font-size: 13px; margin-left: 5px; color: orange; font-weight: 900;"  onclick="postFormSubmit(1);" >수정</a>
                 <a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onclick="postFormSubmit(2);">지우기</a></div>
+            </c:if>
             </div>
             
             <form id="postForm" action="" method="post">
@@ -151,7 +153,7 @@
             <form>
             <table id="replyArea" class="table" align="center">
                 <thead>
-                    <%-- <c:choose>
+                     <c:choose>
                     	<c:when test="${ empty loginUser }">
 		                    <tr>
 		                        <th colspan="2">
@@ -160,15 +162,15 @@
 		                        <th style="vertical-align: middle"><button class="btn btn-secondary" disabled>등록하기</button></th>
 		                    </tr>
                     	</c:when>
-	                    <c:otherwise> --%>
+	                    <c:otherwise> 
 			                    <tr>
 			                        <th colspan="2">
 			                            <textarea class="form-control" name="" id="content" cols="55" rows="2" style="resize:none; width:100%"></textarea>
 			                        </th>
 			                        <th style="vertical-align: middle"><button  type="button" class="btn btn-secondary" onclick="addReply();">등록하기</button></th>
 			                    </tr>
-	              <%--       </c:otherwise>
-                    </c:choose> --%>
+	                    </c:otherwise>
+                    </c:choose> 
                     
                     
                     <tr>
@@ -206,7 +208,7 @@
 				data:{
 					groupBoardNo: ${b.boardNo},
 					replyContent: $("#content").val(),
-					memNo: '${loginUser.userId}'  //문자열은 이렇게 묶어야함
+					memNo: '${loginUser.memNo}'  //문자열은 이렇게 묶어야함
 					
 				}, success:function(status){
 					

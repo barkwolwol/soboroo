@@ -25,4 +25,5 @@ public class Board {
 	private String originName;
 	private String changeName;
 	private String finalName;
+	private String mem_nickname;
 }

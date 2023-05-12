@@ -160,7 +160,7 @@
 		  , #{ boardTitle }
 		  , #{ boardContent }
 		  , #{ category}
-		  , 1 
+		  , #{ memNo}
     		)
 	
 	</insert>
@@ -251,7 +251,7 @@
 		   , #{replyContent}
            , #{reperNo}
            , #{groupBoardNo}
-           , 1
+           , #{memNo}
 		  )
 	
 	

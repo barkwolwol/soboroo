@@ -105,9 +105,9 @@
             
 
 	            <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼-->
-	     <%--    <c:if test="${not empty loginUser }"> --%>
+	   		 <c:if test="${not empty loginUser }"> 
            		<a class="btn btn-secondary btn-sm" style="float:right" href="notenrollForm.no">글쓰기</a>
-             <%-- </c:if> --%>
+              </c:if> 
             <br></br>
             <table id="NoticeList" class="table table-hover" align="center">
                 <thead>

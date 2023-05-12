@@ -30,7 +30,8 @@
 		,ntc_update_date
 		,ntc_count
 		,ntc_del_ny
-		from notice 
+		from notice n
+		join member m on(n.ntc_writer = m.mem_no)
 		where ntc_del_ny = 'N'
 		order
 		by ntc_no desc

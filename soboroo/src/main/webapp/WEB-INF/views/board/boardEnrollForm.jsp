@@ -203,7 +203,7 @@
 
 
         <form id="enrollForm" method="post" action="insert.bo" enctype="multipart/form-data">
-        <input type="hidden" name = "memNo" value="${loginUser.userNo }"/>
+        <input type="hidden" name = "memNo" value="${loginUser.memNo }"/>
             <div class="content">
                 <br><br>
                 <div class="innerOuter">
