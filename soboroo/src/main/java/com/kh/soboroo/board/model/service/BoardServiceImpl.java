@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.soboroo.board.model.dao.BoardDao;
 import com.kh.soboroo.board.model.vo.Board;
+import com.kh.soboroo.board.model.vo.Reply;
 import com.kh.soboroo.common.model.vo.PageInfo;
 
 @Service
@@ -67,9 +68,20 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public int updateUpload(int uploadNo) {
-		// TODO Auto-generated method stub
 		return bDao.updateUpload(sqlSession, uploadNo);
 	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(int boardNo) {
+		return bDao.selectReplyList(sqlSession, boardNo);	}
+
+	@Override
+	public int insertReply(Reply r) {
+		return bDao.insertReply(sqlSession, r);
+	}
+
+	
+	
 
 	
 

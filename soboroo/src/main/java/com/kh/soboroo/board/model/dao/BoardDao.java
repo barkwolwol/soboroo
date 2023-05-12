@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.soboroo.board.model.vo.Board;
+import com.kh.soboroo.board.model.vo.Reply;
 import com.kh.soboroo.common.model.vo.PageInfo;
 
 @Repository
@@ -62,6 +63,16 @@ public class BoardDao {
 	public int deleteBoard(SqlSessionTemplate sqlSession, int boardNo) {
 		return sqlSession.update("boardMapper.deleteBoard", boardNo);
 	}
+
+	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int boardNo) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectReplyList", boardNo);
+	}
+
+	public int insertReply(SqlSessionTemplate sqlSession, Reply r) {
+		return sqlSession.insert("boardMapper.insertReply", r);
+	}
+
+
 
 
 }

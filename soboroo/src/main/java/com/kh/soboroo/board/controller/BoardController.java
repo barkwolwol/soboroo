@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.kh.soboroo.board.model.service.BoardServiceImpl;
 import com.kh.soboroo.board.model.vo.Board;
+import com.kh.soboroo.board.model.vo.Reply;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.notice.model.vo.Notice;
@@ -160,5 +161,21 @@ public class BoardController {
 			}
 			
 		}
+		@ResponseBody
+		@RequestMapping(value = "rlist.bo", produces = "application/json; charset=utf-8")
+		public String ajaxSelectReplyList(int bno) {
+			ArrayList<Reply> list = bService.selectReplyList(bno);
+			
+			return new Gson().toJson(list);
+		}
+		
+		@ResponseBody
+		@RequestMapping("rinsert.bo")
+		public String ajaxInsertReply(Reply r) {
+			int result = bService.insertReply(r);
+			
+			return result > 0 ? "success" :"fail";
+		}
+		
 	
 }

@@ -17,6 +17,21 @@
 		<result column = "table_no" property = "tableNo"/>
 		<result column = "mem_nickname" property ="memNo"/>
 	</resultMap>
+	
+	<resultMap type="Reply" id="replyResultSet">
+		 <result column = "reply_no" property = "replyNo"/>
+		 <result column = "reply_content" property = "replyContent"/>
+		 <result column = "enroll_date" property = "enrollDate"/>
+		 <result column = "modify_date" property = "modifyDate"/>
+		 <result column = "del_ny" property = "delNy"/>
+		 <result column = "rep_ny" property = "repNy"/>
+		 <result column = "recomment_ny" property = "recommentNy"/>
+		 <result column = "reper_no" property = "reperNo"/>
+		 <result column = "group_board_no" property = "groupBoardNo"/>
+		 <result column = "mem_no" property = "memNo"/>
+		 <result column = "table_no" property = "tableNo"/>
+
+	</resultMap> 
 		
 	<select id="selectBoardListCount" resultType="_int">
 		select    
@@ -201,4 +216,49 @@
 		 where board_no = #{boardNo}
 	</update>
 	
+	<select id="selectReplyList" resultMap="replyResultSet">
+		select 
+			   reply_no
+			 , reply_content
+			 , to_char(enroll_date, 'MM"월"DD"일" HH"시"MI"분"SS"초"') as "enroll_date"
+             , modify_date
+             , del_ny
+             , recomment_ny
+             , reper_no
+             , group_board_no
+             , mem_no
+             , table_no
+		  from reply
+		 where group_board_no = #{groupBoardNo}
+		   and del_ny = 'N'
+		 order
+		    by reply_no desc
+	</select> 
+	
+	<insert id="insertReply">
+	 	insert
+		  into	reply
+		  (
+		    reply_no
+		  , reply_content
+		  , enroll_date
+		  , modify_date
+          , reper_no
+          , group_board_no
+          , mem_no
+		  )
+		  values
+		  (
+		  	 seq_reply.nextval
+		   , #{replyContent}
+		   , sysdate
+		   , sysdate
+           , #{reperNo}
+           , #{groupBoardNo}
+           , 1
+		  )
+	
+	
+	
+	</insert>
 </mapper>

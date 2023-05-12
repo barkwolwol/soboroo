@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,6 +60,13 @@
     font-size: 13px;
     display: none;
 }
+   table * {
+        margin: 5px;
+    }
+    
+    table {
+        width: 100%;
+    }
     </style>
 </head>
 <body>
@@ -139,9 +147,10 @@
     </div>   
     
 <br><br><br><br>
+            <!-- 댓글 기능은 나중에 ajax 배우고 접목시킬예정! 우선은 화면구현만 해놓음 -->
             <table id="replyArea" class="table" align="center">
                 <thead>
-                    <c:choose>
+                    <%-- <c:choose>
                     	<c:when test="${ empty loginUser }">
 		                    <tr>
 		                        <th colspan="2">
@@ -150,35 +159,98 @@
 		                        <th style="vertical-align: middle"><button class="btn btn-secondary" disabled>등록하기</button></th>
 		                    </tr>
                     	</c:when>
-	                    <c:otherwise>
+	                    <c:otherwise> --%>
 			                    <tr>
 			                        <th colspan="2">
 			                            <textarea class="form-control" name="" id="content" cols="55" rows="2" style="resize:none; width:100%"></textarea>
 			                        </th>
 			                        <th style="vertical-align: middle"><button class="btn btn-secondary" onclick="addReply();">등록하기</button></th>
 			                    </tr>
-	                    </c:otherwise>
-                    </c:choose>
+	              <%--       </c:otherwise>
+                    </c:choose> --%>
                     
                     
                     <tr>
-                       <td colspan="3">댓글 (<span id="rcount">0</span>) </td> 
+                       <td colspan="3">댓글 (<span id="rcount">0</span>) fsafs</td> 
                     </tr>
                 </thead>
                 <tbody>
-                    
+                   
                 </tbody>
             </table>
         </div>
         <br><br>
     </div>
     
+    <script>
+    	$(function() {
+			selectReplyList();  // 화면이 랜더링 되자마자 댓글 조회를 하겠다
+			
+		})
+		
+		function addReply() { // 댓글작성용 ajax
+			if($("#content").val().trim().length != 0) { //유효한 댓글 작성시 => insert ajax 요청
+				
+				$.ajax({
+					url:"rinsert.bo",
+					data:{
+						groupBoardNo: ${b.boardNo},
+						replyContent: $("#content").val(),
+						memNo: '${loginUser.userId}'  //문자열은 이렇게 묶어야함
+						
+					}, success:function(status){
+						
+						if(status == "success"){
+							selectReplyList();
+							$("#content").val("");
+						}
+						
+						
+					}, error:function(){
+						console.log("댓글 작성용 ajax 통신 실패!");
+					}
+				})
+				
+			}else{
+				alertify.alert("댓글 작성 후 등록 요청해주세요")
+			}
+		}
+		
+		function selectReplyList() {	//해당 게시글에 딸린 댓글리스트 조회용 ajax
+    		$.ajax({
+    			url:"rlist.bo",
+    			data:{bno:${b.boardNo}},
+    			success: function(list){
+    				console.log(list);
+    				
+    				let value = "";
+    				for(let i in list){
+    					value += "<tr>"
+    					  		+ "<th>" + list[i].memNo +"</th>"
+    					  		+ "<td>" + list[i].replyContent +"</td>"
+    					  		+ "<td>" + list[i].enrollDate +"</td>"
+    					  		+ "</tr>";
+    				
+    			 	$("#replyArea tbody").html(value);
+    			 	$("#rcount").text(list.length);
+    				}
+    			}, error:function(){
+    				console.log("댓글 조회용 리스트 ajax 통신 실패");
+    			}
+    		});
+			
+		}
+		
+		
+    </script>
+        </div>
+        <br><br>
+    </div>
+     
+    
     
     
             
-        </div>
-   
-    </div>
 
     <!-- 이쪽에 푸터바 포함할꺼임 -->
     <jsp:include page="../common/footer.jsp"/>

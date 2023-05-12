@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.soboroo.board.model.vo.Board;
+import com.kh.soboroo.board.model.vo.Reply;
 import com.kh.soboroo.common.model.vo.PageInfo;
 
 public interface BoardService {
@@ -30,4 +31,13 @@ public interface BoardService {
 		// 게시글 검색
 		int selectSearchCount(HashMap<String, String> map);
 		ArrayList<Board> selectSearchList(HashMap<String, String> map, PageInfo pi);
+		
+		// 6. 댓글 리스트 조회 (ajax)
+		ArrayList<Reply> selectReplyList(int boardNo);
+		
+		// 7. 댓글 작성용 서비스 (ajax)
+		int insertReply(Reply r);
+		
+		
+		
 }
