@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	
-	 <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
-	 	<!-- DB 접속 정보 -->
-	 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-	 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-	 	<property name="username" value="SOBOROO"/>
-	 	<property name="password" value="SOBOROO"/>
-	 </bean>
-	 
-	 <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
-	 	<property name="configLocation" value="classpath:mybatis-config.xml"/>
-	 	<property name="dataSource" ref="dataSource"/>
-	 </bean>
-	 
-	
-	 <bean class="org.mybatis.spring.SqlSessionTemplate">
-	 	<constructor-arg ref="sqlSessionFactory"/>
-	 </bean>	
-	
-	 <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
-	   	<property name="maxUploadSize" value="100000000"/> <!-- 100 메가바이트 그리고 이건 용량 무제한인데 그냥 용량 제한 검 -->
-	   	<property name="maxInMemorySize" value="100000000"/>
-	 </bean>
-	    
-	    
-	    
-	    
-	    
-	    
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   
+    <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+       <!-- DB 접속 정보 -->
+       <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+       <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+       <property name="username" value="SOBOROO"/>
+       <property name="password" value="SOBOROO"/>
+    </bean>
+    
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+       <property name="configLocation" value="classpath:mybatis-config.xml"/>
+       <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+   
+    <bean class="org.mybatis.spring.SqlSessionTemplate">
+       <constructor-arg ref="sqlSessionFactory"/>
+    </bean>   
+   
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+         <property name="maxUploadSize" value="100000000"/> <!-- 100 메가바이트 그리고 이건 용량 무제한인데 그냥 용량 제한 검 -->
+         <property name="maxInMemorySize" value="100000000"/>
+    </bean>
+       
+       
+       
+       
+       
+       
 </beans>
