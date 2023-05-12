@@ -241,8 +241,6 @@
 		  (
 		    reply_no
 		  , reply_content
-		  , enroll_date
-		  , modify_date
           , reper_no
           , group_board_no
           , mem_no
@@ -251,8 +249,6 @@
 		  (
 		  	 seq_reply.nextval
 		   , #{replyContent}
-		   , sysdate
-		   , sysdate
            , #{reperNo}
            , #{groupBoardNo}
            , 1
