@@ -32,7 +32,7 @@
 	</resultMap>
 	
 	<resultMap type="AdminMember" id="adminMemResultSet">
-		<result column="mem_no" property="memNo"/>
+		<!-- <result column="mem_no" property="memNo"/>
 		<result column="mem_token" property="memToken"/>
 		<result column="mem_id" property="memId"/>
 		<result column="mem_birth" property="memBirth"/>
@@ -49,7 +49,24 @@
 		<result column="board_content" property="boardContent"/>
 		<result column="reply_content" property="replyContent"/>
 		<result column="create_date" property="createDate"/>
-		<result column="enroll_date" property="enrollDate"/>
+		<result column="enroll_date" property="enrollDate"/> -->
+		<result column="mem_no" property="memNo"/>
+		<result column="kakao_id" property="kakaoId"/>
+		<result column="mem_id" property="memId"/>
+		<result column="mem_pwd" property="memPwd"/>
+		<result column="mem_email" property="memEmail"/>
+		<result column="mem_gender" property="memGender"/>
+		<result column="mem_birth" property="memBirth"/>
+		<result column="mem_phone" property="memPhone"/>
+		<result column="mem_name" property="memName"/>
+		<result column="mem_status" property="memStatus"/>
+		<result column="mem_nickname" property="memNickname"/>
+		<result column="mem_introduce" property="memIntroduce"/>
+		<result column="mem_rpr_count" property="memRprCount"/>
+		<result column="mem_img" property="memImg"/>
+		<result column="adult_ny" property="adultNy"/>
+		
+		
 	</resultMap>
 	
 	<resultMap type="AdminCategory" id="adminCategoryResultSet">
@@ -129,9 +146,12 @@
 	<select id="selectMemberList" resultMap="adminMemResultSet">
 		select
 		      mem_no
-		    , mem_token
+		    , kakao_id
 		    , mem_id
-		    , to_char(mem_birth, 'YYYY-MM-DD') as "mem_birth"
+		    , mem_email
+		    , mem_pwd
+		    , mem_gender
+		    , mem_birth
 		    , mem_phone
 		    , mem_name
 		    , mem_status
@@ -139,8 +159,8 @@
 		    , mem_introduce
 		    , mem_rpr_count
 		    , mem_img
-		    , mem_enroll_date
-		    , mem_update_date
+		    , adult_ny
+
       from member
 
 	</select>

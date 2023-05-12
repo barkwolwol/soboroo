@@ -20,16 +20,6 @@
 				<span id="title">소소하지만 보람찬 당신의 하루</span>
 				<span id="titleLogo"><img src="resources/images/logo_1.png" alt=""></span>
 			</div>
-<<<<<<< HEAD
-	       <div id="login_input">
-               <button type="submit" class="login_btn"><a href="loginMember.my">카카오로 시작하기</a></button>
-	       </div>
-     	       
-     	   <div id="login_input">
-               <button type="submit" class="login_btn"><a href="adminHome.ad">관리자 로그인</button>
-	       </div>
-	    </div>
-=======
 			<div id="login_input">
 				<button type="submit" class="login_btn">
 					<a href="https://kauth.kakao.com/oauth/authorize?client_id=0ec377592349e9b86510090df869a4da&redirect_uri=http://localhost:3500/soboroo/loginpage_kakao_callback&response_type=code" onclick="kakaoLogin();">카카오로 시작하기</a>
@@ -40,7 +30,6 @@
 				<button type="submit" class="login_btn">관리자 로그인</button>
 			</div>
 		</div>
->>>>>>> upstream/main
 	</div>
 
 	<jsp:include page="../common/footer.jsp"/>
