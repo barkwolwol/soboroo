@@ -24,7 +24,7 @@
 	       </div>
      	       
      	   <div id="login_input">
-               <button type="submit" class="login_btn">관리자 로그인</button>
+               <button type="submit" class="login_btn"><a href="adminHome.ad">관리자 로그인</button>
 	       </div>
 	    </div>
 	</div>
