@@ -25,7 +25,7 @@
 		select
 				count(*)
 		  from member
-		 where KAKAO_ID = #{KakaoId}
+		 where kakao_id = #{id}
 	</select>
 	
 	<insert id="insertMember">
@@ -64,6 +64,26 @@
 	        )
 	</insert>
 	
+	<select id="loginMember" resultMap="memberResultSet">
+		select
+		       mem_no
+		     , mem_id
+		     , mem_pwd
+		     , mem_email
+		     , mem_gender
+		     , mem_birth
+		     , mem_phone
+		     , mem_name
+		     , mem_status
+		     , mem_nickname
+		     , mem_introduce
+		     , mem_rpr_count
+		     , mem_img
+		     , adult_ny
+		  from member
+		 where kakao_id = #{id}
+	</select>  
+	
 	
 	
 	
@@ -85,19 +105,7 @@
 	
  
 
-	<select id="loginMember" resultMap="memberResultSet">
-	select
-	        MEM_ID
-	      , MEM_BIRTH
-	      , MEM_PHONE
-	      , MEM_NAME
-	      , MEM_NICKNAME
-	      , MEM_INTRODUCE
-	      , mem_status
-	   from member
-	  where mem_id = #{memId}
-	    and mem_status = '1'
-	</select>  
+
 	
 	<update id="updateIntro">
 		update

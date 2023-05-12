@@ -3679,3 +3679,10 @@ input[type="text"] {
   display: inline-block;
 
 }
+
+legend, label {
+  position: relative !important;
+  left: 0;
+  white-space: nowrap;
+  font-size: 15px;
+}

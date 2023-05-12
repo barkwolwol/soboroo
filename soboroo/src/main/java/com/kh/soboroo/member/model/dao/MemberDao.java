@@ -10,8 +10,8 @@ import com.kh.soboroo.member.model.vo.Member;
 @Repository
 public class MemberDao {
 	
-	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.selectOne("memberMapper.loginMember", m);
+	public Member loginMember(SqlSessionTemplate sqlSession,HashMap<String, Object> userInfo) {
+		return sqlSession.selectOne("memberMapper.loginMember", userInfo);
 	}
 
 	public int insertMember(SqlSessionTemplate sqlSession, Member m) {

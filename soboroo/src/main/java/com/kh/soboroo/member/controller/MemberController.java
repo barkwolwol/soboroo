@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UrlPathHelper;
 
 import com.kh.soboroo.common.model.vo.CommonData;
@@ -39,10 +40,31 @@ public class MemberController {
 //	@Autowired
 //	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
-	// 로그인 페이지 호출
+	// 로그인 페이지 호출 loginPage.me
+	@RequestMapping("loginPage.me")
+	public String loginPage() {
+		   return "member/loginMember";
+	}
+	
 	@RequestMapping("login.me")
-	public String loginMember() {
-	   return "member/loginMember";
+	public ModelAndView loginMember(HashMap<String, Object> userInfo, HttpSession session, ModelAndView mv) {
+		Member loginUser = mService.loginMember(userInfo);
+		
+		if(loginUser != null) {
+			session.setAttribute("loginUser", loginUser);
+			mv.setViewName("redirect:/");
+		}else {
+			mv.addObject("errorMsg", "로그인 실패!");
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("logout.me")
+	public String logoutMember(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 	@RequestMapping("enrollForm.me")
@@ -50,12 +72,14 @@ public class MemberController {
 		return "member/memberEnrollForm";
 	}
 	
-	@RequestMapping(value="/loginpage_kakao_callback", method=RequestMethod.GET)
-	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
+	@RequestMapping(value= "/loginpage_kakao_callback", method=RequestMethod.GET)
+	public String kakaoLogin(@RequestParam(value = "code", required = false) String code, HttpSession session) throws Exception {
 		System.out.println("#########" + code);
 		String access_Token = mService.getAccessToken(code);
         
 		HashMap<String, Object> userInfo = mService.getUserInfo(access_Token);
+		
+		
 		System.out.println("###access_Token#### : " + access_Token);
 		System.out.println("###id#### : " + userInfo.get("id"));
 		System.out.println("###nickname#### : " + userInfo.get("nickname"));
@@ -67,22 +91,36 @@ public class MemberController {
 		System.out.println("###birthday#### : " + userInfo.get("birthday"));
 		System.out.println("###gender#### : " + userInfo.get("gender"));
 		
+		session.setAttribute("userInfo", userInfo);
+		System.out.println("userInfo의 값은 ?? : " + userInfo);
+		System.out.println("여기는 체크커넥션 메소드 타는 자리");
 		int result = mService.checkConnection(userInfo);
+		System.out.println("쳌커넥션 후 result : " + result);
 		
 		if(result > 0) {
-			// 로그인 
+			// 로그인 성공
+			session.setAttribute("alertMsg", "환영합니다.");
+			
+			ModelAndView mv = new ModelAndView();
+			loginMember(userInfo, session, mv);
 			return "redirect:/";
+			
 		}else {
 			// 회원가입
 			return "member/memberEnrollForm";
+			
 		}
-		
 		
 	}
 	
 	@RequestMapping("insert.me")
-	public String insertMember(Member m, HashMap<String, Object> userInfo, Model model, HttpSession session) {
-	    m.setKakaoId((String)userInfo.get("id"));
+	public String insertMember(Member m, Model model, HttpSession session) {
+	   
+		HashMap<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
+		
+		System.out.println(userInfo);
+		
+		m.setKakaoId((String)userInfo.get("id"));
 	    m.setMemNickname((String)userInfo.get("nickname"));
 	    m.setMemImg((String)userInfo.get("profile_image"));
 	    m.setMemEmail((String)userInfo.get("email"));
@@ -90,9 +128,10 @@ public class MemberController {
 	    m.setMemBirth(((String)userInfo.get("birthday")));
 	    m.setMemGender((String)userInfo.get("gender"));
 
+	    System.out.println(m);
 	    int result = mService.insertMember(m);
 
-	    if(result >0) { // 성공 => 메인페이지 url 재요청! 알람창
+	    if(result > 0) { // 성공 => 메인페이지 url 재요청! 알람창
 	        session.setAttribute("alertMsg", "성공적으로 회원가입 되었습니다.");
 	        return "redirect:/";
 	    }else { // 실패 => 에러문구 담아서 에러페이지 포워딩
@@ -100,7 +139,6 @@ public class MemberController {
 	        return "common/errorPage";
 	    }
 	}
-
 	
 	@ResponseBody
 	@RequestMapping("idCheck.me")

@@ -39,15 +39,8 @@ public class MemberServiceImpl implements MemberService {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public Member loginMember(Member m) {
-		
-		// 매일 sqlSession 객체 만들고, MemberDao 생성해서 호출함
-		// 이제는 의존성 주입으로 하겠음
-		
-		Member loginUser = mDao.loginMember(sqlSession, m);
-		
-		// close 도 스프링이 알아서 해준다.
-		
+	public Member loginMember(HashMap<String, Object> userInfo) {
+		Member loginUser = mDao.loginMember(sqlSession, userInfo);
 		return loginUser;
 	}
 
