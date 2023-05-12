@@ -53,7 +53,10 @@ public class CommonController {
 	      
 	      }
 	      return ResponseEntity.ok().body("resources/uploadFiles/"+changeName);
-
-	      
 	   }
+	
+	@RequestMapping("newGroup.go")
+	public String newGroup() {
+		return "common/enrollForm";
+	}
 }

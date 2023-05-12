@@ -5,29 +5,107 @@
  <mapper namespace="memberMapper">
 	<resultMap id="memberResultSet" type="Member">
 		<result column="MEM_NO" property="memNo"/>
+		<result column="KAKAO_ID" property="KakaoId"/>
 		<result column="MEM_ID" property="memId"/>
+		<result column="MEM_PWD" property="memPwd"/>
+		<result column="MEM_EMAIL" property="memEmail"/>
+		<result column="MEM_GENDER" property="memGender"/>
 		<result column="MEM_BIRTH" property="memBirth"/>
 		<result column="MEM_PHONE" property="memPhone"/>
 		<result column="MEM_NAME" property="memName"/>
 		<result column="MEM_STATUS" property="memStatus"/>
 		<result column="MEM_NICKNAME" property="memNickname"/>
 		<result column="MEM_INTRODUCE" property="memIntroduce"/>
+		<result column="MEM_RPR_COUNT" property="memRprCount"/>
+		<result column="MEM_IMG" property="memImg"/>
+		<result column="ADULT_NY" property="adultNY"/>
 	</resultMap>
+	
+	<select id="checkConnection" resultType="_int">
+		select
+				count(*)
+		  from member
+		 where kakao_id = #{id}
+	</select>
+	
+	<insert id="insertMember">
+		insert
+		  into member
+		     (
+		       mem_no
+		     , kakao_id  
+		     , mem_id
+		     , mem_pwd
+		     , mem_email
+		     , mem_gender
+		     , mem_birth
+		     , mem_phone
+		     , mem_name
+		     , mem_nickname
+		     , mem_introduce
+		     , mem_img
+		     , adult_ny
+		     )
+	    values
+	         (
+	           SEQ_MEM_NO.NEXTVAL
+	         , #{kakaoId}
+	         , #{memId}
+	         , #{memPwd}
+	         , #{memEmail}
+	         , #{memGender}
+	         , #{memBirth}
+	         , #{memPhone}
+	         , #{memName}
+	         , #{memNickname}
+	         , #{memIntroduce}
+	         , #{memImg}
+	         , #{adultNY}
+	        )
+	</insert>
+	
+	<select id="loginMember" resultMap="memberResultSet">
+		select
+		       mem_no
+		     , mem_id
+		     , mem_pwd
+		     , mem_email
+		     , mem_gender
+		     , mem_birth
+		     , mem_phone
+		     , mem_name
+		     , mem_status
+		     , mem_nickname
+		     , mem_introduce
+		     , mem_rpr_count
+		     , mem_img
+		     , adult_ny
+		  from member
+		 where kakao_id = #{id}
+	</select>  
+	
+	
+	
+	
+	
+	
+	
+	<!-- 
+	
+	<select id="idCheck" resultType="_int">
+		select
+		       count(*) as "count"
+		  from test_member
+		 where mem_id = #{checkId}
+	</select>
+	
+	
+	
+	
+	
  
 
-	<select id="loginMember" resultMap="memberResultSet">
-	select
-	        MEM_ID
-	      , MEM_BIRTH
-	      , MEM_PHONE
-	      , MEM_NAME
-	      , MEM_NICKNAME
-	      , MEM_INTRODUCE
-	      , mem_status
-	   from member
-	  where mem_id = #{memId}
-	    and mem_status = '1'
-	</select>  
+
 	
 	<update id="updateIntro">
 		update
@@ -46,5 +124,5 @@
 			   member
 		   set mem_nickname = #{memNickname}
 		 where mem_id = #{memId}  	   
-	</update>
+	</update> -->
 </mapper>
