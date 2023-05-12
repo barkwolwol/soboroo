@@ -25,7 +25,7 @@
       <!-- Bootstrap -->
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.css">
       <!-- FontAwesome -->
-      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/fontawesome/css/all.min.css">
+      <!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/fontawesome/css/all.min.css"> -->
       <!-- Animation -->
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/animate-css/animate.css">
       <!-- slick Carousel -->
@@ -317,32 +317,19 @@
 
                     <ul class="nav navbar-nav ml-auto align-items-center">
                       <li class="header-get-a-quote">
-                      <c:choose> <c:when test="${empty loginUser }">
-                        <a class="btn btn-primary" href="login.me">로그인</a>
-                          </c:when>
-                  <c:otherwise>      
-                     <!-- 로그인 후-->
-                     <label>${loginUser.memId }님 환영합니다</label> &nbsp;&nbsp;
-                     <a href="myPage.me">마이페이지</a>
-                     <a href="logout.me">로그아웃</a>
-                  </c:otherwise>
-               </c:choose>     
+                      <c:choose>
+                        <c:when test="${ empty loginUser }">
+                          <a class="btn btn-primary" href="loginPage.me">로그인</a>
+                        </c:when>
+                        <c:otherwise>
+                          <!-- 로그인 후-->
+                          <label>${ loginUser.memNickname }님 환영합니다</label> &nbsp;&nbsp;
+                          <a href="myPage.me">마이페이지</a>
+                          <a href="logout.me">로그아웃</a>
+                        </c:otherwise>
+                      </c:choose>
                       </li>
                     </ul>
-            
-	                </div>
-	              </nav>
-	          </div>
-	          <!--/ Col end -->
-	        </div>
-	        <!--/ Row end -->
-	    </div>
-	    <!--/ Container end -->
-	
-	  </div>
-	  <!--/ Navigation end -->
-	</header>
-	<!--/ Header end -->
                    </div>
                  </nav>
              </div>
@@ -356,20 +343,6 @@
      <!--/ Navigation end -->
    </header>
    <!--/ Header end -->
-                   </div>
-                 </nav>
-             </div>
-             <!--/ Col end -->
-           </div>
-           <!--/ Row end -->
-       </div>
-       <!--/ Container end -->
-   
-     </div>
-     <!--/ Navigation end -->
-   </header>
-   <!--/ Header end -->
-
 
 
    
@@ -377,27 +350,10 @@
      <!-- Javascript Files
      ================================================== -->
    
-     <!-- initialize jQuery Library 
-     <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>-->
+     <!-- initialize jQuery Library  -->
+     <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>
      <!-- Bootstrap jQuery -->
-     <%-- <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script> --%>
-     
-     <!-- 서머노트 bootstrap      
-     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
-
-
-      <!-- Javascript Files
-     ================================================== -->
-
-      <!-- initialize jQuery Library 
-     <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>-->
-      <!-- Bootstrap jQuery -->
-      <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js"
-        defer="defer"></script>
-
-      <!-- 서머노트 bootstrap      
-     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
-
+     <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script>
 
       <!-- Slick Carousel -->
       <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick.min.js"></script>

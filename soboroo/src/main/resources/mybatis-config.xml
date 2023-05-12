@@ -4,9 +4,9 @@
   "mybatis-3-config.dtd" >
 <configuration>
 
-	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/> 				<!-- 빈칸이 들어가면 빈칸이 아닌 NULL로 인식하라는 셋팅 -->
-	</settings>
+   <settings>
+      <setting name="jdbcTypeForNull" value="NULL"/>             <!-- 빈칸이 들어가면 빈칸이 아닌 NULL로 인식하라는 셋팅 -->
+   </settings>
 
 	<typeAliases>
 		<typeAlias type="com.kh.soboroo.member.model.vo.Member" alias="Member"/>
