@@ -3680,7 +3680,7 @@ input[type="text"] {
 
 }
 
-legend, label {
+.header-get-a-quote label{
   position: relative !important;
   left: 0;
   white-space: nowrap;
