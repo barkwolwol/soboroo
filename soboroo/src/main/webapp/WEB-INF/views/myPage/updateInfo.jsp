@@ -271,7 +271,7 @@
 														     location.href="deleteMember.my"
 
 														 }else{   //취소
-															 alert("회원 탈퇴를 취소하셨습니다.");
+															 // alert("회원 탈퇴를 취소하셨습니다.");
 														     return false;
 
 														 }

@@ -27,13 +27,15 @@ public class MyPageDao {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
 	
-	public int updateIntro(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.update("memberMapper.updateIntro", m);
+	public int updateIntro(SqlSessionTemplate sqlSession, Member loginUser) {
+		System.out.println(loginUser);
+		System.out.println("다오 타니?");
+		return sqlSession.update("memberMapper.updateIntro", loginUser);
 	}
 	
-	public int deleteMember(SqlSessionTemplate sqlSession, Member m) {
-		System.out.println("컨트롤러"+m);
-		return sqlSession.update("memberMapper.deleteMember", m);
+	public int deleteMember(SqlSessionTemplate sqlSession, Member loginUser) {
+		System.out.println("컨트롤러"+loginUser);
+		return sqlSession.update("memberMapper.deleteMember", loginUser);
 	}
 	
 	public int checkNick(SqlSessionTemplate sqlSession, String memNickname) {

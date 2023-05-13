@@ -145,27 +145,44 @@
 						<div class="post" id="myGroup">
 
 							<div class="post-body">
-								<div>
+								<div id="showInfo">
 									<div>
-										<img loading="lazy" src="${pageContext.request.contextPath}/resources/images/logo_1.png" alt="">
+										<img src="${pageContext.request.contextPath}/resources/images/lock.png" width="130px" height="130px" align="center" ;
+                      id="img"></div>
+									<div style="align:center;">
+										<p>회원님의 개인정보 보호를 위해 이메일 인증이 필요합니다.<br>
+										인증번호는 가입하신 카카오톡 아이디로 전송됩니다.</p>
 									</div>
+									<button type="button" id="sendEmail">이메일 전송</button>
+									</div>
+									
 									<div>
-										<p>회원님의 개인정보 보호를 위해 이메일 인증이 필요합니다.</p>
-										<p>가입하신 이메일로 전송된 인증번호를 입력해주세요.</p>
-									</div>
-									<input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+									<div id="showForm" style="display:none;">
+									<div>
+										<img src="${pageContext.request.contextPath}/resources/images/lock.png" width="130px" height="130px" align="center" ;
+                      id="img"></div>
+										<p>인증번호가 전송되었습니다.<br>
+											이메일을 확인해 주세요.
+										</p>
+									<input type="text" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" placeholder="인증번호 입력">
 									<div id="passwordHelpBlock" class="form-text"></div>
-									<button type="submit" id="sendEmail">이메일 전송</button>
+									<button type="button" id="checkEmail">인증번호 확인</button>
+									</div>
+									</div>
 									
 									<script>
+									 
 									  $(function(){
 									    let code;
 									    const checkInput = $("#inputPassword5");
 									    
 									    $("#sendEmail").on("click", function(){
-									      const email = '${loginUser.memId}';
+									    	
+									      const email = '${loginUser.memEmail}';
 									      console.log(email);
-									      $("#passwordHelpBlock").css("color", "#ff8932").text("이메일이 전송되었습니다.");
+									      $("#showForm").show();
+									      $("#showInfo").hide();
+									     // $("#passwordHelpBlock").css("color", "#ff8932").text("이메일이 전송되었습니다.");
 									
 									      // AJAX를 사용하여 email 값을 서버로 전송
 									      $.ajax({
@@ -176,12 +193,10 @@
 									          console.log("data: " + data);
 									          checkInput.attr('disabled', false);
 									          code = data;
-									          // 성공한 경우 추가로 처리할 내용 작성
 									          
 									         },
 									        error: function() {
 									          console.log("이메일 전송 실패");
-									          // 실패한 경우 추가로 처리할 내용 작성
 									        }
 									      });
 									    });
@@ -193,13 +208,13 @@
 									        
 									        if (inputCode === code) {
 									        	
-									        	alert("이메일 인증이 완료되었습니다.");
+									        	alert("이메일 인증에 성공하였습니다.");
 									        	 // JSP로 이동
-										          window.location.href = 'update.my'; // 컨트롤러를 통해 JSP로 이동
+										          window.location.href = 'update.my';
 										        
 									        } else {
-									          $resultMsg.html('인증번호가 불일치합니다. 다시 확인해주세요!');
-									          $resultMsg.css('color', 'red');
+									          $resultMsg.html('인증번호가 불일치합니다. 다시 확인해주세요.');
+									          $resultMsg.css('color', '#ff8932');
 									        }
 									      });
 									    });

@@ -25,10 +25,10 @@ public interface MyPageService {
 	int checkNick(String memNickname);
 	
 	// 자기소개 변경 서비스
-	int updateIntro(Member m);
+	int updateIntro(Member loginUser);
 	
 	// 회원탈퇴 서비스
-	int deleteMember(Member m);
+	int deleteMember(Member loginUser);
 
 	Member loginMember(Member m);
 	

@@ -239,7 +239,7 @@
                     </ul>
                       </li>
 						<li class="nav-item">
-						  <i id="bellIcon" class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
+						  <i style="margin-bottom:10px;" id="bellIcon" class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
 						    data-trigger="focus" title="최신 알림" data-html="true"
 						    data-content="<div>XXX님이 회원님의 소모임에 참가했습니다.</div>
 						                  <div>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</div>

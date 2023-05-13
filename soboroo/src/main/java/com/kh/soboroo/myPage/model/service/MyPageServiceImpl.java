@@ -42,16 +42,18 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public int updateIntro(Member m) {
-		int result = myDao.updateIntro(sqlSession, m);
+	public int updateIntro(Member loginUser) {
+		int result = myDao.updateIntro(sqlSession, loginUser);
+		System.out.println(loginUser);
+		System.out.println("서비스 타니?");
 		return result;
 	}
 
 	@Override
-	public int deleteMember(Member m) {
-		int result = myDao.deleteMember(sqlSession, m);
+	public int deleteMember(Member loginUser) {
+		int result = myDao.deleteMember(sqlSession, loginUser);
 		
-		System.out.println("서비스"+m);
+		System.out.println("서비스"+loginUser);
 		return result;
 	}
 

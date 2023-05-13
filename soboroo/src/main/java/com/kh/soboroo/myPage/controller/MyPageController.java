@@ -131,18 +131,21 @@ public class MyPageController {
 	@RequestMapping("updateNick.my")
 	public String updateNick(Member m, HttpSession session, Model model) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		m.setMemId(loginUser.getMemId());
-		loginUser.setMemIntroduce(loginUser.getMemIntroduce());
+		
+		m.setMemNo(loginUser.getMemNo());
+		loginUser.setMemNickname(loginUser.getMemNickname());
+		
+		System.out.println(loginUser);
+		System.out.println(m);
 		
 		int result = myService.updateNick(m);
 		
+		System.out.println("닉네임 변경" + result);
 		if(result > 0) {
 			Member updateNick = myService.loginMember(loginUser);
 			session.setAttribute("loginUser", updateNick);
 			
-			session.setAttribute("updateBellIcon", "updateBellIcon");
-			
-			return "redirect:update.my";		
+			return "myPage/updateInfo";		
 		} else {
 			return "common/errorPage";
 		}
@@ -160,19 +163,29 @@ public class MyPageController {
 	// 자기소개 변경
 	@RequestMapping("updateIntro.my")
 	public String updateIntro(Member m, HttpSession session, Model model) {
-	    Member loginUser = (Member)session.getAttribute("loginUser");
-	    m.setMemId(loginUser.getMemId());
-	   loginUser.setMemIntroduce(loginUser.getMemIntroduce());
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	/*
 		
-		int result = myService.updateIntro(m);
+		//m.setMemNo(loginUser.getMemNo());
+		loginUser.setMemIntroduce(loginUser.getMemIntroduce());
+		
+		System.out.println(loginUser);
+		*/
+		String updateIntroduce = loginUser.getMemIntroduce();
+		m.setMemIntroduce(updateIntroduce);
+		
+		
+		int result = myService.updateIntro(loginUser);
 
+		System.out.println(result);
+		
 		if (result > 0) {
-			Member updateIntro = myService.loginMember(loginUser);
+			Member updateIntro = myService.loginMember(m);
 			session.setAttribute("loginUser", updateIntro);
 			
 			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
 			
-			return "redirect:update.my";
+			return "myPage/updateInfo";
 		} else {
 			
 			return "common/errorPage";
@@ -186,7 +199,7 @@ public class MyPageController {
 	    m.setMemId(loginUser.getMemId());
 	    loginUser.setMemStatus(loginUser.getMemStatus());
 	    
-	    int result = myService.deleteMember(m);
+	    int result = myService.deleteMember(loginUser);
 	    
 	    if(result > 0) {
 	        //Member deleteMember = myService.loginMember(loginUser);
