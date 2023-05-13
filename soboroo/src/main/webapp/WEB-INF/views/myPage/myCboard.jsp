@@ -177,16 +177,9 @@
 
 											<script>
 												$(function() {
-													$("#boardList>tbody>tr")
-															.click(
-																	function() {
-																		location.href = 'detail.bo?bno='
-																				+ $(
-																						this)
-																						.children(
-																								".bno")
-																						.text();
-																	})
+													$("#boardList>tbody>tr").click(function() {
+														location.href = 'detail.bo?bno='+ $(this).children(".bno").text();
+													})
 												})
 											</script>
 
@@ -202,32 +195,35 @@
 									<ul class="pagination"
 										style="padding-left: 270px; padding-top: 10px;">
 										<c:choose>
-											<c:when test="${ pi.currentPage eq 1 }">
-												<li class="page-item disabled"><a class="page-link"
-													href="">Previous</a></li>
-											</c:when>
-											<c:otherwise>
-												<li class="page-item"><a class="page-link"
-													href="communityList.my?cpage=${ pi.currentPage - 1 }">Previous</a></li>
-											</c:otherwise>
-										</c:choose>
-
-										<c:forEach var="p" begin="${ pi.startPage }"
-											end="${ pi.endPage }">
-											<li class="page-item"><a class="page-link"
-												href="communityList.my?cpage=${ p }">${ p }</a></li>
-										</c:forEach>
-
-										<c:choose>
-											<c:when test="${ pi.currentPage eq pi.maxPage }">
-												<li class="page-item disabled"><a class="page-link"
-													href="">Next</a></li>
-											</c:when>
-											<c:otherwise>
-												<li class="page-item"><a class="page-link"
-													href="communityList.my?cpage=${ pi.currentPage + 1 }">Next</a></li>
-											</c:otherwise>
-										</c:choose>
+  <c:when test="${pi.maxPage == 0}">
+    <li class="page-item disabled"><a class="page-link" href="">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="">1</a></li>
+    <li class="page-item disabled"><a class="page-link" href="">Next</a></li>
+  </c:when>
+  <c:otherwise>
+    <c:choose>
+      <c:when test="${pi.currentPage eq 1}">
+        <li class="page-item disabled"><a class="page-link" href="">Previous</a></li>
+      </c:when>
+      <c:otherwise>
+        <li class="page-item"><a class="page-link" href="communityList.my?cpage=${pi.currentPage - 1}">Previous</a></li>
+      </c:otherwise>
+    </c:choose>
+  
+    <c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
+      <li class="page-item"><a class="page-link" href="communityList.my?cpage=${p}">${p}</a></li>
+    </c:forEach>
+  
+    <c:choose>
+      <c:when test="${pi.currentPage eq pi.maxPage}">
+        <li class="page-item disabled"><a class="page-link" href="">Next</a></li>
+      </c:when>
+      <c:otherwise>
+        <li class="page-item"><a class="page-link" href="communityList.my?cpage=${pi.currentPage + 1}">Next</a></li>
+      </c:otherwise>
+    </c:choose>
+  </c:otherwise>
+</c:choose>
 									</ul>
 								</nav>
 							</div>

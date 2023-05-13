@@ -151,7 +151,7 @@
 														<c:when test="${empty list }">
 															<tr>
 																<td colspan="3" align="center"
-																	style="pointer-events: none;">작성한 게시글이 없습니다.</td>
+																	style="pointer-events: none;">작성한 댓글이 없습니다.</td>
 															</tr>
 														</c:when>
 														<c:otherwise>
@@ -168,16 +168,9 @@
 											</table>
 											<script>
 												$(function() {
-													$("#replyList>tbody>tr")
-															.click(
-																	function() {
-																		location.href = 'detail.bo?cno='
-																				+ $(
-																						this)
-																						.children(
-																								".bno")
-																						.text();
-																	})
+													$("#replyList>tbody>tr").click(function() {
+														location.href = 'detail.bo?cno='+ $(this).children(".bno").text();
+													})
 												})
 											</script>
 
@@ -191,33 +184,36 @@
 									style="margin: auto;">
 									<ul class="pagination"
 										style="padding-left: 270px; padding-top: 10px;">
-										<c:choose>
-											<c:when test="${ pi.currentPage eq 1 }">
-												<li class="page-item disabled"><a class="page-link"
-													href="">Previous</a></li>
-											</c:when>
-											<c:otherwise>
-												<li class="page-item"><a class="page-link"
-													href="communityReplyList.my?cpage=${ pi.currentPage - 1 }">Previous</a></li>
-											</c:otherwise>
-										</c:choose>
-
-										<c:forEach var="p" begin="${ pi.startPage }"
-											end="${ pi.endPage }">
-											<li class="page-item"><a class="page-link"
-												href="communityReplyList.my?cpage=${ p }">${ p }</a></li>
-										</c:forEach>
-
-										<c:choose>
-											<c:when test="${ pi.currentPage eq pi.maxPage }">
-												<li class="page-item disabled"><a class="page-link"
-													href="">Next</a></li>
-											</c:when>
-											<c:otherwise>
-												<li class="page-item"><a class="page-link"
-													href="communityReplyList.my?cpage=${ pi.currentPage + 1 }">Next</a></li>
-											</c:otherwise>
-										</c:choose>
+									<c:choose>
+  <c:when test="${pi.maxPage == 0}">
+    <li class="page-item disabled"><a class="page-link" href="">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="">1</a></li>
+    <li class="page-item disabled"><a class="page-link" href="">Next</a></li>
+  </c:when>
+  <c:otherwise>
+    <c:choose>
+      <c:when test="${pi.currentPage eq 1}">
+        <li class="page-item disabled"><a class="page-link" href="">Previous</a></li>
+      </c:when>
+      <c:otherwise>
+        <li class="page-item"><a class="page-link" href="communityReplyList.my?cpage=${pi.currentPage - 1}">Previous</a></li>
+      </c:otherwise>
+    </c:choose>
+  
+    <c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
+      <li class="page-item"><a class="page-link" href="communityReplyList.my?cpage=${p}">${p}</a></li>
+    </c:forEach>
+  
+    <c:choose>
+      <c:when test="${pi.currentPage eq pi.maxPage}">
+        <li class="page-item disabled"><a class="page-link" href="">Next</a></li>
+      </c:when>
+      <c:otherwise>
+        <li class="page-item"><a class="page-link" href="communityReplyList.my?cpage=${pi.currentPage + 1}">Next</a></li>
+      </c:otherwise>
+    </c:choose>
+  </c:otherwise>
+</c:choose>
 									</ul>
 								</nav>
 

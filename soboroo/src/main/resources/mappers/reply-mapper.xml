@@ -37,7 +37,7 @@
 		 where r.del_ny='N'
 		   and r.rep_ny='N'
 		   and r.mem_no = #{memNo}
-		   and r.table_no = (select table_no from table_name where table_no=10)
+		   and r.table_no = 10
 		 order by r.reply_no desc
 	</select>
 	
