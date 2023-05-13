@@ -145,28 +145,36 @@
 						<div class="post" id="myGroup">
 
 							<div class="post-body">
-								<div id="showInfo">
-									<div>
+								<div id="showInfo" style="padding:0px 200px;">
+									<div style="padding:70px 100px 40px 100px;">
 										<img src="${pageContext.request.contextPath}/resources/images/lock.png" width="130px" height="130px" align="center" ;
                       id="img"></div>
-									<div style="align:center;">
+									<div style="text-align:center;">
 										<p>회원님의 개인정보 보호를 위해 이메일 인증이 필요합니다.<br>
 										인증번호는 가입하신 카카오톡 아이디로 전송됩니다.</p>
 									</div>
-									<button type="button" id="sendEmail">이메일 전송</button>
+									<div style="padding-top:20px; padding-left:120px; padding-bottom: 50px;">
+									<button type="button"  class="btn btn-primary" id="sendEmail">이메일 전송</button>
+									</div>
 									</div>
 									
 									<div>
-									<div id="showForm" style="display:none;">
-									<div>
+									<div id="showForm" style="display:none; padding:0px 200px;">
+									<div style="padding:70px 100px 40px 100px;">
 										<img src="${pageContext.request.contextPath}/resources/images/lock.png" width="130px" height="130px" align="center" ;
                       id="img"></div>
+                      				<div style="text-align:center;">
 										<p>인증번호가 전송되었습니다.<br>
-											이메일을 확인해 주세요.
+											가입하신 카카오톡 이메일을 확인해 주세요.
 										</p>
+										</div>
+										<div style="padding-top:10px;">
 									<input type="text" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" placeholder="인증번호 입력">
+									</div>
 									<div id="passwordHelpBlock" class="form-text"></div>
-									<button type="button" id="checkEmail">인증번호 확인</button>
+									<div style="padding-top:30px; padding-left:120px; padding-bottom: 50px;">
+									<button type="button" class="btn btn-primary" id="checkEmail">인증번호 확인</button>
+									</div>
 									</div>
 									</div>
 									
