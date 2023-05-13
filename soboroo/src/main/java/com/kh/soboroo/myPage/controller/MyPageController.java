@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -309,13 +311,5 @@ public class MyPageController {
 		return "myPage/checkEmail";
 	}
 
-	@RequestMapping("deleteAlert.my")
-	public String deleteAlert(HttpServletRequest request) {
-		String[] ajaxMsg = request.getParameterValues("valueArr");
-		int size = ajaxMsg.length;
-		for(int i=0; i<size; i++) {
-			myService.deleteMember(ajaxMsg[i]);
-		}
-		return "myPage/myAlert";
+
 	}
-}

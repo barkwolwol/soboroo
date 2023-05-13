@@ -53,4 +53,5 @@ public interface MyPageService {
 	ArrayList<EntryList> selectMyGroupList(Member loginUser, PageInfo pi);
 	
 	ArrayList<Object> selectMySchedule(Member loginUser);
+	
 }

@@ -160,84 +160,39 @@
 												align="center">
 												<thead>
 													<tr>
-														<th><input type="checkbox" id="allCheck"
-															name="allCheck"></th>
 														<th>내용</th>
 														<th>날짜</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="${list }" var="list">
-														<tr>
-															<td><input name="RowCheck" type="checkbox" value="${list.no }"></td>
-															<td>${list.title }</td>
-															<td>${list.enrollDate }</td>
-														</tr>
-													</c:forEach>
+													<tr>
+														<td>XXX님이 회원님의 소모임에 참가했습니다.</td>
+														<td>2023.03.17</td>
+													</tr>
+													<tr>
+														<td>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</td>
+														<td>2023.03.16</td>
+													</tr>
+													<tr>
+														<td>XXX님이 회원님의 소모임 게시글에 댓글을 남겼습니다.</td>
+														<td>2023.03.15</td>
+													</tr>
+													<tr>
+														<td>XXX님의 소모임에 참여되었습니다.</td>
+														<td>2023.03.14</td>
+													</tr>
+													<tr>
+														<td>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</td>
+														<td>2023.03.14</td>
+													</tr>
 												</tbody>
 											</table>
-											<input type="button" class="btn btn-primary"
-												onclick="deleteAlert();" value="삭제하기">
-
-											<script>
-												$(function() {
-													var chkObj = document.getElementsByName("RowCheck");
-													var rowCnt = chkObj.length;
-
-													$("input[name='allCheck']").click(function() {
-														var chk_listArr = $("input[name='RowCheck']");
-														for (var i = 0; i < chk_listArr.length; i++) {
-															chk_listArr[i].checked = this.checked;
-														}
-													});
-
-													$("input[name='RowCheck']").click(function() {
-														if ($("input[name='RowCheck']:checked").length == rowCnt) {
-															$("input[name='allCheck']")[0].checked = true;
-														} else {
-															$("input[name='allCheck']")[0].checked = false;
-														}
-													});
-												});
-
-												function deleteAlert() {
-													var url = "deleteAlert.my"
-													var valueArr = new Array();
-													var list = $("input[name='RowCheck']");
-													for (var i = 0; i < list.length; i++) {
-														if (list[i].checked) {
-															valueArr.push(list[i].value);
-														}
-													}
-													if (valueArr.length == 0) {
-														alert("선택된 알림이 없습니다.");
-													} else {
-														var chk = confirm("정말 삭제하시겠습니까?");
-														$.ajax({
-															url : url,
-															type : 'POST',
-															traditional : true,
-															data : {
-																valueArr : valueArr
-															},
-															success : function(
-																	data) {
-																if (data = 1) {
-																	alert("성공적으로 삭제되었습니다.");
-																	location.replace("list");
-																} else {
-																	alert("삭제가 취소되었습니다.");
-																}
-															}
-														})
-													}
-												}
-											</script>
-
-
-
-										</div>
 									</div>
+									</div>
+									</div>
+									</div>
+									</div>
+									
 									<!-- post-body end -->
 								</div>
 								<!-- 3rd post end -->
