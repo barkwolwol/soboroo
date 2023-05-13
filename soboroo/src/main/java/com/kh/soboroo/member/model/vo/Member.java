@@ -16,7 +16,7 @@ import lombok.ToString;
 public class Member {
 	 private int memNo;
 	 private String memId;
-	 private String kakaoId;
+	 private String id;		// kakaoId
 	 private String memPwd;
 	 private String memEmail;
 	 private String memGender;

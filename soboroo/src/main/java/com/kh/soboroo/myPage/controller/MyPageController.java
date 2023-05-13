@@ -132,20 +132,14 @@ public class MyPageController {
 	public String updateNick(Member m, HttpSession session, Model model) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		m.setMemNo(loginUser.getMemNo());
-		loginUser.setMemNickname(loginUser.getMemNickname());
+		loginUser.setMemNickname(m.getMemNickname());
 		
-		System.out.println(loginUser);
-		System.out.println(m);
-		
-		int result = myService.updateNick(m);
+		int result = myService.updateNick(loginUser);
 		
 		System.out.println("닉네임 변경" + result);
 		if(result > 0) {
-			Member updateNick = myService.loginMember(loginUser);
-			session.setAttribute("loginUser", updateNick);
-			
-			return "myPage/updateInfo";		
+			 session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
+		        return "myPage/updateInfo";		
 		} else {
 			return "common/errorPage";
 		}
@@ -163,33 +157,18 @@ public class MyPageController {
 	// 자기소개 변경
 	@RequestMapping("updateIntro.my")
 	public String updateIntro(Member m, HttpSession session, Model model) {
-	Member loginUser = (Member)session.getAttribute("loginUser");
-	/*
-		
-		//m.setMemNo(loginUser.getMemNo());
-		loginUser.setMemIntroduce(loginUser.getMemIntroduce());
-		
-		System.out.println(loginUser);
-		*/
-		String updateIntroduce = loginUser.getMemIntroduce();
-		m.setMemIntroduce(updateIntroduce);
-		
-		
-		int result = myService.updateIntro(loginUser);
-
-		System.out.println(result);
-		
-		if (result > 0) {
-			Member updateIntro = myService.loginMember(m);
-			session.setAttribute("loginUser", updateIntro);
-			
-			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
-			
-			return "myPage/updateInfo";
-		} else {
-			
-			return "common/errorPage";
-		}
+	    Member loginUser = (Member) session.getAttribute("loginUser");
+	    
+	    loginUser.setMemIntroduce(m.getMemIntroduce());
+	    
+	    int result = myService.updateIntro(loginUser);
+	    
+	    if (result > 0) {
+	        session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
+	        return "myPage/updateInfo";
+	    } else {
+	        return "common/errorPage";
+	    }
 	}
 
 	// 회원탈퇴
@@ -197,7 +176,7 @@ public class MyPageController {
 	public String deleteMember(Member m, HttpSession session) {
 	    Member loginUser = (Member)session.getAttribute("loginUser");
 	    m.setMemId(loginUser.getMemId());
-	    loginUser.setMemStatus(loginUser.getMemStatus());
+	    loginUser.setMemStatus(m.getMemStatus());
 	    
 	    int result = myService.deleteMember(loginUser);
 	    

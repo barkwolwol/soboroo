@@ -5,7 +5,7 @@
  <mapper namespace="memberMapper">
 	<resultMap id="memberResultSet" type="Member">
 		<result column="MEM_NO" property="memNo"/>
-		<result column="KAKAO_ID" property="KakaoId"/>
+		<result column="KAKAO_ID" property="id"/>
 		<result column="MEM_ID" property="memId"/>
 		<result column="MEM_PWD" property="memPwd"/>
 		<result column="MEM_EMAIL" property="memEmail"/>
