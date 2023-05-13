@@ -19,6 +19,7 @@ public class Notice {
 	private String ntcUpdateDate;
 	private int ntcCount;
 	private String ntcDelNy;
+
 	
 	
 

@@ -319,7 +319,7 @@
 <td>${ n.ntcDelNy }</td>
 <td class="text-end">
 <a href="notenrollForm.no" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>작성</a>
-<a href="notupdate.no" class="btn btn-sm btn-white text-warning"><i class="far fa-edit me-1"></i>수정</a>
+<a href="update.no" class="btn btn-sm btn-white text-warning"><i class="far fa-edit me-1"></i>수정</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
 </td>
 </tr>
@@ -333,9 +333,7 @@
 </div>
 </div>
 </div>
-
-
-
+ 
 <!-- 모달 팝업 -->
 <div class="modal custom-modal fade" id="delete_paid" role="dialog">
 <div class="modal-dialog modal-dialog-centered">
@@ -364,6 +362,8 @@
 
 
 
+
+
 <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
@@ -381,5 +381,7 @@
 <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap-datetimepicker.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
+
+
 </body>
 </html>

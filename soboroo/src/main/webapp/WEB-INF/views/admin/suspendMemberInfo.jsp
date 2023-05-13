@@ -303,7 +303,7 @@
 <a href="profile.html">${s.memName}<span>${s.memNo }</span></a>
 </h2>
 </td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">${s.memId }</a></td>
+<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">${s.memId}</a></td>
 <td>${s.memRprCount }</td>
 <td>${s.memUpdateDate }</td>
 <td>${s.memSuspensionDate }</td>

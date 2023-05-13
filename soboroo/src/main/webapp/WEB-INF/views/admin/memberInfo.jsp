@@ -309,7 +309,7 @@
 <tr>
 <td>
 <h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="http://k.kakaocdn.net/dn/cp4wJV/btseV9VB8P3/T4O7V7k2UVps3WTrd95lF0/img_640x640.jpg" alt="User Image"></a>
+<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${m.memImg }" alt="User Image"></a>
 <a href="profile.html">${m.memName }<span>soboroo ${m.memNo}</span></a>
 </h2>
 </td>

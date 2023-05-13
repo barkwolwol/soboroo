@@ -253,7 +253,7 @@
                                     <div class="dash-count">
                                         <div class="dash-title">생성된 모임</div>
                                         <div class="dash-counts">
-                                            <p>50</p>
+                                            <p id="count">50</p>
                                         </div>
                                     </div>
                                 </div>
@@ -291,7 +291,7 @@
                                     <div class="dash-count">
                                         <div class="dash-title">일일 방문자 수</div>
                                         <div class="dash-counts">
-                                            <p>1,041</p>
+                                            <p id="visitorCount">1,041</p>
                                         </div>
                                     </div>
                                 </div>
@@ -310,7 +310,7 @@
                                     <div class="dash-count">
                                         <div class="dash-title">총 방문자수</div>
                                         <div class="dash-counts">
-                                            <p>2,150</p>
+                                            <p id="totalCount">2,150</p>
                                         </div>
                                     </div>
                                 </div>
@@ -320,6 +320,8 @@
                         </div>
                     </div>
                 </div>
+                
+                
                 
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -450,6 +452,79 @@
             </div>
         </div>
     </div>
+    
+    
+    <!-- 일일 방문자 수 카운트 -->
+    <script>
+    function animateVisitorCount() {
+        let count = 0;
+        const targetCount = 1000; // 목표 방문자 수
+        const duration = 10000; // 애니메이션 지속 시간 (밀리초)
+        const increment = Math.ceil(targetCount / (duration / 100)); // 숫자 증가 속도
+
+        const visitorCountElement = document.getElementById('visitorCount');
+
+        const timer = setInterval(() => {
+            count += increment;
+            visitorCountElement.textContent = count.toLocaleString();
+
+            if (count >= targetCount) {
+                clearInterval(timer);
+                visitorCountElement.textContent = targetCount.toLocaleString();
+            }
+        }, 100);
+    }
+
+    animateVisitorCount();
+    </script>
+    
+    <!-- 총 방문자 수 카운트  -->
+    <script>
+    function totalCount() {
+        let count = 0;
+        const targetCount = 2200; // 목표 방문자 수
+        const duration = 10000; // 애니메이션 지속 시간 (밀리초)
+        const increment = Math.ceil(targetCount / (duration / 100)); // 숫자 증가 속도
+
+        const visitorCountElement = document.getElementById('totalCount');
+
+        const timer = setInterval(() => {
+            count += increment;
+            visitorCountElement.textContent = count.toLocaleString();
+
+            if (count >= targetCount) {
+                clearInterval(timer);
+                visitorCountElement.textContent = targetCount.toLocaleString();
+            }
+        }, 100);
+    }
+
+    totalCount();
+    </script>
+    
+    <!-- 모임 개수 카운트 증가  -->
+    <script>
+    function countUp(target, start, end, duration) {
+        let current = start;
+        const range = end - start;
+        const step = range / duration * 10;
+        const timer = setInterval(function() {
+          current += step;
+          target.innerHTML = Math.round(current);
+          if (current >= end) {
+            clearInterval(timer);
+            target.innerHTML = end;
+          }
+        }, 10);
+      }
+
+      const countElement = document.getElementById('count');
+      const startCount = 0;
+      const endCount = 100;
+      const duration = 10000; // 1초
+
+      countUp(countElement, startCount, endCount, duration);
+    </script>
 
     <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>

@@ -4,7 +4,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.AllArgsConstructor;
 
+
+@AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter

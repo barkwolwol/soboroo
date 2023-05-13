@@ -1,6 +1,7 @@
 package com.kh.soboroo.member.controller;
 
 import java.sql.SQLException;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -127,6 +128,7 @@ public class MemberController {
 	    m.setAdultNY(((String)userInfo.get("age_range")));
 	    m.setMemBirth(((String)userInfo.get("birthday")));
 	    m.setMemGender((String)userInfo.get("gender"));
+	    
 
 	    System.out.println(m);
 	    int result = mService.insertMember(m);
