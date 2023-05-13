@@ -16,6 +16,8 @@ public class OfflineGroupOnce {
 	private int offGroupOnceNo;
 	private String offGroupOnceTitle;
 	private String offGroupOnceId;
+	private String offGroupOnceEmail;
+	private String offGroupOnceSimple;
 	private String enrollDate;
 	private String modifyDate;
 	private String offGroupOnceStartDate;
@@ -23,13 +25,20 @@ public class OfflineGroupOnce {
 	private String offGroupOnceStartEnter;
 	private String offGroupOnceEndEnter;
 	private String offGroupOnceCotent;
+	private String address;
+	private String addressDetail;
+	private String displayNY;
+	private String password;
 	private String hashTag;
 	private String DelNY;
 	private String RepNY;
 	private String url;
 	private String max;
+	private String maxAccess;
+	private String adultAccess;
 	private String category;
 	private int memNo;
 	private int tableNo;
+	private String attendPassword;
 	
 }

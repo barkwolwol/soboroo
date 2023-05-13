@@ -16,6 +16,8 @@ public class OfflineChallengeDday {
 	private int offChlDdayNo;
 	private String offChlDdayTitle;
 	private String offChlDdayId;
+	private String offChlDdayEmail;
+	private String offChlDdaySimple;
 	private String enrollDate;
 	private String modifyDate;
 	private String offChlDdayStartDate;
@@ -23,13 +25,20 @@ public class OfflineChallengeDday {
 	private String offChlDdayStartEnter;
 	private String offChlDdayEndEnter;
 	private String offChlDdayCotent;
+	private String address;
+	private String addressDetail;
+	private String displayNY;
+	private String password;
 	private String hashTag;
 	private String DelNY;
 	private String RepNY;
 	private String url;
 	private String max;
+	private String maxAccess;
+	private String adultAccess;
 	private String category;
 	private int memNo;
 	private int tableNo;
+	private String attendPassword;
 
 }

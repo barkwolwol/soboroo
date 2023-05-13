@@ -6,7 +6,6 @@
 	<resultMap id="memberResultSet" type="Member">
 		<result column="MEM_NO" property="memNo"/>
 		<result column="KAKAO_ID" property="KakaoId"/>
-		<result column="MEM_ID" property="memId"/>
 		<result column="MEM_PWD" property="memPwd"/>
 		<result column="MEM_EMAIL" property="memEmail"/>
 		<result column="MEM_GENDER" property="memGender"/>
@@ -34,7 +33,6 @@
 		     (
 		       mem_no
 		     , kakao_id  
-		     , mem_id
 		     , mem_pwd
 		     , mem_email
 		     , mem_gender
@@ -50,7 +48,6 @@
 	         (
 	           SEQ_MEM_NO.NEXTVAL
 	         , #{kakaoId}
-	         , #{memId}
 	         , #{memPwd}
 	         , #{memEmail}
 	         , #{memGender}
@@ -67,7 +64,6 @@
 	<select id="loginMember" resultMap="memberResultSet">
 		select
 		       mem_no
-		     , mem_id
 		     , mem_pwd
 		     , mem_email
 		     , mem_gender

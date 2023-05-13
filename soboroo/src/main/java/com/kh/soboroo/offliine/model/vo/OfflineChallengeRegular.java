@@ -16,6 +16,8 @@ public class OfflineChallengeRegular {
 	private int offChlRegNo;
 	private String offChlRegTitle;
 	private String offChlRegId;
+	private String offChlRegEmail;
+	private String offChlRegSimple;
 	private String enrollDate;
 	private String modifyDate;
 	private String offChlRegStartDate;
@@ -23,13 +25,20 @@ public class OfflineChallengeRegular {
 	private String offChlRegStartEnter;
 	private String offChlRegEndEnter;
 	private String offChlRegCotent;
+	private String address;
+	private String addressDetail;
+	private String displayNY;
+	private String password;
 	private String hashTag;
 	private String DelNY;
 	private String RepNY;
 	private String url;
 	private String max;
+	private String maxAccess;
+	private String adultAccess;
 	private String category;
 	private int memNo;
 	private int tableNo;
+	private String attendPassword;
 
 }

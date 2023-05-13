@@ -13,7 +13,6 @@ import lombok.ToString;
 @ToString				// toString 메소드
 public class Member {
 	 private int memNo;
-	 private String memId;
 	 private String kakaoId;
 	 private String memPwd;
 	 private String memEmail;
