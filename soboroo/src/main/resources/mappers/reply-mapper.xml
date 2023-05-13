@@ -23,7 +23,18 @@
 	      from reply
 	     where del_ny='N'
 	       and rep_ny='N'
+	       and table_no = 10
 	       and mem_no = #{memNo}		   
+	</select>
+	
+	<select id="selectGroupReplyListCount" resultType="_int">
+		select 
+			   count(*)
+	      from reply
+	     where del_ny='N'
+	       and rep_ny='N'
+	       and table_no in (2,3,4,5,6,7,8,9)
+	       and mem_no = #{memNo}	
 	</select>
 	
 	<select id="selectReplyList" resultMap="replyResultSet">

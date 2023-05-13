@@ -66,6 +66,10 @@ public class MyPageDao {
 		return sqlSession.selectOne("replyMapper.selectReplyListCount", loginUser);
 	}
 	
+	public int selectGroupReplyListCount(SqlSessionTemplate sqlSession, Member loginUser) {
+		return sqlSession.selectOne("replyMapper.selectGroupReplyListCount", loginUser);
+	}
+	
 	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, Member loginUser, PageInfo pi){
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();

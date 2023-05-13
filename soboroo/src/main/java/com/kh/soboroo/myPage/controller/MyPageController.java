@@ -241,7 +241,7 @@ public class MyPageController {
 	public ModelAndView selectGroupBoardReplyList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		int listCount = myService.selectReplyListCount(loginUser);
+		int listCount = myService.selectGroupReplyListCount(loginUser);
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		
@@ -309,4 +309,13 @@ public class MyPageController {
 		return "myPage/checkEmail";
 	}
 
+	@RequestMapping("deleteAlert.my")
+	public String deleteAlert(HttpServletRequest request) {
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			myService.deleteMember(ajaxMsg[i]);
+		}
+		return "myPage/myAlert";
+	}
 }
