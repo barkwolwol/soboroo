@@ -153,15 +153,15 @@
 	<!-- Body inner end -->
 
 
-<!-- <script language="javascript">
+<script language="javascript">
   var list = [
     <c:forEach var="item" items="${list}">
       {
         title: '${item.title}',
-        start: '${item.date}',
+        start: '${item.startDate}',
         end: (function() {
-          var startDate = new Date('${item.date}');
-          var endDate = new Date(startDate.getTime() + 2 * 24 * 60 * 60 * 1000);
+          var startDate = new Date('${item.endDate}');
+          var endDate = new Date(startDate.getTime() + 1 * 24 * 60 * 60 * 1000);
           return endDate.toISOString().split('T')[0];
         })()
       }<c:if test="${!loop.last}">,</c:if>
@@ -178,7 +178,7 @@
     calendar.render();
   });
 </script>
- -->
+
 <!-- <script language="javascript">
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
@@ -200,7 +200,7 @@
     calendar.render();
   });
 </script> -->
-<script language="javascript">
+<!-- <script language="javascript">
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -230,7 +230,7 @@
     }
 
     return events;
-  }
+  } -->
 </script>
 
 

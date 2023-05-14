@@ -177,7 +177,7 @@ public class MyPageController {
 	@RequestMapping("deleteMember.my")
 	public String deleteMember(Member m, HttpSession session) {
 	    Member loginUser = (Member)session.getAttribute("loginUser");
-	    m.setMemId(loginUser.getMemId());
+	  //  m.setMemNo(loginUser.getMemNo());
 	    loginUser.setMemStatus(m.getMemStatus());
 	    
 	    int result = myService.deleteMember(loginUser);
