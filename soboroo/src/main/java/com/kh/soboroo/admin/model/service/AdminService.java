@@ -2,12 +2,11 @@ package com.kh.soboroo.admin.model.service;
 
 import java.util.ArrayList;
 
-
-
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.common.model.vo.PageInfo;
+
 
 
 
@@ -37,7 +36,7 @@ public interface AdminService {
 	
 	
 	// 관리자 회원 정보 수정
-	int updateMem(AdminMember m);
+	int adminMemberUpdate(AdminMember m);
 	
 	
 	// 관리자 정지회원 관리
@@ -49,5 +48,6 @@ public interface AdminService {
 	ArrayList<AdminMember> selectReportList(PageInfo pi);
 	
 	
+
 	
 }

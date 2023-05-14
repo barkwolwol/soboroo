@@ -136,6 +136,8 @@
                                                     		console.log($nickInput.val());
                                                     		
                                                     		
+                           
+                                                    		
                                                     		$nickInput.keyup(function(){
                                                     			
                                                     			$.ajax({

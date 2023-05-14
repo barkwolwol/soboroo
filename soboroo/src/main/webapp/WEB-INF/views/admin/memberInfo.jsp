@@ -301,6 +301,8 @@
 <th>생년월일</th>
 <th>성별</th>
 <th>연령제한여부</th>
+<th>회원가입일</th>
+<th>상태변경일</th>
 <th class="text-end">Actions</th>
 </tr>
 </thead>
@@ -328,6 +330,8 @@
 <td>${m.memBirth }</td>
 <td>${m.memGender }</td>
 <td>${m.adultNy}</td>
+<td>${m.memEnrollDate}</td>
+<td>${m.memUpdateDate}</td>
 <td class="text-end">
 <a href="updateInfo.ad" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>

@@ -30,5 +30,6 @@ public class AdminBoard {
 	private String categoryTitle;
 	private String memNickname;
 	private String memId;
+	private String memImg;
 
 }

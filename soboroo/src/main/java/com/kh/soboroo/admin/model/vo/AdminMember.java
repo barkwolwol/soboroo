@@ -52,6 +52,8 @@ public class AdminMember {
    private String memRprCount;
    private String memImg;
    private String adultNy;
+   private Date memEnrollDate;
+   private Date memUpdateDate;
 
 
 }

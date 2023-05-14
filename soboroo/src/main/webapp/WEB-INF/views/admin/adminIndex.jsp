@@ -152,7 +152,6 @@
                     </div>
                 </li>
 
-
                 <li class="nav-item dropdown has-arrow main-drop">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                         <span class="user-img">
@@ -361,7 +360,7 @@
                                                     <h2 class="table-avatar">
                                                         <a href="profile.html"><img
                                                                 class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/Slogo.png"
+                                                                src="${b.memImg }"
                                                                 alt="User Image">${b.memNickname}</a>
                                                     </h2>
                                                 </td>

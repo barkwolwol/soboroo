@@ -2,8 +2,6 @@ package com.kh.soboroo.admin.controller;
 
 import java.util.ArrayList;
 
-
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +18,7 @@ import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
+import com.kh.soboroo.member.model.vo.Member;
 
 
 
@@ -69,11 +68,9 @@ public class AdminController {
 		}
 		
 		
-		
-		
 		// 관리자 회원 정보 수정 페이지 호출
 		@RequestMapping("updateInfo.ad")
-		public String updateMemberInfo() {
+		public String updateMemberInfo(AdminMember m, HttpSession session, Model model) {
 			return "admin/updateMemberInfo";
 		}
 		
@@ -82,28 +79,9 @@ public class AdminController {
 		@RequestMapping("updateMem.ad")
 		public String updateMem(AdminMember m, HttpSession session, Model model) {
 			
-			int result = aService.updateMem(m);
+			aService.adminMemberUpdate(m);
 			
-			if(result > 0) { // 수정 성공
-				
-				// db로부터 수정된 회원 정보를 다시 조회해서
-				// session에 loginUser라는 키값으로 덮어 씌워줘야됨
-				
-//				Member updateMem = 
-//				session.setAttribute("loginUser", updateMem);
-//				
-				// alert 띄워 줄 문구 담기
-				
-				session.setAttribute("alertMsg", "성공적으로 회원정보 변경 되었습니다.");
-								
-				return "redirect:memberInfo.ad";
-				
-			}else { // 수정 실패
-				
-				model.addAttribute("errorMsg", "회원정보 변경 실패!");
-				return "common/errorPage";
-			}
-			
+			return "redirect:admin/updateInfo";
 			
 		}
 		

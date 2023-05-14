@@ -1,9 +1,7 @@
 package com.kh.soboroo.admin.model.service;
 
 import java.util.ArrayList;
-
-
-
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.member.model.vo.Member;
 
 
 
@@ -59,13 +58,6 @@ public class AdminServiceImpl implements AdminService {
 		return aDao.selectMemberList(sqlSession,pi);
 	}
 
-	@Override
-	public int updateMem(AdminMember m) {
-
-		int result = aDao.updateMem(sqlSession,m);
-		
-		return result;
-	}
 
 	@Override
 	public ArrayList<AdminMember> selectSusMemberList(PageInfo pi) {
@@ -77,6 +69,13 @@ public class AdminServiceImpl implements AdminService {
 	public ArrayList<AdminMember> selectReportList(PageInfo pi) {
 		
 		return aDao.selectReportList(sqlSession,pi);
+	}
+
+
+	@Override
+	public int adminMemberUpdate(AdminMember m) {
+		
+		return aDao.adminMemberUpdate(sqlSession,m);
 	}
 
 

@@ -13,6 +13,7 @@ import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.member.model.vo.Member;
 
 
 
@@ -75,12 +76,6 @@ public class AdminDao {
 		
 	}
 	
-	public int updateMem(SqlSessionTemplate sqlSession, AdminMember m) {
-		
-		return sqlSession.update("adminMapper.updateMem",m);
-		
-	}
-	
 	public ArrayList<AdminMember> selectSusMemberList(SqlSessionTemplate sqlSession, PageInfo pi){
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
@@ -107,6 +102,13 @@ public class AdminDao {
 		
 	}
 	
+	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.loginMember", m);
+	}
+	
+	public int adminMemberUpdate(SqlSessionTemplate sqlSession, AdminMember m) {
+		return sqlSession.update("adminMapper.adminMemberUpdate", m);
+	}
 	
 
 }
