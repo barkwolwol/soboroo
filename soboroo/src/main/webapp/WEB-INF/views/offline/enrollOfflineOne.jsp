@@ -8,13 +8,6 @@
 <!-- =================================== Favicon =================================== -->
 <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 
-<!-- =================================== 공통 시작 ===================================  -->
-<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery-1.10.2.js"></script>
-<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery-ui-1.10.4.custom.js"></script>
-<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.dotdotdot-1.5.0.js"></script>
-<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.cookie.js"></script>
-<script src="https://static.onoffmix.com/js/common/src/gtm_2022/gtm.js" defer></script>
-
 <!-- =================================== 화면 고유 ===================================  -->
 <link rel="stylesheet" href="https://static.onoffmix.com/css/pc/event/event-add_20.css">
 <link rel="stylesheet" href="resources/css/enrollGroupStyle.css">
@@ -44,21 +37,7 @@
 		
 			<div class="content_area">
 			
-				<form id="allForm" action="insertGroupOne.off" method="POST" target="_self"
-					encType="multipart/form-data" data-preview="/event/preview" data-preview-mobile="/event/preview_mobile"
-					data-draft="https://api.onoffmix.com/v1/event/ManageEvent/draft" data-has-draft="2023-04-28 11:41"
-					data-hpp-max="300000" data-event_method_type="advance" data-open_type="open">
-	
-					<div class="input_hidden_wrap" style="display:none">
-						<input type="hidden" name="proc" value="createBaseEvent">
-						<input type="hidden" name="eventIdx" value="0">
-						<input type="hidden" name="banner" value="">
-						<input type="hidden" name="eventPreviewUrl" value="/event/preview" target="_blank">
-						<input type="hidden" name="eventPreviewUrlMobile" value="/event/preview_mobile" target="_blank">
-						<input type="hidden" name="bannerUrl" value="">
-						<input type="hidden" name="bannerDelete" value="0">
-						<input type="hidden" name="cnt_grp_open_n" value="0">
-					</div>
+				<form id="" action="insertGroupOne.off" method="POST" encType="multipart/form-data" data-event_method_type="advance" data-open_type="open">
 					
 					<article class="exposure_setting">
 						<h3>기본설정<span class="required">필수</span></h3>
@@ -123,7 +102,7 @@
 
 					<article class="event_thumbnail">
 						<div id="thumbnail11" class="thumbnail">
-							<img src="" data-default-src="resources/images/logo_3.png" alt="모임 이미지" data-time="1682652657" style="width: 300; height: 300;" id="preview">
+							<img src="resources/images/logo_3.png" alt="모임 이미지" data-time="1682652657" style="width: 300; height: 300;" id="preview">
 							<input type="file" id="test" class="fileupload" name="upfile" accept=".gif,.jpg,.jpeg,.png" style="display: none;" onchange="readURL(this)">
 							<button type="button" class="img_change_btn" onclick="imgUp();">사진변경</button>
 							<button type="button" class="img_delete_btn" onclick="imgDel();">삭제하기</button>
@@ -192,7 +171,7 @@
 								<div class="input_wrap">
 									<div class="form_row">
 										<div id="category" class="selectbox" data-list_show="false">
-											<select name="category">
+											<select id="category" name="category">
 												<option value="0">카테고리 선택</option>
 												<option value="1">교육/어학</option>
 												<option value="2">취업/자격증</option>
@@ -270,7 +249,7 @@
 										</div>
 										<div id="emailBox" class="email ">
 											<label for="">이메일</label>
-											<input type="text" name="email" class="email_id" value="">
+											<input type="text" name="email_id" class="email_id" value="">
 											<span>@</span>
 											<div id="email" class="selectbox" data-list_show="false">
 												<select name="email_domain" class="email_domain">
@@ -383,7 +362,7 @@
 						<h3>상세정보<span class="required">필수</span></h3>
 	
 						<div id="smarteditor">
-							<textarea name="content" id="editorTxt" 
+							<textarea name="content" id="editorTxt11" 
 									  rows="10" cols="10" 
 									  placeholder="내용을 입력해주세요"
 									  style="width: 1209.5px"></textarea>
@@ -394,7 +373,6 @@
 						let oEditors = []
 					
 						smartEditor = function() {
-						  console.log("Naver SmartEditor")
 						  nhn.husky.EZCreator.createInIFrame({
 							oAppRef: oEditors,
 							elPlaceHolder: "editorTxt",
@@ -489,7 +467,7 @@
 												<div> <input type="radio" id="group_overcapacity[-1]_01" name="maxAccess" value="Y" checked="">
 													<label for="group_overcapacity[-1]_01" title="정원초과 모집이 불가능한 경우 설정을 변경할 수 없습니다.">허용</label>
 												</div>
-												<div> <input type="radio" id="group_overcapacity[-1]_02" name="maxAccess" value="F">
+												<div> <input type="radio" id="group_overcapacity[-1]_02" name="maxAccess" value="N">
 													<label for="group_overcapacity[-1]_02" title="정원초과 모집이 불가능한 경우 설정을 변경할 수 없습니다.">허용안함</label>
 												</div>
 											</div>
@@ -622,19 +600,19 @@
 								<div class="input_wrap">
 									<div class="form_row">
 										<div>
-											<input type="radio" name="open_type" id="eventOpen" value="Y" checked="" data-parsley-multiple="open_type" onclick="openType();">
+											<input type="radio" name="displayNY" id="eventOpen" value="Y" checked="" data-parsley-multiple="open_type" onclick="openType();">
 											<label for="eventOpen">노출함</label>
 										</div>
 									</div>
 									<div class="form_row">
 										<div>
-											<input type="radio" name="open_type" id="eventPrivate" value="N" data-parsley-multiple="open_type" onclick="privateType();">
+											<input type="radio" name="displayNY" id="eventPrivate" value="N" data-parsley-multiple="open_type" onclick="privateType();">
 											<label for="eventPrivate">노출안함</label>
 										</div>
 										<div class="input password">
 											<input type="checkbox" name="eventPw_check" id="eventPrivatePw" value="N" data-parsley-multiple="eventPw_check"  disabled>
 											<label for="eventPrivatePw">비밀번호 사용</label>
-											<input id="privatePassword" type="password" title="모임 비밀번호 입력" name="eventPw" placeholder="비밀번호 입력" disabled>
+											<input id="privatePassword" type="password" title="모임 비밀번호 입력" name="eventPassword" placeholder="비밀번호 입력" disabled>
 											<span class="eyes">
 												<i class="fa fa-eye fa-lg"></i>
 											</span>
@@ -697,7 +675,7 @@
 								<div class="input_wrap">
 									<div class="form_row">
 										<div>
-											<input type="checkbox" name="limit_under_nineteen" id="youth_check" value="Y" data-parsley-multiple="limit_under_nineteen">
+											<input type="checkbox" name="adultAccess" id="youth_check" value="Y" data-parsley-multiple="limit_under_nineteen">
 											<label for="youth_check">만 19세 미만 접근 제한</label>
 										</div>
 									</div>
@@ -767,7 +745,7 @@
 	
 								<div class="input_wrap">
 									<div class="form_row">
-										<input name="hashtag" class="tag-editor" placeholder="태그를 입력해 주세요. 예)&nbsp; 소보루, 새로운모임">
+										<input name="tag" class="tag-editor" placeholder="태그를 입력해 주세요. 예)&nbsp; 소보루, 새로운모임">
 									</div>
 	
 									<p class="ex">
@@ -805,7 +783,7 @@
 									<div class="form_row">
 										<div>
 											<label for="attendancePw">출석 확인용 비밀번호</label>
-											<input type="text" id="attendancePw" class="attendance_pw" name="attendPwd" value="" maxlength="40">
+											<input type="text" id="attendancePw" class="attendance_pw" name="attendPassword" value="" maxlength="40">
 										</div>
 									</div>
 								</div>
@@ -815,54 +793,16 @@
 							</p>
 						</div>
 					</article>
-	
 					<div class="btn_wrap">
-						<button type="submit" class="submit"
-							data-gtm_click='{"event" : "clickEventOpenButton", "eventType" : "일반"}'>개설완료</button>
+						<input type="submit" class="btn btn-primary" value="개설완료">
 					</div>
 				</form>
 			</div>
 		</section>
 	</main>
+
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/group_info.js"></script>
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_informing.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_img.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tmpl.min.js"></script>
-	
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/class_list.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fileupload.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.browser.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fancybox-1.3.3.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/common/dist/plugins/moment.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/common/dist/plugins/daterangepicker_2020.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery-ui-autocompleteBox.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/webeditor/SE2.3.4.O10204/js/HuskyEZCreator.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.caret.min.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tag-editor.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/parsley.min.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/map_2020.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/pay_host.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/additional_info.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_tag.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_setup_validation.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/event-add_2020.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/editor.js"></script> -->
-
-	<!-- Plugin  -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/owl.carousel.min.js"></script> -->
-
-	<!-- Script -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/common.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/header.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/main/sliderRotate.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/main/main.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/today-seen.js"></script> -->
-
-	<!-- PC Common Script -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/common.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/header.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/common/dist/plugins/app/app-ver-chk.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/common/dist/log/statistic.js"></script> -->
 
 	<jsp:include page="../common/footer.jsp"/>
 	

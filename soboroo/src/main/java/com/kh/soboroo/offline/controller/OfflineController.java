@@ -1,9 +1,10 @@
-package com.kh.soboroo.offliine.controller;
+package com.kh.soboroo.offline.controller;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,12 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.soboroo.common.controller.CommonController;
 import com.kh.soboroo.common.model.vo.Upload;
-import com.kh.soboroo.offliine.model.service.OfflineServiceImpl;
-import com.kh.soboroo.offliine.model.vo.OfflineGroupOnce;
+import com.kh.soboroo.offline.model.service.OfflineServiceImpl;
+import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 
 @Controller
 public class OfflineController {
@@ -66,15 +68,25 @@ public class OfflineController {
 	}
 	
 	@RequestMapping("insertGroupOne.off")
-	public String insertGroupOne(OfflineGroupOnce ogo, Upload u, MultipartFile upfile, HttpSession session, Model model) {
+	public String insertGroupOne(@RequestParam(value = "tag") String tag,
+								 @RequestParam(value = "date") String date,	
+								 @RequestParam(value = "enterDate") String enterDate,
+			OfflineGroupOnce ogo, Upload u, MultipartFile upfile, HttpSession session, Model model) {
+		
+		System.out.println(tag);
+		System.out.println(date);
+		System.out.println(enterDate);
+		
+		ogo.setStartDate(date.substring(0, 10));
+		ogo.setEndDate(date.substring(13, 23));
+		ogo.setHashTag(tag);
+		
+		System.out.println(ogo);
+		
 		if(!upfile.getOriginalFilename().equals("")) { // 첨부파일 있을 경우
-			
-			
 			String changeName = saveFile(upfile, session);
-			
 			u.setOriginName(upfile.getOriginalFilename());
 			u.setChangeName("resources/uploadFiles/" + changeName);
-			
 		}
 		
 		int result = offService.insertGroupOne(ogo, u);

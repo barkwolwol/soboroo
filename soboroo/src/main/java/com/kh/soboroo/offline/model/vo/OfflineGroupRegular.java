@@ -1,4 +1,4 @@
-package com.kh.soboroo.offliine.model.vo;
+package com.kh.soboroo.offline.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,24 +11,26 @@ import lombok.ToString;
 @Setter					// setter 메소드
 @Getter					// getter 메소드
 @ToString				// toString 메소드
-public class OfflineGroupOnce {
+public class OfflineGroupRegular {
 
-	private int offGroupOnceNo;
-	private String offGroupOnceTitle;
-	private String offGroupOnceId;
-	private String offGroupOnceEmail;
-	private String offGroupOnceSimple;
+	private int no;
+	private String title;
+	private String id;
+	private String name;
+	private String email;
+	private String phone;
+	private String simple;
 	private String enrollDate;
 	private String modifyDate;
-	private String offGroupOnceStartDate;
-	private String offGroupOnceEndDate;
-	private String offGroupOnceStartEnter;
-	private String offGroupOnceEndEnter;
-	private String offGroupOnceCotent;
+	private String startDate;
+	private String endDate;
+	private String startEnter;
+	private String endEnter;
+	private String cotent;
 	private String address;
 	private String addressDetail;
 	private String displayNY;
-	private String password;
+	private String eventPassword;
 	private String hashTag;
 	private String DelNY;
 	private String RepNY;

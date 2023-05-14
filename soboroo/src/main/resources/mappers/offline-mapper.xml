@@ -1,1 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "mybatis-3-mapper.dtd" >
+ <mapper namespace="offlineMapper">
+	<resultMap id="offlineGroupOnceResultSet" type="OfflineGroupOnce">
+		<result column="NO" property="no"/>
+		<result column="TITLE" property="title"/>
+		<result column="ID" property="id"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="SIMPLE" property="simple"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="START_DATE" property="startDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="START_ENTER" property="startEnter"/>
+		<result column="END_ENTER" property="endEnter"/>
+		<result column="CONTENT" property="cotent"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="ADDRESS_DETAIL" property="addressDetail"/>
+		<result column="DISPLAY_NY" property="displayNY"/>
+		<result column="EVENT_PASSWORD" property="eventPassword"/>
+		<result column="HASH_TAG" property="hashTag"/>
+		<result column="DEL_NY" property="DelNY"/>
+		<result column="REP_NY" property="RepNY"/>
+		<result column="URL" property="url"/>
+		<result column="MAX" property="max"/>
+		<result column="MAX_ACCESS" property="maxAccess"/>
+		<result column="ADULT_ACCESS" property="adultAccess"/>
+		<result column="CATEGORY" property="category"/>
+		<result column="MEM_NO" property="memNo"/>
+		<result column="TABLE_NO" property="memNo"/>
+		<result column="ATTEND_PASSWORD" property="attendPassword"/>
+	</resultMap>
+	
+	<resultMap id="uploadResultset" type="Upload">
+		<result column="UPLOAD_NO" property="uploadNo"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="GROUP_BOARD_NO" property="groupBoardNo"/>
+		<result column="TABLE_NO" property="tableNo"/>
+	</resultMap>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

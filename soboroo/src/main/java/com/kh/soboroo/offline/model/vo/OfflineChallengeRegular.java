@@ -1,4 +1,4 @@
-package com.kh.soboroo.offliine.model.vo;
+package com.kh.soboroo.offline.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,22 +13,25 @@ import lombok.ToString;
 @ToString				// toString 메소드
 public class OfflineChallengeRegular {
 
-	private int offChlRegNo;
-	private String offChlRegTitle;
-	private String offChlRegId;
-	private String offChlRegEmail;
-	private String offChlRegSimple;
+	private int no;
+	private String title;
+	private String id;
+	private String name;
+	private String email;
+	private String phone;
+	private String simple;
 	private String enrollDate;
 	private String modifyDate;
-	private String offChlRegStartDate;
-	private String offChlRegEndDate;
-	private String offChlRegStartEnter;
-	private String offChlRegEndEnter;
-	private String offChlRegCotent;
+	private String startDate;
+	private String endDate;
+	private String startEnter;
+	private String endEnter;
+	private String achieveNY;
+	private String cotent;
 	private String address;
 	private String addressDetail;
 	private String displayNY;
-	private String password;
+	private String eventPassword;
 	private String hashTag;
 	private String DelNY;
 	private String RepNY;
