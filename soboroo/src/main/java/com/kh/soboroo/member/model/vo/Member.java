@@ -29,6 +29,8 @@ public class Member {
 	 private String memIntroduce;
 	 private int memRprCount;
 	 private String memImg;
-	 private String adultNY;
+	 private String memAdultNY;
+	 private Date memEnrollDate;
+	 private Date memUpdateDate;
 	 
 }
