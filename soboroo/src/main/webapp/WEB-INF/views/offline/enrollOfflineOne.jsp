@@ -5,175 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>soboroo | 오프라인 반짝모임 개설</title>
-<!-- Favicon ================================================== -->
+<!-- =================================== Favicon =================================== -->
 <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
-<!-- =================================== 공통 시작 ===================================  -->
-<!-- OFM Common Style -->
-<!-- <link rel="stylesheet" href="https://static.onoffmix.com/css/common/pc/common-pc.css"> -->
-<!-- Common Script -->
-<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery-1.10.2.js"></script>
-<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery-ui-1.10.4.custom.js"></script>
-<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.dotdotdot-1.5.0.js"></script>
-<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.cookie.js"></script>
-<script src="https://static.onoffmix.com/js/common/src/gtm_2022/gtm.js" defer></script>
-<!-- =================================== 공통 끝 ===================================  -->
 
-<!-- =================================== 화면 고유 시작 ===================================  -->
-<!-- OFM Style -->
+<!-- =================================== 화면 고유 ===================================  -->
 <link rel="stylesheet" href="https://static.onoffmix.com/css/pc/event/event-add_20.css">
-<!-- =================================== 화면 고유 끝 ===================================  -->
-<script>dataLayer=[{uid:"1415372"}]</script>    
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-K5ZBGC5');</script>
-<!-- End Google Tag Manager -->
-<script>var OFM_JS_GA_CONTAINER = '';</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-25312010-14"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'UA-25312010-14');
-</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script>
-	OFM_JS_GA_CONTAINER = 'UA-25312010-14';
-</script>
+<link rel="stylesheet" href="resources/css/enrollGroupStyle.css">
 
-<!-- ========================== 웹에디터 ========================== -->
+<!-- =================================== 웹에디터 =================================== -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
-
-<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-
-<!-- ========================== 카카오맵 ========================== -->
+<!-- =================================== 카카오맵 =================================== -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=22931d135d75b509838f23be2834c5c7&libraries=services"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<!-- ========================== flatpickr ========================== -->
+<!-- =================================== flatpickr =================================== -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/confetti.css">
-
-
-<style>
-	.ie_end_support_popup_wrap{
-		display: none;
-		width: 900px;
-		height: 608px;
-		padding: 62px 100px 0;
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		border: 1px solid #c8c8c8;
-		box-sizing: border-box;
-		text-align: center;
-		letter-spacing: -1px;
-		line-height: 28px;
-		color: #333;
-		z-index: 1000;
-		background-color: #fff;
-	}
-	.ie_end_support_popup_wrap h1{
-		margin-bottom: 37px;
-		font-size: 24px;
-		font-weight: bold;
-		color: #4195f5;
-		letter-spacing: -1.2px
-	}
-	.ie_end_support_popup_wrap p{
-		font-size: 16px;
-	}
-	.ie_end_support_popup_wrap p + p{margin-top: 10px;}
-	.ie_end_support_popup_wrap p span{ font-weight: bold; }
-	.ie_end_support_popup_wrap p span:last-child{ color: #4195f5;  }
-	.browser_link{
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		padding: 0 15px; 
-		margin-top: 39px;
-		border-top: 1px solid #d8d8d8;
-	}
-	.browser_link > span{
-		display: block;
-		width: 100%;
-		margin-top: 36px;
-		margin-bottom: 24px;
-		font-size: 16px;
-		font-weight: bold;
-	}
-	.browser_link a{
-		display: block;
-		width: 140px;
-		height: 160px;
-		font-size: 14px;
-		font-weight: bold;
-		line-height: 20px;
-		letter-spacing: 0;
-		background-color: #f7f8fa;
-		border-radius: 10px;
-	}
-	.browser_link a span{
-		display: block;
-		font-weight: normal;
-		letter-spacing: -1px;
-		color: #666;
-	}
-	.browser_link a::before{
-		content: "";
-		display: block;
-		width: 72px;
-		height: 72px;
-		margin: 21px auto 9px;
-		background-repeat: no-repeat;
-		background-size: 100%;
-	}
-	.browser_link a:nth-child(2)::before{background-image: url("https://static.onoffmix.com/images/pc/ie_end_support_popup/chrome.png");}
-	.browser_link a:nth-child(3)::before{background-image: url("https://static.onoffmix.com/images/pc/ie_end_support_popup/edge.png");}
-	.browser_link a:nth-child(4)::before{background-image: url("https://static.onoffmix.com/images/pc/ie_end_support_popup/whale.png");}
-	.browser_link a:nth-child(5)::before{background-image: url("https://static.onoffmix.com/images/pc/ie_end_support_popup/firefox.png");}
-	.ie_end_support_popup_wrap button{
-		display: block;
-		width: 24px;
-		height: 24px;
-		position: absolute;
-		top: 19px;
-		right: 19px;
-		cursor: pointer;
-		border: 0 none;
-		overflow: hidden;
-		text-indent: -9999rem;
-		background-color: transparent;
-		background-image: url("https://static.onoffmix.com/images/pc/svg/menu-close-gray.svg");
-	}
-	.close_check{
-		position: absolute;
-		right: 21px;
-		bottom: 15px;
-	}
-	.close_check input{
-		width: 13px;
-		height: 13px;
-		vertical-align: middle;
-		border-color: rgba(0, 0, 0, 0.2);
-	}
-	.close_check label{
-		margin-left: 7px;
-		font-size: 12px;
-		letter-spacing: -1px;
-		line-height: 14px;
-		vertical-align: middle;
-		color: #333;
-	}
-</style>
-
 
 </head>
 <body>
@@ -182,26 +32,12 @@
 	<main id="content" class="event_add">
 		<section>
 			<div class="head_area">
-				<h2>개설하기</h2>
+				<h2>오프라인 반짝모임 개설하기</h2>
 			</div>
 		
 			<div class="content_area">
 			
-				<form id="allForm" action="https://api.onoffmix.com/v1/event/ManageEvent/add" method="POST" target="_self"
-					encType="multipart/form-data" data-preview="/event/preview" data-preview-mobile="/event/preview_mobile"
-					data-draft="https://api.onoffmix.com/v1/event/ManageEvent/draft" data-has-draft="2023-04-28 11:41"
-					data-hpp-max="300000" data-event_method_type="advance" data-open_type="open">
-	
-					<div class="input_hidden_wrap" style="display:none">
-						<input type="hidden" name="proc" value="createBaseEvent">
-						<input type="hidden" name="eventIdx" value="0">
-						<input type="hidden" name="banner" value="">
-						<input type="hidden" name="eventPreviewUrl" value="/event/preview" target="_blank">
-						<input type="hidden" name="eventPreviewUrlMobile" value="/event/preview_mobile" target="_blank">
-						<input type="hidden" name="bannerUrl" value="">
-						<input type="hidden" name="bannerDelete" value="0">
-						<input type="hidden" name="cnt_grp_open_n" value="0">
-					</div>
+				<form id="" action="insertGroupOne.off" method="POST" encType="multipart/form-data" data-event_method_type="advance" data-open_type="open">
 					
 					<article class="exposure_setting">
 						<h3>기본설정<span class="required">필수</span></h3>
@@ -212,8 +48,8 @@
 										<div id="onoff" class="selectbox" data-list_show="false">
 											<select name="category">
 												<option value="">온/오프라인 선택</option>
-												<option value="085">온라인</option>
-												<option value="087">오프라인</option>
+												<option value="">온라인</option>
+												<option value="">오프라인</option>
 											</select>
 											<button type="button" id="selectbox_btn_onoff" class="selectbox_btn">
 												<span id="onoff-title">온/오프라인 선택</span>
@@ -229,16 +65,16 @@
 										<div id="period" class="selectbox" data-list_show="false">
 											<select name="category">
 												<option value="">기간 선택</option>
-												<option value="085">반짝모임</option>
-												<option value="087">정기모임</option>
+												<option value="">반짝모임</option>
+												<option value="">정기모임</option>
 											</select>
 											<button type="button" id="selectbox_btn_period" class="selectbox_btn">
 												<span id="period-title">기간 선택</span>
 											</button>
 											<ul id="period-list">
-												<li id="value0" data-value="카테고리 선택">기간 선택</li>
-												<li id="value1" data-value="온라인">반짝모임</li>
-												<li id="value2" data-value="오프라인">정기모임</li>
+												<li id="value0" data-value="기간 선택">기간 선택</li>
+												<li id="value1" data-value="반짝모임">반짝모임</li>
+												<li id="value2" data-value="정기모임">정기모임</li>
 											</ul>
 										</div>
 									</div>
@@ -246,16 +82,16 @@
 										<div id="goal" class="selectbox" data-list_show="false">
 											<select name="category">
 												<option value="">목표 선택</option>
-												<option value="085">꾸준한 습관</option>
-												<option value="087">D-DAY</option>
+												<option value="">꾸준한 습관</option>
+												<option value="">D-DAY</option>
 											</select>
 											<button type="button" id="selectbox_btn_goal" class="selectbox_btn">
 												<span id="goal-title">목표 선택</span>
 											</button>
 											<ul id="goal-list">
-												<li id="value0" data-value="카테고리 선택">목표 선택</li>
-												<li id="value1" data-value="온라인">꾸준한 습관</li>
-												<li id="value2" data-value="오프라인">D-DAY</li>
+												<li id="value0" data-value="목표 선택">목표 선택</li>
+												<li id="value1" data-value="꾸준한 습관">꾸준한 습관</li>
+												<li id="value2" data-value="D-DAY">D-DAY</li>
 											</ul>
 										</div>
 									</div>
@@ -266,8 +102,8 @@
 
 					<article class="event_thumbnail">
 						<div id="thumbnail11" class="thumbnail">
-							<img src="" data-default-src="resources/images/logo_3.png" alt="모임 이미지" data-time="1682652657" style="width: 300; height: 300;" id="preview">
-							<input type="file" id="test" class="fileupload" accept=".gif,.jpg,.jpeg,.png" style="display: none;" onchange="readURL(this)">
+							<img src="resources/images/logo_3.png" alt="모임 이미지" data-time="1682652657" style="width: 300; height: 300;" id="preview">
+							<input type="file" id="test" class="fileupload" name="upfile" accept=".gif,.jpg,.jpeg,.png" style="display: none;" onchange="readURL(this)">
 							<button type="button" class="img_change_btn" onclick="imgUp();">사진변경</button>
 							<button type="button" class="img_delete_btn" onclick="imgDel();">삭제하기</button>
 						</div>
@@ -335,16 +171,16 @@
 								<div class="input_wrap">
 									<div class="form_row">
 										<div id="category" class="selectbox" data-list_show="false">
-											<select name="category">
-												<option value="">카테고리 선택</option>
-												<option value="085">교육/어학</option>
-												<option value="087">취업/자격증</option>
-												<option value="086">여행</option>
-												<option value="090">스포츠/운동</option>
-												<option value="088">요리/음식</option>
-												<option value="092">문화/예술</option>
-												<option value="093">영화/음악</option>
-												<option value="095">기타</option>
+											<select id="category" name="category">
+												<option value="0">카테고리 선택</option>
+												<option value="1">교육/어학</option>
+												<option value="2">취업/자격증</option>
+												<option value="3">여행</option>
+												<option value="4">스포츠/운동</option>
+												<option value="5">요리/음식</option>
+												<option value="6">문화/예술</option>
+												<option value="7">영화/음악</option>
+												<option value="8">기타</option>
 											</select>
 											<button type="button" id="selectbox_btn_category" class="selectbox_btn">
 												<span id="category-title">카테고리 선택</span>
@@ -401,7 +237,7 @@
 									<div class="form_row">
 										<div class="name">
 											<label for="">담당자명</label>
-											<input type="text" name="ownerName"
+											<input type="text" name="name"
 												data-parsley-required-message="담당자명을 입력해주세요."
 												maxlength="16"
 												data-parsley-class-handler=".contact .name" required
@@ -409,7 +245,7 @@
 										</div>
 										<div class="phone">
 											<label for="">전화번호</label>
-											<input type="text" name="ownerPhone_body" oninput="autoHyphen2(this)" maxlength="13" required value="">
+											<input type="text" name="phone" oninput="autoHyphen2(this)" maxlength="13" required value="">
 										</div>
 										<div id="emailBox" class="email ">
 											<label for="">이메일</label>
@@ -499,7 +335,7 @@
 	
 								<div id="testCheck" class="input_wrap" data-text_length="0">
 									<div class="form_row">
-										<input type="text" id="simple" class="simple_introduce" placeholder="모임을 한줄로 소개해 주세요.(100자이내)" name="abstract"
+										<input type="text" id="simple" class="simple_introduce" placeholder="모임을 한줄로 소개해 주세요.(100자이내)" name="simple"
 										data-parsley-required-message="한줄소개를 입력해주세요."
 										data-parsley-class-handler=".introduce .form_row" required>
 									</div>
@@ -526,7 +362,7 @@
 						<h3>상세정보<span class="required">필수</span></h3>
 	
 						<div id="smarteditor">
-							<textarea name="editorTxt" id="editorTxt" 
+							<textarea name="content" id="editorTxt11" 
 									  rows="10" cols="10" 
 									  placeholder="내용을 입력해주세요"
 									  style="width: 1209.5px"></textarea>
@@ -537,7 +373,6 @@
 						let oEditors = []
 					
 						smartEditor = function() {
-						  console.log("Naver SmartEditor")
 						  nhn.husky.EZCreator.createInIFrame({
 							oAppRef: oEditors,
 							elPlaceHolder: "editorTxt",
@@ -557,52 +392,18 @@
 							<span class="field_title">기간/장소 정보<span class="required">필수</span></span>
 						</h3>
 
-						<div class="group_container ui-sortable">
+						<div class="group_container">
 							<fieldset data-map="true" data-datepicker_set="true" data-group_setting="true" data-pay_host_num=""
 								data-pay_host_name="" data-bank_code="0" data-usemap="true" data-is_free="true" data-existgroupattenduser=""
 								class="open">
-								<input type="hidden" name="groupIdx[-1]" value="-1">
-								<input type="hidden" name="groupisShowAttend[-1]" value="1">
-								<input type="hidden" name="groupisShowStandby[-1]" value="1">
-								<input type="hidden" name="groupisShowPrivate[-1]" value="0">
-								<div class="input_wrap">
-									<div class="form_row">
-										<div class="group_name">
-											<input type="text" name="groupName[-1]" title="그룹명 입력" data-parsley-required-message="그룹명을 입력해주세요."
-												data-parsley-group="group_name" data-parsley-group_name_check="" required="" value=""
-												maxlength="16" placeholder="그룹명 입력">
-										</div>
-										<div class="group_capacity">
-											<input type="text" name="groupCapacity[-1]" class="capacity" title="모집 정원 입력"
-												data-parsley-required-message="모집 정원을 입력해주세요." required="" placeholder="모집 정원 입력" maxlength="7"
-												value="">
-										</div>
-										<div class="group_add_remove_btn">
-											<button type="button" class="add">그룹설정</button>
-										</div>
-									</div>
-								</div>
 								<div class="group_option">
-									<input type="hidden" class="mapX" name="mapX[-1]" value="">
-									<input type="hidden" class="mapY" name="mapY[-1]" value="">
-									<input type="hidden" class="sido" name="sido[-1]" value="서울특별시">
-									<input type="hidden" class="gugun" name="gugun[-1]" value="강남구">
-									<input type="hidden" class="dong" name="dong[-1]" value="">
 									<div class="time_place_wrap">
 										<div class="date_input" style="display: none">
-											<input type="hidden" name="eventStartDateTime_date[-1]" required="" value="">
-											<input type="hidden" name="eventStartDateTime_time[-1]" required="" value="">
-											<input type="hidden" name="eventEndDateTime_date[-1]" required="" value="">
-											<input type="hidden" name="eventEndDateTime_time[-1]" required="" value="">
-											<input type="hidden" name="recruitStartDateTime_date[-1]" required="" value="">
-											<input type="hidden" name="recruitStartDateTime_time[-1]" required="" value="">
-											<input type="hidden" name="recruitEndDateTime_date[-1]" required="" value="">
-											<input type="hidden" name="recruitEndDateTime_time[-1]" required="" value="">
 										</div>
 										<div class="form_row" id="eventDateTime_-1">
 											<div class="date_time_wrap event">
 												<label for="">모임기간</label>
-												<input type="text" id="meetingDate" placeholder="모임기간을 선택하세요." value=""
+												<input type="text" id="meetingDate" name="date" placeholder="모임기간을 선택하세요." value=""
 													data-parsley-required-message="모임기간을 선택해주세요." 
 													data-parsley-class-handler="#eventDateTime_-1" autocomplete="off" readonly="" required="">
 											</div>
@@ -610,7 +411,7 @@
 										<div class="form_row">
 											<div class="date_time_wrap apply">
 												<label for="">신청기간</label>
-												<input type="text" id="applyDate" placeholder="신청기간을 선택하세요." value=""
+												<input type="text" id="applyDate" name="enterDate" placeholder="신청기간을 선택하세요." value=""
 													data-parsley-required-message="신청기간을 선택해주세요."
 													data-parsley-class-handler="#recruitDateTime_-1" autocomplete="off" readonly="" required="">
 											</div>
@@ -635,7 +436,7 @@
 										<div class="form_row place_search">
 											<div class="place_search_input" data-input_type="text">
 												<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-												<input type="text" id="address" class="addr_1 ui-autocomplete-input" placeholder="장소명, 주소를 검색해 주세요." name="group_address" required="" readonly>
+												<input type="text" id="address" class="addr_1 ui-autocomplete-input" placeholder="장소명, 주소를 검색해 주세요." name="address" required="" readonly>
 												<button type="button" class="addr_reset_btn">주소 초기화</button>
 												<button type="button" id="searchBtn" style="display: none;">검색</button>
 												<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="display: none;"></ul>
@@ -643,7 +444,7 @@
 										</div>
 										<div class="form_row place_search">
 											<div class="place_search_input" data-input_type="text">
-												<input type="text" class="addr_2" name="address_detail" placeholder="나머지 주소를 입력해 주세요." value="">
+												<input type="text" class="addr_2" name="addressDetail" placeholder="나머지 주소를 입력해 주세요." value="">
 											</div>
 										</div>
 										<div class="form_row map">
@@ -651,45 +452,22 @@
 										</div>
 									</div>
 									<div class="person_apply_wrap">
-										<!-- <div class="form_row select_apply" data-input_type="radio">
-											<div class="op_h"> <span>선정방법</span>
-												<div class="help_tip"> <span> <span>선착순</span> 신청 순서대로 참여확정자로 신청됩니다. <span>개설자 선정</span> 대기자로
-														신청되고
-														개설자의 승인을 통해 참여확정자로 변경됩니다. </span> </div>
-											</div>
-											<div class="op_c">
-												<div> <input type="radio" id="groupAuthorizeType[-1]_01" name="groupAuthorizeType[-1]"
-														value="01" checked=""> <label for="groupAuthorizeType[-1]_01"
-														title="개설자 통장입금 결제인 경우 설정을 변경할 수 없습니다.">선착순</label> </div>
-												<div> <input type="radio" id="groupAuthorizeType[-1]_02" name="groupAuthorizeType[-1]"
-														value="02">
-													<label for="groupAuthorizeType[-1]_02" title="개설자 통장입금 결제인 경우 설정을 변경할 수 없습니다.">개설자
-														선정</label>
-												</div>
-											</div>
-										</div> -->
-										<!-- <div class="form_row" data-input_type="text">
-											<div class="op_h"> <span>동반인원</span>
-												<div class="help_tip"> <span> <span>없음</span> 본인만 신청 가능합니다. <span>1명 이상</span> 본인 외 동반인원수를 선택하여
-														신청가능합니다. </span> </div>
-											</div>
-											<div class="op_c numberbox"> <input type="text" name="groupMemberPerAttend[-1]"
-													class="numberbox_input companion" placeholder="없음" data-max_num="29" value=""> <span
-													class="plus"></span><span class="minus"></span> </div>
-										</div> -->
 										<div class="form_row over_capacity" data-input_type="radio">
+											<div class="group_capacity">
+												<input type="text" name="max" class="capacity" title="모집 정원 입력" data-parsley-required-message="모집 정원을 입력해주세요." required="" placeholder="모집 정원 입력" maxlength="7" value="">
+											</div>
+											<br>
+											<br>
 											<div class="op_h"> <span>정원초과 모집</span>
 												<div class="help_tip"> <span> <span>허용</span> 정원을 초과해도 대기자로 신청자를 받습니다. 결원 발생 시 대기자가 참여확정자로 자동
 														변경될 수
 														있습니다. <span>허용안함</span> 정원까지만 신청자를 받고 더 이상 신청자를 받지 않습니다. </span> </div>
 											</div>
 											<div class="op_c">
-												<div> <input type="radio" id="group_overcapacity[-1]_01" name="group_overcapacity[-1]" value="1"
-														checked="">
+												<div> <input type="radio" id="group_overcapacity[-1]_01" name="maxAccess" value="Y" checked="">
 													<label for="group_overcapacity[-1]_01" title="정원초과 모집이 불가능한 경우 설정을 변경할 수 없습니다.">허용</label>
 												</div>
-												<div> <input type="radio" id="group_overcapacity[-1]_02" name="group_overcapacity[-1]"
-														value="0">
+												<div> <input type="radio" id="group_overcapacity[-1]_02" name="maxAccess" value="N">
 													<label for="group_overcapacity[-1]_02" title="정원초과 모집이 불가능한 경우 설정을 변경할 수 없습니다.">허용안함</label>
 												</div>
 											</div>
@@ -822,19 +600,19 @@
 								<div class="input_wrap">
 									<div class="form_row">
 										<div>
-											<input type="radio" name="open_type" id="eventOpen" value="1" checked="" data-parsley-multiple="open_type" onclick="openType();">
+											<input type="radio" name="displayNY" id="eventOpen" value="Y" checked="" data-parsley-multiple="open_type" onclick="openType();">
 											<label for="eventOpen">노출함</label>
 										</div>
 									</div>
 									<div class="form_row">
 										<div>
-											<input type="radio" name="open_type" id="eventPrivate" value="0" data-parsley-multiple="open_type" onclick="privateType();">
+											<input type="radio" name="displayNY" id="eventPrivate" value="N" data-parsley-multiple="open_type" onclick="privateType();">
 											<label for="eventPrivate">노출안함</label>
 										</div>
 										<div class="input password">
-											<input type="checkbox" name="eventPw_check" id="eventPrivatePw" value="0" data-parsley-multiple="eventPw_check"  disabled>
+											<input type="checkbox" name="eventPw_check" id="eventPrivatePw" value="N" data-parsley-multiple="eventPw_check"  disabled>
 											<label for="eventPrivatePw">비밀번호 사용</label>
-											<input id="privatePassword" type="password" title="모임 비밀번호 입력" name="eventPw" placeholder="비밀번호 입력" disabled>
+											<input id="privatePassword" type="password" title="모임 비밀번호 입력" name="eventPassword" placeholder="비밀번호 입력" disabled>
 											<span class="eyes">
 												<i class="fa fa-eye fa-lg"></i>
 											</span>
@@ -897,7 +675,7 @@
 								<div class="input_wrap">
 									<div class="form_row">
 										<div>
-											<input type="checkbox" name="limit_under_nineteen" id="youth_check" value="1" data-parsley-multiple="limit_under_nineteen">
+											<input type="checkbox" name="adultAccess" id="youth_check" value="Y" data-parsley-multiple="limit_under_nineteen">
 											<label for="youth_check">만 19세 미만 접근 제한</label>
 										</div>
 									</div>
@@ -967,13 +745,6 @@
 	
 								<div class="input_wrap">
 									<div class="form_row">
-										<!-- <textarea type="text" class="tag_input tag-editor-hidden-src" placeholder="태그를 입력해 주세요. 예) #온오프믹스, #컬쳐데이" name="tag" data-tag-editor-error-duplicate="동일한 태그가 존재합니다." data-tag-editor-error-character="한자 및 특수문자는 입력되지 않습니다." data-tag-editor-error-maxtag="최대 5개까지 등록할 수 있습니다." data-parsley-tag="" data-parsley-errors-messages-disabled=""></textarea> -->
-										<!-- <ul class="tag-editor ui-sortable">
-											<li style="width: 1px;">&nbsp;</li>
-											<li class="placeholder">
-												<div>태그를 입력해 주세요. 예) #온오프믹스, #컬쳐데이</div>
-											</li>
-										</ul> -->
 										<input name="tag" class="tag-editor" placeholder="태그를 입력해 주세요. 예)&nbsp; 소보루, 새로운모임">
 									</div>
 	
@@ -1012,80 +783,26 @@
 									<div class="form_row">
 										<div>
 											<label for="attendancePw">출석 확인용 비밀번호</label>
-											<input type="text" id="attendancePw" class="attendance_pw"
-												name="attendancePasswd"
-												value=""
-												maxlength="40">
+											<input type="text" id="attendancePw" class="attendance_pw" name="attendPassword" value="" maxlength="40">
 										</div>
 									</div>
 								</div>
 							</fieldset>
 							<p class="ex">
 								<span>* 출석 확인용 번호는 신청자의 출석 확인을 위한 비밀번호입니다.</span>
-								<span>* 직접 입력하거나 자동생성이 가능합니다. (영문 또는 숫자 8자 이내로 입력해주세요.)</span>
 							</p>
 						</div>
 					</article>
-	
 					<div class="btn_wrap">
-						<button type="submit" class="submit"
-							data-gtm_click='{"event" : "clickEventOpenButton", "eventType" : "일반"}'>개설완료</button>
-									</div>
+						<input type="submit" class="btn btn-primary" value="개설완료">
+					</div>
 				</form>
 			</div>
 		</section>
 	</main>
+
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/group_info.js"></script>
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_informing.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_img.js"></script>
-	<script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tmpl.min.js"></script>
-
-
-
-	
-
-
-	
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/class_list.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fileupload.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.browser.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.fancybox-1.3.3.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/common/dist/plugins/moment.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/common/dist/plugins/daterangepicker_2020.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery-ui-autocompleteBox.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/webeditor/SE2.3.4.O10204/js/HuskyEZCreator.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.caret.min.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/jquery.tag-editor.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/parsley.min.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/map_2020.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/pay_host.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/additional_info.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_tag.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_setup_validation.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/event-add_2020.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/event/plugin/editor.js"></script> -->
-
-	<!-- Plugin  -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/plugins/owl.carousel.min.js"></script> -->
-
-	<!-- Script -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/common.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/header.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/main/sliderRotate.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/main/main.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/today-seen.js"></script> -->
-
-	<!-- PC Common Script -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/common.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/pc/dist/common/header.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/common/dist/plugins/app/app-ver-chk.js"></script> -->
-	<!-- <script src="https://static.onoffmix.com/js/common/dist/log/statistic.js"></script> -->
-
-	<!-- Script -->
-	<script
-		type="text/javascript">window.NREUM || (NREUM = {}); NREUM.info = { "beacon": "bam.nr-data.net", "licenseKey": "4d73c0dfa7", "applicationID": "119983018", "transactionName": "Z1MAZEVWDREHWkEMWl4ZI1NDXgwMSXZzKGpzWQxERVgPDgNLGjpHVVsDQA==", "queueTime": 2, "applicationTime": 383, "atts": "SxQDEg1MHh8=", "errorBeacon": "bam.nr-data.net", "agent": "" }
-	</script>
-
 
 	<jsp:include page="../common/footer.jsp"/>
 	

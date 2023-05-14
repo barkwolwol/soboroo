@@ -21,14 +21,14 @@
 				<span id="titleLogo"><img src="resources/images/logo_1.png" alt=""></span>
 			</div>
 			<div id="login_input">
-				<button type="submit" class="login_btn">
-					<a href="https://kauth.kakao.com/oauth/authorize?client_id=0ec377592349e9b86510090df869a4da&redirect_uri=http://localhost:3500/soboroo/loginpage_kakao_callback&response_type=code" onclick="kakaoLogin();">카카오로 시작하기</a>
-				</button>
+				<a href="https://kauth.kakao.com/oauth/authorize?client_id=0ec377592349e9b86510090df869a4da&redirect_uri=http://localhost:3500/soboroo/loginpage_kakao_callback&response_type=code">
+					<img src="resources/images/kakao_login_medium_wide.png" alt="">
+				</a>
 			</div>
 			
-			<div id="login_input">
+			<!-- <div id="login_input">
 				<button type="submit" class="login_btn">관리자 로그인</button>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
