@@ -41,11 +41,15 @@
 
       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
+		  <!-- sockJS -->
+		<!-- <script src="resources/js/sockjs.min.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
       <!-- <script src="https://code.jquery.com/jquery-3.3.1/slim.min.js"></script> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
       <%-- 
       <script src="${pageContext.request.contextPath}/resources/js/alarm.js"></script> --%>
+    
 
       <style>
         .popover-body li {
@@ -86,43 +90,59 @@
 		<c:remove var="alertMsg" scope="session"/>
 	</c:if>
 	
-	<c:if test="${not empty updateBellIcon}">
 	<script>
-			$(function() {
-				updateBellIcon();
-			});
+		var socket = null;
+		$(document).ready(function(){
+			connectWs();
+		});
+		
+		function connectWs(){
+			sock = new SockJS( "<c:url value="/echo"/>" );
+			socket = sock;
+			
+			sock.onopen = function(){
+				console.log('웹소켓 연결됨');
+			}
+			
+			sock.onmessage = function(evt){
+				var data = evt.data;
+				console.log("ReceiveMessage : " + data + "\n");
+				
+				$.ajax({
+					url : 'countAlarm.my',
+					type : 'POST',
+					dataType : 'text',
+					success : function(data){
+						if(data == '0'){
+							
+						} else {
+							$('#alarmCountSpan').addClass('bell-badge-danger bell-badge')
+							$('#alarmCountSpan').text(data)
+						}
+					},
+					error : function(err){
+						console.log("ajax 통신 실패!")
+					}
+					
+				});
+				
+				var toastTop = app.toast.create({
+					text : "알림 : " + data + "\n";
+					position : "top",
+					closeButton : true
+					
+				});
+				toastTop.open();
+			};
+			
+			sock.onclose = function(){
+				console.log("연결 해제");
+			};
+			
+			sock.onerror = function(err) {console.log('Errors : ' + err);};
+		}
+			
 	</script>
-</c:if>  
-<script>
-  function updateBellIcon() {
-    $(".bg-danger").removeClass("visually-hidden");
-
-    $(".fa-bell").on("click", function() {
-      removeRedPoint();
-    });
-  }
-
-  function removeRedPoint() {
-	  $(".bg-danger").addClass("visually-hidden");
-
-	  $.ajax({
-	    type: "POST",
-	    url: "removeRingSession",
-	    success: function(data) {
-	      console.log("Session invalidated");
-	      $(".bg-danger").addClass("visually-hidden");
-	    },
-	    error: function(xhr, status, error) {
-	      console.log("AJAX 통신 실패!");
-	      console.log("Status: " + status);
-	      console.log("Error: " + error);
-	    }
-	  });
-	}
-
- 
-</script>
-
 
 
    <div id="top-bar" class="top-bar">
@@ -250,64 +270,8 @@
 						  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"></span>
 						</li>
                     </ul>
-<script>
-  $(function() {
-    $('[data-toggle="popover"]').popover();
-
-    // 닉네임 변경 시 팝오버 처리
-    $(document).ready(function() {
-      var updateBellIcon = '<%= session.getAttribute("updateBellIcon") %>';
-      if (updateBellIcon === "updateBellIcon") {
-        var redPoint = $('.bg-danger');
-        var bellIcon = $('#bellIcon');
-        
-        redPoint.removeClass('visually-hidden');
-        bellIcon.popover('hide');
-
-        // 개인정보 수정 메시지 추가
-        var popoverContent = bellIcon.next('.popover-body').html();
-        if (popoverContent && popoverContent.indexOf('개인정보가 수정되었습니다.') === -1) {
-          popoverContent += '<div>개인정보가 수정되었습니다.</div>';
-          bellIcon.next('.popover-body').html(popoverContent);
-        }
-
-        // 팝오버가 표시된 후에 세션 속성을 제거
-        removeUpdateBellIcon();
-      }
-    });
-
-    // 홈페이지 접속 시 초기 상태 설정
-    var redPoint = $('.bg-danger');
-    var bellIcon = $('#bellIcon');
-
-    redPoint.addClass('visually-hidden');
-
-    // 팝오버 닫힘 처리
-    $(document).on('click', function(event) {
-      if (!bellIcon.is(event.target) && bellIcon.has(event.target).length === 0) {
-        bellIcon.popover('hide');
-      }
-    });
-
-    // 세션 속성 제거 함수
-    function removeUpdateBellIcon() {
-      $.ajax({
-        type: 'POST',
-        url: 'removeRingSession',
-        success: function() {
-          console.log('updateBellIcon removed');
-        },
-        error: function(xhr, status, error) {
-          console.log('Failed to remove updateBellIcon');
-          console.log('Status: ' + status);
-          console.log('Error: ' + error);
-        }
-      });
-    }
-  }); 
-</script>
-
-
+						<div id="msgStack"></div>
+						
 
 
 
