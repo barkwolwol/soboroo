@@ -18,7 +18,7 @@
 		<result column="MEM_INTRODUCE" property="memIntroduce"/>
 		<result column="MEM_RPR_COUNT" property="memRprCount"/>
 		<result column="MEM_IMG" property="memImg"/>
-		<result column="ADULT_NY" property="adultNY"/>
+		<result column="MEM_ADULT_NY" property="memAdultNY"/>
 	</resultMap>
 	
 	<select id="checkConnection" resultType="_int">
