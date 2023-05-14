@@ -18,8 +18,11 @@
 		<result column="MEM_RPR_COUNT" property="memRprCount"/>
 		<result column="MEM_IMG" property="memImg"/>
 		<result column="MEM_ADULT_NY" property="memAdultNY"/>
+<<<<<<< HEAD
 		<result column="MEM_ENROLL_DATE" property="memEnrollDate"/>
 		<result column="MEM_UPDATE_DATE" property="memUpdate"/>
+=======
+>>>>>>> upstream/main
 	</resultMap>
 	
 	<select id="checkConnection" resultType="_int">
@@ -35,7 +38,6 @@
 		     (
 		       mem_no
 		     , kakao_id  
-		     , mem_id
 		     , mem_pwd
 		     , mem_email
 		     , mem_gender
@@ -46,14 +48,16 @@
 		     , mem_introduce
 		     , mem_img
 		     , mem_adult_ny
+<<<<<<< HEAD
 		     , mem_enroll_date
 		     , mem_update_date
+=======
+>>>>>>> upstream/main
 		     )
 	    values
 	         (
 	           SEQ_MEM_NO.NEXTVAL
 	         , #{kakaoId}
-	         , #{memId}
 	         , #{memPwd}
 	         , #{memEmail}
 	         , #{memGender}
@@ -64,15 +68,17 @@
 	         , #{memIntroduce}
 	         , #{memImg}
 	         , #{memAdultNY}
+<<<<<<< HEAD
 	         , #{memEnrollDate}
 	         , #{memUpdateDate}
+=======
+>>>>>>> upstream/main
 	        )
 	</insert>
 	
 	<select id="loginMember" resultMap="memberResultSet">
 		select
 		       mem_no
-		     , mem_id
 		     , mem_pwd
 		     , mem_email
 		     , mem_gender
