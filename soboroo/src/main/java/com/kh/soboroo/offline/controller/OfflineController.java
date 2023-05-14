@@ -73,12 +73,21 @@ public class OfflineController {
 								 @RequestParam(value = "enterDate") String enterDate,
 			OfflineGroupOnce ogo, Upload u, MultipartFile upfile, HttpSession session, Model model) {
 		
-		System.out.println(tag);
-		System.out.println(date);
-		System.out.println(enterDate);
+		if(date.length() < 11) {
+			ogo.setStartDate(date.substring(0, 10));
+			
+		}else {
+			ogo.setStartDate(date.substring(0, 10));
+			ogo.setEndDate(date.substring(13, 23));
+		}
 		
-		ogo.setStartDate(date.substring(0, 10));
-		ogo.setEndDate(date.substring(13, 23));
+		if(enterDate.length() < 11) {
+			ogo.setStartEnter(date.substring(0, 10));
+		}else {
+			ogo.setStartEnter(date.substring(0, 10));
+			ogo.setEndEnter(date.substring(13, 23));
+		}
+		
 		ogo.setHashTag(tag);
 		
 		System.out.println(ogo);

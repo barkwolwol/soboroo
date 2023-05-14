@@ -38,6 +38,10 @@
 			<div class="content_area">
 			
 				<form id="" action="insertGroupOne.off" method="POST" encType="multipart/form-data" data-event_method_type="advance" data-open_type="open">
+					<input type="hidden" name="id" value="${ loginUser.memNickname }">
+					<input type="hidden" name="memNo" value="${ loginUser.memNo }">
+					<input type="hidden" name="tableNo" value="2">
+
 					
 					<article class="exposure_setting">
 						<h3>기본설정<span class="required">필수</span></h3>
@@ -170,7 +174,7 @@
 	
 								<div class="input_wrap">
 									<div class="form_row">
-										<div id="category" class="selectbox" data-list_show="false">
+										<div id="category" class="" data-list_show="false">
 											<select id="category" name="category">
 												<option value="0">카테고리 선택</option>
 												<option value="1">교육/어학</option>
@@ -182,23 +186,22 @@
 												<option value="7">영화/음악</option>
 												<option value="8">기타</option>
 											</select>
-											<button type="button" id="selectbox_btn_category" class="selectbox_btn">
+											<!-- <button type="button" id="selectbox_btn_category" class="selectbox_btn">
 												<span id="category-title">카테고리 선택</span>
 											</button>
 											<ul id="category-list">
-												<li id="value0" data-value="카테고리 선택">카테고리 선택</li>
-												<li id="value1" data-value="교육/어학">교육/어학</li>
-												<li id="value2" data-value="취업/자격증">취업/자격증</li>
-												<li id="value3" data-value="여행">여행</li>
-												<li id="value4" data-value="스포츠/운동">스포츠/운동</li>
-												<li id="value5" data-value="요리/음식">요리/음식</li>
-												<li id="value6" data-value="문화/예술">문화/예술</li>
-												<li id="value7" data-value="영화/음악">영화/음악</li>
-												<li id="value8" data-value="기타">기타</li>
-											</ul>
+												<li id="0" data-value="카테고리 선택">카테고리 선택</li>
+												<li id="1" data-value="교육/어학">교육/어학</li>
+												<li id="2" data-value="취업/자격증">취업/자격증</li>
+												<li id="3" data-value="여행">여행</li>
+												<li id="4" data-value="스포츠/운동">스포츠/운동</li>
+												<li id="5" data-value="요리/음식">요리/음식</li>
+												<li id="6" data-value="문화/예술">문화/예술</li>
+												<li id="7" data-value="영화/음악">영화/음악</li>
+												<li id="8" data-value="기타">기타</li>
+											</ul> -->
 										</div>
-										<input type="text" name="title" placeholder="모임명을 입력해주세요." value="" maxlength="64" required
-											data-parsley-required-message="모임명을 입력해주세요." data-parsley-class-handler=".event_name_category .form_row">
+										<input type="text" name="title" placeholder="모임명을 입력해주세요." value="" maxlength="64" data-parsley-required-message="모임명을 입력해주세요." data-parsley-class-handler=".event_name_category .form_row">
 									</div>
 								</div>
 								
@@ -219,8 +222,6 @@
 								$(document).ready(function(){
 									$("#category-list").on("click","li",function(e){
 										console.log($(e.target).data("value"));
-										// console.log($(this).data("value"));
-										// console.log(this);
 										$("#category-title").text($(e.target).data("value"));
 									})
     							})
@@ -237,32 +238,29 @@
 									<div class="form_row">
 										<div class="name">
 											<label for="">담당자명</label>
-											<input type="text" name="name"
-												data-parsley-required-message="담당자명을 입력해주세요."
-												maxlength="16"
-												data-parsley-class-handler=".contact .name" required
-												value="">
+											<input type="text" name="name" maxlength="16" value="">
 										</div>
 										<div class="phone">
 											<label for="">전화번호</label>
-											<input type="text" name="phone" oninput="autoHyphen2(this)" maxlength="13" required value="">
+											<input type="text" name="phone" oninput="autoHyphen2(this)" maxlength="13" value="">
 										</div>
 										<div id="emailBox" class="email ">
 											<label for="">이메일</label>
-											<input type="text" name="email_id" class="email_id" value="">
+											<input type="text" id="email_id" name="email_id" class="email_id" value="">
+											<input type="hidden" id="email" name="email" value="">
 											<span>@</span>
 											<div id="email" class="selectbox" data-list_show="false">
-												<select name="email_domain" class="email_domain">
-													<option value="">선택</option>
+												<!-- <select name="email_domain" class="email_domain">
+													<option value="선택">선택</option>
 													<option value="direct">직접입력</option>
-													<option value="naver.com" selected="">naver.com</option>
+													<option value="naver.com">naver.com</option>
 													<option value="gmail.com">gmail.com</option>
 													<option value="hanmail.net">hanmail.net</option>
 													<option value="nate.com">nate.com</option>
 													<option value="kakao.com">kakao.com</option>
 													<option value="daum.net">daum.net</option>
 													<option value="hotmail.com">hotmail.com</option>
-												</select>
+												</select> -->
 	
 												<input type="text" class="direct_email_domain" name="direct_email_domain" placeholder="직접입력" value="">
 												<button type="button" id="selectbox_btn_email" class="selectbox_btn">
@@ -271,7 +269,7 @@
 												<ul id="email-list">
 													<li data-value="선택">선택</li>
 													<li data-value="direct">직접입력</li>
-													<li data-value="naver.com">naver.com</li>
+													<li data-value="naver.com" selected="">naver.com</li>
 													<li data-value="gmail.com">gmail.com</li>
 													<li data-value="hanmail.net">hanmail.net</li>
 													<li data-value="nate.com">nate.com</li>
@@ -314,8 +312,18 @@
 								$(document).ready(function(){
 									$("#email-list").on("click","li",function(e){
 										console.log($(e.target).data("value"));
+										
+										const emailInput = document.getElementById("email_id");
+										const emailSelect = $(e.target).data("value");
+										const email = emailInput.value + "@" + emailSelect;
+
+										console.log(email);
+										
+										document.getElementById('email').value = email;
+
 										if($(e.target).data("value") == 'direct'){
 											document.getElementById('emailBox').className = 'email direct_on';
+											$("#emailBox").className = 'email direct_on';
 										}else{
 											document.getElementById('emailBox').className = 'email ';
 											$("#email-title").text($(e.target).data("value"));
@@ -335,9 +343,7 @@
 	
 								<div id="testCheck" class="input_wrap" data-text_length="0">
 									<div class="form_row">
-										<input type="text" id="simple" class="simple_introduce" placeholder="모임을 한줄로 소개해 주세요.(100자이내)" name="simple"
-										data-parsley-required-message="한줄소개를 입력해주세요."
-										data-parsley-class-handler=".introduce .form_row" required>
+										<input type="text" id="simple" class="simple_introduce" placeholder="모임을 한줄로 소개해 주세요.(100자이내)" name="simple">
 									</div>
 									<!-- <span id="textLengthCheck">0 / 100</span> -->
 								</div>
@@ -403,17 +409,13 @@
 										<div class="form_row" id="eventDateTime_-1">
 											<div class="date_time_wrap event">
 												<label for="">모임기간</label>
-												<input type="text" id="meetingDate" name="date" placeholder="모임기간을 선택하세요." value=""
-													data-parsley-required-message="모임기간을 선택해주세요." 
-													data-parsley-class-handler="#eventDateTime_-1" autocomplete="off" readonly="" required="">
+												<input type="text" id="meetingDate" name="date" placeholder="모임기간을 선택하세요." value="" readonly>
 											</div>
 										</div>
 										<div class="form_row">
 											<div class="date_time_wrap apply">
 												<label for="">신청기간</label>
-												<input type="text" id="applyDate" name="enterDate" placeholder="신청기간을 선택하세요." value=""
-													data-parsley-required-message="신청기간을 선택해주세요."
-													data-parsley-class-handler="#recruitDateTime_-1" autocomplete="off" readonly="" required="">
+												<input type="text" id="applyDate" name="enterDate" placeholder="신청기간을 선택하세요." value="" readonly>
 											</div>
 										</div>
 										<p class="ex">* 참여 신청 및 취소는 신청 기간에만 가능합니다.</p>
@@ -454,7 +456,7 @@
 									<div class="person_apply_wrap">
 										<div class="form_row over_capacity" data-input_type="radio">
 											<div class="group_capacity">
-												<input type="text" name="max" class="capacity" title="모집 정원 입력" data-parsley-required-message="모집 정원을 입력해주세요." required="" placeholder="모집 정원 입력" maxlength="7" value="">
+												<input type="text" name="max" class="capacity" title="모집 정원 입력" placeholder="모집 정원 입력" maxlength="7" value="">
 											</div>
 											<br>
 											<br>
