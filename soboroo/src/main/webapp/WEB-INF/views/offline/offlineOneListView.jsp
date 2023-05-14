@@ -38,7 +38,7 @@
 <section id="main-container" class="main-container pb-2">
   <div class="container">
   	<div style="text-align: right">
-	  	<a class="btn btn-primary" href="enrollOne.off">새로운 모임</a>
+	  	<a class="btn btn-primary" href="enrollGroupOne.off">새로운 모임</a>
   	</div>
   	<br>
   	
