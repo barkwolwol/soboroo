@@ -145,71 +145,93 @@
 						<div class="post" id="myGroup">
 
 							<div class="post-body">
-								<div class="entry-header">
-									<h2 class="entry-title">나의 알림</h2>
-								</div>
-								<!-- header end -->
-
-								<div class="entry-content">
-									<div class="content">
-										<!-- <br><br> -->
-										<div class="innerOuter">
-											<br>
-											<!-- <br></br> -->
-											<table id="boardList" class="table table-hover"
-												align="center">
-												<thead>
-													<tr>
-														<th>내용</th>
-														<th>날짜</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>XXX님이 회원님의 소모임에 참가했습니다.</td>
-														<td>2023.03.17</td>
-													</tr>
-													<tr>
-														<td>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</td>
-														<td>2023.03.16</td>
-													</tr>
-													<tr>
-														<td>XXX님이 회원님의 소모임 게시글에 댓글을 남겼습니다.</td>
-														<td>2023.03.15</td>
-													</tr>
-													<tr>
-														<td>XXX님의 소모임에 참여되었습니다.</td>
-														<td>2023.03.14</td>
-													</tr>
-													<tr>
-														<td>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</td>
-														<td>2023.03.14</td>
-													</tr>
-												</tbody>
-											</table>
+								<div id="showInfo" style="padding:0px 200px;">
+									<div style="padding:70px 100px 40px 100px;">
+										<img src="${pageContext.request.contextPath}/resources/images/lock.png" width="130px" height="130px" align="center" ;
+                      id="img"></div>
+									<div style="text-align:center;">
+										<p>회원님의 개인정보 보호를 위해 이메일 인증이 필요합니다.<br>
+										인증번호는 가입하신 카카오톡 아이디로 전송됩니다.</p>
+									</div>
+									<div style="padding-top:20px; padding-left:120px; padding-bottom: 50px;">
+									<button type="button"  class="btn btn-primary" id="sendEmail">이메일 전송</button>
 									</div>
 									</div>
+									
+									<div>
+									<div id="showForm" style="display:none; padding:0px 200px;">
+									<div style="padding:70px 100px 40px 100px;">
+										<img src="${pageContext.request.contextPath}/resources/images/lock.png" width="130px" height="130px" align="center" ;
+                      id="img"></div>
+                      				<div style="text-align:center;">
+										<p>인증번호가 전송되었습니다.<br>
+											가입하신 카카오톡 이메일을 확인해 주세요.
+										</p>
+										</div>
+										<div style="padding-top:10px;">
+									<input type="text" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" placeholder="인증번호 입력">
+									</div>
+									<div id="passwordHelpBlock" class="form-text"></div>
+									<div style="padding-top:30px; padding-left:120px; padding-bottom: 50px;">
+									<button type="button" class="btn btn-primary" id="checkEmail">인증번호 확인</button>
 									</div>
 									</div>
 									</div>
 									
-									<!-- post-body end -->
+									<script>
+									 
+									  $(function(){
+									    let code;
+									    const checkInput = $("#inputPassword5");
+									    
+									    $("#sendEmail").on("click", function(){
+									    	
+									      const email = '${loginUser.memEmail}';
+									      console.log(email);
+									      $("#showForm").show();
+									      $("#showInfo").hide();
+									     // $("#passwordHelpBlock").css("color", "#ff8932").text("이메일이 전송되었습니다.");
+									
+									      // AJAX를 사용하여 email 값을 서버로 전송
+									      $.ajax({
+									        url: 'mailCheck', // 데이터를 전송할 서버의 엔드포인트
+									        // method: "POST",
+									        data: { email: email }, // 전송할 데이터 객체
+									        success: function (data) {
+									          console.log("data: " + data);
+									          checkInput.attr('disabled', false);
+									          code = data;
+									          
+									         },
+									        error: function() {
+									          console.log("이메일 전송 실패");
+									        }
+									      });
+									    });
+									    
+									    
+									    $('#inputPassword5').blur(function () {
+									        const inputCode = $(this).val();
+									        const $resultMsg = $('#passwordHelpBlock');
+									        
+									        if (inputCode === code) {
+									        	
+									        	alert("이메일 인증에 성공하였습니다.");
+									        	 // JSP로 이동
+										          window.location.href = 'update.my';
+										        
+									        } else {
+									          $resultMsg.html('인증번호가 불일치합니다. 다시 확인해주세요.');
+									          $resultMsg.css('color', '#ff8932');
+									        }
+									      });
+									    });
+									  </script>
+										
 								</div>
+							</div>
+						</div>
 								<!-- 3rd post end -->
-
-								<nav class="paging" aria-label="Page navigation example"
-									style="margin: auto;">
-									<ul class="pagination"
-										style="padding-left: 270px; padding-top: 10px;">
-										<li class="page-item"><a class="page-link" href="#"><i
-												class="fas fa-angle-double-left"></i></a></li>
-										<li class="page-item"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#"><i
-												class="fas fa-angle-double-right"></i></a></li>
-									</ul>
-								</nav>
 
 								<!-- </div> -->
 								<!-- Content Col end -->

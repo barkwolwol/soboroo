@@ -89,10 +89,40 @@
               <li>
                 <p class="project-link">
                   <br>
-                  <a class="btn btn-primary" target="_blank" href="#">참가하기</a>
+                  <a class="btn btn-primary" target="_blank" href="#" id="entryButton">참가하기</a>
                 </p>
               </li>
             </ul>
+            
+            <script>
+            $(function(){
+            	$("#entryButton").on("click", function(){
+            		var AlarmData = {
+            				"myAlarm_receiverEmail" : receiverEmail,
+            				"myAlarm_callerNickname" : memNickName,
+            				"myAlarm_content" : memNickName + "님이 회원님의 소모임에 참여했습니다.",
+            		};
+            		$.ajax({
+            			type : "post",
+            			url : "saveAlarm.my"
+            			data : JSON.stringify(AlarmData),
+            			contentType: "application/json; charset=utf-8",
+            			dataType : 'text',
+            			success : function(data){
+            				if(socket){
+            					let socketMsg = "scrap," + memNickname +","+ memberSeq +","+ receiverEmail +","+ essayboard_seq;
+            					console.log("msgmsg : " + socketMsg);
+            					socket.send(socketMsg);
+            				}
+
+            			},
+            			error : function(err){
+            				console.log(err);
+            			}
+            		})
+            	})
+            })
+            </script>
 
           </div><!-- Content col end -->
 
