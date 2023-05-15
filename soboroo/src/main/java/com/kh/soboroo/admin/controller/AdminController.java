@@ -1,6 +1,7 @@
 package com.kh.soboroo.admin.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,7 @@ import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
+import com.kh.soboroo.member.model.service.MemberServiceImpl;
 import com.kh.soboroo.member.model.vo.Member;
 
 
@@ -28,6 +30,7 @@ public class AdminController {
 	
 		@Autowired
 		private AdminServiceImpl aService;
+		private MemberServiceImpl mService;
 	
 		
 		// 관리자 홈페이지 공지사항 
@@ -70,18 +73,38 @@ public class AdminController {
 		
 		// 관리자 회원 정보 수정 페이지 호출
 		@RequestMapping("updateInfo.ad")
-		public String updateMemberInfo(AdminMember m, HttpSession session, Model model) {
-			return "admin/updateMemberInfo";
+		public ModelAndView updateMemberInfo(@RequestParam(value = "memNo") int memNo, ModelAndView mv) {
+			
+			AdminMember m = aService.selectUpdateInfo(memNo);
+			
+			mv.addObject("m", m).setViewName("admin/updateMemberInfo");
+			
+			return mv;
 		}
 		
 		
 		// 회원 정보 수정
 		@RequestMapping("updateMem.ad")
-		public String updateMem(AdminMember m, HttpSession session, Model model) {
+		public String adminMemberUpdate(AdminMember m, HashMap<String, Object> userInfo, HttpSession session, Model model) {
 			
-			aService.adminMemberUpdate(m);
+			int result = aService.adminMemberUpdate(m);
 			
-			return "redirect:admin/updateInfo";
+			if(result > 0) {
+				
+				Member updateMem = mService.loginMember(userInfo);
+				
+				session.setAttribute("loginUser", updateMem);
+				
+				session.setAttribute("alertMsg", "성공적으로 회원정보 변경 되었습니다.");
+				
+				return "redirect:MemberInfo";
+				
+			}else { // 수정 실패
+				
+				model.addAttribute("errorMsg", "회원정보 변경 실패!");
+				return "common/errorPage";
+			}
+			
 			
 		}
 		

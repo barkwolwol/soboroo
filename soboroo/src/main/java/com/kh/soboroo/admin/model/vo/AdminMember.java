@@ -4,6 +4,7 @@ package com.kh.soboroo.admin.model.vo;
 
 import java.sql.Date;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,23 +38,22 @@ public class AdminMember {
 //    private Date create_date; // 게시글 작성일
 //    private Date enoll_date;  // 댓글 작성일
     
-   private String memNo;
-   private String kakaoId;
-   private String memId;
-   private String memPwd;
-   private String memEmail;
-   private String memGender;
-   private String memBirth;
-   private String memPhone;
-   private String memName;
-   private String memStatus;
-   private String memNickname;
-   private String memIntroduce;
-   private String memRprCount;
-   private String memImg;
-   private String adultNy;
-   private Date memEnrollDate;
-   private Date memUpdateDate;
+	 private int memNo;
+	 private String kakaoId;
+	 private String memPwd;
+	 private String memEmail;
+	 private String memGender;
+	 private String memBirth;
+	 private String memPhone;
+	 private String memName;
+	 private int memStatus;
+	 private String memNickname;
+	 private String memIntroduce;
+	 private int memRprCount;
+	 private String memImg;
+	 private String memAdultNY;
+	 private Date memEnrollDate;
+	 private Date memUpdateDate;
 
 
 }

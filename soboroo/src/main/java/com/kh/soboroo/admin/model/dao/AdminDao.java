@@ -110,5 +110,11 @@ public class AdminDao {
 		return sqlSession.update("adminMapper.adminMemberUpdate", m);
 	}
 	
+	
+	public AdminMember selectUpdateInfo(SqlSessionTemplate sqlSession, int memNo){
+		
+		return sqlSession.selectOne("adminMapper.updateMemInfoList",memNo);
+		
+	}
 
 }

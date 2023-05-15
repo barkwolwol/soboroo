@@ -29,7 +29,7 @@ public class AdminBoard {
 	private int tableNo;
 	private String categoryTitle;
 	private String memNickname;
-	private String memId;
+	private String memEmail;
 	private String memImg;
 
 }

@@ -48,6 +48,7 @@ public interface AdminService {
 	ArrayList<AdminMember> selectReportList(PageInfo pi);
 	
 	
+	AdminMember selectUpdateInfo(int memNo);
 
 	
 }

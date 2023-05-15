@@ -27,10 +27,5 @@ public class Member {
 	 private int memRprCount;
 	 private String memImg;
 	 private String memAdultNY;
-<<<<<<< HEAD
-	 private Date memEnrollDate;
-	 private Date memUpdateDate;
-=======
->>>>>>> upstream/main
 	 
 }

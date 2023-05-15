@@ -75,7 +75,14 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int adminMemberUpdate(AdminMember m) {
 		
-		return aDao.adminMemberUpdate(sqlSession,m);
+		int result = aDao.adminMemberUpdate(sqlSession,m);
+		return result;
+	}
+
+	@Override
+	public AdminMember selectUpdateInfo(int memNo) {
+		
+		return aDao.selectUpdateInfo(sqlSession, memNo);
 	}
 
 

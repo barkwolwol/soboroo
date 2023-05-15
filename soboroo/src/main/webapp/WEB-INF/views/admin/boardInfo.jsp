@@ -335,7 +335,7 @@
                                                 
                                             <td><a href="detail.bo?bno=${b.boardNo }">${b.boardTitle}</a></td>
                                             <td>${b.categoryTitle}</td>
-                                            <td class="text-primary">${b.memId}</td>
+                                            <td class="text-primary">${b.memEmail}</td>
                                             <td>${b.count}</td>
                                             <td>${b.createDate}</td>
                                             <td>${b.modifyDate}</td>

@@ -260,17 +260,17 @@
 <h4 class="card-title">회원 정보 조회</h4>
 
 
-<c:forEach var="m" items="${list}">
-<form action="updateMem.ad">
+
+<form action="updateMem.ad" method="POST">
 <div class="row">
 <div class="col-md-6">
 <div class="form-group">
 <label>회원 이름</label>
-<input type="text" class="form-control" value="${m.memName }" readonly>
+<input type="text" id="memName" class="form-control" value="${m.memName }" readonly>
 </div>
 <div class="form-group">
 <label>회원 아이디</label>
-<input type="email" class="form-control" value="${m.memId }">
+<input type="email" id="memEmail" class="form-control" value="${m.memEmail }">
 </div>
 <div class="form-group">
 
@@ -279,7 +279,7 @@
 
 <div class="form-group">
     <label>누적 신고 횟수</label>
-    <input type="text" class="form-control" value="${m.memRprCount }" readonly>
+    <input type="text" id="rprCount" class="form-control" value="${m.memRprCount }" readonly>
     </div>
 
 
@@ -288,20 +288,20 @@
 <div class="col-md-6">
 <div class="form-group">
 <label>회원 닉네임</label>
-<input type="text" class="form-control" value="${m.memNickname }">
+<input type="text" id="memNickname" class="form-control" value="${m.memNickname }">
 </div>
 <div class="form-group">
 <label>핸드폰</label>
-<input type="text" class="form-control" value="${m.memPhone}">
+<input type="text" id="phone" class="form-control" value="${m.memPhone}">
 </div>
 <div class="form-group">
 <label>회원 상태</label>
-<select class="select">
-<option selected value="${m.memStatus }">관리자</option>
-<option>휴먼회원</option>
-<option>정지회원</option>
-<option>일반회원</option>
-<option>탈퇴회원</option>
+<select class="select" id="stateChange">
+<option selected value="${m.memStatus==3}">관리자</option>
+<option value="${m.memStatus==2}">휴먼회원</option>
+<option value="${m.memStatus==3}">정지회원</option>
+<option value="${m.memStatus==1}">일반회원</option>
+<option value="${m.memStatus==5}">탈퇴회원</option>
 </select>
 </div>
 </div>
@@ -309,7 +309,7 @@
 
 </form>
 
-</c:forEach>
+
 <div class="text-end mt-4">
 <!-- <button type="submit" class="btn btn-primary" id="modify_paid">수정하기</button> -->
 <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modify_paid"><i class="far fa-edit me-1"></i>수정하기</a>
@@ -342,7 +342,20 @@
 
 </div>
 
+<script>
+//수정하기 버튼 클릭 이벤트 처리
+document.getElementById("modify_paid").addEventListener("click", function() {
+  // 서버로 전송할 데이터 준비
+  var memEmail = document.getElementById("memEmail").value;
+  var memNickname = document.getElementById("memNickname").value;
+  var memPhone = document.getElementById("memPhone").value;
+  var memStatus = document.getElementById("memStatus").value;
+  var rprCount = document.getElementById("rprCount").value;
+  }
+  
+  
 
+</script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
 

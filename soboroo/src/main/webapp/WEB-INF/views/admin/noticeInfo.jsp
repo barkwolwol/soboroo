@@ -84,7 +84,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/usermain.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Brian Johnson</span> paid the invoice <span class="noti-title">#DF65485</span></p>
@@ -123,7 +123,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-04.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Barbara Moore</span> declined the invoice <span class="noti-title">#RDW026896</span></p>
@@ -182,7 +182,7 @@
                     <ul>
                         <li class="menu-title"><span>MENU</span></li>
                         <li>
-                            <a href="adminHome.nt"><i data-feather="home"></i> <span>대시보드</span></a>
+                            <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
                             <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
