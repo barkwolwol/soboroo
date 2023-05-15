@@ -155,15 +155,15 @@
 
 <script language="javascript">
   var list = [
-    <c:forEach var="item" items="${list}">
+    <c:forEach var="list" items="${list}">
       {
-        title: '${item.title}',
-        start: '${item.startDate}',
+        title: '${list.title}',
+        start: '${list.startDate}',
         end: (function() {
-          var startDate = new Date('${item.endDate}');
-          var endDate = new Date(startDate.getTime() + 1 * 24 * 60 * 60 * 1000);
-          return endDate;
-        })()
+        	  var endDate = new Date('${list.endDate}');
+        	  endDate.setDate(endDate.getDate() + 1);
+        	  return endDate.toISOString().split('T')[0];
+        	})()
       }<c:if test="${!loop.last}">,</c:if>
     </c:forEach>
   ];
@@ -173,12 +173,41 @@
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
       events: list,
-      editable: false
+      editable: false,
+      eventClick:function(info){
+    	  window.location.href='myAlert.my';
+      }
     });
     calendar.render();
   });
 </script>
-
+<!-- <script language="javascript">
+  var list = [
+    <c:forEach var="item" items="${list}">
+      {
+        title: '${item.title}',
+        start: '${item.startDate}',
+        end: '${item.endDate}',
+        id: '${item.no}' // 일정의 ID를 `id` 필드로 추가
+      }<c:if test="${!loop.last}">,</c:if>
+    </c:forEach>
+  ];
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: list,
+      editable: false,
+      eventClick: function(info) {
+        var eventId = info.event.extendedProps.id; // 클릭된 일정의 ID 가져오기
+        window.location.href = '/your-page-url?id=' + eventId; // 상세 페이지 URL로 이동
+      }
+    });
+    calendar.render();
+  });
+</script>
+  -->
 <!-- <script language="javascript">
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');

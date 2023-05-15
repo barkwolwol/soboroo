@@ -257,6 +257,7 @@ public class MyPageController {
 	public ModelAndView selectMyGroup(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
+		
 		int listCount = myService.selectMyGroupListCount(loginUser);
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
@@ -271,6 +272,7 @@ public class MyPageController {
 	@RequestMapping(value="selectMySchedule.my", produces="application/json; charset=utf-8")
 	public ModelAndView selectMySchedule(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
+		System.out.println(loginUser);
 		
 		ArrayList<Object> list = myService.selectMySchedule(loginUser);
 		
