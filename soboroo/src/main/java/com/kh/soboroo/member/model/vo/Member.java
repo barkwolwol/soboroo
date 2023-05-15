@@ -12,6 +12,7 @@ import lombok.ToString;
 @Getter					// getter 메소드
 @ToString				// toString 메소드
 public class Member {
+	
 	 private int memNo;
 	 private String kakaoId;
 	 private String memPwd;

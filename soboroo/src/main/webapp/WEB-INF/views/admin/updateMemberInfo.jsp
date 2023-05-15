@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+
+  <!-- Favicon
+   ================================================== -->
+   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -26,13 +30,13 @@
 <div class="header header-one">
 
 <div class="header-left header-left-one">
-<a href="index.html" class="logo">
+<a href="adminHome.ad" class="logo">
 <img src="${pageContext.request.contextPath}/resources/admin/img/usermain.jpg" alt="Logo">
 </a>
-<a href="index.html" class="white-logo">
+<a href="adminHome.ad" class="white-logo">
 <img src="${pageContext.request.contextPath}/resources/admin/img/logo-white.png" alt="Logo">
 </a>
-<a href="index.html" class="logo logo-small">
+<a href="adminHome.ad" class="logo logo-small">
 <img src="${pageContext.request.contextPath}/resources/admin/img/logo-small.png" alt="Logo" width="30" height="30">
 </a>
 </div>
@@ -76,7 +80,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/usermain.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Brian Johnson</span> paid the invoice <span class="noti-title">#DF65485</span></p>
@@ -173,7 +177,7 @@
                     <ul>
                         <li class="menu-title"><span>MENU</span></li>
                         <li>
-                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
+                            <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
                             <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
@@ -233,6 +237,7 @@
         </div>
         <!-- 사이드바 끝  -->
 
+
 <div class="page-wrapper">
 <div class="content container-fluid">
 
@@ -241,47 +246,40 @@
 <div class="col-sm-12">
 <h3 class="page-title">정보 수정</h3>
 <ul class="breadcrumb">
-<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-<li class="breadcrumb-item"><a href="customers.html">Customers</a></li>
-<li class="breadcrumb-item active">Edit Customers</li>
+
 </ul>
 </div>
 </div>
 </div>
+
 
 <div class="row">
 <div class="col-md-12">
 <div class="card">
 <div class="card-body">
 <h4 class="card-title">회원 정보 조회</h4>
-<form action="#">
+
+
+
+<form action="updateMem.ad" method="POST">
 <div class="row">
 <div class="col-md-6">
 <div class="form-group">
 <label>회원 이름</label>
-<input type="text" class="form-control" value="관리자2" readonly>
+<input type="text" id="memName" class="form-control" value="${m.memName }" readonly>
 </div>
 <div class="form-group">
-<label>회원 이메일</label>
-<input type="email" class="form-control" value="admin2@naver.com">
+<label>회원 아이디</label>
+<input type="email" id="memEmail" class="form-control" value="${m.memEmail }">
 </div>
 <div class="form-group">
-<label>참가중인 모임</label>
-<select class="select">
-<option selected>온라인 일반/정기</option>
-<option>오프라인 일반/정기</option>
-<option>오프라인 목표/기간별</option>
+
 </select>
 </div>
 
 <div class="form-group">
     <label>누적 신고 횟수</label>
-    <select class="select">
-    <option selected>0회</option>
-    <option>1회</option>
-    <option>2회</option>
-    <option>3회</option>
-    </select>
+    <input type="text" id="rprCount" class="form-control" value="${m.memRprCount }" readonly>
     </div>
 
 
@@ -290,29 +288,33 @@
 <div class="col-md-6">
 <div class="form-group">
 <label>회원 닉네임</label>
-<input type="text" class="form-control" value="소보루 관리자">
+<input type="text" id="memNickname" class="form-control" value="${m.memNickname }">
 </div>
 <div class="form-group">
 <label>핸드폰</label>
-<input type="text" class="form-control" value="+82-010-2444-7535">
+<input type="text" id="phone" class="form-control" value="${m.memPhone}">
 </div>
 <div class="form-group">
 <label>회원 상태</label>
-<select class="select">
-<option selected>관리자</option>
-<option>휴먼회원</option>
-<option>정지회원</option>
-<option>일반회원</option>
+<select class="select" id="stateChange">
+<option selected value="${m.memStatus==3}">관리자</option>
+<option value="${m.memStatus==2}">휴먼회원</option>
+<option value="${m.memStatus==3}">정지회원</option>
+<option value="${m.memStatus==1}">일반회원</option>
+<option value="${m.memStatus==5}">탈퇴회원</option>
 </select>
 </div>
 </div>
 </div>
+
 </form>
+
 
 <div class="text-end mt-4">
 <!-- <button type="submit" class="btn btn-primary" id="modify_paid">수정하기</button> -->
 <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modify_paid"><i class="far fa-edit me-1"></i>수정하기</a>
 </div>
+
 </form>
 </div>
 </div>
@@ -333,13 +335,27 @@
     <div class="modal-btn delete-action">
     <div class="row">
     <div class="col-6">
-    <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">수정</a>
+    <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn" id="update">수정</a>
     </div>
     <div class="col-6">
     <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
 
 </div>
 
+<script>
+//수정하기 버튼 클릭 이벤트 처리
+document.getElementById("modify_paid").addEventListener("click", function() {
+  // 서버로 전송할 데이터 준비
+  var memEmail = document.getElementById("memEmail").value;
+  var memNickname = document.getElementById("memNickname").value;
+  var memPhone = document.getElementById("memPhone").value;
+  var memStatus = document.getElementById("memStatus").value;
+  var rprCount = document.getElementById("rprCount").value;
+  }
+  
+  
+
+</script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
 

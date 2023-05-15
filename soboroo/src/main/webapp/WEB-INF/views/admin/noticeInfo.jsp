@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+
+  <!-- Favicon
+   ================================================== -->
+   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+   
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -30,13 +35,13 @@
 <div class="header header-one">
 
 <div class="header-left header-left-one">
-<a href="index.html" class="logo">
+<a href="adminHome.nt" class="logo">
 <img src="${pageContext.request.contextPath}/resources/admin/img/usermain.jpg" alt="Logo">
 </a>
-<a href="index.html" class="white-logo">
+<a href="adminHome.nt" class="white-logo">
 <img src="${pageContext.request.contextPath}/resources/admin/img/logo-white.png" alt="Logo">
 </a>
-<a href="index.html" class="logo logo-small">
+<a href="adminHome.nt" class="logo logo-small">
 <img src="${pageContext.request.contextPath}/resources/admin/img/logo-small.png" alt="Logo" width="30" height="30">
 </a>
 </div>
@@ -79,7 +84,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/usermain.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Brian Johnson</span> paid the invoice <span class="noti-title">#DF65485</span></p>
@@ -118,7 +123,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-04.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Barbara Moore</span> declined the invoice <span class="noti-title">#RDW026896</span></p>
@@ -177,7 +182,7 @@
                     <ul>
                         <li class="menu-title"><span>MENU</span></li>
                         <li>
-                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
+                            <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
                             <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
@@ -306,15 +311,15 @@
 
 <a href="list.no" class="items-links">${ n.ntcNo }</a>
 </td>
-<td><a href="list.no">${n.ntcTitle}</a></td>
+<td><a href="detail.no?nno=${n.ntcNo }">${n.ntcTitle}</a></td>
 <td class="text-primary">${n.ntcWriter }</td>
 <td>${n.ntcCount }</td>
 <td>${n.ntcCreateDate }</td>
 <td>${n.ntcUpdateDate }</td>
 <td>${ n.ntcDelNy }</td>
 <td class="text-end">
-<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>공개</a>
-<a href="notenrollForm.no" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>수정</a>
+<a href="notenrollForm.no" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>작성</a>
+<a href="update.no" class="btn btn-sm btn-white text-warning"><i class="far fa-edit me-1"></i>수정</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
 </td>
 </tr>
@@ -323,15 +328,12 @@
 </table>
 </div>
 </div>
-<button style="margin-left: 45%;">작성하기</button>
 </div>
 </div>
 </div>
 </div>
 </div>
-
-
-
+ 
 <!-- 모달 팝업 -->
 <div class="modal custom-modal fade" id="delete_paid" role="dialog">
 <div class="modal-dialog modal-dialog-centered">
@@ -359,6 +361,9 @@
 </div>
 
 
+
+
+
 <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
@@ -376,5 +381,7 @@
 <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap-datetimepicker.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
+
+
 </body>
 </html>

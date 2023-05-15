@@ -13,7 +13,9 @@ import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,9 +36,11 @@ public class BoardController {
 	@Autowired
 	private BoardServiceImpl bService;
 	
+	
 	@RequestMapping("list.bo")
 	public ModelAndView selectBoardList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv,int category ) {
 		
+
 			int listCount = bService.selectBoardListCount(category);
 			//System.out.println(listCount);
 			
@@ -47,7 +51,7 @@ public class BoardController {
 			
 			mv.addObject("pi", pi).addObject("list",
 					list).setViewName("board/boardListView");
-		
+
 		return mv;
 	}
 	

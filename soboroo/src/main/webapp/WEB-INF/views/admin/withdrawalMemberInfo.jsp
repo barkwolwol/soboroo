@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+  <!-- Favicon
+   ================================================== -->
+   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -76,7 +79,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/usermain.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Brian Johnson</span> paid the invoice <span class="noti-title">#DF65485</span></p>
@@ -89,7 +92,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-03.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-03.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Marie Canales</span> has accepted your estimate <span class="noti-title">#GTR458789</span></p>
@@ -115,7 +118,7 @@
 <a href="activities.html">
 <div class="media d-flex">
 <span class="avatar avatar-sm">
-<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-04.jpg">
+<img class="avatar-img rounded-circle" alt="" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg">
 </span>
 <div class="media-body">
 <p class="noti-details"><span class="noti-title">Barbara Moore</span> declined the invoice <span class="noti-title">#RDW026896</span></p>
@@ -311,7 +314,7 @@
 <td>2023-03-13</td>
 <td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
 <td class="text-end">
-<a href="edit-customer3.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> 조회</a>
+<a href="updateReport.ad" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> 조회</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
 
 </td>
@@ -330,7 +333,7 @@
 <td>8 Nov 2020</td>
 <td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
 <td class="text-end">
-<a href="edit-customer3.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
+<a href="updateReport.ad" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
 </td>
 </tr>
@@ -348,7 +351,7 @@
 <td>8 Nov 2020</td>
 <td><span class="badge badge-pill bg-danger-light">탈퇴</span></td>
 <td class="text-end">
-<a href="edit-customer3.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
+<a href="updateReport.ad" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
 </td>
 </tr>
