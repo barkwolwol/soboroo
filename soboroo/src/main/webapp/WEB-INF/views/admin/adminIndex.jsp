@@ -4,6 +4,13 @@
 <!DOCTYPE html>
 <html>
 
+
+
+   <!-- Favicon
+   ================================================== -->
+   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -145,7 +152,6 @@
                     </div>
                 </li>
 
-
                 <li class="nav-item dropdown has-arrow main-drop">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                         <span class="user-img">
@@ -173,7 +179,7 @@
                     <ul>
                         <li class="menu-title"><span>MENU</span></li>
                         <li>
-                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
+                            <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
                             <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
@@ -246,7 +252,7 @@
                                     <div class="dash-count">
                                         <div class="dash-title">생성된 모임</div>
                                         <div class="dash-counts">
-                                            <p>50</p>
+                                            <p id="count">50</p>
                                         </div>
                                     </div>
                                 </div>
@@ -284,7 +290,7 @@
                                     <div class="dash-count">
                                         <div class="dash-title">일일 방문자 수</div>
                                         <div class="dash-counts">
-                                            <p>1,041</p>
+                                            <p id="visitorCount">1,041</p>
                                         </div>
                                     </div>
                                 </div>
@@ -303,7 +309,7 @@
                                     <div class="dash-count">
                                         <div class="dash-title">총 방문자수</div>
                                         <div class="dash-counts">
-                                            <p>2,150</p>
+                                            <p id="totalCount">2,150</p>
                                         </div>
                                     </div>
                                 </div>
@@ -313,6 +319,8 @@
                         </div>
                     </div>
                 </div>
+                
+                
                 
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -338,188 +346,39 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>작성회원</th>
+                                                <th>게시글제목</th>
                                                 <th>조회수</th>
                                                 <th>작성날짜</th>
                                                 <th>카테고리</th>
-                                                <th class="text-right">더보기</th>
+                                                <th class="text-right">삭제여부</th>
                                             </tr>
                                         </thead>
+                                        <c:forEach var="b" items="${list2}">
                                         <tbody>
                                             <tr>
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="profile.html"><img
                                                                 class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg"
-                                                                alt="User Image">Barbara Moore</a>
+                                                                src="${b.memImg }"
+                                                                alt="User Image">${b.memNickname}</a>
                                                     </h2>
                                                 </td>
-                                                <td>$118</td>
-                                                <td>23 Nov 2020</td>
-                                                <td><span class="badge bg-success-light">여행</span></td>
+                                                <td>${b.boardTitle}</td>
+                                                <td>${b.count }</td>
+                                                <td>${b.createDate }</td>
+                                                <td><span class="badge bg-success-light">${b.categoryTitle}</span></td>
                                                 <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="view-invoice.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone Invoice</a>
+                                                    ${b.delNy}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="profile.html"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-06.jpg"
-                                                                alt="User Image">Karlene Chaidez</a>
-                                                    </h2>
-                                                </td>
-                                                <td>$222</td>
-                                                <td>18 Nov 2020</td>
-                                                <td><span class="badge bg-info-light">스포츠</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="view-invoice.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                        </div>
-                                                    </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="profile.html"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-08.jpg"
-                                                                alt="User Image">Russell Copeland</a>
-                                                    </h2>
-                                                </td>
-                                                <td>$347</td>
-                                                <td>10 Nov 2020</td>
-                                                <td><span class="badge bg-warning-light">언어/직무</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="view-invoice.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                             </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="profile.html"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-10.jpg"
-                                                                alt="User Image">Joseph Collins</a>
-                                                    </h2>
-                                                </td>
-                                                <td>$826</td>
-                                                <td>25 Sep 2020</td>
-                                                <td><span class="badge bg-danger-light">취업/교육</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="view-invoice.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="#"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-11.jpg"
-                                                                alt="User Image">Jennifer Floyd</a>
-                                                    </h2>
-                                                </td>
-                                                <td>$519</td>
-                                                <td>18 Sep 2020</td>
-                                                <td><span class="badge bg-success-light">여행</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="view-invoice.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -549,228 +408,39 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>작성자</th>
+                                                <th>공지사항번호</th>
+                                                <th>작성제목</th>
                                                 <th>작성일</th>
                                                 <th>조회수</th>
-                                                <th>상태</th>
-                                                <th class="text-right">더보기</th> 
+                                                <th class="text-right">상태</th> 
                                             </tr>
                                         </thead>
+                                        <c:forEach var="n" items="${list}">
                                         <tbody>
                                             <tr>
+                                               
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="profile.html"><img
                                                                 class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-05.jpg"
-                                                                alt="User Image"> Greg Lynch</a>
+                                                                src="${pageContext.request.contextPath}/resources/admin/img/Slogo.png"
+                                                                alt="User Image">${n.ntcWriter }</a>
                                                     </h2>
                                                 </td>
-                                                <td>5 Nov 2020</td>
-                                                <td>$175</td>
-                                                <td><span class="badge bg-info-light">Sent</span></td>
+                                                <td>${n.ntcNo}</td>
+                                                <td>${n.ntcTitle}</td>
+                                                <td>${n.ntcCreateDate }</td>
+                                                <td>${n.ntcCount }</td>
                                                 <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="view-estimate.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-file-alt me-2"></i>Convert to
-                                                                Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send
-                                                                Estimate</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                Accepted</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-times-circle me-2"></i>Mark as
-                                                                Rejected</a>
+                                                    <span class="badge bg-info-light">${ n.ntcDelNy }</span>
+                                            
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="profile.html"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-06.jpg"
-                                                                alt="User Image"> Karlene Chaidez</a>
-                                                    </h2>
-                                                </td>
-                                                <td>28 Oct 2020</td>
-                                                <td>$1500</td>
-                                                <td><span class="badge bg-warning-light">Expired</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="view-estimate.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-file-alt me-2"></i>Convert to
-                                                                Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send
-                                                                Estimate</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                Accepted</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-times-circle me-2"></i>Mark as
-                                                                Rejected</a>
-                                                        </div>
-                                                    </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="profile.html"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-07.jpg"
-                                                                alt="User Image"> John Blair</a>
-                                                    </h2>
-                                                </td>
-                                                <td>17 Oct 2020</td>
-                                                <td>$2350</td>
-                                                <td><span class="badge bg-success-light">Accepted</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="view-estimate.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-file-alt me-2"></i>Convert to
-                                                                Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send
-                                                                Estimate</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                Accepted</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-times-circle me-2"></i>Mark as
-                                                                Rejected</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="profile.html"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-08.jpg"
-                                                                alt="User Image"> Russell Copeland</a>
-                                                    </h2>
-                                                </td>
-                                                <td>8 Oct 2020</td>
-                                                <td>$1890</td>
-                                                <td><span class="badge bg-success-light">Accepted</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="view-estimate.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-file-alt me-2"></i>Convert to
-                                                                Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send
-                                                                Estimate</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                Accepted</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-times-circle me-2"></i>Mark as
-                                                                Rejected</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="profile.html"><img
-                                                                class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                                src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-09.jpg"
-                                                                alt="User Image"> Leatha Bailey</a>
-                                                    </h2>
-                                                </td>
-                                                <td>30 Sep 2020</td>
-                                                <td>$785</td>
-                                                <td><span class="badge bg-success-light">Accepted</span></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="view-estimate.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-file-alt me-2"></i>Convert to
-                                                                Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send
-                                                                Estimate</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark as
-                                                                Accepted</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-times-circle me-2"></i>Mark as
-                                                                Rejected</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -781,6 +451,79 @@
             </div>
         </div>
     </div>
+    
+    
+    <!-- 일일 방문자 수 카운트 -->
+    <script>
+    function animateVisitorCount() {
+        let count = 0;
+        const targetCount = 1000; // 목표 방문자 수
+        const duration = 10000; // 애니메이션 지속 시간 (밀리초)
+        const increment = Math.ceil(targetCount / (duration / 100)); // 숫자 증가 속도
+
+        const visitorCountElement = document.getElementById('visitorCount');
+
+        const timer = setInterval(() => {
+            count += increment;
+            visitorCountElement.textContent = count.toLocaleString();
+
+            if (count >= targetCount) {
+                clearInterval(timer);
+                visitorCountElement.textContent = targetCount.toLocaleString();
+            }
+        }, 100);
+    }
+
+    animateVisitorCount();
+    </script>
+    
+    <!-- 총 방문자 수 카운트  -->
+    <script>
+    function totalCount() {
+        let count = 0;
+        const targetCount = 2200; // 목표 방문자 수
+        const duration = 10000; // 애니메이션 지속 시간 (밀리초)
+        const increment = Math.ceil(targetCount / (duration / 100)); // 숫자 증가 속도
+
+        const visitorCountElement = document.getElementById('totalCount');
+
+        const timer = setInterval(() => {
+            count += increment;
+            visitorCountElement.textContent = count.toLocaleString();
+
+            if (count >= targetCount) {
+                clearInterval(timer);
+                visitorCountElement.textContent = targetCount.toLocaleString();
+            }
+        }, 100);
+    }
+
+    totalCount();
+    </script>
+    
+    <!-- 모임 개수 카운트 증가  -->
+    <script>
+    function countUp(target, start, end, duration) {
+        let current = start;
+        const range = end - start;
+        const step = range / duration * 10;
+        const timer = setInterval(function() {
+          current += step;
+          target.innerHTML = Math.round(current);
+          if (current >= end) {
+            clearInterval(timer);
+            target.innerHTML = end;
+          }
+        }, 10);
+      }
+
+      const countElement = document.getElementById('count');
+      const startCount = 0;
+      const endCount = 100;
+      const duration = 10000; // 1초
+
+      countUp(countElement, startCount, endCount, duration);
+    </script>
 
     <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>

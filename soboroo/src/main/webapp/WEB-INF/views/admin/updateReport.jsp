@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-  <!-- Favicon
-   ================================================== -->
-   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
-   
 <!DOCTYPE html>
+
+<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>soboroo admin - 통합신고관리</title>
+<title>Jassa - Bootstrap Admin HTML Template</title>
 
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
@@ -20,10 +18,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/fontawesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/all.min.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/select2/css/select2.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/style.css">
-
 </head>
 <body>
 
@@ -63,6 +60,7 @@
 
 
 <ul class="nav nav-tabs user-menu">
+
 
 
 
@@ -154,7 +152,7 @@
 <li class="nav-item dropdown has-arrow main-drop">
 <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
 <span class="user-img">
-<img src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="">
+<img src="assets/img/profiles/usermain.jpg" alt="">
 <span class="status online"></span>
 </span>
 <span>Admin</span>
@@ -178,7 +176,7 @@
                     <ul>
                         <li class="menu-title"><span>MENU</span></li>
                         <li>
-                            <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
+                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
                             <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
@@ -237,137 +235,119 @@
             </div>
         </div>
         <!-- 사이드바 끝  -->
-        
-        
-        
+
+
 <div class="page-wrapper">
 <div class="content container-fluid">
 
 <div class="page-header">
-<div class="row align-items-center">
-<div class="col">
-<h3 class="page-title">통합신고 관리</h3>
-<ul class="breadcrumb">
-<li class="breadcrumb-item"><a href="index.html">회원 / 게시판</a>
-</li>
-<li class="breadcrumb-item active">댓글</li>
-</ul>
-</div>
-</a>
-</div>
-</div>
-</div>
-<div id="filter_inputs" class="card filter-card">
-<div class="card-body pb-0">
-<div class="row">
-<div class="col-sm-6 col-md-3">
-<div class="form-group">
-<label>Name</label>
-<input type="text" class="form-control" >
-</div>
-</div>
-<div class="col-sm-6 col-md-3">
-<div class="form-group">
-<label>Email</label>
-<input type="text" class="form-control">
-</div>
-</div>
-<div class="col-sm-6 col-md-3">
-<div class="form-group">
-<label>Phone</label>
-<input type="text" class="form-control">
-</div>
-</div>
-</div>
-</div>
-</div>
-
 <div class="row">
 <div class="col-sm-12">
-<div class="card card-table">
+<h3 class="page-title">정보 수정</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+<li class="breadcrumb-item"><a href="customers.html">Customers</a></li>
+<li class="breadcrumb-item active">Edit Customers</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="card">
 <div class="card-body">
-<div class="table-responsive">
-<table class="table table-center table-hover datatable">
-<thead class="thead-light">
-<tr>
-<th>작성자</th>
-<th>아이디(이메일)</th>
-<th>누적신고횟수</th>
-<th>신고기반자료</th>
-<th>내용</th>
-<th>작성일</th>
-<th>신고사유</th>
-<th>신고일</th>
-<th>신고자아이디</th>
-<th class="text-end">복구/삭제</th>
-</tr>
-</thead>
-<c:forEach var="r" items="${list}">
- <tbody>
-<tr>
-<td>
-<h2 class="table-avatar">
-<a href="#" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-<a href="#">${r.memNickname }<span>${r.memNo }</span></a>
-</h2>
-</td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">${r.memId }</a></td>
-<td>${r.memRprCount }</td>
-<td>${r.boardTitle }</td>
-<td>${r.replyContent }</td>
-<td>${r.createDate }</td>
-<td>폭언 및 욕설</td>
-<td>2023-04-20 12:20:43</td>
-<td>${r.reportId }</td>
-<td class="text-end">
-<a href="edit-customer2.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>복구</a>
-<a class="btn btn-sm btn-white text-warning" href="#" data-bs-toggle="modal" data-bs-target="#danger_paid"><i class="fas fa-exclamation-circle"></i>정지</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-</td>
-</tr>
+<h4 class="card-title">회원 신고 조회</h4>
+<form action="#">
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label>회원 이름</label>
+<input type="text" class="form-control" value="관리자2" readonly>
+</div>
+<div class="form-group">
+<label>회원 이메일</label>
+<input type="email" class="form-control" value="admin2@naver.com">
+</div>
+<div class="form-group">
+<label>참가중인 모임</label>
+<select class="select">
+<option selected>온라인 일반/정기</option>
+<option>오프라인 일반/정기</option>
+<option>오프라인 목표/기간별</option>
+</select>
+</div>
+
+<div class="form-group">
+    <label>신고사유</label>
+    <select class="select">
+        <option selected>욕설</option>
+        <option>음란물 유포</option>
+        <option>불법정보 유포</option>
+        <option>명예훼손</option>
+        <option>기타</option>
+        </select>
+    </div>
+
+</div>
+
+<div class="col-md-6">
+<div class="form-group">
+<label>회원 닉네임</label>
+<input type="text" class="form-control" value="소보루 관리자">
+</div>
+<div class="form-group">
+<label>핸드폰</label>
+<input type="text" class="form-control" value="+82-010-2444-7535">
+</div>
+<div class="form-group">
+<label>회원 상태</label>
+<select class="select">
+<option selected>일반회원</option>
+<option>휴먼회원</option>
+<option>정지회원</option>
+<option>관리자</option>
+<option>탈퇴회원</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+
+<div class="text-end mt-4">
+<!-- <button type="submit" class="btn btn-primary" id="modify_paid">수정하기</button> -->
+<a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modify_paid"><i class="far fa-edit me-1"></i>수정하기</a>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <!-- 모달팝업 -->
-<div class="modal custom-modal fade" id="danger_paid" role="dialog">
+<div class="modal custom-modal fade" id="modify_paid" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
     <div class="modal-body">
     <div class="form-header">
-    <h3>회원 정지</h3>
-     <p>해당 소보루 회원을 정지하시겠습니까?</p>
-     <p>정지 처리시 , 해당 기간동안 서비스 이용이 제한됩니다.</p>
+    <h3>회원 상태 수정</h3>
+     <p>해당 회원 상태를 수정하시겠습니까?</p>
     </div>
     <div class="modal-btn delete-action">
     <div class="row">
     <div class="col-6">
-    <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">정지</a>
+    <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">수정</a>
     </div>
     <div class="col-6">
     <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
-  
-  </div>
-</td>
-</tr>
-</c:forEach>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
- 
-
-
-
- 
-  
 </div>
 
 
-<script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
@@ -376,37 +356,8 @@
 
 <script src="${pageContext.request.contextPath}/resources/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/select2/js/select2.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
-
-
-
-<!-- 모달팝업 -->
-<div class="modal custom-modal fade" id="delete_paid" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-    <div class="modal-body">
-    <div class="form-header">
-    <h3>회원 탈퇴</h3>
-     <p>해당 소보루 회원 탈퇴를 진행하시겠습니까?</p>
-     <p>탈퇴 처리시 , 서비스 이용을 하실 수 없습니다.</p>
-    </div>
-    <div class="modal-btn delete-action">
-    <div class="row">
-    <div class="col-6">
-    <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">탈퇴</a>
-    </div>
-    <div class="col-6">
-    <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
-  
-  </div>
-
-
-
-
-
-
 </body>
 </html>
