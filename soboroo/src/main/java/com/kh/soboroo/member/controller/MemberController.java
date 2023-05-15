@@ -25,7 +25,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UrlPathHelper;
 
-import com.kh.soboroo.common.model.vo.CommonData;
 import com.kh.soboroo.member.model.dao.MemberDao;
 import com.kh.soboroo.member.model.service.MemberService;
 import com.kh.soboroo.member.model.service.MemberServiceImpl;
@@ -74,28 +73,28 @@ public class MemberController {
 	
 	@RequestMapping(value= "/loginpage_kakao_callback", method=RequestMethod.GET)
 	public String kakaoLogin(@RequestParam(value = "code", required = false) String code, HttpSession session) throws Exception {
-		System.out.println("#########" + code);
+//		System.out.println("#########" + code);
 		String access_Token = mService.getAccessToken(code);
         
 		HashMap<String, Object> userInfo = mService.getUserInfo(access_Token);
 		
-		
-		System.out.println("###access_Token#### : " + access_Token);
-		System.out.println("###id#### : " + userInfo.get("id"));
-		System.out.println("###nickname#### : " + userInfo.get("nickname"));
-		System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
-		System.out.println("###thumbnail_image#### : " + userInfo.get("thumbnail_image"));
-		
-		System.out.println("###email#### : " + userInfo.get("email"));
-		System.out.println("###age_range#### : " + userInfo.get("age_range"));
-		System.out.println("###birthday#### : " + userInfo.get("birthday"));
-		System.out.println("###gender#### : " + userInfo.get("gender"));
+//		System.out.println("###access_Token#### : " + access_Token);
+//		System.out.println("###id#### : " + userInfo.get("id"));
+//		System.out.println("###nickname#### : " + userInfo.get("nickname"));
+//		System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
+//		System.out.println("###thumbnail_image#### : " + userInfo.get("thumbnail_image"));
+//		
+//		System.out.println("###email#### : " + userInfo.get("email"));
+//		System.out.println("###age_range#### : " + userInfo.get("age_range"));
+//		System.out.println("###birthday#### : " + userInfo.get("birthday"));
+//		System.out.println("###gender#### : " + userInfo.get("gender"));
 		
 		session.setAttribute("userInfo", userInfo);
-		System.out.println("userInfo의 값은 ?? : " + userInfo);
-		System.out.println("여기는 체크커넥션 메소드 타는 자리");
+//		System.out.println("userInfo의 값은 ?? : " + userInfo);
+//		System.out.println("여기는 체크커넥션 메소드 타는 자리");
+		
 		int result = mService.checkConnection(userInfo);
-		System.out.println("쳌커넥션 후 result : " + result);
+//		System.out.println("쳌커넥션 후 result : " + result);
 		
 		if(result > 0) {
 			// 로그인 성공
@@ -118,17 +117,17 @@ public class MemberController {
 	   
 		HashMap<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
 		
-		System.out.println(userInfo);
+//		System.out.println(userInfo);
 		
 		m.setKakaoId((String)userInfo.get("id"));
 	    m.setMemNickname((String)userInfo.get("nickname"));
 	    m.setMemImg((String)userInfo.get("profile_image"));
 	    m.setMemEmail((String)userInfo.get("email"));
-	    m.setAdultNY(((String)userInfo.get("age_range")));
+	    m.setMemAdultNY(((String)userInfo.get("age_range")));
 	    m.setMemBirth(((String)userInfo.get("birthday")));
 	    m.setMemGender((String)userInfo.get("gender"));
 
-	    System.out.println(m);
+//	    System.out.println(m);
 	    int result = mService.insertMember(m);
 
 	    if(result > 0) { // 성공 => 메인페이지 url 재요청! 알람창

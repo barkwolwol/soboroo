@@ -68,7 +68,7 @@
          alert("${ alertMsg }");
       </script>
       <c:remove var="alertMsg" scope="session"/>
-   </c:if>
+    </c:if>
     
 
    <div id="top-bar" class="top-bar">
@@ -150,7 +150,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">오프라인 <i
                             class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="listOne.off">반짝모임</a></li>
+                          <li><a href="listGroupOne.off">반짝모임</a></li>
                           <li><a href="listReg.off">정기모임</a></li>
                           <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">목표모임</a>
@@ -266,13 +266,6 @@
       <!-- shuffle -->
       <script src="${pageContext.request.contextPath}/resources/plugins/shuffle/shuffle.min.js" defer="defer"></script>
 
-
-   <%--    <!-- Google Map API Key-->
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU"
-        defer="defer"></script>
-      <!-- Google Map Plugin-->
-      <script src="${pageContext.request.contextPath}/resources/plugins/google-map/map.js" defer="defer"></script>
- --%>
       <!-- Template custom -->
       <script src="${pageContext.request.contextPath}/resources/js/script.js"></script>
 
