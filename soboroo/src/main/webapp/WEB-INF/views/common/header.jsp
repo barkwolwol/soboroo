@@ -271,7 +271,8 @@ $(function() {
                       <li class="nav-item"><a class="nav-link" href="list.bo">자유게시판</a></li>
 
                       <li class="nav-item"><a class="nav-link" href="list.no">공지사항</a></li>
-
+						
+						<c:if test="${not empty loginUser }">
                       <li class="nav-item dropdown">
                         <a href="myCalender.do" class="nav-link dropdown-toggle" data-toggle="dropdown">마이페이지 <i
                             class="fa fa-angle-down"></i></a>
@@ -302,19 +303,15 @@ $(function() {
 						                  <a href='myAlert.my'>더보기</a>" data-placement="bottom"></i>
 						  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"></span>
 						</li>
-                    </ul>
+						</c:if>
 						<div id="msgStack"></div>
+                    </ul>
 						
 				<script>
 				  $(function() {
 				    $('[data-toggle="popover"]').popover();
 				  });
 				</script>
-
-
-
-
-
 
                     <ul class="nav navbar-nav ml-auto align-items-center">
                       <li class="header-get-a-quote">

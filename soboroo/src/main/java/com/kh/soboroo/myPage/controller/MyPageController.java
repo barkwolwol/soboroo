@@ -26,7 +26,7 @@ import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
-import com.kh.soboroo.entryList.model.vo.EntryList;
+import com.kh.soboroo.offline.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.service.MailSendService;
 import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;

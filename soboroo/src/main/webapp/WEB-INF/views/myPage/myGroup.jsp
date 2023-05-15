@@ -170,8 +170,8 @@
 											<script>
 												$(function() {
 													$("#boardList>tbody>tr").click(function() {
-														location.href = 'detail.off?no='+ $(this).children(".no").text();
-													})
+														location.href = 'detail.off?tableNo='+ $(this).children(".no").text();
+													})detail.off?tableNo=2&no=1
 												})
 											</script>
 
