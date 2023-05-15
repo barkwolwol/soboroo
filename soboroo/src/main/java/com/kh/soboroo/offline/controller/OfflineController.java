@@ -33,12 +33,6 @@ public class OfflineController {
 	@Autowired
 	private CommonController common;
 	
-	// 오프라인 반짝모임 리스트 호출
-//	@RequestMapping("listGroupOne.off")
-//	public String offlineOneList() {
-//		return "offline/offlineOneListView";
-//	}
-
 	// 오프라인 정기모임 리스트 호출
 	@RequestMapping("listReg.off")
 	public String offlineRegularList() {
@@ -56,12 +50,6 @@ public class OfflineController {
 	public String offlineDdayList() {
 		return "offline/offlineDdayListView";
 	}
-
-	// 오프라인 모임 상세 페이지 호출
-//	@RequestMapping("detail.off")
-//	public String onDetailView(int groupNum) {
-//		return "offline/offlineDetailView";
-//	}
 
 	// 오프라인 반짝모임 생성 페이지 이동
 	@RequestMapping("enrollGroupOne.off")

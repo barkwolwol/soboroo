@@ -44,10 +44,22 @@
 		<result column="TABLE_NO" property="tableNo"/>
 	</resultMap>
 	
+	<resultMap id="entryListResultset" type="EntryList">
+		<result column="GROUP_NO" property="groupNo"/>
+		<result column="GROUP_TITLE" property="groupTitle"/>
+		<result column="ENTRY_ID" property="entryId"/>
+		<result column="WAIT_NY" property="waitNY"/>
+		<result column="START_DATE" property="startDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="MEM_NO" property="memNo"/>
+		<result column="TABLE_NO" property="tableNo"/>
+	</resultMap>
+	
 	<select id="selectListCount" resultType="_int">
 		select 
 		       count(*)
 		  from OFFLINE_GROUP_ONCE
+		 where status = 'Y'
 	</select>
 	
 	<select id="selectList" resultMap="offlineGroupOnceResultSet">
@@ -79,6 +91,7 @@
 			 , ATTEND_PASSWORD
 			 , COUNT
 		  from OFFLINE_GROUP_ONCE
+		  where status = 'Y'
 		 order
 		    by NO desc
 	</select>
@@ -88,6 +101,7 @@
 		       OFFLINE_GROUP_ONCE
 		   set count = count + 1
 		 where no = #{no}
+		   and status = 'Y'
 	</update>
 	
 	<select id="selectGroupOne" resultMap="offlineGroupOnceResultSet">
@@ -178,9 +192,34 @@
 		     , #{adultAccess}
 		     , #{category}
 		     , #{memNo}
-		     , 2
+		     , #{tableNo}
 		     , #{attendPassword}
 		     )
+	</insert>
+	
+	<insert id="insertEntryListSelf">
+		INSERT
+		  INTO ENTRY_LIST
+		     (
+		       GROUP_NO
+		     , GROUP_TITLE
+		     , ENTRY_ID
+		     , START_DATE
+		     , END_DATE
+		     , MEM_NO
+		     , TABLE_NO
+		     )
+		VALUES
+		     (
+		       SEQ_ON_GROUP_ONCE_NO.CURRVAL
+		     , #{title}
+		     , #{id}
+		     , #{startDate}
+		     , #{endDate}
+		     , #{memNo}
+		     , #{tableNo}
+		     )
+	
 	</insert>
 	
 	

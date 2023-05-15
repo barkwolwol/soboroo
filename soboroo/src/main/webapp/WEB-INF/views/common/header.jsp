@@ -150,7 +150,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">오프라인 <i
                             class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="listGroupOne.off">반짝모임</a></li>
+                          <li><a href="listGroupOne.off?tableNo=2">반짝모임</a></li>
                           <li><a href="listReg.off">정기모임</a></li>
                           <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">목표모임</a>
