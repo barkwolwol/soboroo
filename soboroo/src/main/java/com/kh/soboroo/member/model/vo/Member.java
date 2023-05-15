@@ -1,5 +1,7 @@
 package com.kh.soboroo.member.model.vo;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,5 +29,8 @@ public class Member {
 	 private int memRprCount;
 	 private String memImg;
 	 private String memAdultNY;
+	 private Date memEnrollDate;
+	 private Date memUpdateDate;
+	 
 	 
 }

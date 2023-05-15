@@ -43,6 +43,7 @@ public class OfflineGroupOnce {
 	private int tableNo;
 	private String attendPassword;
 	private int count;
+	private String status;
 	
 	private String categoryTitle;
 	
