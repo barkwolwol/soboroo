@@ -58,10 +58,10 @@ public class OfflineController {
 	}
 
 	// 오프라인 모임 상세 페이지 호출
-	@RequestMapping("detail.off")
-	public String onDetailView(int groupNum) {
-		return "offline/offlineDetailView";
-	}
+//	@RequestMapping("detail.off")
+//	public String onDetailView(int groupNum) {
+//		return "offline/offlineDetailView";
+//	}
 
 	// 오프라인 반짝모임 생성 페이지 이동
 	@RequestMapping("enrollGroupOne.off")
@@ -69,6 +69,13 @@ public class OfflineController {
 		return "offline/enrollOfflineOne";
 	}
 	
+
+	/**
+	 * 오프라인 반짝모임 리스트
+	 * @param currentPage
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("listGroupOne.off")
 	public ModelAndView selectList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 		
@@ -83,6 +90,18 @@ public class OfflineController {
 		return mv;
 	}
 	
+	/**
+	 * 오프라인 반짝모임 생성
+	 * @param tag
+	 * @param date
+	 * @param enterDate
+	 * @param ogo
+	 * @param u
+	 * @param upfile
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("insertGroupOne.off")
 	public String insertGroupOne(@RequestParam(value = "tag") String tag,
 								 @RequestParam(value = "date") String date,	
@@ -126,6 +145,43 @@ public class OfflineController {
 		}
 		
 	}
+	
+	@RequestMapping("detail.off")
+	public ModelAndView selectGroupOne(int no, Model model, ModelAndView mv) {
+		int result = offService.increaseCount(no);
+		
+		if(result > 0) {
+			OfflineGroupOnce ogo = offService.selectGroupOne(no);
+			mv.addObject("ogo", ogo).setViewName("offline/offlineDetailView");
+			
+		}else {
+			mv.addObject("errorMsg", "게시글 상세 조회 실패!").setViewName("common/errorPage");
+		}
+		
+		return mv;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 현재 넘어온 첨부파일 그 자체를 서버의 폴더에 저장시키는 역할
 	public String saveFile(MultipartFile upfile, HttpSession session) {

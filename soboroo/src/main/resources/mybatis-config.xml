@@ -17,6 +17,11 @@
 		<typeAlias type="com.kh.soboroo.reply.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.kh.soboroo.myPage.model.vo.MyPage" alias="MyPage"/>
 		<typeAlias type="com.kh.soboroo.entryList.model.vo.EntryList" alias="EntryList"/>
+      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminBoard" alias="AdminBoard"/>
+      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminCategory" alias="AdminCategory"/>
+      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminMember" alias="AdminMember"/>
+      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminNotice" alias="AdminNotice"/>
+      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminReply" alias="AdminReply"/>
       <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineChallengeDday" alias="OfflineChallengeDday"/>
       <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineChallengeRegular" alias="OfflineChallengeRegular"/>
       <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineGroupOnce" alias="OfflineGroupOnce"/>

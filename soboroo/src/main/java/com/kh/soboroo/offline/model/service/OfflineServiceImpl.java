@@ -42,4 +42,12 @@ public class OfflineServiceImpl implements OfflineService {
 		return offDao.selectList(sqlSession, pi);
 	}
 
+	public int increaseCount(int no) {
+		return offDao.increaseCount(sqlSession, no);
+	}
+
+	public OfflineGroupOnce selectGroupOne(int no) {
+		return offDao.selectGroupOne(sqlSession, no);
+	}
+
 }
