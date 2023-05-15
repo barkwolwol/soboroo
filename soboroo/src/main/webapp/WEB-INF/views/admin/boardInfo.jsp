@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
+  <!-- Favicon
+   ================================================== -->
+   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 
 <head>
     <meta charset="utf-8">
@@ -32,13 +35,13 @@
         <div class="header header-one">
 
             <div class="header-left header-left-one">
-                <a href="index.html" class="logo">
+                <a href="adminHome.nt" class="logo">
                     <img src="${pageContext.request.contextPath}/resources/admin/img/usermain.jpg" alt="Logo">
                 </a>
-                <a href="index.html" class="white-logo">
+                <a href="adminHome.nt" class="white-logo">
                     <img src="${pageContext.request.contextPath}/resources/admin/img/logo-white.png" alt="Logo">
                 </a>
-                <a href="index.html" class="logo logo-small">
+                <a href="adminHome.nt" class="logo logo-small">
                     <img src="${pageContext.request.contextPath}/resources/admin/img/logo-small.png" alt="Logo" width="30" height="30">
                 </a>
             </div>
@@ -82,7 +85,7 @@
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
                                                 <img class="avatar-img rounded-circle" alt=""
-                                                    src="assets/img/profiles/usermain.jpg">
+                                                    src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg">
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details"><span class="noti-title">Brian Johnson</span>
@@ -98,7 +101,7 @@
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
                                                 <img class="avatar-img rounded-circle" alt=""
-                                                    src="assets/img/profiles/avatar-03.jpg">
+                                                    src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-03.jpg">
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details"><span class="noti-title">Marie Canales</span>
@@ -131,7 +134,7 @@
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
                                                 <img class="avatar-img rounded-circle" alt=""
-                                                    src="assets/img/profiles/avatar-04.jpg">
+                                                    src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg">
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details"><span class="noti-title">Barbara Moore</span>
@@ -170,7 +173,7 @@
                 <li class="nav-item dropdown has-arrow main-drop">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                         <span class="user-img">
-                            <img src="assets/img/profiles/usermain.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="">
                             <span class="status online"></span>
                         </span>
                         <span>Admin</span>
@@ -198,7 +201,7 @@
                     <ul>
                         <li class="menu-title"><span>MENU</span></li>
                         <li>
-                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
+                            <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
                             <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
@@ -310,6 +313,7 @@
                                         <tr>
                                             <th>게시글번호</th>
                                             <th>게시글제목</th>
+                                            <th>카테고리</th>
                                             <th>작성자</th>
                                             <th>조회수</th>
                                             <th>작성일</th>
@@ -318,6 +322,7 @@
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
+                                     <c:forEach var="b" items="${list}">
                                     <tbody>
                                         <tr>
                                             <td>
@@ -325,14 +330,16 @@
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="#" class="items-links">10</a>
+                                                <a href="list.bo" class="items-links">${b.boardNo}</a>
                                             </td>
-                                            <td>커피바리스타</td>
-                                            <td class="text-primary">asdasd123</td>
-                                            <td>23</td>
-                                            <td>2023-04-20</td>
-                                            <td>2023-04-26</td>
-                                            <td>N</td>
+                                                
+                                            <td><a href="detail.bo?bno=${b.boardNo }">${b.boardTitle}</a></td>
+                                            <td>${b.categoryTitle}</td>
+                                            <td class="text-primary">${b.memEmail}</td>
+                                            <td>${b.count}</td>
+                                            <td>${b.createDate}</td>
+                                            <td>${b.modifyDate}</td>
+                                            <td>${b.delNy }</td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -342,100 +349,9 @@
                                                         class="far fa-trash-alt me-1"></i>삭제</a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="#" class="items-links">10</a>
-                                            </td>
-                                            <td>커피바리스타</td>
-                                            <td class="text-primary">asdasd123</td>
-                                            <td>23</td>
-                                            <td>2023-04-20</td>
-                                            <td>2023-04-26</td>
-                                            <td>N</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i>복원</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>삭제</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="#" class="items-links">10</a>
-                                            </td>
-                                            <td>커피바리스타</td>
-                                            <td class="text-primary">asdasd123</td>
-                                            <td>23</td>
-                                            <td>2023-04-20</td>
-                                            <td>2023-04-26</td>
-                                            <td>N</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i>복원</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>삭제</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="#" class="items-links">10</a>
-                                            </td>
-                                            <td>커피바리스타</td>
-                                            <td class="text-primary">asdasd123</td>
-                                            <td>23</td>
-                                            <td>2023-04-20</td>
-                                            <td>2023-04-26</td>
-                                            <td>N</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i>복원</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>삭제</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="#" class="items-links">10</a>
-                                            </td>
-                                            <td>커피바리스타</td>
-                                            <td class="text-primary">asdasd123</td>
-                                            <td>23</td>
-                                            <td>2023-04-20</td>
-                                            <td>2023-04-26</td>
-                                            <td>N</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i>복원</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>삭제</a>
-                        
-                                            </td>
-                                        </tr>
+                                         
                                     </tbody>
+                                    </c:forEach>
                                 </table>
                             </div>
                         </div>
