@@ -37,4 +37,12 @@ public class OfflineDao {
 		return (ArrayList)sqlSession.selectList("offlineMapper.selectList", null, rowBounds);
 	}
 
+	public int increaseCount(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.update("offlineMapper.increaseCount", no);
+	}
+
+	public OfflineGroupOnce selectGroupOne(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.selectOne("offlineMapper.selectGroupOne", no);
+	}
+
 }

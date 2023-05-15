@@ -42,5 +42,8 @@ public class OfflineGroupOnce {
 	private int memNo;
 	private int tableNo;
 	private String attendPassword;
+	private int count;
+	
+	private String categoryTitle;
 	
 }
