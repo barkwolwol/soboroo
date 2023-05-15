@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.entryList.model.vo.EntryList;
@@ -121,6 +122,11 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public ArrayList<Object> selectMySchedule(Member loginUser) {
 		return myDao.selectMySchedule(sqlSession, loginUser);
+	}
+
+	@Override
+	public int insertAlert(Alert a) {
+		return myDao.insertAlert(sqlSession, a);
 	}
 
 

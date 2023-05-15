@@ -12,6 +12,9 @@
 	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 </head>
 <body>
+<%
+String socketMsg = (String) session.getAttribute("socketMsg");
+%>
   <div class="body-inner">
 
     <jsp:include page="../common/header.jsp"/>
@@ -89,40 +92,44 @@
               <li>
                 <p class="project-link">
                   <br>
-                  <a class="btn btn-primary" target="_blank" href="#" id="entryButton">참가하기</a>
+                  <a class="btn btn-primary" target="_blank"  id="entryButton">참가하기</a>
                 </p>
               </li>
             </ul>
             
             <script>
-            $(function(){
-            	$("#entryButton").on("click", function(){
-            		var AlarmData = {
-            				"myAlarm_receiverEmail" : receiverEmail,
-            				"myAlarm_callerNickname" : memNickName,
-            				"myAlarm_content" : memNickName + "님이 회원님의 소모임에 참여했습니다.",
-            		};
-            		$.ajax({
-            			type : "post",
-            			url : "saveAlarm.my"
-            			data : JSON.stringify(AlarmData),
-            			contentType: "application/json; charset=utf-8",
-            			dataType : 'text',
-            			success : function(data){
-            				if(socket){
-            					let socketMsg = "scrap," + memNickname +","+ memberSeq +","+ receiverEmail +","+ essayboard_seq;
-            					console.log("msgmsg : " + socketMsg);
-            					socket.send(socketMsg);
-            				}
+$(function() {
+    $("#entryButton").on("click", function() {
+    	var memNickname = "${loginUser.memNickname}"
+        var alertContent = memNickname + "님이 회원님의 소모임에 참여했습니다.";
+        var AlarmData = {
+            "alertContent": alertContent
+        };
+        console.log(AlarmData);
+        $.ajax({
+            type: "post",
+            data: JSON.stringify(AlarmData),
+            url: "saveAlert.my",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'text',
+            success: function(data) {
+                console.log(data);
+                if (socket) {
+                    let socketMsg = "apply," + memNickname + "," + memNickname ;
+                    console.log("msgmsg : " + socketMsg);
+                   // $("#socketMessageDiv").text(socketMsg);
+                    socket.send(socketMsg);
+                    console.log('socketMsg 보냄');
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    });
+});
+</script>
 
-            			},
-            			error : function(err){
-            				console.log(err);
-            			}
-            		})
-            	})
-            })
-            </script>
 
           </div><!-- Content col end -->
 

@@ -92,6 +92,7 @@
 	
 	<script>
 		var socket = null;
+		
 		$(document).ready(function(){
 			connectWs();
 		});
@@ -100,15 +101,39 @@
 			sock = new SockJS( "<c:url value="/echo"/>" );
 			socket = sock;
 			
+			
 			sock.onopen = function(){
 				console.log('웹소켓 연결됨');
 			}
 			
-			sock.onmessage = function(evt){
-				var data = evt.data;
-				console.log("ReceiveMessage : " + data + "\n");
-				
-				$.ajax({
+			// 메시지 수신 이벤트 핸들러
+			sock.onmessage = function(evt) {
+			  var data = evt.data;
+			  console.log("ReceiveMessage: " + data + "\n");
+
+			  var bellIcon = document.getElementById("bellIcon");
+			  bellIcon.setAttribute("data-content", data);
+			  
+			  var circle = document.querySelector(".rounded-circle");
+			  circle.classList.add("show"); // show 클래스 추가
+			  
+			  // 빨간 점을 표시할 요소
+			  var redDot = document.querySelector(".rounded-circle");
+			  redDot.classList.remove("visually-hidden"); // visually-hidden 클래스 제거
+			
+			}
+			// 문서 클릭 이벤트 핸들러
+			document.addEventListener("click", function(event) {
+			  var circle = document.querySelector(".rounded-circle");
+			  if (event.target !== circle && !circle.contains(event.target)) {
+			    circle.classList.remove("show");
+			  }
+
+			  // 빨간 점을 숨기는 동작
+			  var redDot = document.querySelector(".rounded-circle");
+			  redDot.classList.add("visually-hidden"); // visually-hidden 클래스 추가
+			
+				/* $.ajax({
 					url : 'countAlarm.my',
 					type : 'POST',
 					dataType : 'text',
@@ -125,24 +150,31 @@
 					}
 					
 				});
-				
-				var toastTop = app.toast.create({
-					text : "알림 : " + data + "\n",
-					position : "top",
-					closeButton : true
-					
+				 */
+		
 				});
-				toastTop.open();
-			};
-			
+				
 			sock.onclose = function(){
 				console.log("연결 해제");
 			};
 			
-			sock.onerror = function(err) {console.log('Errors : ' + err);};
-		}
-			
-	</script>
+			sock.onerror = function(err) {console.log('Errors : ' + err)};
+		};
+	</script><%-- 
+	<script>
+$(function() {
+    // 서버에서 socketMsg 값을 가져옴 (예시: 세션 사용)
+    var socketMsg = "<%= session.getAttribute("socketMsg") %>";
+    
+    console.log("헤더" + socketMsg);
+    
+    // socketMsg 값을 <li> 요소에 삽입
+    $("#bellIcon").attr("data-content", function() {
+        return $(this).attr("data-content") + "<div>" + socketMsg + "</div>";
+    });
+});
+</script> --%>
+	
 
 
    <div id="top-bar" class="top-bar">
@@ -260,8 +292,9 @@
                       </li>
 						<li class="nav-item">
 						  <i style="margin-bottom:10px;" id="bellIcon" class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
-						    data-trigger="focus" title="최신 알림" data-html="true"
-						    data-content="<div>XXX님이 회원님의 소모임에 참가했습니다.</div>
+						    data-toggle="popover" title="최신 알림" data-html="true"
+						    data-content="
+						    			  <div>XXX님이 회원님의 소모임에 참가했습니다.</div>
 						                  <div>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</div>
 						                  <div>XXX님이 회원님의 소모임 게시글에 댓글을 남겼습니다.</div>
 						                  <div>XXX님의 소모임에 참여되었습니다.</div>

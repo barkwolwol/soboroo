@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.entryList.model.vo.EntryList;
@@ -111,6 +112,9 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("myPageMapper.selectMySchedule", loginUser);
 	}
 	
+	public int insertAlert(SqlSessionTemplate sqlSession, Alert a) {
+		return sqlSession.insert("myPageMapper.insertAlert", a);
+	}
 	
 	
 

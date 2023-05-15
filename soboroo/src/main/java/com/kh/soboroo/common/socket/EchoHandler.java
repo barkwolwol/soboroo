@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.socket.CloseStatus;
@@ -16,7 +17,12 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.kh.soboroo.member.model.vo.Member;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class EchoHandler extends TextWebSocketHandler{
+    private static final Logger logger = LoggerFactory.getLogger(EchoHandler.class);
+
 	// 로그인 한 전체
 	List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 	
@@ -28,52 +34,64 @@ public class EchoHandler extends TextWebSocketHandler{
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception{
 		sessions.add(session);
 		
-		String senderEmail = getEmail(session);
-		userSessionMap.put(senderEmail, session);
+		String senderNickname = getNickname(session);
+		userSessionMap.put(senderNickname, session);
 	}
 	
 	// 소켓에 메시지를 보냈을 때
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception{
+		
+		System.out.println("handleTextMessage");
+		
 		// protocol : cmd, 댓글작성자, 게시글 작성자, seq(reply, user2, user1, 12)
 		String msg = message.getPayload();
 		if(msg != null) {
 			String[] strs = msg.split(",");
-			if(strs != null && strs.length ==5) {
+			if(strs != null && strs.length ==3) {
 				String cmd = strs[0];
 				String caller = strs[1];
 				String receiver = strs[2];
-				String receiverEmail= strs[3];
+				/* String receiverEmail= strs[3]; */
+				/*
 				String seq = strs[4];
-				
+				*/
+				System.out.println("cmd"+cmd);
+				System.out.println("caller"+caller);
+				System.out.println("receiver"+receiver);
 				// 작성자가 로그인해서 있다면
-				WebSocketSession boardWriterSession = userSessionMap.get(receiverEmail);
-				
+				WebSocketSession boardWriterSession = userSessionMap.get(caller);
+				System.out.println(boardWriterSession);
+				logger.info("Received apply message: {}", msg);
 				if("reply".equals(cmd)&&boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 게시글에 댓글을 남겼습니다.");
 					boardWriterSession.sendMessage(tmpMsg);
 					
+					
+					
 				} else if ("board".equals(cmd) && boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage("회원님의 게시글이 신고되었습니다.");
 					boardWriterSession.sendMessage(tmpMsg);
+				} else if ("apply".equals(cmd)&& boardWriterSession != null) {
+					logger.info("Received apply message: {}", msg);
+					System.out.println("Received apply message: " + msg);
+					TextMessage tmpMsg = new TextMessage(caller + "님이 모임을 신청했습니다. ");
+					boardWriterSession.sendMessage(tmpMsg);
+					
+					System.out.println("apply");
 				}
 			}
-			if(strs != null && strs.length == 5) {
-				String cmd = strs[0];
-				String mentee_name = strs[1];
-				String mentor_email = strs[2];
-				String meetingboard_seq = strs[3];
-				String participation_seq = strs[4];
-				
-				// 모임 작성한 멘토가 로그인 해있으면
-				WebSocketSession mentorSession = userSessionMap.get(mentor_email);
-				if(cmd.equals("apply") && mentorSession != null) {
-					TextMessage tmpMsg = new TextMessage(
-							mentee_name + "님이 모임을 신청했습니다. ");
-					mentorSession.sendMessage(tmpMsg);
-				}
-			}
+			/*
+			 * if(strs != null && strs.length == 5) { String cmd = strs[0]; String
+			 * mentee_name = strs[1]; String mentor_email = strs[2]; String meetingboard_seq
+			 * = strs[3]; String participation_seq = strs[4];
+			 * 
+			 * // 모임 작성한 멘토가 로그인 해있으면 WebSocketSession mentorSession =
+			 * userSessionMap.get(mentor_email); if(cmd.equals("apply") && mentorSession !=
+			 * null) { TextMessage tmpMsg = new TextMessage( mentee_name +
+			 * "님이 모임을 신청했습니다. "); mentorSession.sendMessage(tmpMsg); } }
+			 */
 		}
 		
 	}
@@ -86,14 +104,19 @@ public class EchoHandler extends TextWebSocketHandler{
 	}
 	
 	// 웹소켓 이메일 가져오기
-	private String getEmail(WebSocketSession session) {
+	private String getNickname(WebSocketSession session) {
 		Map<String, Object> httpSession = session.getAttributes();
-		Member loginUser = (Member)httpSession.get("Member");
+		Member loginUser = (Member)httpSession.get("loginUser");
+		//System.out.println("member" + member);
+		
+		System.out.println("loginUser" + loginUser);
 		
 		if(loginUser == null) {
+			System.out.println("getId" + session.getId());
 			return session.getId();
 		} else {
-			return loginUser.getMemEmail();
+			System.out.println("memNickname" + loginUser.getMemNickname());
+			return loginUser.getMemNickname();
 		}
 	}
 }

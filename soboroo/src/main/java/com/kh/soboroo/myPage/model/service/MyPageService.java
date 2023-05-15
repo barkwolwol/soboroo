@@ -2,6 +2,7 @@ package com.kh.soboroo.myPage.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.entryList.model.vo.EntryList;
@@ -53,5 +54,7 @@ public interface MyPageService {
 	ArrayList<EntryList> selectMyGroupList(Member loginUser, PageInfo pi);
 	
 	ArrayList<Object> selectMySchedule(Member loginUser);
+	
+	int insertAlert(Alert a);
 	
 }

@@ -25,6 +25,16 @@
 	<result column="table_no" property="tableNo"/>
 </resultMap>
 
+<resultMap type="Alert" id="alertResultSet">
+	<result column="id_no" property="idNo"/>
+	<result column="table_no" property="tableNo"/>
+	<result column="alert_content" property="alertContent"/>
+	<result column="mem_no" property="memNo"/>
+	<result column="alert_date" property="alertDate"/>
+	<result column="alert_type" property="alertType"/>
+	<result column="alert_read_ny" property="alertReadNy"/>
+</resultMap>
+
 	<select id="selectGroupBoardListCount" resultType="_int">
 		SELECT SUM(cnt)
 		FROM (
@@ -242,4 +252,20 @@ SELECT NO as "no", TITLE as "title", start_date, end_date
 
 
      </select>
+     <insert id="insertAlert">
+     	insert 
+     	  into alert
+     	  (
+     	  ID_NO,
+		  ALERT_CONTENT,
+		  MEM_NO
+     	  )
+     	values
+     	  (
+     	  SEQ_ALERT.NEXTVAL,
+     	  #{alertContent},
+     	  #{memNo}
+     	  )  
+     
+     </insert>
 </mapper>

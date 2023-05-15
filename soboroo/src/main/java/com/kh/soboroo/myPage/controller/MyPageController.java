@@ -15,11 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
@@ -315,5 +318,27 @@ public class MyPageController {
 		return "myPage/checkEmail";
 	}
 
+	@RequestMapping("saveAlert.my")
+	public String insertAlert(@RequestBody Alert alertData, HttpSession session, Model model) {
+	    Member loginUser = (Member) session.getAttribute("loginUser");
+	    
+	    // Alert 객체 생성 및 데이터 설정
+	    Alert a = new Alert();
+	    a.setMemNo(loginUser.getMemNo());
+	    a.setAlertContent(alertData.getAlertContent());
+
+	    int result = myService.insertAlert(a);
+	    if (result > 0) {
+			/*
+			 * String socketMsg = "apply," + loginUser.getMemNickname() + "," +
+			 * loginUser.getMemNickname();
+			 * 
+			 * session.setAttribute("socketMsg", socketMsg);
+			 */System.out.println("알림 디비 넣기 성공");
+	    } else {
+	        System.out.println("알림 디비 넣기 실패");
+	    }
+	    return "redirect:/";
+	}
 
 	}
