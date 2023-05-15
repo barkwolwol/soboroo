@@ -25,4 +25,5 @@ public class Reply {
 	private String memNo;
 	private int tableNo;
 	private int groupBoardNo;
+	private String memNickname;
 }

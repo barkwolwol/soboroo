@@ -239,7 +239,7 @@
 				let value = "";
 				for(let i in list){
 					value += "<tr>"
-					  		+ "<th>" + list[i].memNo +"</th>"
+					  		+ "<th>" + list[i].memNickname +"</th>"
 					  		+ "<td>" + list[i].replyContent +"</td>"
 					  		+ "<td>" + list[i].enrollDate +"</td>"
 					  		+ "</tr>";
