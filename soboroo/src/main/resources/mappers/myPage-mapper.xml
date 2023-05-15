@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="myPageMapper">
+
+<resultMap type="MyPage" id="myPageResultSet">
+	<result column = "count" property="count"/>
+	<result column = "del_ny" property="delNy"/>
+	<result column = "mem_no" property="memNo"/>
+	<result column = "no" property="no"/>
+	<result column = "title" property="title"/>
+	<result column = "start_date" property="startDate"/>
+	<result column = "end_date" property="endDate"/>
+	<result column = "enroll_date" property="enrollDate"/>
+	<result column = "table_no" property="tableNo"/>
+</resultMap>
+
+<resultMap type="EntryList" id="entryListResultSet">
+	<result column="no" property="no"/>
+	<result column="title" property="title"/>
+	<result column="entry_id" property="entryId"/>
+	<result column="wait_ny" property="waitNy"/>
+	<result column="start_date" property="startDate"/>
+	<result column="end_date" property="endDate"/>
+	<result column="mem_no" property="memNo"/>
+	<result column="table_no" property="tableNo"/>
+</resultMap>
+
+	<select id="selectGroupBoardListCount" resultType="_int">
+		SELECT SUM(cnt)
+		FROM (
+		    SELECT COUNT(*) AS cnt FROM ONLINE_GROUP_ONCE WHERE DEL_NY='N' AND REP_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM ONLINE_GROUP_REGULAR WHERE DEL_NY='N' AND REP_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM ONLINE_CHALLENGE_D_DAY WHERE DEL_NY='N' AND REP_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM ONLINE_CHALLENGE_REGULAR WHERE DEL_NY='N' AND REP_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM OFFLINE_GROUP_ONCE WHERE DEL_NY='N' AND REP_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM OFFLINE_GROUP_REGULAR WHERE DEL_NY='N' AND REP_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM OFFLINE_CHALLENGE_D_DAY WHERE DEL_NY='N' AND REP_NY='N' AND MEM_NO=#{memNo}
+		    UNION ALL
+		    SELECT COUNT(*) AS cnt FROM OFFLINE_CHALLENGE_REGULAR WHERE DEL_NY='N' AND REP_NY='N' AND MEM_NO=#{memNo}
+		)
+
+	</select>
+
+	<select id="testTable"  resultMap="myPageResultSet">
+	<!-- SELECT * FROM (
+	  SELECT "no", "title", enroll_date, table_no FROM (
+	    SELECT OFF_CHALLENGE_D_NO as "no", OFF_CHALLENGE_D_TITLE as "title", enroll_date, TABLE_NO
+	    FROM OFFLINE_CHALLENGE_D_DAY
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT OFF_CHALLENGE_REG_NO as "no", OFF_CHALLENGE_REG_TITLE as "title", enroll_date, TABLE_NO
+	    FROM OFFLINE_CHALLENGE_REGULAR
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT OFF_GROUP_ONCE_NO as "no", OFF_GROUP_ONCE_TITLE as "title", enroll_date, TABLE_NO
+	    FROM OFFLINE_GROUP_ONCE
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT OFF_GROUP_REG_NO as "no", OFF_GROUP_REG_TITLE as "title", enroll_date, TABLE_NO
+	    FROM OFFLINE_GROUP_REGULAR
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT ON_CHALLENGE_D_NO as "no", ON_CHALLENGE_D_TITLE as "title", enroll_date, TABLE_NO
+	    FROM online_challenge_D_DAY
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT ON_CHALLENGE_REG_NO as "no", ON_CHALLENGE_REG_TITLE as "title", enroll_date, TABLE_NO
+	    FROM online_challenge_regular
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT ON_GROUP_ONCE_NO as "no", ON_GROUP_ONCE_TITLE as "title", enroll_date, TABLE_NO
+	    FROM online_group_once
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT ON_GROUP_REG_NO as "no", ON_GROUP_REG_TITLE as "title", enroll_date, TABLE_NO
+	    FROM online_group_regular
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	  )
+	   ORDER BY enroll_date desc
+) -->
+	SELECT * FROM (
+	  SELECT "no", "title", enroll_date, table_no FROM (
+	    SELECT NO as "no", TITLE as "title", enroll_date, TABLE_NO
+	    FROM OFFLINE_CHALLENGE_D_DAY
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT NO as "no", TITLE as "title", enroll_date, TABLE_NO
+	    FROM OFFLINE_CHALLENGE_REGULAR
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT NO as "no", TITLE as "title", enroll_date, TABLE_NO
+	    FROM OFFLINE_GROUP_ONCE
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT NO as "no", TITLE as "title", enroll_date, TABLE_NO
+	    FROM OFFLINE_GROUP_REGULAR
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT NO as "no", TITLE as "title", enroll_date, TABLE_NO
+	    FROM online_challenge_D_DAY
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT NO as "no", TITLE as "title", enroll_date, TABLE_NO
+	    FROM online_challenge_regular
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT NO as "no", TITLE as "title", enroll_date, TABLE_NO
+	    FROM online_group_once
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	    UNION
+	    SELECT NO as "no", TITLE as "title", enroll_date, TABLE_NO
+	    FROM online_group_regular
+	    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+	  )
+	   ORDER BY enroll_date desc
+)
+	</select>
+	
+	<select id="selectMyGroupListCount" resultType="_int">
+	select count(*) from (
+		 select count(*) from entry_list where mem_no = #{memNo} and wait_ny='N'
+		 UNION 
+		 select count(*) FROM OFFLINE_CHALLENGE_D_DAY
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+		 UNION 
+		 select count(*) FROM OFFLINE_CHALLENGE_REGULAR
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+		 UNION 
+		 select count(*) FROM OFFLINE_GROUP_ONCE
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    union
+		 select count(*) FROM OFFLINE_GROUP_REGULAR
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+		 UNION 
+		 select count(*) FROM online_challenge_D_DAY
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+		 UNION 
+		 select count(*) FROM online_group_once
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+		 UNION 
+		 select count(*) FROM online_group_once
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    	union
+		 select count(*) FROM online_group_regular
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    )
+	</select>
+	
+	<select id="selectMyGroupList" resultMap="entryListResultSet">
+	SELECT * FROM (
+  SELECT "no", "title", start_date, end_date FROM (
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM OFFLINE_CHALLENGE_D_DAY
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM OFFLINE_CHALLENGE_REGULAR
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM OFFLINE_GROUP_ONCE
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+   SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM OFFLINE_GROUP_REGULAR
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM online_challenge_D_DAY
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM online_challenge_regular
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM online_group_once
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM online_group_regular
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    union
+    SELECT group_NO as "no", group_TITLE as "title", start_date, end_date
+    FROM entry_list
+    WHERE wait_NY='N' AND mem_no = #{memNo}
+  )
+) ORDER BY start_date DESC
+	
+	<!-- select group_no, group_title, START_date
+        from entry_list
+        where mem_no = #{memNo}
+          and wait_ny='N' -->
+     </select>
+     
+     <select id="selectMySchedule" resultMap="myPageResultSet">
+           SELECT * FROM (
+  SELECT "no", "title", start_date, end_date FROM (
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM OFFLINE_CHALLENGE_D_DAY
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM OFFLINE_CHALLENGE_REGULAR
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM OFFLINE_GROUP_ONCE
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+   SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM OFFLINE_GROUP_REGULAR
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM online_challenge_D_DAY
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date, end_date
+    FROM online_challenge_regular
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date as "startDate", end_date as "endDate"
+    FROM online_group_once
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    UNION
+    SELECT NO as "no", TITLE as "title", start_date as "startDate", end_date as "endDate"
+    FROM online_group_regular
+    WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
+    union
+    SELECT group_NO as "no", group_TITLE as "title", start_date, end_date 
+    FROM entry_list
+    WHERE wait_NY='N' AND ENTRY_ID = #{kakaoId}
+  )
+) ORDER BY start_date DESC
+
+
+     </select>
+</mapper>

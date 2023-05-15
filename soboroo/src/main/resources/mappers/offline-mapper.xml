@@ -29,7 +29,8 @@
 		<result column="MAX" property="max"/>
 		<result column="MAX_ACCESS" property="maxAccess"/>
 		<result column="ADULT_ACCESS" property="adultAccess"/>
-		<result column="CATEGORY" property="category"/>
+		<result column="CATEGORY_NO" property="category"/>
+		<result column="CATEGORY_TITLE" property="categoryTitle"/>
 		<result column="MEM_NO" property="memNo"/>
 		<result column="TABLE_NO" property="tableNo"/>
 		<result column="ATTEND_PASSWORD" property="attendPassword"/>
@@ -43,10 +44,22 @@
 		<result column="TABLE_NO" property="tableNo"/>
 	</resultMap>
 	
+	<resultMap id="entryListResultset" type="EntryList">
+		<result column="GROUP_NO" property="groupNo"/>
+		<result column="GROUP_TITLE" property="groupTitle"/>
+		<result column="ENTRY_ID" property="entryId"/>
+		<result column="WAIT_NY" property="waitNY"/>
+		<result column="START_DATE" property="startDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="MEM_NO" property="memNo"/>
+		<result column="TABLE_NO" property="tableNo"/>
+	</resultMap>
+	
 	<select id="selectListCount" resultType="_int">
 		select 
 		       count(*)
 		  from OFFLINE_GROUP_ONCE
+		 where status = 'Y'
 	</select>
 	
 	<select id="selectList" resultMap="offlineGroupOnceResultSet">
@@ -72,13 +85,56 @@
 			 , MAX
 			 , MAX_ACCESS
 			 , ADULT_ACCESS
-			 , CATEGORY
+			 , CATEGORY_NO
 			 , MEM_NO
 			 , TABLE_NO
 			 , ATTEND_PASSWORD
+			 , COUNT
 		  from OFFLINE_GROUP_ONCE
+		  where status = 'Y'
 		 order
 		    by NO desc
+	</select>
+	
+	<update id="increaseCount">
+		update
+		       OFFLINE_GROUP_ONCE
+		   set count = count + 1
+		 where no = #{no}
+		   and status = 'Y'
+	</update>
+	
+	<select id="selectGroupOne" resultMap="offlineGroupOnceResultSet">
+		select 
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , START_DATE
+		     , END_DATE
+		     , START_ENTER
+		     , END_ENTER
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+			 , EVENT_PASSWORD
+			 , HASH_TAG
+			 , URL
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , CATEGORY_TITLE
+			 , MEM_NO
+			 , TABLE_NO
+			 , ATTEND_PASSWORD
+			 , COUNT
+		  from OFFLINE_GROUP_ONCE
+          JOIN CATEGORY USING (CATEGORY_NO)
+		 where no = ${no}
 	</select>
 	
 	<insert id="insertGroupOne">
@@ -106,7 +162,7 @@
 			 , MAX
 			 , MAX_ACCESS
 			 , ADULT_ACCESS
-			 , CATEGORY
+			 , CATEGORY_NO
 			 , MEM_NO
 			 , TABLE_NO
 			 , ATTEND_PASSWORD
@@ -136,9 +192,34 @@
 		     , #{adultAccess}
 		     , #{category}
 		     , #{memNo}
-		     , 2
+		     , #{tableNo}
 		     , #{attendPassword}
 		     )
+	</insert>
+	
+	<insert id="insertEntryListSelf">
+		INSERT
+		  INTO ENTRY_LIST
+		     (
+		       GROUP_NO
+		     , GROUP_TITLE
+		     , ENTRY_ID
+		     , START_DATE
+		     , END_DATE
+		     , MEM_NO
+		     , TABLE_NO
+		     )
+		VALUES
+		     (
+		       SEQ_ON_GROUP_ONCE_NO.CURRVAL
+		     , #{title}
+		     , #{id}
+		     , #{startDate}
+		     , #{endDate}
+		     , #{memNo}
+		     , #{tableNo}
+		     )
+	
 	</insert>
 	
 	

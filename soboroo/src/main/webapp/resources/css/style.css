@@ -3681,10 +3681,7 @@ input[type="text"] {
   display: none !important;
 }
 
-.pagination {
-  display: -ms-flexbox;
-  display: flex;
-  list-style: none;
-  border-radius: 0.25rem;
-  width: 200px;
+#pagingArea {
+  width: fit-content;
+  margin: auto;
 }

@@ -80,34 +80,17 @@
 		 where kakao_id = #{id}
 	</select>  
 	
-	
-	
-	
-	
-	
-	
-	<!-- 
-	
 	<select id="idCheck" resultType="_int">
 		select
 		       count(*) as "count"
 		  from test_member
-		 where mem_id = #{checkId}
+		 where kakao_id = #{id}
 	</select>
-	
-	
-	
-	
-	
- 
-
-
-	
 	<update id="updateIntro">
 		update
 				member
 		    set mem_introduce = #{memIntroduce}
-		  where mem_id = #{memId}  		
+		  where mem_no = #{memNo}     		
 	</update>  
 	<select id="checkNick" resultType="_int">
 		select
@@ -119,6 +102,11 @@
 		update
 			   member
 		   set mem_nickname = #{memNickname}
-		 where mem_id = #{memId}  	   
-	</update> -->
+		 where mem_no = #{memNo}   	   
+	</update>
+	<update id="deleteMember">
+		update member
+		   set mem_status = 4
+		 where mem_no = #{memNo}   
+	</update>
 </mapper>

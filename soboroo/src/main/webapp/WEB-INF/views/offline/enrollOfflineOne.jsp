@@ -40,6 +40,7 @@
 				<form id="" action="insertGroupOne.off" method="POST" encType="multipart/form-data" data-event_method_type="advance" data-open_type="open">
 					<input type="hidden" name="id" value="${ loginUser.memNickname }">
 					<input type="hidden" name="memNo" value="${ loginUser.memNo }">
+					<input type="hidden" name="tableNo" value="2">
 
 					<article class="event_thumbnail">
 						<div id="thumbnail11" class="thumbnail">
