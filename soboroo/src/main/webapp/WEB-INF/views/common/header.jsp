@@ -291,8 +291,10 @@
                         </c:when>
                         <c:otherwise>
                           <!-- 로그인 후-->
-                          <label>${ loginUser.memNickname }님 환영합니다</label> &nbsp;&nbsp;
-                          <!-- <a href="myPage.me">마이페이지</a> -->
+                          <label id="table-avatar">
+                            <a id="table-avatar" href="${ loginUser.memImg }" target="_blank"><img class="rounded-circle" src="${ loginUser.memImg }" alt="User Image"></a>
+                          </label>&nbsp;&nbsp;
+                          <a>${ loginUser.memNickname }님</a> &nbsp;&nbsp;
                           <a href="logout.me">로그아웃</a>
                         </c:otherwise>
                       </c:choose>
