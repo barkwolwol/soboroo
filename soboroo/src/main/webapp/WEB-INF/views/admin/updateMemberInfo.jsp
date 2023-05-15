@@ -343,17 +343,33 @@
 </div>
 
 <script>
-//수정하기 버튼 클릭 이벤트 처리
-document.getElementById("modify_paid").addEventListener("click", function() {
-  // 서버로 전송할 데이터 준비
-  var memEmail = document.getElementById("memEmail").value;
-  var memNickname = document.getElementById("memNickname").value;
-  var memPhone = document.getElementById("memPhone").value;
-  var memStatus = document.getElementById("memStatus").value;
-  var rprCount = document.getElementById("rprCount").value;
-  }
+//모달창 내 수정 버튼 클릭 시 실행되는 함수
+function statusChange() {
+  // 변경된 회원 상태 값 가져오기
+  var statusChange = document.getElementById("#statusChange").value;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "updateMem.ad", true);
   
+  // 요청 완료 후의 처리 로직
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+
+      alert("회원 상태가 성공적으로 수정되었습니다.");
+      location.reload();
+    } else {
+      alert("회원 상태 수정에 실패하였습니다. 다시 시도해주세요.");
+    }
+  };
   
+  // AJAX 요청 전송
+  xhr.send(statusChange);
+}
+
+// 수정하기 버튼 클릭 이벤트 핸들러
+document.getElementById("update").addEventListener("click", function() {
+	statusChange();
+});
 
 </script>
 

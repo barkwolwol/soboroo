@@ -97,7 +97,7 @@ public class AdminController {
 				
 				session.setAttribute("alertMsg", "성공적으로 회원정보 변경 되었습니다.");
 				
-				return "redirect:MemberInfo";
+				return "redirect:memberInfo";
 				
 			}else { // 수정 실패
 				
