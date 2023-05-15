@@ -17,21 +17,21 @@
 		<result column="END_DATE" property="endDate"/>
 		<result column="START_ENTER" property="startEnter"/>
 		<result column="END_ENTER" property="endEnter"/>
-		<result column="CONTENT" property="cotent"/>
+		<result column="CONTENT" property="content"/>
 		<result column="ADDRESS" property="address"/>
 		<result column="ADDRESS_DETAIL" property="addressDetail"/>
 		<result column="DISPLAY_NY" property="displayNY"/>
 		<result column="EVENT_PASSWORD" property="eventPassword"/>
 		<result column="HASH_TAG" property="hashTag"/>
-		<result column="DEL_NY" property="DelNY"/>
-		<result column="REP_NY" property="RepNY"/>
+		<result column="DEL_NY" property="delNY"/>
+		<result column="REP_NY" property="repNY"/>
 		<result column="URL" property="url"/>
 		<result column="MAX" property="max"/>
 		<result column="MAX_ACCESS" property="maxAccess"/>
 		<result column="ADULT_ACCESS" property="adultAccess"/>
 		<result column="CATEGORY" property="category"/>
 		<result column="MEM_NO" property="memNo"/>
-		<result column="TABLE_NO" property="memNo"/>
+		<result column="TABLE_NO" property="tableNo"/>
 		<result column="ATTEND_PASSWORD" property="attendPassword"/>
 	</resultMap>
 	
@@ -43,7 +43,103 @@
 		<result column="TABLE_NO" property="tableNo"/>
 	</resultMap>
 	
+	<select id="selectListCount" resultType="_int">
+		select 
+		       count(*)
+		  from OFFLINE_GROUP_ONCE
+	</select>
 	
+	<select id="selectList" resultMap="offlineGroupOnceResultSet">
+		select
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , START_DATE
+		     , END_DATE
+		     , START_ENTER
+		     , END_ENTER
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+			 , EVENT_PASSWORD
+			 , HASH_TAG
+			 , URL
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , CATEGORY
+			 , MEM_NO
+			 , TABLE_NO
+			 , ATTEND_PASSWORD
+		  from OFFLINE_GROUP_ONCE
+		 order
+		    by NO desc
+	</select>
+	
+	<insert id="insertGroupOne">
+		INSERT
+		  INTO OFFLINE_GROUP_ONCE
+		     (
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , START_DATE
+		     , END_DATE
+		     , START_ENTER
+		     , END_ENTER
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+			 , EVENT_PASSWORD
+			 , HASH_TAG
+			 , URL
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , CATEGORY
+			 , MEM_NO
+			 , TABLE_NO
+			 , ATTEND_PASSWORD
+		     )
+		VALUES
+		     (
+		       SEQ_ON_GROUP_ONCE_NO.NEXTVAL
+		     , #{title}
+		     , #{id}
+		     , #{name}
+		     , #{email}
+		     , #{phone}
+		     , #{simple}
+		     , #{startDate}
+		     , #{endDate}
+		     , #{startEnter}
+		     , #{endEnter}
+		     , #{content}
+		     , #{address}
+		     , #{addressDetail}
+		     , #{displayNY}
+		     , #{eventPassword}
+		     , #{hashTag}
+		     , #{url}
+		     , #{max}
+		     , #{maxAccess}
+		     , #{adultAccess}
+		     , #{category}
+		     , #{memNo}
+		     , 2
+		     , #{attendPassword}
+		     )
+	</insert>
 	
 	
 	
