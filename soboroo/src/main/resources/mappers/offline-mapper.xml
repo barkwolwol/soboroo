@@ -43,6 +43,44 @@
 		<result column="TABLE_NO" property="tableNo"/>
 	</resultMap>
 	
+	<select id="selectListCount" resultType="_int">
+		select 
+		       count(*)
+		  from OFFLINE_GROUP_ONCE
+	</select>
+	
+	<select id="selectList" resultMap="offlineGroupOnceResultSet">
+		select
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , START_DATE
+		     , END_DATE
+		     , START_ENTER
+		     , END_ENTER
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+			 , EVENT_PASSWORD
+			 , HASH_TAG
+			 , URL
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , CATEGORY
+			 , MEM_NO
+			 , TABLE_NO
+			 , ATTEND_PASSWORD
+		  from OFFLINE_GROUP_ONCE
+		 order
+		    by NO desc
+	</select>
+	
 	<insert id="insertGroupOne">
 		INSERT
 		  INTO OFFLINE_GROUP_ONCE
@@ -98,7 +136,7 @@
 		     , #{adultAccess}
 		     , #{category}
 		     , #{memNo}
-		     , #{tableNo}
+		     , 2
 		     , #{attendPassword}
 		     )
 	</insert>
