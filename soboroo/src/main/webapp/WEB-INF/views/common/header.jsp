@@ -127,7 +127,7 @@
 				});
 				
 				var toastTop = app.toast.create({
-					text : "알림 : " + data + "\n";
+					text : "알림 : " + data + "\n",
 					position : "top",
 					closeButton : true
 					

@@ -162,7 +162,7 @@
         end: (function() {
           var startDate = new Date('${item.endDate}');
           var endDate = new Date(startDate.getTime() + 1 * 24 * 60 * 60 * 1000);
-          return endDate.toISOString().split('T')[0];
+          return endDate;
         })()
       }<c:if test="${!loop.last}">,</c:if>
     </c:forEach>

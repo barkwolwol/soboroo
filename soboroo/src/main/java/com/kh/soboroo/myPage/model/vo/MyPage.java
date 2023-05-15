@@ -20,7 +20,8 @@ public class MyPage {
 	private int memNo;
 	private int no;
 	private String title;
-	private Date date;
+	private Date startDate;
+	private Date endDate;
 	private Date enrollDate;
 	private int tableNo;
 

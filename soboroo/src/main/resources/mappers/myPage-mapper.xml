@@ -128,7 +128,7 @@
 	</select>
 	
 	<select id="selectMyGroupList" resultMap="entryListResultSet">
-	select group_no, group_title, entry_date
+	select group_no, group_title, START_date
         from entry_list
         where mem_no = #{memNo}
           and wait_ny='N'
