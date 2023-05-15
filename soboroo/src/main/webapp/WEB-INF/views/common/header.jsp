@@ -272,7 +272,11 @@
                     </ul>
 						<div id="msgStack"></div>
 						
-
+				<script>
+				  $(function() {
+				    $('[data-toggle="popover"]').popover();
+				  });
+				</script>
 
 
 
@@ -288,7 +292,7 @@
                         <c:otherwise>
                           <!-- 로그인 후-->
                           <label>${ loginUser.memNickname }님 환영합니다</label> &nbsp;&nbsp;
-                          <a href="myPage.me">마이페이지</a>
+                          <!-- <a href="myPage.me">마이페이지</a> -->
                           <a href="logout.me">로그아웃</a>
                         </c:otherwise>
                       </c:choose>
