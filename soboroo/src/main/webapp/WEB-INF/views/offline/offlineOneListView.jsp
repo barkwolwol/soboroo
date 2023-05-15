@@ -55,7 +55,7 @@
                   <%-- <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/icon-image/service-icon1.png" alt="service-icon"> --%>
               </div>
               <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="detail.off?groupNum=2">${ ogo.title }</a></h3>
+                  <h3 class="service-box-title"><a href="detail.off?no=${ ogo.no }">${ ogo.title }</a></h3>
                   <p>${ ogo.simple }</p>
                   <p>${ ogo.hashTag }</p>
                   <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> 더보기</a>

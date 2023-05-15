@@ -29,7 +29,8 @@
 		<result column="MAX" property="max"/>
 		<result column="MAX_ACCESS" property="maxAccess"/>
 		<result column="ADULT_ACCESS" property="adultAccess"/>
-		<result column="CATEGORY" property="category"/>
+		<result column="CATEGORY_NO" property="category"/>
+		<result column="CATEGORY_TITLE" property="categoryTitle"/>
 		<result column="MEM_NO" property="memNo"/>
 		<result column="TABLE_NO" property="tableNo"/>
 		<result column="ATTEND_PASSWORD" property="attendPassword"/>
@@ -72,13 +73,54 @@
 			 , MAX
 			 , MAX_ACCESS
 			 , ADULT_ACCESS
-			 , CATEGORY
+			 , CATEGORY_NO
 			 , MEM_NO
 			 , TABLE_NO
 			 , ATTEND_PASSWORD
+			 , COUNT
 		  from OFFLINE_GROUP_ONCE
 		 order
 		    by NO desc
+	</select>
+	
+	<update id="increaseCount">
+		update
+		       OFFLINE_GROUP_ONCE
+		   set count = count + 1
+		 where no = #{no}
+	</update>
+	
+	<select id="selectGroupOne" resultMap="offlineGroupOnceResultSet">
+		select 
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , START_DATE
+		     , END_DATE
+		     , START_ENTER
+		     , END_ENTER
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+			 , EVENT_PASSWORD
+			 , HASH_TAG
+			 , URL
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , CATEGORY_TITLE
+			 , MEM_NO
+			 , TABLE_NO
+			 , ATTEND_PASSWORD
+			 , COUNT
+		  from OFFLINE_GROUP_ONCE
+          JOIN CATEGORY USING (CATEGORY_NO)
+		 where no = ${no}
 	</select>
 	
 	<insert id="insertGroupOne">
@@ -106,7 +148,7 @@
 			 , MAX
 			 , MAX_ACCESS
 			 , ADULT_ACCESS
-			 , CATEGORY
+			 , CATEGORY_NO
 			 , MEM_NO
 			 , TABLE_NO
 			 , ATTEND_PASSWORD

@@ -55,34 +55,36 @@
 
           <div class="col-lg-4 mt-5 mt-lg-0">
 
-            <h3 class="column-title mrt-0">같이 바리스타 자격증 취득해봐요2</h3>
-            <p>23년 04월 23일에 진행되는 바리스타 자격증 취득 준비를 위한 온라인 모임입니다. 서로가 갖고 있는 지식을 공유하며 합격 확률을 높이고자 열심히 활동할 준비가 된 분들을 모집합니다. 많은 참여 부탁드릴게요~</p>
+            <h3 class="column-title mrt-0">${ ogo.title }</h3>
+            <p>${ ogo.content }</p>
 
             <ul class="project-info list-unstyled">
               <li>
                 <p class="project-info-label">카테고리</p>
-                <p class="project-info-content">자격증/교육</p>
+                <p class="project-info-content">${ ogo.categoryTitle }</p>
               </li>
               <li>
                 <p class="project-info-label">모임시각</p>
-                <p class="project-info-content">2023년 04월 13일(목) 17:00~18:00</p>
+                <p class="project-info-content">${ ogo.startDate }</p>
               </li>
               <li>
                 <p class="project-info-label">모임장소</p>
-                <p class="project-info-content">서울특별시 강남구 테헤란로14길 6 남도빌딩 2F <input type=button style="width:60px; height:20px; font-size:10px; text-align:center; line-height:15px" value="지도보기"></p>
+                <p class="project-info-content">${ ogo.address } ${ ogo.addressDetail } <input type=button style="width:60px; height:20px; font-size:10px; text-align:center; line-height:15px" value="지도보기"></p>
               </li>
               <li>
                 <p class="project-info-label">그룹장</p>
-                <p class="project-info-content">그룹장닉네임</p>
+                <p class="project-info-content">${ ogo.name }</p>
+                
+                
               </li>
               <li>
               	<hr>
                 <p class="project-info-label">정원</p>
-                <p class="project-info-content">최대 30명</p>
+                <p class="project-info-content">최대 ${ ogo.max }명</p>
               </li>
               <li>
                 <p class="project-info-label">신청마감일</p>
-                <p class="project-info-content">2023년 04월 12일(수) 21:00</p>	 <!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
+                <p class="project-info-content">${ ogo.endEnter }</p>	 <!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
               </li>
               <li>
                 <p class="project-link">
