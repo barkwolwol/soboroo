@@ -3,6 +3,7 @@ package com.kh.soboroo.offline.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -14,9 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.soboroo.common.controller.CommonController;
+import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.model.vo.Upload;
+import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.offline.model.service.OfflineServiceImpl;
 import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 
@@ -29,13 +33,11 @@ public class OfflineController {
 	@Autowired
 	private CommonController common;
 	
-	
-	
 	// 오프라인 반짝모임 리스트 호출
-	@RequestMapping("listGroupOne.off")
-	public String offlineOneList() {
-		return "offline/offlineOneListView";
-	}
+//	@RequestMapping("listGroupOne.off")
+//	public String offlineOneList() {
+//		return "offline/offlineOneListView";
+//	}
 
 	// 오프라인 정기모임 리스트 호출
 	@RequestMapping("listReg.off")
@@ -67,18 +69,41 @@ public class OfflineController {
 		return "offline/enrollOfflineOne";
 	}
 	
+	@RequestMapping("listGroupOne.off")
+	public ModelAndView selectList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+		
+		int listCount = offService.selectListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 6);
+		
+		ArrayList<OfflineGroupOnce> list = offService.selectList(pi);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("offline/offlineOneListView");
+		
+		return mv;
+	}
+	
 	@RequestMapping("insertGroupOne.off")
 	public String insertGroupOne(@RequestParam(value = "tag") String tag,
 								 @RequestParam(value = "date") String date,	
 								 @RequestParam(value = "enterDate") String enterDate,
 			OfflineGroupOnce ogo, Upload u, MultipartFile upfile, HttpSession session, Model model) {
 		
-		System.out.println(tag);
-		System.out.println(date);
-		System.out.println(enterDate);
+		if(date.length() < 11) {
+			ogo.setStartDate(date.substring(0, 10));
+			
+		}else {
+			ogo.setStartDate(date.substring(0, 10));
+			ogo.setEndDate(date.substring(13, 23));
+		}
 		
-		ogo.setStartDate(date.substring(0, 10));
-		ogo.setEndDate(date.substring(13, 23));
+		if(enterDate.length() < 11) {
+			ogo.setStartEnter(date.substring(0, 10));
+		}else {
+			ogo.setStartEnter(date.substring(0, 10));
+			ogo.setEndEnter(date.substring(13, 23));
+		}
+		
 		ogo.setHashTag(tag);
 		
 		System.out.println(ogo);
