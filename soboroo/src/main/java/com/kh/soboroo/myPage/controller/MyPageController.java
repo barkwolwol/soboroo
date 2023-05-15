@@ -264,6 +264,8 @@ public class MyPageController {
 		
 		ArrayList<EntryList> list = myService.selectMyGroupList(loginUser, pi);
 		
+		System.out.println(list);
+		
 		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/myGroup");
 		return mv;
 				

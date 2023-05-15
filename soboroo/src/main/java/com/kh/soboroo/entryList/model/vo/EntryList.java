@@ -13,11 +13,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class EntryList {
-	 private int groupNo;
+	 private int no;
 	 private String entryId;
-	 private String groupTitle;
+	 private String title;
 	 private String waitNy;
-	 private Date entryDate;
+	 private Date startDate;
+	 private Date endDate;
 	 private int memNo;
 	 private int tableNo;
 }

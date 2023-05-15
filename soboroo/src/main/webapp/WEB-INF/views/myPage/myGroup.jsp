@@ -158,15 +158,22 @@
 														<c:otherwise>
 															<c:forEach var="g" items="${list}">
 																<tr>
-																	<td class="bno">${g.groupNo }</td>
-																	<td class="bno">${g.groupTitle }</td>
-																	<td>${g.entryDate }</td>
+																	<td class="no">${g.no }</td>
+																	<td>${g.title }</td>
+																	<td>${g.startDate }</td>
 																</tr>
 															</c:forEach>
 														</c:otherwise>
 													</c:choose>
 												</tbody>
 											</table>
+											<script>
+												$(function() {
+													$("#boardList>tbody>tr").click(function() {
+														location.href = 'detail.off?no='+ $(this).children(".no").text();
+													})
+												})
+											</script>
 
 
 										</div>
