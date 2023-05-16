@@ -12,9 +12,7 @@
 	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 </head>
 <body>
-<%
-String socketMsg = (String) session.getAttribute("socketMsg");
-%>
+
   <div class="body-inner">
 
     <jsp:include page="../common/header.jsp"/>
@@ -98,38 +96,58 @@ String socketMsg = (String) session.getAttribute("socketMsg");
             </ul>
             
             <script>
-$(function() {
-    $("#entryButton").on("click", function() {
-    	var memNickname = "${loginUser.memNickname}"
-        var alertContent = memNickname + "님이 회원님의 소모임에 참여했습니다.";
-        var AlarmData = {
-            "alertContent": alertContent
-        };
-        console.log(AlarmData);
-        $.ajax({
-            type: "post",
-            data: JSON.stringify(AlarmData),
-            url: "saveAlert.my",
-            contentType: "application/json; charset=utf-8",
-            dataType: 'text',
-            success: function(data) {
-                console.log(data);
-                if (socket) {
-                    let socketMsg = "apply," + memNickname + "," + memNickname ;
-                    console.log("msgmsg : " + socketMsg);
-                   // $("#socketMessageDiv").text(socketMsg);
-                    socket.send(socketMsg);
-                    console.log('socketMsg 보냄');
-                }
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
-    });
-});
-</script>
+            
+             
+            $(function() {
+                $("#entryButton").on("click", function() {
+                    var memNickname = "${loginUser.memNickname}";
+                    var memNo = "${ogo.memNo}";
+                    var title = "${ogo.title}";
+                    
 
+                    $.ajax({
+                        type: "post",
+                        data: { "memNo": memNo },
+                        url: "findNick.my",
+                        dataType: 'json',
+                        success: function(data) {
+                            var writer = data.memNickname; // memNickname을 받아와서 writer에 할당합니다.
+                            console.log("콘솔" + writer)
+                            var alertContent = memNickname + "님이 회원님의 소모임에 참여했습니다.";
+                            var AlarmData = {
+                                "alertContent": alertContent
+                            };
+                            console.log(AlarmData);
+                            $.ajax({
+                                type: "post",
+                                data: JSON.stringify(AlarmData),
+                                url: "saveAlert.my",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: 'text',
+                                success: function(data) {
+                                    console.log(data);
+                                    if (socket) {
+                                        var socketMsg = "apply," + memNickname + "," + writer + "," + title;
+                                        console.log("msgmsg: " + socketMsg);
+                                        // $("#socketMessageDiv").text(socketMsg);
+                                        socket.send(socketMsg);
+                                        console.log('socketMsg 보냄');
+                                    }
+                                },
+                                error: function(err) {
+                                    console.log(err);
+                                }
+                            });
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    });
+                    });
+
+            });
+
+</script>
 
           </div><!-- Content col end -->
 

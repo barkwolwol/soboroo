@@ -116,6 +116,9 @@ public class MyPageDao {
 		return sqlSession.insert("myPageMapper.insertAlert", a);
 	}
 	
+	public String findNickname(SqlSessionTemplate sqlSession, int memNo) {
+		return sqlSession.selectOne("memberMapper.findNickname", memNo);
+	}
 	
 
 }

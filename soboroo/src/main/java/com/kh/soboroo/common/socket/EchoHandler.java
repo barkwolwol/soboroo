@@ -29,6 +29,9 @@ public class EchoHandler extends TextWebSocketHandler{
 	// 1대1
 	Map<String, WebSocketSession> userSessionMap = new HashMap<String, WebSocketSession>();
 	
+	// 알림 저장
+    Map<String, List<String>> notifications = new HashMap<String, List<String>>();
+
 	// 서버에 접속이 성공했을 때
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception{
@@ -36,6 +39,15 @@ public class EchoHandler extends TextWebSocketHandler{
 		
 		String senderNickname = getNickname(session);
 		userSessionMap.put(senderNickname, session);
+		
+		 if (notifications.containsKey(senderNickname)) {
+	            List<String> userNotifications = notifications.get(senderNickname);
+	            for (String notification : userNotifications) {
+	                session.sendMessage(new TextMessage(notification));
+	            }
+	            userNotifications.clear();
+	        }
+	    
 	}
 	
 	// 소켓에 메시지를 보냈을 때
@@ -47,12 +59,15 @@ public class EchoHandler extends TextWebSocketHandler{
 		
 		// protocol : cmd, 댓글작성자, 게시글 작성자, seq(reply, user2, user1, 12)
 		String msg = message.getPayload();
+		
+		System.out.println(msg);
 		if(msg != null) {
 			String[] strs = msg.split(",");
-			if(strs != null && strs.length ==3) {
+			if(strs != null && strs.length ==4) {
 				String cmd = strs[0];
 				String caller = strs[1];
 				String receiver = strs[2];
+				String title = strs[3];
 				/* String receiverEmail= strs[3]; */
 				/*
 				String seq = strs[4];
@@ -60,26 +75,72 @@ public class EchoHandler extends TextWebSocketHandler{
 				System.out.println("cmd"+cmd);
 				System.out.println("caller"+caller);
 				System.out.println("receiver"+receiver);
-				// 작성자가 로그인해서 있다면
-				WebSocketSession boardWriterSession = userSessionMap.get(caller);
-				System.out.println(boardWriterSession);
 				logger.info("Received apply message: {}", msg);
+				// 작성자가 로그인해서 있다면
+				WebSocketSession boardWriterSession = userSessionMap.get(receiver);
+				if ("reply".equals(cmd) && boardWriterSession != null && boardWriterSession.isOpen()) {
+				    TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 게시글에 댓글을 남겼습니다.");
+				    try {
+				        boardWriterSession.sendMessage(tmpMsg);
+				    } catch (IllegalStateException e) {
+				        // 세션이 이미 종료된 경우
+				        // 알림을 저장하고 사용자가 다시 로그인했을 때 알림을 전송하도록 처리
+				        List<String> userNotifications = notifications.get(receiver);
+				        if (userNotifications == null) {
+				            userNotifications = new ArrayList<>();
+				            notifications.put(receiver, userNotifications);
+				        }
+				        userNotifications.add(caller + "님이 회원님의 게시글에 댓글을 남겼습니다.");
+				    }
+				}
+
+				System.out.println("boardWriterSession"+boardWriterSession);
 				if("reply".equals(cmd)&&boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 게시글에 댓글을 남겼습니다.");
-					boardWriterSession.sendMessage(tmpMsg);
-					
+					try {
+				        boardWriterSession.sendMessage(tmpMsg);
+				    } catch (IllegalStateException e) {
+				        // 세션이 이미 종료된 경우
+				        // 알림을 저장하고 사용자가 다시 로그인했을 때 알림을 전송하도록 처리
+				        List<String> userNotifications = notifications.get(receiver);
+				        if (userNotifications == null) {
+				            userNotifications = new ArrayList<>();
+				            notifications.put(receiver, userNotifications);
+				        }
+				        userNotifications.add(caller + "님이 회원님의 게시글에 댓글을 남겼습니다.");
+				    }
 					
 					
 				} else if ("board".equals(cmd) && boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage("회원님의 게시글이 신고되었습니다.");
-					boardWriterSession.sendMessage(tmpMsg);
+					try {
+				        boardWriterSession.sendMessage(tmpMsg);
+				    } catch (IllegalStateException e) {
+				        // 세션이 이미 종료된 경우
+				        // 알림을 저장하고 사용자가 다시 로그인했을 때 알림을 전송하도록 처리
+				        List<String> userNotifications = notifications.get(receiver);
+				        if (userNotifications == null) {
+				            userNotifications = new ArrayList<>();
+				            notifications.put(receiver, userNotifications);
+				        }
+				        userNotifications.add("회원님의 게시글이 신고되었습니다.");
+				    }
 				} else if ("apply".equals(cmd)&& boardWriterSession != null) {
 					logger.info("Received apply message: {}", msg);
 					System.out.println("Received apply message: " + msg);
-					TextMessage tmpMsg = new TextMessage(caller + "님이 모임을 신청했습니다. ");
-					boardWriterSession.sendMessage(tmpMsg);
-					
-					System.out.println("apply");
+					TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 " + title + "소모임에 참여했습니다. ");
+					try {
+				        boardWriterSession.sendMessage(tmpMsg);
+				    } catch (IllegalStateException e) {
+				        // 세션이 이미 종료된 경우
+				        // 알림을 저장하고 사용자가 다시 로그인했을 때 알림을 전송하도록 처리
+				        List<String> userNotifications = notifications.get(receiver);
+				        if (userNotifications == null) {
+				            userNotifications = new ArrayList<>();
+				            notifications.put(receiver, userNotifications);
+				        }
+				        userNotifications.add(caller + "님이 회원님의 " + title + "소모임에 참여했습니다. ");
+				    }
 				}
 			}
 			/*
@@ -96,9 +157,10 @@ public class EchoHandler extends TextWebSocketHandler{
 		
 	}
 	
+	
 	// 연결 해제될 때
 	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception{
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		userSessionMap.remove(session.getId());
 		sessions.remove(session);
 	}
