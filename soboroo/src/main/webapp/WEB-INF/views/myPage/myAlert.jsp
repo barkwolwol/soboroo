@@ -187,12 +187,76 @@
 													</tr>
 												</tbody>
 											</table>
+											<input type="button" class="btn btn-primary"
+												onclick="deleteAlert();" value="삭제하기">
+
+											<script>
+												$(function() {
+													var chkObj = document
+															.getElementsByName("RowCheck");
+													var rowCnt = chkObj.length;
+
+													$("input[name='allCheck']")
+															.click(
+																	function() {
+																		var chk_listArr = $("input[name='RowCheck']");
+																		for (var i = 0; i < chk_listArr.length; i++) {
+																			chk_listArr[i].checked = this.checked;
+																		}
+																	});
+
+													$("input[name='RowCheck']")
+															.click(
+																	function() {
+																		if ($("input[name='RowCheck']:checked").length == rowCnt) {
+																			$("input[name='allCheck']")[0].checked = true;
+																		} else {
+																			$("input[name='allCheck']")[0].checked = false;
+																		}
+																	});
+												});
+
+												function deleteAlert() {
+													var url = "deleteAlert.my"
+													var valueArr = new Array();
+													var list = $("input[name='RowCheck']");
+													for (var i = 0; i < list.length; i++) {
+														if (list[i].checked) {
+															valueArr
+																	.push(list[i].value);
+														}
+													}
+													if (valueArr.length == 0) {
+														alert("선택된 알림이 없습니다.");
+													} else {
+														var chk = confirm("정말 삭제하시겠습니까?");
+														$
+																.ajax({
+																	url : url,
+																	type : 'POST',
+																	traditional : true,
+																	data : {
+																		valueArr : valueArr
+																	},
+																	success : function(
+																			data) {
+																		if (data = 1) {
+																			alert("성공적으로 삭제되었습니다.");
+																			location
+																					.replace("list");
+																		} else {
+																			alert("삭제가 취소되었습니다.");
+																		}
+																	}
+																})
+													}
+												}
+											</script>
+
+
+
+										</div>
 									</div>
-									</div>
-									</div>
-									</div>
-									</div>
-									
 									<!-- post-body end -->
 								</div>
 								<!-- 3rd post end -->

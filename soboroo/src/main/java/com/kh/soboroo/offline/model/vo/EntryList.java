@@ -15,8 +15,8 @@ import lombok.ToString;
 @ToString				// toString 메소드
 public class EntryList {
 	
-	private int groupNo;
-	private String groupTitle;
+	private int no;
+	private String title;
 	private String entryId;
 	private String waitNY;
 	private Date startDate;

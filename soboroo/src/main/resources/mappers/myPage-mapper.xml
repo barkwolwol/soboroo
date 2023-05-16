@@ -15,8 +15,8 @@
 </resultMap>
 
 <resultMap type="EntryList" id="entryListResultSet">
-	<result column="no" property="no"/>
-	<result column="title" property="title"/>
+	<result column="group_no" property="groupNo"/>
+	<result column="group_title" property="groupTitle"/>
 	<result column="entry_id" property="entryId"/>
 	<result column="wait_ny" property="waitNy"/>
 	<result column="start_date" property="startDate"/>
@@ -27,6 +27,7 @@
 
 <resultMap type="Alert" id="alertResultSet">
 	<result column="id_no" property="idNo"/>
+	<result column="group_no" property="groupNo"/>
 	<result column="table_no" property="tableNo"/>
 	<result column="alert_content" property="alertContent"/>
 	<result column="mem_no" property="memNo"/>
@@ -257,14 +258,20 @@ SELECT NO as "no", TITLE as "title", start_date, end_date
      	  into alert
      	  (
      	  ID_NO,
+     	  GROUP_NO,
+     	  TABLE_NO,
 		  ALERT_CONTENT,
-		  MEM_NO
+		  MEM_NO,
+		  ALERT_TYPE
      	  )
      	values
      	  (
      	  SEQ_ALERT.NEXTVAL,
+     	  #{groupNo},
+     	  #{tableNo},
      	  #{alertContent},
-     	  #{memNo}
+     	  #{memNo},
+     	  #{alertType}
      	  )  
      
      </insert>

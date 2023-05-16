@@ -15,6 +15,7 @@ import lombok.ToString;
 @ToString
 public class Alert {
 	 private int idNo;
+	 private int groupNo;
 	 private int tableNo;
 	 private String alertContent;
 	 private int memNo;

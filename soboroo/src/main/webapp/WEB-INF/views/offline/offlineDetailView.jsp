@@ -101,9 +101,8 @@
             $(function() {
                 $("#entryButton").on("click", function() {
                     var memNickname = "${loginUser.memNickname}";
+
                     var memNo = "${ogo.memNo}";
-                    var title = "${ogo.title}";
-                    
 
                     $.ajax({
                         type: "post",
@@ -112,11 +111,20 @@
                         dataType: 'json',
                         success: function(data) {
                             var writer = data.memNickname; // memNickname을 받아와서 writer에 할당합니다.
+                            var tableNo = "${ogo.tableNo}";
+                            var groupNo = "${ogo.no}";
+                            var title = "${ogo.title}";
+                            var alertType = 1;
                             console.log("콘솔" + writer)
-                            var alertContent = memNickname + "님이 회원님의 소모임에 참여했습니다.";
+                            var alertContent = memNickname + "님이 회원님의 " + title + " 소모임에 참여했습니다.";
                             var AlarmData = {
-                                "alertContent": alertContent
+                                "alertContent": alertContent,
+                                "tableNo" : tableNo,
+                                "groupNo" : groupNo,
+                                "alertType" : alertType
                             };
+                            
+
                             console.log(AlarmData);
                             $.ajax({
                                 type: "post",
