@@ -16,6 +16,8 @@
 		<result column = "mem_no" property = "memNo"/>
 		<result column = "table_no" property = "tableNo"/>
 		<result column = "mem_nickname" property ="memNickname"/>
+		<result column = "mem_img" property ="memImg"/>
+		
 	</resultMap>
 	
 	<resultMap type="Reply" id="replyResultSet">
@@ -58,6 +60,7 @@
 		  , category_title as "category"
 		  , mem_nickname
 		  , table_no
+		  ,mem_img
 	   from board b
        join member using (mem_no)
        join category c on (b.category = c.category_no)
@@ -90,6 +93,7 @@
 			 , board_content
 			 , count
 		 	 , table_no
+		 	 , mem_img
 		  from board b
           join category c on (b.category = c.category_no)
           join member using(mem_no)
@@ -159,6 +163,7 @@
 		      , board_content
 		      , category
 		      , mem_no
+		      
 		    )
 		    values
 		    (
@@ -167,6 +172,7 @@
 		  , #{ boardContent }
 		  , #{ category}
 		  , #{ memNo}
+		
     		)
 	
 	</insert>
@@ -181,6 +187,8 @@
 		   , modify_name
 		   , group_board_no
 		   , table_no
+		   , mem_nickname
+		   , mem_img
 		    )
 		    values 
 		    (
@@ -189,6 +197,8 @@
 		  , #{ changeName }
 		  , 1
 		  , 10
+		  , #{ memNickname}
+		  , #{ memImg}
 		    )
 	
 	
@@ -262,8 +272,7 @@
            , #{groupBoardNo}
            , #{memNo}
 		  )
-	
-	
-	
 	</insert>
+	
+	
 </mapper>

@@ -222,12 +222,9 @@
                     <br>
                     <div class="left"
                         style="margin-left: 20%; margin-top: 20px; display: inline-block; margin-bottom: 20px; ">
-                        <div class="avatar" style="float:left;">
-                            <img src="${pageContext.request.contextPath}/resources/images/default_profile.png"
-                                class="avatar-image">
-                        </div>
+                        <div class="avatar" style="float: left;margin-top: 30px;"><img class="avatar-image" src="${loginUser.memImg}" ></div>
                         <div class="author" style="margin-left: 50px; display: block;">
-                            <div class="write">관리자</div>
+                            <div class="write" style="margin-top: 180%;">${loginUser.memNickname }</div>
                         </div>
                     </div>
 

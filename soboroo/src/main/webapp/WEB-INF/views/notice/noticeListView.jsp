@@ -124,7 +124,7 @@
                 <c:forEach var="n" items="${ list }">
 	                    <tr>
 	                        <td class="nno" name="nno">${ n.ntcNo }</td>
-	                        <td>관리자</td>
+	                        <td>${ loginUser.memNickname }</td>
 	                        <td>${n.ntcTitle}</td>
 	                        <td>${n.ntcContent }</td>
 	                        <td>${n.ntcCount }</td>

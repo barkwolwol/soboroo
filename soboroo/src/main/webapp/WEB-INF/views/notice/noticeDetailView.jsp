@@ -75,10 +75,10 @@
            
             
             <div style="margin-left: 20%; margin-right: 20%">
-                <div class="avatar" style="float: left;margin-top: 30px;"><img alt="" src="${pageContext.request.contextPath}/resources/images/default_profile.png" class="avatar-image"></div>
+                <div class="avatar" style="float: left;margin-top: 30px;"><img class="avatar-image" src="${loginUser.memImg }"></div>
                 <br> 
             <div class="author">
-                <div class="write" style=" font-size: 13px;">관리자</div>
+                <div class="write" style=" font-size: 13px;">${loginUser.memNickname }</div>
              
                 <div class="board_name">
                     <a href="list.no" style="color: black;">

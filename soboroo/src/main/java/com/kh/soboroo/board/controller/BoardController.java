@@ -82,6 +82,7 @@ public class BoardController {
 	 
 	 @RequestMapping("enroll.bo")
 		public String enrollForm() {
+	
 			return "board/boardEnrollForm";
 			
 		}
@@ -91,11 +92,15 @@ public class BoardController {
 		 
 		 // board table insert
 		 int result1 = bService.insertBoard(b);
+		 //System.out.println(b);
+		 int uploadNo = 0;
+		 int result2 = 1;
+		 if(uploadNo != 0  ) {
+			 uploadNo = (int)session.getAttribute("uploadNo");
+			 // upload table update
+			 result2 = bService.updateUpload(uploadNo); 
+		 }
 		 
-		 int uploadNo = (int)session.getAttribute("uploadNo");
-		 
-		 // upload table update
-		int result2 = bService.updateUpload(uploadNo);
 		 
 		 if(result1 > 0 && result2 > 0) {
 			 session.setAttribute("alertMsg", "게시글이 성공적으로 등록되었습니다.");

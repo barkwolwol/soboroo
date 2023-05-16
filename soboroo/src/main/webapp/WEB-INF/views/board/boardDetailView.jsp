@@ -82,10 +82,10 @@
            
             
             <div style="margin-left: 20%; margin-right: 20%">
-                <div class="avatar" style="float: left;margin-top: 30px;"><img alt="" src="${pageContext.request.contextPath}/resources/images/default_profile.png" class="avatar-image"></div>
+                <div class="avatar" style="float: left;margin-top: 30px;"><img class="avatar-image" src="${b.memImg}" ></div>
                 <br> 
-            <div class="author">
-                <div class="write" style=" font-size: 13px;">${b.memNo} </div>
+            <div class="author" style="margin-top:2%;">
+                <div class="write" style=" font-size: 13px;">${b.memNickname} </div>
              
                 <div class="board_name">
                     <a href="list.bo?category=0" style="color: black;">
@@ -129,7 +129,7 @@
     </tr>
     <tr>
         <th>작성자</th>
-        <td>${b.memNo }</td>
+        <td>${b.memNickname }</td>
         <th>작성일</th>
         <td>${ b.createDate }</td>
     </tr>
@@ -171,15 +171,16 @@
 			                    </tr>
 	                    </c:otherwise>
                     </c:choose> 
-                    
-                    
+
                     <tr>
                        <td colspan="3">댓글 (<span id="rcount">0</span>) </td> 
                     </tr>
+                    
                 </thead>
                 <tbody>
-                   
+                  
                 </tbody>
+                
             </table>
             </form>
         </div>
@@ -211,19 +212,14 @@
 					memNo: '${loginUser.memNo}'  //문자열은 이렇게 묶어야함
 					
 				}, success:function(status){
-					
 					if(status == "success"){
 						selectReplyList();
 						$("#content").val("");
 					}
-					
-					
 				}, error:function(){
 					console.log("댓글 작성용 ajax 통신 실패!");
 				}
 			})
-			
-			
 		}else{
 			alert("댓글 작성 후 등록 요청해주세요")
 		}
@@ -243,15 +239,40 @@
 					  		+ "<td>" + list[i].replyContent +"</td>"
 					  		+ "<td>" + list[i].enrollDate +"</td>"
 					  		+ "</tr>";
+					  		value += selectReplyComment(list[i].replyNo);
 				
+				}
 			 	$("#replyArea tbody").html(value);
 			 	$("#rcount").text(list.length);
-				}
 			}, error:function(){
 				console.log("댓글 조회용 리스트 ajax 통신 실패");
 			}
 		});
 		
+	}
+	// 대댓글
+	function selectReplyComment(replyNo){
+		$.ajax({
+			url:"Relist.bo",
+			data:{bno:${b.boardNo}},
+			async:false,
+			success: function(list){
+				console.log(list);
+				//대댓글
+				let values = "";
+				for(let i in list){
+					values += "<tr>"
+					  		+ "<th>" + list[i].memNickname +"</th>"
+					  		+ "<td>" + list[i].replyContent +"</td>"
+					  		+ "<td>" + list[i].enrollDate +"</td>"
+					  		+ "</tr>";
+				
+				}
+			 	return values;
+			}, error:function(){
+				console.log("댓글 조회용 리스트 ajax 통신 실패");
+			}
+		});
 	}
 		
     </script>

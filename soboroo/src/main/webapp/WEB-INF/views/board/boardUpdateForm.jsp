@@ -170,10 +170,10 @@
  
                 <div class="left" style="margin-left: 25%; margin-top: 20px; display: inline-block; margin-bottom: 20px; ">
                     <div class="avatar" style="float:left;">
-                        <img  src="${pageContext.request.contextPath}/resources/images/default_profile.png" class="avatar-image" >
+                        <img  src="${b.memImg}" class="avatar-image" >
                     </div>
                     <div class="author" style="margin-left: 50px; display: block;">
-                        <div class="write" >${b.memNo }</div>
+                        <div class="write" >${b.memNickname }</div>
                     </div>
                 </div>
             
