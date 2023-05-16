@@ -25,13 +25,14 @@ public class OfflineServiceImpl implements OfflineService {
 		System.out.println("첨파있나요? : " + u);
 		int result1 = offDao.insertGroupOne(sqlSession, ogo);
 		int result2 = 1;
+		int result3 = offDao.insertEntryListSelf(sqlSession, ogo);
 		
 		if(u.getOriginName() != null) {
 			System.out.println("첨파있음");
 			result2 = offDao.insertGroupOneImg(sqlSession, ogo, u);
 		}
 		
-		return result1 * result2;
+		return result1 * result2 * result3;
 	}
 
 	public int selectListCount() {
@@ -40,6 +41,14 @@ public class OfflineServiceImpl implements OfflineService {
 
 	public ArrayList<OfflineGroupOnce> selectList(PageInfo pi) {
 		return offDao.selectList(sqlSession, pi);
+	}
+
+	public int increaseCount(int no) {
+		return offDao.increaseCount(sqlSession, no);
+	}
+
+	public OfflineGroupOnce selectGroupOne(int no) {
+		return offDao.selectGroupOne(sqlSession, no);
 	}
 
 }

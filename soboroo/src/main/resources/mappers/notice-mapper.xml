@@ -79,7 +79,6 @@
 			, ntc_writer  
 			, ntc_title
 		    , ntc_content
-		    , ntc_count
 			)
 			values
 			(
@@ -87,7 +86,6 @@
 			  , 1
 			  , #{ntcTitle}
 			  , #{ntcContent}
-			  , default
 			)
 	
 	</insert>

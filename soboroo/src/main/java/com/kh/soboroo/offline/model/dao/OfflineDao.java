@@ -20,6 +20,10 @@ public class OfflineDao {
 	public int insertGroupOneImg(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo, Upload u) {
 		return sqlSession.insert("offlineMapper.insertGroupOneImg", u);
 	}
+	
+	public int insertEntryListSelf(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {
+		return sqlSession.insert("offlineMapper.insertEntryListSelf", ogo);
+	}
 
 	public int selectListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("offlineMapper.selectListCount");
@@ -36,5 +40,14 @@ public class OfflineDao {
 		
 		return (ArrayList)sqlSession.selectList("offlineMapper.selectList", null, rowBounds);
 	}
+
+	public int increaseCount(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.update("offlineMapper.increaseCount", no);
+	}
+
+	public OfflineGroupOnce selectGroupOne(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.selectOne("offlineMapper.selectGroupOne", no);
+	}
+
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ public class BoardController {
 	@Autowired
 	private BoardServiceImpl bService;
 	
+	
 	@RequestMapping("list.bo")
 	public ModelAndView selectBoardList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 		int listCount = bService.selectBoardListCount();
@@ -29,8 +31,7 @@ public class BoardController {
 		  
 		  ArrayList<Board> list = bService.selectBoardList(pi);
 		  
-		  mv.addObject("pi", pi).addObject("list",
-		  list).setViewName("board/boardListView");
+		  mv.addObject("pi", pi).addObject("list",list).setViewName("board/boardListView");
 		 
 		
 		return mv;

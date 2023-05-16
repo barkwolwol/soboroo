@@ -10,6 +10,9 @@
 	<!-- Favicon
 	================================================== -->
 	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=22931d135d75b509838f23be2834c5c7&libraries=services"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
   <div class="body-inner">
@@ -55,42 +58,95 @@
 
           <div class="col-lg-4 mt-5 mt-lg-0">
 
-            <h3 class="column-title mrt-0">같이 바리스타 자격증 취득해봐요2</h3>
-            <p>23년 04월 23일에 진행되는 바리스타 자격증 취득 준비를 위한 온라인 모임입니다. 서로가 갖고 있는 지식을 공유하며 합격 확률을 높이고자 열심히 활동할 준비가 된 분들을 모집합니다. 많은 참여 부탁드릴게요~</p>
+            <h3 class="column-title mrt-0">${ ogo.title }</h3>
+            <p>${ ogo.content }</p>
 
             <ul class="project-info list-unstyled">
               <li>
                 <p class="project-info-label">카테고리</p>
-                <p class="project-info-content">자격증/교육</p>
+                <p class="project-info-content">${ ogo.categoryTitle }</p>
               </li>
               <li>
                 <p class="project-info-label">모임시각</p>
-                <p class="project-info-content">2023년 04월 13일(목) 17:00~18:00</p>
+                <p class="project-info-content">${ ogo.startDate }</p>
               </li>
               <li>
                 <p class="project-info-label">모임장소</p>
-                <p class="project-info-content">서울특별시 강남구 테헤란로14길 6 남도빌딩 2F <input type=button style="width:60px; height:20px; font-size:10px; text-align:center; line-height:15px" value="지도보기"></p>
+                <p class="project-info-content">${ ogo.address } ${ ogo.addressDetail }&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#mapModal">지도보기</a>
               </li>
               <li>
                 <p class="project-info-label">그룹장</p>
-                <p class="project-info-content">그룹장닉네임</p>
+                <p class="project-info-content">${ ogo.name }</p>
               </li>
               <li>
               	<hr>
                 <p class="project-info-label">정원</p>
-                <p class="project-info-content">최대 30명</p>
+                <p class="project-info-content">최대 ${ ogo.max }명</p>
               </li>
               <li>
                 <p class="project-info-label">신청마감일</p>
-                <p class="project-info-content">2023년 04월 12일(수) 21:00</p>	 <!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
+                <p class="project-info-content">${ ogo.endEnter }</p>	 <!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
               </li>
               <li>
                 <p class="project-link">
                   <br>
-                  <a class="btn btn-primary" target="_blank" href="#">참가하기</a>
+                  <a class="btn btn-primary" target="_blank" href="#" id="entryButton">참가하기</a>
                 </p>
               </li>
             </ul>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="mapModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id="map" style="width:100%;height:350px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <script>
+              var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                  mapOption = { 
+                      center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                      level: 3 // 지도의 확대 레벨
+                  };
+              
+              // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+              var map = new kakao.maps.Map(mapContainer, mapOption); 
+              
+              map.relayout();
+              </script>
+
+            
+            <script>
+            $(function(){
+            	$("#entryButton").on("click", function(){
+            		var AlarmData = {
+            				"myAlarm_receiverEmail" : receiverEmail,
+            				"myAlarm_callerNickname" : memNickName,
+            				"myAlarm_content" : memNickName + "님이 회원님의 소모임에 참여했습니다.",
+            		};
+            		$.ajax({
+            			type : "post",
+            			url : "saveAlarm.my"
+            			data : JSON.stringify(AlarmData),
+            			contentType: "application/json; charset=utf-8",
+            			dataType : 'text',
+            			success : function(data){
+            				if(socket){
+            					let socketMsg = "scrap," + memNickname +","+ memberSeq +","+ receiverEmail +","+ essayboard_seq;
+            					console.log("msgmsg : " + socketMsg);
+            					socket.send(socketMsg);
+            				}
+
+            			},
+            			error : function(err){
+            				console.log(err);
+            			}
+            		})
+            	})
+            })
+            </script>
 
           </div><!-- Content col end -->
 
