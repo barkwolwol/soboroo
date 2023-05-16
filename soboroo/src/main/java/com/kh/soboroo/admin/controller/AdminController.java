@@ -2,6 +2,7 @@ package com.kh.soboroo.admin.controller;
 
 import java.util.ArrayList;
 
+
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.soboroo.admin.model.service.AdminService;
@@ -30,6 +32,14 @@ import com.kh.soboroo.member.model.vo.Member;
 
 
 
+/**
+ * @author cyj
+ *
+ */
+/**
+ * 
+ *
+ */
 @Controller
 public class AdminController {
 	
@@ -39,6 +49,11 @@ public class AdminController {
 		
 		
 		// 관리자 홈페이지 공지사항 
+		/**
+		 * @param currentPage
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("adminHome.ad")
 		public ModelAndView adminLogin(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 			
@@ -62,6 +77,11 @@ public class AdminController {
 		
 			
 		// 관리자 회원 관리 페이지 호출
+		/**
+		 * @param currentPage
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("memberInfo.ad")
 		public ModelAndView memberInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 			
@@ -89,6 +109,14 @@ public class AdminController {
 		
 		
 		// 회원 정보 수정
+		/**
+		 * @param m
+		 * @param userInfo
+		 * @param session
+		 * @param model
+		 * @return
+		 */
+		@ResponseBody
 		@RequestMapping("updateMem.ad")
 		public String adminMemberUpdate(AdminMember m, HashMap<String, Object> userInfo, HttpSession session, Model model) {
 			
@@ -125,6 +153,11 @@ public class AdminController {
 
 		
 		// 관리자 정지 회원 페이지 호출
+		/**
+		 * @param currentPage
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("susMember.ad")
 		public ModelAndView suspendMember(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 			
@@ -184,6 +217,12 @@ public class AdminController {
 		
 	
 		// 관리자 오프라인 반짝 모임 관리 페이지 호출
+		/**
+		 * @param currentPage
+		 * @param no
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("offlineone.ad")
 		public ModelAndView selectList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 									   @RequestParam(value="no", defaultValue = "2") int no, ModelAndView mv) {
@@ -230,6 +269,11 @@ public class AdminController {
 		
 		
 		// 관리자 통합 신고 관리 페이지 호출
+		/**
+		 * @param currentPage
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("report.ad")
 		public ModelAndView intergrateReport(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 			
@@ -246,12 +290,17 @@ public class AdminController {
 		}
 		
 		// 관리자 게시글 관리 페이지 호출
+		/**
+		 * @param currentPage
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("board.ad")
 		public ModelAndView boardInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 				
 				int listCount = aService.selectBoardListCount(); 
 				
-				PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+				PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 				
 				ArrayList<AdminBoard> list = aService.selectBoardList(pi);
 				
@@ -264,12 +313,17 @@ public class AdminController {
 		
 		
 		// 관리자 공지사항 관리 페이지 호출
+		/**
+		 * @param currentPage
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("notice.ad")
 		public ModelAndView noticeInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 			
 			int listCount = aService.selectNoticeListCount(); 
 			
-			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 			
 			ArrayList<AdminNotice> list = aService.selectNoticeList(pi);
 			

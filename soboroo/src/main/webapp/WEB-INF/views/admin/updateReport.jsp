@@ -2,8 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+ <!-- Favicon
+   ================================================== -->
+   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 
-<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+
 
 <html lang="en">
 <head>
@@ -11,7 +14,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 <title>Jassa - Bootstrap Admin HTML Template</title>
 
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
@@ -176,10 +178,10 @@
                     <ul>
                         <li class="menu-title"><span>MENU</span></li>
                         <li>
-                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
+                            <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
-                            <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
+                            <a href="memberInfo.ad"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="memberInfo.ad">회원 관리</a></li>
@@ -194,20 +196,20 @@
                                 <li class="submenu" align="left">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 일반 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 일반 / 정기</a></li>
-                                        <li><a href="onlinegoal.ad">온라인 목표 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 목표 / 단위별</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인 / 반짝</a></li>
+                                        <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                        <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li>
                                     </ul>
                                
                                 <li class="submenu">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 일반 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 일반 / 정기</a></li>
-                                        <li><a href="offlinegoal.ad">오프라인 목표 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 목표 / 단위별</a></li>
+                                        <li><a href="offlineone.ad">오프라인 / 반짝</a></li>
+                                        <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li>
                                     </ul>
                          
                             </ul>

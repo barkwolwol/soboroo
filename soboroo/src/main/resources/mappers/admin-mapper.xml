@@ -115,7 +115,7 @@
 		<result column="MAX" property="max"/>
 		<result column="MAX_ACCESS" property="maxAccess"/>
 		<result column="ADULT_ACCESS" property="adultAccess"/>
-		<result column="CATEGORY_NO" property="category"/>
+		<result column="CATEGORY_NO" property="categoryNo"/>
 		<result column="CATEGORY_TITLE" property="categoryTitle"/>
 		<result column="MEM_NO" property="memNo"/>
 		<result column="TABLE_NO" property="tableNo"/>

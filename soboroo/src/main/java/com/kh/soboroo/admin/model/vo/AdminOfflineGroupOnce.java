@@ -40,7 +40,7 @@ public class AdminOfflineGroupOnce {
 	private String max;
 	private String maxAccess;
 	private String adultAccess;
-	private String category;
+	private int categoryNo;
 	private int memNo;
 	private int tableNo;
 	private String attendPassword;

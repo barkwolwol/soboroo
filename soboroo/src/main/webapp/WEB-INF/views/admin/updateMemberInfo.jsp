@@ -12,7 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 <title>soboroo admin - 회원 정보 조회</title>
 
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
@@ -180,7 +179,7 @@
                             <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
-                            <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
+                            <a href="memberInfo.ad"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="memberInfo.ad">회원 관리</a></li>
@@ -195,20 +194,20 @@
                                 <li class="submenu" align="left">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 일반 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 일반 / 정기</a></li>
-                                        <li><a href="onlinegoal.ad">온라인 목표 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 목표 / 단위별</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인 / 반짝</a></li>
+                                        <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                        <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li>
                                     </ul>
                                
                                 <li class="submenu">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 일반 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 일반 / 정기</a></li>
-                                        <li><a href="offlinegoal.ad">오프라인 목표 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 목표 / 단위별</a></li>
+                                        <li><a href="offlineone.ad">오프라인 / 반짝</a></li>
+                                        <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li>
                                     </ul>
                          
                             </ul>
@@ -296,16 +295,46 @@
 </div>
 <div class="form-group">
 <label>회원 상태</label>
+<span id="memStatus">${m.memStatus}</span>
 <select class="select" id="stateChange">
-<option selected value="${m.memStatus==3}">관리자</option>
+<option selected value="${m.memStatus==1}">일반회원</option>
 <option value="${m.memStatus==2}">휴먼회원</option>
-<option value="${m.memStatus==3}">정지회원</option>
-<option value="${m.memStatus==1}">일반회원</option>
+<option value="${m.memStatus==4}">정지회원</option>
+<option value="${m.memStatus==3}">관리자</option>
 <option value="${m.memStatus==5}">탈퇴회원</option>
 </select>
 </div>
 </div>
 </div>
+<script>
+function updateMemberStatus() {
+	  var selectedStatus = $('#stateChange').val(); 
+
+	  $.ajax({
+	    url: 'updateMem.ad',
+	    type: 'POST',
+	    data: { memStatus: selectedStatus },
+	    success: function(response) {
+	     
+	      $('#modify_paid').modal('hide'); 
+	      $('#memStatus').text(selectedStatus); 
+	    },
+	    error: function(error) {
+	      
+	    }
+	  });
+	}
+
+
+	$(document).ready(function() {
+	  $('#modify_paid').on('shown.bs.modal', function() {
+	    $('#update').click(function() {
+	      updateMemberStatus();
+	    });
+	  });
+	});
+
+</script>
 
 </form>
 
@@ -342,36 +371,7 @@
 
 </div>
 
-<script>
-//모달창 내 수정 버튼 클릭 시 실행되는 함수
-function statusChange() {
-  // 변경된 회원 상태 값 가져오기
-  var statusChange = document.getElementById("#statusChange").value;
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "updateMem.ad", true);
-  
-  // 요청 완료 후의 처리 로직
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-
-      alert("회원 상태가 성공적으로 수정되었습니다.");
-      location.reload();
-    } else {
-      alert("회원 상태 수정에 실패하였습니다. 다시 시도해주세요.");
-    }
-  };
-  
-  // AJAX 요청 전송
-  xhr.send(statusChange);
-}
-
-// 수정하기 버튼 클릭 이벤트 핸들러
-document.getElementById("update").addEventListener("click", function() {
-	statusChange();
-});
-
-</script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
 

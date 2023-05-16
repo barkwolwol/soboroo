@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<!DOCTYPE html> 
+<!-- Favicon
+   ================================================== -->
+   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 <title>soboroo admin - 오프라인 반짝모임 관리</title>
 
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
@@ -240,7 +242,7 @@
         </div>
         <!-- 사이드바 끝  -->
 
-
+<!-- 모임 복붙 시작 -->
 <div class="page-wrapper">
 <div class="content container-fluid">
 
@@ -340,60 +342,62 @@
 </label>
 </div>
 </form>
-<button type="submit" class="btn w-100 btn-primary">적용</button>
+<button type="submit" id="applyBtn" class="btn w-100 btn-primary">적용</button>
 <button type="reset" class="btn w-100 btn-grey">취소</button>
 </div>
 </div>
 </li>
 <li>
     <!-- 카테고리 시작 -->
+
 <div class="multipleSelection">
 <div class="selectbox">
 <p class="mb-0"><i data-feather="bookmark" class="me-1 select-icon"></i>카테고리</p>
 <span class="down-icon"><i data-feather="chevron-down"></i></span>
 </div>
 <div id="checkboxes">
-<form action="#">
+
+<form id="categoryForm" action="#">
 <p class="checkbox-title">카테고리</p>
 <div class="form-custom">
 <input type="text" class="form-control bg-grey" placeholder="카테고리 검색">
 </div>
 <div class="selectbox-cont">
-<label class="custom_check w-100">
-    <input type="checkbox" name="category">
+  <label class="custom_check w-100">
+    <input type="checkbox" name="category" ${ao.categoryNo == 1 ? 'checked' : ''}>
     <span class="checkmark"></span> 교육/어학
-    </label>
+  </label>
 <label class="custom_check w-100">
-<input type="checkbox" name="category">
+<input type="checkbox" name="category" ${ao.categoryNo == 2 ? 'checked' : ''}>
 <span class="checkmark"></span> 취업/자격증
 </label>
 <label class="custom_check w-100">
-<input type="checkbox" name="category">
+<input type="checkbox" name="category" ${ao.categoryNo == 3 ? 'checked' : ''}>
 <span class="checkmark"></span> 여행
 </label>
 <label class="custom_check w-100">
-<input type="checkbox" name="category">
+<input type="checkbox" name="category" ${ao.categoryNo == 4 ? 'checked' : ''}>
 <span class="checkmark"></span> 스포츠/운동
 </label>
 <label class="custom_check w-100">
-<input type="checkbox" name="category">
+<input type="checkbox" name="category" ${ao.categoryNo == 5 ? 'checked' : ''}>
 <span class="checkmark"></span> 요리/음식
 </label>
 <label class="custom_check w-100">
-    <input type="checkbox" name="category">
+   <input type="checkbox" name="category" ${ao.categoryNo == 6 ? 'checked' : ''}>
     <span class="checkmark"></span> 문화/예술
     </label>
     <label class="custom_check w-100">
-        <input type="checkbox" name="category">
+        <input type="checkbox" name="category" ${ao.categoryNo == 7 ? 'checked' : ''}>
         <span class="checkmark"></span> 영화/음악
         </label>
                 <label class="custom_check w-100">
-                    <input type="checkbox" name="category">
+                     <input type="checkbox" name="category" ${ao.categoryNo == 8 ? 'checked' : ''}>
                     <span class="checkmark"></span> 기타
-                    </label>
+                    </label>   
 </div>
 <!-- 카테고리 끝 -->
-<button type="submit" class="btn w-100 btn-primary">적용</button>
+<button type="submit" class="btn w-100 btn-primary" onclick="selectCategory();">적용</button>
 <button type="reset" class="btn w-100 btn-grey">취소</button>
 </form>
 </div>
@@ -401,7 +405,6 @@
 </li>
 <li>
 <div class="report-btn">
-
 </div>
 </li>
 </ul>
@@ -526,7 +529,7 @@
 </thead>
 <c:forEach var="off" items="${list}">
 <tbody>
-<tr>
+<tr class="group-meeting" data-category="${off.categoryNo}">
 <td>
 <label class="custom_check">
 <input type="checkbox" name="invoice">
@@ -567,11 +570,42 @@
 </div>
 </div>
 </div>
+<script>
+  // Function to handle category selection and filtering
+  function selectCategory() {
+    // Get the selected category checkboxes
+    const checkboxes = document.querySelectorAll('input[name="category"]:checked');
+    const selectedCategories = Array.from(checkboxes).map((checkbox) => checkbox.value);
+
+    // Filter the group meetings based on the selected categories
+    const groupMeetings = document.querySelectorAll('.group-meeting');
+
+    groupMeetings.forEach((meeting) => {
+      const category = meeting.dataset.category;
+
+      // If the category is in the selected categories, display the meeting; otherwise, hide it
+      if (selectedCategories.includes(category)) {
+        meeting.style.display = 'block';
+      } else {
+        meeting.style.display = 'none';
+      }
+    });
+  }
+
+  // Event listener for the form submit button
+  const applyBtn = document.getElementById('applyBtn');
+  applyBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    selectCategory();
+  });
+</script>
+
+</div>
 </div>
 </div>
 </div>
 
-</div>
+<!-- 모임 복붙 끝  -->
 
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
