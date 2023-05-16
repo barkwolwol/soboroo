@@ -30,13 +30,13 @@
 <div class="header header-one">
 
 <div class="header-left header-left-one">
-<a href="index.html" class="logo">
+<a href="adminHome.ad" class="logo">
 <img src="${pageContext.request.contextPath}/resources/admin/img/usermain.jpg" alt="Logo">
 </a>
-<a href="index.html" class="white-logo">
+<a href="adminHome.ad" class="white-logo">
 <img src="${pageContext.request.contextPath}/resources/admin/img/logo-white.png" alt="Logo">
 </a>
-<a href="index.html" class="logo logo-small">
+<a href="adminHome.ad" class="logo logo-small">
 <img src="${pageContext.request.contextPath}/resources/admin/img/logo-small.png" alt="Logo" width="30" height="30">
 </a>
 </div>
@@ -183,7 +183,7 @@
                             <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
-                            <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
+                            <a href="memberInfo.ad"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="memberInfo.ad">회원 관리</a></li>
@@ -198,20 +198,20 @@
                                 <li class="submenu" align="left">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 일반 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 일반 / 정기</a></li>
-                                        <li><a href="onlinegoal.ad">온라인 목표 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 목표 / 단위별</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인 / 반짝</a></li>
+                                        <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                        <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li>
                                     </ul>
                                
                                 <li class="submenu">
                                     <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 일반 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 일반 / 정기</a></li>
-                                        <li><a href="offlinegoal.ad">오프라인 목표 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 목표 / 단위별</a></li>
+                                        <li><a href="offlineone.ad">오프라인 / 반짝</a></li>
+                                        <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li>
                                     </ul>
                          
                             </ul>
@@ -266,7 +266,7 @@
 <ul class="app-listing">
 
 <li>
-<c:forEach var="off" items="${list}">
+
 <div class="multipleSelection">
 <div class="selectbox">
 <p class="mb-0"><i data-feather="calendar" class="me-1 select-icon"></i>날짜 조회</p>
@@ -279,12 +279,12 @@
 <div class="selectbox-cont selectbox-cont-one h-auto">
 <div class="date-picker">
 <div class="form-custom cal-icon">
-<input class="form-control datetimepicker" type="text" placeholder="${off.startDate}">
+<input class="form-control datetimepicker" type="text" placeholder="${ao.startDate}">
 </div>
 </div>
 <div class="date-picker pe-0">
 <div class="form-custom cal-icon">
-<input class="form-control datetimepicker" type="text" placeholder="${off.endDate}">
+<input class="form-control datetimepicker" type="text" placeholder="${ao.endDate}">
 </div>
 </div>
 <div class="date-list">
@@ -410,6 +410,7 @@
 </div>
 </div>
 
+
 <div class="card invoices-tabs-card">
 <div class="card-body card-body pt-0 pb-0">
 <div class="invoices-main-tabs">
@@ -437,17 +438,19 @@
 <div class="row">
 <div class="col-xl-3 col-sm-6 col-12">
 <div class="card inovices-card">
+<c:forEach var="r" items="${rlist}">
 <div class="card-body">
 <div class="inovices-widget-header">
+
 <span class="inovices-widget-icon">
-    <img src="${pageContext.request.contextPath}/resources/admin/img/category/blog-6.jpg" alt="" style="width: 35%;">
+    <img src="${pageContext.request.contextPath}/resources/admin/img/category/blog-6.jpg" alt="" style="width:35%;">
 </span>
 <div class="inovices-dash-count">
-<div class="inovices-amount">${off.max }</div>
+<div class="inovices-amount" style="font-size:15px">${r.title}</div>
 </div>
 </div>
 
-<p class="inovices-all" style="margin-left: 15px;">모임멤버<span></span></p>
+<p class="inovices-all" style="margin-left: 10px;">최근생성모임<span></span></p>
 </div>
 </div>
 </div>
@@ -459,25 +462,10 @@
 <img src="${pageContext.request.contextPath}/resources/admin/img/category/blog-4.jpg" alt="" style="width: 35%;">
 </span>
 <div class="inovices-dash-count">
-<div class="inovices-amount">${off.content}</div>
+<div class="inovices-amount" style="font-size:15px">${r.max}</div>
 </div>
 </div>
-<p class="inovices-all">모임 상세내용<span></span></p>
-</div>
-</div>
-</div>
-<div class="col-xl-3 col-sm-6 col-12">
-<div class="card inovices-card">
-<div class="card-body">
-<div class="inovices-widget-header">
-<span class="inovices-widget-icon">
-<img src="${pageContext.request.contextPath}/resources/admin/img/category/blog-4.jpg" alt="" style="width: 35%;">
-</span>
-<div class="inovices-dash-count">
-<div class="inovices-amount">$2,05,545</div>
-</div>
-</div>
-<p class="inovices-all">Unpaid Invoices <span>70</span></p>
+<p class="inovices-all">최근생성 모임정원수<span></span></p>
 </div>
 </div>
 </div>
@@ -489,10 +477,25 @@
 <img src="${pageContext.request.contextPath}/resources/admin/img/category/blog-4.jpg" alt="" style="width: 35%;">
 </span>
 <div class="inovices-dash-count">
-<div class="inovices-amount">$8,8,797</div>
+<div class="inovices-amount" style="font-size:15px">${r.categoryTitle}</div>
 </div>
 </div>
-<p class="inovices-all">Cancelled Invoices <span>80</span></p>
+<p class="inovices-all">최근생성모임 카테고리<span></span></p>
+</div>
+</div>
+</div>
+<div class="col-xl-3 col-sm-6 col-12">
+<div class="card inovices-card">
+<div class="card-body">
+<div class="inovices-widget-header">
+<span class="inovices-widget-icon">
+<img src="${r.memImg }" alt="" style="width:45px">
+</span>
+<div class="inovices-dash-count">
+<div class="inovices-amount" style="font-size:15px">${r.name}</div>
+</div>
+</div>
+<p class="inovices-all">최근생성모임 개설자<span></span></p>
 </div>
 </div>
 </div>
@@ -501,16 +504,19 @@
 <div class="col-sm-12">
 <div class="card card-table">
 <div class="card-body">
+</c:forEach>
 <div class="table-responsive">
 <table class="table table-stripped table-hover datatable">
 <thead class="thead-light">
 <tr>
 <th>회원 ID</th>
 <th>개설모임명</th>
-<th>모임 간단소개</th>
 <th>카테고리</th>
 <th>모임 등록일자</th>
+<th>모임 시작일자</th>
+<th>모임 종료일자</th>
 <th>모임 개설자</th>
+<th>정원</th>
 <th>조회수</th>
 <th>모임 해시태그</th>
 <th>모임신고여부</th>
@@ -518,7 +524,7 @@
 <th class="text-end">Action</th>
 </tr>
 </thead>
-
+<c:forEach var="off" items="${list}">
 <tbody>
 <tr>
 <td>
@@ -526,19 +532,21 @@
 <input type="checkbox" name="invoice">
 <span class="checkmark"></span>
 </label>
-<a href="view-invoice.html" class="invoice-link">${off.memEmail }</a>
+<a href="#" class="invoice-link">${off.memEmail }</a>
 </td>
 <td>${off.title }</td>
-<td>${off.simple }</td>
 <td><span class="badge bg-success-light">${off.categoryTitle }</span></td>
 <td>${off.enrollDate }</td>
+<td>${off.startDate }</td>
+<td>${off.endDate }</td>
 <td>
  <h2 class="table-avatar">
 <a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="${off.memImg}" alt="User Image"> ${off.memNickname }</a>
 </h2>
 </td>
+<td>${off.max }명</td>
 <td class="text-primary">${off.count }</td>
-<td>#${off.hashTag }</td>
+<td>${off.hashTag }</td>
 <td>${off.repNY }</td>
 <td>${off.address} ${off.addressDetail }</td>
 <td class="text-end">
@@ -550,7 +558,6 @@
 </div>
 </td>
 </tr>
-
 </td>
 </tr>
 </c:forEach>

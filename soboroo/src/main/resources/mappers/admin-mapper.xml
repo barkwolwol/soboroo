@@ -268,8 +268,8 @@
 	
 	<select id="selectList" resultMap="adminOffResultSet">
 	select
-		       NO
-		     , TITLE
+
+		       TITLE
 		     , ID
 		     , NAME
 		     , EMAIL
@@ -314,5 +314,67 @@
 			  from OFFLINE_GROUP_ONCE
 			 where status = 'Y'
 		</select>
+		
+	<select id="selectOffList" resultMap="adminOffResultSet">
+	select
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , ENROLL_DATE
+		     , START_DATE
+		     , END_DATE
+		     , START_ENTER
+		     , END_ENTER
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+			 , EVENT_PASSWORD
+			 , HASH_TAG
+			 , URL
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , CATEGORY_NO
+			 , MEM_NO
+			 , TABLE_NO
+			 , ATTEND_PASSWORD
+			 , COUNT
+             , category_title
+             , mem_email
+             , mem_img
+             , mem_nickname
+             , rep_ny
+		  from OFFLINE_GROUP_ONCE
+          join category using(category_no)
+          join member using(mem_no)
+		  where status = 'Y' AND no = #{no}
+		 order
+		    by NO asc
+	</select>
+	
+	<select id="selectRecentList"  resultMap="adminOffResultSet">
+	select title,max,category_title,mem_img,id,name
+            from(
+            select   
+		      TITLE
+		     , ID
+		     , NAME
+			 , MAX
+             , category_title
+             , mem_img
+              from OFFLINE_GROUP_ONCE
+              join category using(category_no)
+              join member using(mem_no) 
+              order 
+                    by enroll_date desc
+             )
+             where rownum = 1
+	
+	</select>	
 
 </mapper>

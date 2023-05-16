@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 
 
-
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -137,6 +136,15 @@ public class AdminDao {
 	public int selectListCount(SqlSessionTemplate sqlSession) {
 		
 		return sqlSession.selectOne("adminMapper.selectListCount");
+	}
+	
+	public AdminOfflineGroupOnce selectOffList(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.selectOne("adminMapper.selectOffList",no);
+	}
+	
+	
+	public ArrayList<AdminOfflineGroupOnce> selectRecentList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectRecentList", pi);
 	}
 
 }

@@ -169,25 +169,45 @@ public class AdminController {
 			return "admin/onlineDdayInfo";
 		}
 		
-		
+		/*
+		 * // 관리자 회원 정보 수정 페이지 호출
+		 * 
+		 * @RequestMapping("updateInfo.ad") public ModelAndView
+		 * updateMemberInfo(@RequestParam(value = "memNo") int memNo, ModelAndView mv) {
+		 * 
+		 * AdminMember m = aService.selectUpdateInfo(memNo);
+		 * 
+		 * mv.addObject("m", m).setViewName("admin/updateMemberInfo");
+		 * 
+		 * return mv; }
+		 */
 		
 	
 		// 관리자 오프라인 반짝 모임 관리 페이지 호출
 		@RequestMapping("offlineone.ad")
-		public ModelAndView selectList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+		public ModelAndView selectList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
+									   @RequestParam(value="no", defaultValue = "2") int no, ModelAndView mv) {
 			
 			int listCount = aService.selectListCount();
 			
 			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 6);
-			
+						
 			ArrayList<AdminOfflineGroupOnce> list = aService.selectList(pi);
 			
+			ArrayList<AdminOfflineGroupOnce> rlist = aService.selectRecentList(pi);
+			
+			AdminOfflineGroupOnce ao = aService.selectOffList(no);
+						
 			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/offlineOneInfo");
 			
-			System.out.println(list);
+			mv.addObject("ao", ao).setViewName("admin/offlineOneInfo");
 			
+			mv.addObject("pi", pi).addObject("rlist", rlist).setViewName("admin/offlineOneInfo");
+			
+			System.out.println(rlist);
+					
 			return mv;
-			
+					
 		}
 		
 		// 관리자 오프라인 정기 모임 관리 페이지 노출

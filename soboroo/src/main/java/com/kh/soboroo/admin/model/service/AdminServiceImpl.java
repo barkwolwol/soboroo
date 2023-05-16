@@ -99,6 +99,18 @@ public class AdminServiceImpl implements AdminService {
 		return aDao.selectListCount(sqlSession);
 	}
 
+	@Override
+	public AdminOfflineGroupOnce selectOffList(int no) {
+
+		return aDao.selectOffList(sqlSession,no);
+	}
+
+	@Override
+	public ArrayList<AdminOfflineGroupOnce> selectRecentList(PageInfo pi) {
+		
+		return aDao.selectRecentList(sqlSession,pi);
+	}
+
 
 
 	

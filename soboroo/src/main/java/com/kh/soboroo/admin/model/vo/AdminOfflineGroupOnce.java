@@ -1,7 +1,6 @@
 package com.kh.soboroo.admin.model.vo;
 
 import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

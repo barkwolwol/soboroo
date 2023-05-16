@@ -59,5 +59,8 @@ public interface AdminService {
 	
 	int selectListCount();
 
+	AdminOfflineGroupOnce selectOffList(int no);
 	
+	// 모임 리스트에서 최근 모임 조회시
+	ArrayList<AdminOfflineGroupOnce> selectRecentList(PageInfo pi);
 }
