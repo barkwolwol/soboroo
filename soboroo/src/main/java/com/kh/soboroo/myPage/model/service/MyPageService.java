@@ -57,4 +57,6 @@ public interface MyPageService {
 	
 	int insertAlert(Alert a);
 	
+	String findNickname(int memNo);
+	
 }

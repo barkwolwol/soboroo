@@ -129,5 +129,10 @@ public class MyPageServiceImpl implements MyPageService {
 		return myDao.insertAlert(sqlSession, a);
 	}
 
+	@Override
+	public String findNickname(int memNo) {
+		return myDao.findNickname(sqlSession, memNo);
+	}
+
 
 }

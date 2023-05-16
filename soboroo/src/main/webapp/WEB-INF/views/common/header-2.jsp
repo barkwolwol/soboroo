@@ -131,28 +131,47 @@
 	                      
 	                      <li class="nav-item"><a class="nav-link" href="enroll.no">공지사항</a></li>
 	                      
-	                      <li class="nav-item dropdown">
-							  <a href="myCalender.do" class="nav-link dropdown-toggle"
-								  data-toggle="dropdown">마이페이지 <i class="fa fa-angle-down"></i></a>
-							  <ul class="dropdown-menu" role="menu">
-								  <li><a href="myCalender.my">나의 일정</a></li>
-								  <li><a href="updateInfo.my">개인정보 수정</a></li>
-								  <li><a href="myGroup.my">참여 소모임 조회</a></li>
-								  <!-- <li><a href="myBoard.my">작성 게시글 조회</a></li> -->
-								  <li class="dropdown-submenu">
-									  <a href="#" class="dropdown-toggle" data-toggle="dropdown">작성 게시글 조회</a>
-									  <ul class="dropdown-menu">
-										  <li><a href="myBoard.my">소모임 게시글 조회</a></li>
-										  <li><a href="mybReply.my">소모임 댓글 조회</a></li>
-										  <li><a href="myCboard.my">커뮤니티 게시글 조회</a></li>
-										  <li><a href="myCreply.my">커뮤니티 댓글 조회</a></li>
-									  </ul>
-								  </li>
-							  </ul>
-	
-						  </li>
-	
-	                    </ul>
+	                      	<c:if test="${not empty loginUser }">
+                      <li class="nav-item dropdown">
+                        <a href="myCalender.do" class="nav-link dropdown-toggle" data-toggle="dropdown">마이페이지 <i
+                            class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="selectMySchedule.my">나의 일정</a></li>
+                          <li><a href="myAlert.my">나의 알림</a></li>
+                          <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">나의 활동 내역</a>
+                            <ul class="dropdown-menu">
+                              <li><a href="selectMyGroup.my">참여 소모임 조회</a></li>
+                              <li><a href="groupBoardList.my">소모임 게시글 조회</a></li>
+                              <li><a href="groupBoardReplyList.my">소모임 댓글 조회</a></li>
+                              <li><a href="communityList.my">커뮤니티 게시글 조회</a></li>
+                              <li><a href="communityReplyList.my">커뮤니티 댓글 조회</a></li>
+                            </ul>
+                          <li><a href="updateInfo.my">개인정보 수정</a></li>
+                    </ul>
+                      </li>
+						<li class="nav-item">
+						  <i style="margin-bottom:10px;" id="bellIcon" class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
+						    data-toggle="popover" title="최신 알림" data-html="true"
+						    data-content="
+						    			  <div>XXX님이 회원님의 소모임에 참가했습니다.</div>
+						                  <div>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</div>
+						                  <div>XXX님이 회원님의 소모임 게시글에 댓글을 남겼습니다.</div>
+						                  <div>XXX님의 소모임에 참여되었습니다.</div>
+						                  <div>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</div>
+						                  <a href='myAlert.my'>더보기</a>" data-placement="bottom"></i>
+						  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"></span>
+						</li>
+						</c:if>
+						<div id="msgStack"></div>
+                    </ul>
+						
+				<script>
+				  $(function() {
+				    $('[data-toggle="popover"]').popover();
+				  });
+				</script>
+
 	                    <ul class="nav navbar-nav ml-auto align-items-center">
    	                      <li class="header-get-a-quote">
 	                          <a class="btn btn-primary" href="login.my">로그인</a>

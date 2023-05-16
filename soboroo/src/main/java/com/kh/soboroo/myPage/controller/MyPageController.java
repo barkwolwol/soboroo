@@ -3,6 +3,8 @@ package com.kh.soboroo.myPage.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -219,7 +221,6 @@ public class MyPageController {
 	    Member loginUser = (Member)session.getAttribute("loginUser");
 	    
 	    int listCount = myService.selectGroupBoardListCount(loginUser);
-	    
 	    PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 	    ArrayList<Object> list = myService.selectTestList(loginUser, pi);
 	    
@@ -326,7 +327,6 @@ public class MyPageController {
 	    Alert a = new Alert();
 	    a.setMemNo(loginUser.getMemNo());
 	    a.setAlertContent(alertData.getAlertContent());
-
 	    int result = myService.insertAlert(a);
 	    if (result > 0) {
 			/*
@@ -340,5 +340,16 @@ public class MyPageController {
 	    }
 	    return "redirect:/";
 	}
+	
+	@RequestMapping("findNick.my")
+	@ResponseBody // JSON 형식으로 응답을 반환하기 위해 추가
+	public Map<String, String> findNickname(@RequestParam(value = "memNo") int memNo) {
+		System.out.println("memNo" + memNo);
+	    Map<String, String> response = new HashMap<>();
+	    String memNickname = myService.findNickname(memNo);
+	    response.put("memNickname", memNickname);
+	    return response;
+	}
+
 
 	}
