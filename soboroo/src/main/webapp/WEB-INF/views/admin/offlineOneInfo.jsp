@@ -357,7 +357,7 @@
 </div>
 <div id="checkboxes">
 
-<form id="categoryForm" action="#">
+<form id="categoryForm" action="categoryForm.ad">
 <p class="checkbox-title">카테고리</p>
 <div class="form-custom">
 <input type="text" class="form-control bg-grey" placeholder="카테고리 검색">
@@ -571,33 +571,31 @@
 </div>
 </div>
 <script>
-  // Function to handle category selection and filtering
-  function selectCategory() {
-    // Get the selected category checkboxes
-    const checkboxes = document.querySelectorAll('input[name="category"]:checked');
-    const selectedCategories = Array.from(checkboxes).map((checkbox) => checkbox.value);
+function selectCategory() {
+	  var selectedCategories = [];
 
-    // Filter the group meetings based on the selected categories
-    const groupMeetings = document.querySelectorAll('.group-meeting');
+	  // 체크된 카테고리를 배열에 추가
+	  $("input[name='category']:checked").each(function() {
+	    selectedCategories.push($(this).val());
+	  });
 
-    groupMeetings.forEach((meeting) => {
-      const category = meeting.dataset.category;
+	  // AJAX 요청을 보내서 선택된 카테고리에 해당하는 모임 리스트를 가져옴
+	  $.ajax({
+	    url: "categoryForm.ad", // 모임 리스트를 가져올 API 엔드포인트
+	    method: "GET",
+	    data: { categories: selectedCategories }, // 선택된 카테고리를 데이터로 전달
+	    success: function(response) {
+	      // 모임 리스트를 성공적으로 받아왔을 때의 처리 로직
+	      // response 변수에 서버에서 받은 데이터가 담겨있음
+	      console.log(response); // 받아온 데이터를 콘솔에 출력하거나 원하는 처리를 수행
+	    },
+	    error: function(xhr, status, error) {
+	      // AJAX 요청이 실패했을 때의 처리 로직
+	      console.log(error); // 에러 메시지를 콘솔에 출력하거나 원하는 처리를 수행
+	    }
+	  });
+	}
 
-      // If the category is in the selected categories, display the meeting; otherwise, hide it
-      if (selectedCategories.includes(category)) {
-        meeting.style.display = 'block';
-      } else {
-        meeting.style.display = 'none';
-      }
-    });
-  }
-
-  // Event listener for the form submit button
-  const applyBtn = document.getElementById('applyBtn');
-  applyBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    selectCategory();
-  });
 </script>
 
 </div>
