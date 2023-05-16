@@ -37,7 +37,7 @@
 		
 			<div class="content_area">
 			
-				<form id="" action="insertGroupOne.off" method="POST" encType="multipart/form-data" data-event_method_type="advance" data-open_type="open">
+				<form id="" action="insertGroupOne.go" method="POST" encType="multipart/form-data" data-event_method_type="advance" data-open_type="open">
 					<input type="hidden" name="id" value="${ loginUser.memNickname }">
 					<input type="hidden" name="memNo" value="${ loginUser.memNo }">
 					<input type="hidden" name="tableNo" value="2">
@@ -382,7 +382,7 @@
 									<div class="person_apply_wrap">
 										<div class="form_row over_capacity" data-input_type="radio">
 											<div class="group_capacity">
-												<input type="text" name="max" class="capacity" title="모집 정원 입력" placeholder="모집 정원 입력" maxlength="7" value="">
+												<input type="number" name="max" class="capacity" title="모집 정원 입력" placeholder="모집 정원 입력" maxlength="7" value="">
 											</div>
 											<br>
 											<br>
@@ -424,6 +424,8 @@
 							minDate: "today",
 							dateFormat: "Y/m/d",
 							local: 'ko'
+							// enableTime : true,
+							// time_24hr : true
 						});
 
 						applyDate.flatpickr({
@@ -431,12 +433,9 @@
 							minDate: "today",
 							dateFormat: "Y/m/d",
 							local: 'ko'
+							// enableTime : true,
+							// time_24hr : true
 						});
-					</script>
-
-					<script>
-						
-
 					</script>
 
 					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

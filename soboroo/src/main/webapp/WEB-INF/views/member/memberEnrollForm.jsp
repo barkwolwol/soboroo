@@ -16,7 +16,7 @@
 	
 	<div id="wrap">
 		<div class="popup_area">
-            <h2 style="color: white;">회원가입</h2>
+            <h2 style="color: white;">추가정보</h2>
             <br>
 
             <form action="insert.me" method="post" onsubmit="" id="enrollForm">

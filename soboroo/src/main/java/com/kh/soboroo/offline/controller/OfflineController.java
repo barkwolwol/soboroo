@@ -52,7 +52,7 @@ public class OfflineController {
 	}
 
 	// 오프라인 반짝모임 생성 페이지 이동
-	@RequestMapping("enrollGroupOne.off")
+	@RequestMapping("enrollGroupOne.go")
 	public String enrollOfflineOne() {
 		return "offline/enrollOfflineOne";
 	}
@@ -64,7 +64,7 @@ public class OfflineController {
 	 * @param mv
 	 * @return
 	 */
-	@RequestMapping("listGroupOne.off")
+	@RequestMapping("listGroupOne.go")
 	public ModelAndView selectList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
 		
 		int listCount = offService.selectListCount();
@@ -90,11 +90,12 @@ public class OfflineController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("insertGroupOne.off")
+	@RequestMapping("insertGroupOne.go")
 	public String insertGroupOne(@RequestParam(value = "tag") String tag,
 								 @RequestParam(value = "date") String date,	
 								 @RequestParam(value = "enterDate") String enterDate,
 			OfflineGroupOnce ogo, Upload u, MultipartFile upfile, HttpSession session, Model model) {
+		
 		
 		if(date.length() < 11) {
 			ogo.setStartDate(date.substring(0, 10));
@@ -125,7 +126,7 @@ public class OfflineController {
 		
 		if(result > 0) { // 성공 => 게시글 리스트 페이지 url 재요청 ("list.bo")
 			session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
-			return "redirect:listGroupOne.off";
+			return "redirect:listGroupOne.go?$tableNo=2";
 			
 		}else { // 실패 => 에러페이지 포워딩
 			model.addAttribute("errorMsg", "게시글 등록 실패!");
@@ -134,7 +135,7 @@ public class OfflineController {
 		
 	}
 	
-	@RequestMapping("detail.off")
+	@RequestMapping("detail.go")
 	public ModelAndView selectGroupOne(int no, Model model, ModelAndView mv) {
 		int result = offService.increaseCount(no);
 		
