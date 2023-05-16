@@ -158,35 +158,45 @@
 											<!-- <br></br> -->
 											<table id="boardList" class="table table-hover"
 												align="center">
-												<thead>
+												<thead align="center">
 													<tr>
-														<th>내용</th>
-														<th>날짜</th>
+														<th>알림번호</th>
+														<th>알림내용</th>
+														<th>알림날짜</th>
 													</tr>
 												</thead>
-												<tbody>
-													<tr>
-														<td>XXX님이 회원님의 소모임에 참가했습니다.</td>
-														<td>2023.03.17</td>
-													</tr>
-													<tr>
-														<td>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</td>
-														<td>2023.03.16</td>
-													</tr>
-													<tr>
-														<td>XXX님이 회원님의 소모임 게시글에 댓글을 남겼습니다.</td>
-														<td>2023.03.15</td>
-													</tr>
-													<tr>
-														<td>XXX님의 소모임에 참여되었습니다.</td>
-														<td>2023.03.14</td>
-													</tr>
-													<tr>
-														<td>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</td>
-														<td>2023.03.14</td>
-													</tr>
+												<tbody align="center">
+													<c:choose>
+														<c:when test="${empty list }">
+															<tr>
+																<td colspan="3" align="center"
+																	style="pointer-events: none;">알림 내역이 없습니다.</td>
+															</tr>
+														</c:when>
+														<c:otherwise>
+															<c:forEach var="g" items="${list}">
+																<tr>
+																	<td class="bno">${g.idNo }</td> 
+																	<td>${g.alertContent }</td>
+																	<td>${g.alertDate }</td>
+																</tr>
+															</c:forEach>
+														</c:otherwise>
+													</c:choose>
 												</tbody>
 											</table>
+											
+											
+									<!-- 		<script>
+											
+												$(function() {
+													$("#boardList td").click(function() {
+														location.href = 'detail.off?tableNo='+ ${list.tableNo}
+																		+ '&no=' + ${list.no};
+													})
+												})
+											</script> -->
+											
 											<input type="button" class="btn btn-primary"
 												onclick="deleteAlert();" value="삭제하기">
 
@@ -261,7 +271,45 @@
 								</div>
 								<!-- 3rd post end -->
 
+
 								<nav class="paging" aria-label="Page navigation example"
+									style="margin: auto;">
+									<ul class="pagination"
+										style="padding-left: 270px; padding-top: 10px;">
+
+<c:choose>
+  <c:when test="${pi.maxPage == 0}">
+    <li class="page-item disabled"><a class="page-link" href="">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="">1</a></li>
+    <li class="page-item disabled"><a class="page-link" href="">Next</a></li>
+  </c:when>
+  <c:otherwise>
+    <c:choose>
+      <c:when test="${pi.currentPage eq 1}">
+        <li class="page-item disabled"><a class="page-link" href="">Previous</a></li>
+      </c:when>
+      <c:otherwise>
+        <li class="page-item"><a class="page-link" href="selectAlertList.my?cpage=${pi.currentPage - 1}">Previous</a></li>
+      </c:otherwise>
+    </c:choose>
+  
+    <c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
+      <li class="page-item"><a class="page-link" href="selectAlertList.my?cpage=${p}">${p}</a></li>
+    </c:forEach>
+  
+    <c:choose>
+      <c:when test="${pi.currentPage eq pi.maxPage}">
+        <li class="page-item disabled"><a class="page-link" href="">Next</a></li>
+      </c:when>
+      <c:otherwise>
+        <li class="page-item"><a class="page-link" href="selectAlertList.my?cpage=${pi.currentPage + 1}">Next</a></li>
+      </c:otherwise>
+    </c:choose>
+  </c:otherwise>
+</c:choose>
+</ul>
+</nav>
+<!-- 								<nav class="paging" aria-label="Page navigation example"
 									style="margin: auto;">
 									<ul class="pagination"
 										style="padding-left: 270px; padding-top: 10px;">
@@ -273,7 +321,7 @@
 										<li class="page-item"><a class="page-link" href="#"><i
 												class="fas fa-angle-double-right"></i></a></li>
 									</ul>
-								</nav>
+								</nav> -->
 
 								<!-- </div> -->
 								<!-- Content Col end -->
@@ -283,11 +331,11 @@
 
 						</div>
 						<!-- Container end -->
+</div></div></div>
 		</section>
 		<!-- Main container end -->
 
 		<jsp:include page="../common/footer.jsp" />
-
 	</div>
 	<!-- Body inner end -->
 </body>

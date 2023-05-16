@@ -205,6 +205,22 @@ public class MyPageController {
 	        return "redirect:update.my";
 	    }
 	}
+	
+	@RequestMapping("selectAlertList.my")
+	public ModelAndView selectAlertList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int listCount = myService.selectAlertListCount(loginUser);
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		
+		ArrayList<Alert> list = myService.selectAlertList(loginUser, pi);
+		
+		System.out.println("알람"+list);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/myAlert");
+		return mv;
+	}
 
 	
 	@RequestMapping("communityList.my")

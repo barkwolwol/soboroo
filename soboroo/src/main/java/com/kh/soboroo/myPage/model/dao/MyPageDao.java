@@ -120,5 +120,17 @@ public class MyPageDao {
 		return sqlSession.selectOne("memberMapper.findNickname", memNo);
 	}
 	
+	public int selectAlertListCount(SqlSessionTemplate sqlSession,Member loginUser) {
+		return sqlSession.selectOne("myPageMapper.selectAlertListCount", loginUser);
+	}
+	
+	public ArrayList<Alert> selectAlertList(SqlSessionTemplate sqlSession,Member loginUser, PageInfo pi){
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectAlertList", loginUser, rowBounds);
+	
+	}
 
 }

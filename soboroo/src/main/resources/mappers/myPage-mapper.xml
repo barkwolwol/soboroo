@@ -273,6 +273,24 @@ SELECT NO as "no", TITLE as "title", start_date, end_date
      	  #{memNo},
      	  #{alertType}
      	  )  
-     
      </insert>
+     <select id="selectAlertListCount" resultType="_int">
+     	select
+     		   count(*)
+     	  from alert
+     	 where mem_no = #{memNo} 
+     	   and alert_read_ny = 'N'	   
+     </select>
+     <select id="selectAlertList" resultMap="alertResultSet">
+     	select 
+     		   id_no,
+     		   group_no,
+     		   table_no,
+     		   alert_content,
+     		   alert_date
+     	  from alert
+     	 where mem_no = #{memNo}
+     	   and alert_read_ny = 'N' 
+     	 order by alert_date desc       
+     </select>
 </mapper>

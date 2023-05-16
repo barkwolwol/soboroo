@@ -77,7 +77,15 @@ public class MyPageServiceImpl implements MyPageService {
 		return myDao.selectGroupBoardListCount(sqlSession, loginUser);
 	}
 	
+	@Override
+	public int selectAlertListCount(Member loginUser) {
+		return myDao.selectAlertListCount(sqlSession, loginUser);
+	}
 
+	@Override
+	public ArrayList<Alert> selectAlertList(Member loginUser, PageInfo pi) {
+		return myDao.selectAlertList(sqlSession, loginUser, pi);
+	}
 	@Override
 	public ArrayList<Board> selectList(Member loginUser, PageInfo pi) {
 		
@@ -133,6 +141,8 @@ public class MyPageServiceImpl implements MyPageService {
 	public String findNickname(int memNo) {
 		return myDao.findNickname(sqlSession, memNo);
 	}
+
+	
 
 
 }

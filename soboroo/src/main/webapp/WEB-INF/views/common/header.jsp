@@ -280,7 +280,7 @@ $(function() {
                             class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="selectMySchedule.my">나의 일정</a></li>
-                          <li><a href="myAlert.my">나의 알림</a></li>
+                          <li><a href="selectAlertList.my">나의 알림</a></li>
                           <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">나의 활동 내역</a>
                             <ul class="dropdown-menu">

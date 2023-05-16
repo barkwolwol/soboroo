@@ -33,6 +33,10 @@ public interface MyPageService {
 
 	Member loginMember(Member m);
 	
+	int selectAlertListCount(Member loginUser);
+	
+	ArrayList<Alert> selectAlertList(Member loginUser, PageInfo pi);
+	
 	int selectListCount(Member loginUser);
 	
 	int selectGroupReplyListCount(Member loginUser);
