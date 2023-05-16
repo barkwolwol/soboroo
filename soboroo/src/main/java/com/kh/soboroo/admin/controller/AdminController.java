@@ -1,6 +1,7 @@
 package com.kh.soboroo.admin.controller;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -17,10 +18,14 @@ import com.kh.soboroo.admin.model.service.AdminServiceImpl;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
+import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.member.model.service.MemberServiceImpl;
 import com.kh.soboroo.member.model.vo.Member;
+
+
+
 
 
 
@@ -31,7 +36,7 @@ public class AdminController {
 		@Autowired
 		private AdminServiceImpl aService;
 		private MemberServiceImpl mService;
-	
+		
 		
 		// 관리자 홈페이지 공지사항 
 		@RequestMapping("adminHome.ad")
@@ -163,11 +168,26 @@ public class AdminController {
 		public String onlineDdayInfo() {
 			return "admin/onlineDdayInfo";
 		}
+		
+		
+		
 	
 		// 관리자 오프라인 반짝 모임 관리 페이지 호출
 		@RequestMapping("offlineone.ad")
-		public String offlineOneInfo() {
-			return "admin/offlineOneInfo";
+		public ModelAndView selectList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+			
+			int listCount = aService.selectListCount();
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 6);
+			
+			ArrayList<AdminOfflineGroupOnce> list = aService.selectList(pi);
+			
+			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/offlineOneInfo");
+			
+			System.out.println(list);
+			
+			return mv;
+			
 		}
 		
 		// 관리자 오프라인 정기 모임 관리 페이지 노출

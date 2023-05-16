@@ -20,6 +20,7 @@
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminMember" alias="AdminMember"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminNotice" alias="AdminNotice"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminReply" alias="AdminReply"/>
+      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce" alias="AdminOfflineGroupOnce"/>
       <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineChallengeDday" alias="OfflineChallengeDday"/>
       <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineChallengeRegular" alias="OfflineChallengeRegular"/>
       <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineGroupOnce" alias="OfflineGroupOnce"/>

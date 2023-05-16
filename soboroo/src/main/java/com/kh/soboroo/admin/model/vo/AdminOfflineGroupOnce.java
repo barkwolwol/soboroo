@@ -1,4 +1,6 @@
-package com.kh.soboroo.offline.model.vo;
+package com.kh.soboroo.admin.model.vo;
+
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,13 +8,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @NoArgsConstructor		// 기본생성자
 @AllArgsConstructor		// 전체 매개변수 생성자
 @Setter					// setter 메소드
 @Getter					// getter 메소드
 @ToString				// toString 메소드
-public class OfflineGroupOnce {
-
+public class AdminOfflineGroupOnce {
+	
 	private int no;
 	private String title;
 	private String id;
@@ -20,7 +23,7 @@ public class OfflineGroupOnce {
 	private String email;
 	private String phone;
 	private String simple;
-	private String enrollDate;
+	private Date enrollDate;
 	private String modifyDate;
 	private String startDate;
 	private String endDate;
@@ -44,10 +47,9 @@ public class OfflineGroupOnce {
 	private String attendPassword;
 	private int count;
 	private String status;
-	
 	private String categoryTitle;
 	private String memEmail;
 	private String memImg;
 	private String memNickname;
-	
+
 }

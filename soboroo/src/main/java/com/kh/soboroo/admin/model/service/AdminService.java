@@ -2,7 +2,10 @@ package com.kh.soboroo.admin.model.service;
 
 import java.util.ArrayList;
 
+
+
 import com.kh.soboroo.admin.model.vo.AdminNotice;
+import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.common.model.vo.PageInfo;
@@ -49,6 +52,12 @@ public interface AdminService {
 	
 	
 	AdminMember selectUpdateInfo(int memNo);
+	
+	
+	// 오프라인 반짝모임 관리
+	ArrayList<AdminOfflineGroupOnce> selectList(PageInfo pi);
+	
+	int selectListCount();
 
 	
 }

@@ -180,7 +180,7 @@
                     <ul>
                         <li class="menu-title"><span>MENU</span></li>
                         <li>
-                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
+                            <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
                             <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
@@ -266,23 +266,25 @@
 <ul class="app-listing">
 
 <li>
+<c:forEach var="off" items="${list}">
 <div class="multipleSelection">
 <div class="selectbox">
 <p class="mb-0"><i data-feather="calendar" class="me-1 select-icon"></i>날짜 조회</p>
 <span class="down-icon"><i data-feather="chevron-down"></i></span>
 </div>
 <div id="checkboxes">
+
 <form action="#">
 <p class="checkbox-title">날짜 선택</p>
 <div class="selectbox-cont selectbox-cont-one h-auto">
 <div class="date-picker">
 <div class="form-custom cal-icon">
-<input class="form-control datetimepicker" type="text" placeholder="Form">
+<input class="form-control datetimepicker" type="text" placeholder="${off.startDate}">
 </div>
 </div>
 <div class="date-picker pe-0">
 <div class="form-custom cal-icon">
-<input class="form-control datetimepicker" type="text" placeholder="To">
+<input class="form-control datetimepicker" type="text" placeholder="${off.endDate}">
 </div>
 </div>
 <div class="date-list">
@@ -438,10 +440,10 @@
 <div class="card-body">
 <div class="inovices-widget-header">
 <span class="inovices-widget-icon">
-    <img src="${pageContext.request.contextPath}/resources/admin/img/user.jpg" alt="" style="width: 30%;">
+    <img src="${pageContext.request.contextPath}/resources/admin/img/category/blog-6.jpg" alt="" style="width: 35%;">
 </span>
 <div class="inovices-dash-count">
-<div class="inovices-amount">150명 참여중</div>
+<div class="inovices-amount">${off.max }</div>
 </div>
 </div>
 
@@ -454,13 +456,13 @@
 <div class="card-body">
 <div class="inovices-widget-header">
 <span class="inovices-widget-icon">
-<img src="${pageContext.request.contextPath}/resources/admin/img/icons/invoices-icon2.svg" alt="">
+<img src="${pageContext.request.contextPath}/resources/admin/img/category/blog-4.jpg" alt="" style="width: 35%;">
 </span>
 <div class="inovices-dash-count">
-<div class="inovices-amount">$4,5884</div>
+<div class="inovices-amount">${off.content}</div>
 </div>
 </div>
-<p class="inovices-all">Paid Invoices <span>60</span></p>
+<p class="inovices-all">모임 상세내용<span></span></p>
 </div>
 </div>
 </div>
@@ -469,7 +471,7 @@
 <div class="card-body">
 <div class="inovices-widget-header">
 <span class="inovices-widget-icon">
-<img src="${pageContext.request.contextPath}/resources/admin/img/icons/invoices-icon3.svg" alt="">
+<img src="${pageContext.request.contextPath}/resources/admin/img/category/blog-4.jpg" alt="" style="width: 35%;">
 </span>
 <div class="inovices-dash-count">
 <div class="inovices-amount">$2,05,545</div>
@@ -484,7 +486,7 @@
 <div class="card-body">
 <div class="inovices-widget-header">
 <span class="inovices-widget-icon">
-<img src="${pageContext.request.contextPath}/resources/admin/img/icons/invoices-icon4.svg" alt="">
+<img src="${pageContext.request.contextPath}/resources/admin/img/category/blog-4.jpg" alt="" style="width: 35%;">
 </span>
 <div class="inovices-dash-count">
 <div class="inovices-amount">$8,8,797</div>
@@ -505,15 +507,18 @@
 <tr>
 <th>회원 ID</th>
 <th>개설모임명</th>
+<th>모임 간단소개</th>
 <th>카테고리</th>
-<th>모임 가입날짜</th>
+<th>모임 등록일자</th>
 <th>모임 개설자</th>
 <th>조회수</th>
+<th>모임 해시태그</th>
 <th>모임신고여부</th>
-<th>모임상태</th>
+<th>모임주소(상세주소)</th>
 <th class="text-end">Action</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>
@@ -521,165 +526,34 @@
 <input type="checkbox" name="invoice">
 <span class="checkmark"></span>
 </label>
-<a href="view-invoice.html" class="invoice-link">cyj2462@naver.com</a>
+<a href="view-invoice.html" class="invoice-link">${off.memEmail }</a>
 </td>
-<td>동대문구 코딩방 모집</td>
-<td>스포츠/운동</td>
-<td>16 Mar 2022</td>
+<td>${off.title }</td>
+<td>${off.simple }</td>
+<td><span class="badge bg-success-light">${off.categoryTitle }</span></td>
+<td>${off.enrollDate }</td>
 <td>
  <h2 class="table-avatar">
-<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-04.jpg" alt="User Image"> Barbara Moore</a>
+<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="${off.memImg}" alt="User Image"> ${off.memNickname }</a>
 </h2>
 </td>
-<td class="text-primary">$1,54,220</td>
-<td>23 Mar 2022</td>
-<td><span class="badge bg-success-light">Paid</span></td>
+<td class="text-primary">${off.count }</td>
+<td>#${off.hashTag }</td>
+<td>${off.repNY }</td>
+<td>${off.address} ${off.addressDetail }</td>
 <td class="text-end">
 <div class="dropdown dropdown-action">
 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
 <div class="dropdown-menu dropdown-menu-end">
-<a class="dropdown-item" href="edit-invoice.html"><i class="far fa-edit me-2"></i>Edit</a>
-<a class="dropdown-item" href="view-invoice.html"><i class="far fa-eye me-2"></i>View</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-trash-alt me-2"></i>Delete</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-check-circle me-2"></i>Mark as sent</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-paper-plane me-2"></i>Send Invoice</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-copy me-2"></i>Clone Invoice</a>
+<a class="dropdown-item" href="listGroupOne.off"><i class="far fa-eye me-2"></i>모임리스트 보기</a>
 </div>
 </div>
 </td>
 </tr>
-<tr>
-<td>
-<label class="custom_check">
-<input type="checkbox" name="invoice">
-<span class="checkmark"></span>
-</label>
-<a href="view-invoice.html" class="invoice-link">IN093439#@10</a>
-</td>
-<td>동대문구 코딩방 모집</td>
-<td>요리/음식</td>
-<td>14 Mar 2022</td>
-<td>
-<h2 class="table-avatar">
-<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-06.jpg" alt="User Image"> Karlene Chaidez</a>
-</h2>
-</td>
-<td class="text-primary">$1,222</td>
-<td>18 Mar 2022</td>
-<td><span class="badge bg-danger-light">Overdue</span></td>
-<td class="text-end">
-<div class="dropdown dropdown-action">
-<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-<div class="dropdown-menu dropdown-menu-end">
-<a class="dropdown-item" href="edit-invoice.html"><i class="far fa-edit me-2"></i>Edit</a>
-<a class="dropdown-item" href="view-invoice.html"><i class="far fa-eye me-2"></i>View</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-trash-alt me-2"></i>Delete</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-check-circle me-2"></i>Mark as sent</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-paper-plane me-2"></i>Send Invoice</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-copy me-2"></i>Clone Invoice</a>
-</div>
-</div>
+
 </td>
 </tr>
-<tr>
-<td>
-<label class="custom_check">
-<input type="checkbox" name="invoice">
-<span class="checkmark"></span>
-</label>
-<a href="view-invoice.html" class="invoice-link">IN093439#@11</a>
-</td>
-<td>동대문구 코딩방 모집</td>
-<td>문화/예술</td>
-<td>7 Mar 2022</td>
-<td>
-<h2 class="table-avatar">
-<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-08.jpg" alt="User Image"> Russell Copeland</a>
-</h2>
-</td>
-<td class="text-primary">$3,470</td>
-<td>10 Mar 2022</td>
-<td><span class="badge bg-primary-light">Cancelled</span></td>
-<td class="text-end">
-<div class="dropdown dropdown-action">
-<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-<div class="dropdown-menu dropdown-menu-end">
-<a class="dropdown-item" href="edit-invoice.html"><i class="far fa-edit me-2"></i>Edit</a>
-<a class="dropdown-item" href="view-invoice.html"><i class="far fa-eye me-2"></i>View</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-trash-alt me-2"></i>Delete</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-check-circle me-2"></i>Mark as sent</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-paper-plane me-2"></i>Send Invoice</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-copy me-2"></i>Clone Invoice</a>
-</div>
-</div>
-</td>
-</tr>
-<tr>
-<td>
-<label class="custom_check">
-<input type="checkbox" name="invoice">
-<span class="checkmark"></span>
-</label>
-<a href="view-invoice.html" class="invoice-link">IN093439#@12</a>
-</td>
-<td>동대문구 코딩방 모집</td>
-<td>교육/어학</td>
-<td>24 Mar 2022</td>
-<td>
-<h2 class="table-avatar">
-<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-10.jpg" alt="User Image"> Joseph Collins</a>
-</h2>
-</td>
-<td class="text-primary">$8,265</td>
-<td>30 Mar 2022</td>
-<td><span class="badge bg-success-light">Paid</span></td>
-<td class="text-end">
-<div class="dropdown dropdown-action">
-<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-<div class="dropdown-menu dropdown-menu-end">
-<a class="dropdown-item" href="edit-invoice.html"><i class="far fa-edit me-2"></i>Edit</a>
-<a class="dropdown-item" href="view-invoice.html"><i class="far fa-eye me-2"></i>View</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-trash-alt me-2"></i>Delete</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-check-circle me-2"></i>Mark as sent</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-paper-plane me-2"></i>Send Invoice</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-copy me-2"></i>Clone Invoice</a>
-</div>
-</div>
-</td>
-</tr>
-<tr>
-<td>
-<label class="custom_check">
-<input type="checkbox" name="invoice">
-<span class="checkmark"></span>
-</label>
-<a href="view-invoice.html" class="invoice-link">IN093439#@13</a>
-</td>
-<td>동대문구 코딩방 모집</td>
-<td>여행</td>
-<td>17 Mar 2022</td>
-<td>
-<h2 class="table-avatar">
-<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/avatar-11.jpg" alt="User Image"> Jennifer Floyd</a>
-</h2>
-</td>
-<td class="text-primary">$5,200</td>
-<td>20 Mar 2022</td>
-<td><span class="badge bg-danger-light">Overdue</span></td>
-<td class="text-end">
-<div class="dropdown dropdown-action">
-<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-<div class="dropdown-menu dropdown-menu-end">
-<a class="dropdown-item" href="edit-invoice.html"><i class="far fa-edit me-2"></i>Edit</a>
-<a class="dropdown-item" href="view-invoice.html"><i class="far fa-eye me-2"></i>View</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-trash-alt me-2"></i>Delete</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-check-circle me-2"></i>Mark as sent</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-paper-plane me-2"></i>Send Invoice</a>
-<a class="dropdown-item" href="javascript:void(0);"><i class="far fa-copy me-2"></i>Clone Invoice</a>
-</div>
-</div>
-</td>
-</tr>
+</c:forEach>
 </tbody>
 </table>
 </div>

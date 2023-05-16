@@ -89,6 +89,43 @@
 		<result column="table_no" property="tableNo"/>
 	</resultMap>
 	
+	<resultMap id="adminOffResultSet" type="AdminOfflineGroupOnce">
+		<result column="NO" property="no"/>
+		<result column="TITLE" property="title"/>
+		<result column="ID" property="id"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="SIMPLE" property="simple"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="START_DATE" property="startDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="START_ENTER" property="startEnter"/>
+		<result column="END_ENTER" property="endEnter"/>
+		<result column="CONTENT" property="content"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="ADDRESS_DETAIL" property="addressDetail"/>
+		<result column="DISPLAY_NY" property="displayNY"/>
+		<result column="EVENT_PASSWORD" property="eventPassword"/>
+		<result column="HASH_TAG" property="hashTag"/>
+		<result column="DEL_NY" property="delNY"/>
+		<result column="REP_NY" property="repNY"/>
+		<result column="URL" property="url"/>
+		<result column="MAX" property="max"/>
+		<result column="MAX_ACCESS" property="maxAccess"/>
+		<result column="ADULT_ACCESS" property="adultAccess"/>
+		<result column="CATEGORY_NO" property="category"/>
+		<result column="CATEGORY_TITLE" property="categoryTitle"/>
+		<result column="MEM_NO" property="memNo"/>
+		<result column="TABLE_NO" property="tableNo"/>
+		<result column="ATTEND_PASSWORD" property="attendPassword"/>
+		<result column="MEM_EMAIL" property="memEmail"/>
+		<result column="MEM_IMG" property="memImg"/>
+		<result column="MEM_NICKNAME" property="memNickname"/>
+	</resultMap>
+	
+
 	
 	<select id="selectNoticeListCount" resultType="_int">
 		select    
@@ -229,8 +266,53 @@
 	
 	</select>
 	
-	
-	
-	
+	<select id="selectList" resultMap="adminOffResultSet">
+	select
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , ENROLL_DATE
+		     , START_DATE
+		     , END_DATE
+		     , START_ENTER
+		     , END_ENTER
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+			 , EVENT_PASSWORD
+			 , HASH_TAG
+			 , URL
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , CATEGORY_NO
+			 , MEM_NO
+			 , TABLE_NO
+			 , ATTEND_PASSWORD
+			 , COUNT
+             , category_title
+             , mem_email
+             , mem_img
+             , mem_nickname
+             , rep_ny
+		  from OFFLINE_GROUP_ONCE
+          join category using(category_no)
+          join member using(mem_no)
+		  where status = 'Y'
+		 order
+		    by NO desc
+	</select>
+
+	<select id="selectListCount" resultType="_int">
+			select 
+			       count(*)
+			  from OFFLINE_GROUP_ONCE
+			 where status = 'Y'
+		</select>
 
 </mapper>

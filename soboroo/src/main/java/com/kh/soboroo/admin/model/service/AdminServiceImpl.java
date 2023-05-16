@@ -1,6 +1,8 @@
 package com.kh.soboroo.admin.model.service;
 
 import java.util.ArrayList;
+
+
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -9,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.kh.soboroo.admin.model.dao.AdminDao;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
+import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.member.model.vo.Member;
 
 
 
@@ -83,6 +85,18 @@ public class AdminServiceImpl implements AdminService {
 	public AdminMember selectUpdateInfo(int memNo) {
 		
 		return aDao.selectUpdateInfo(sqlSession, memNo);
+	}
+
+	@Override
+	public ArrayList<AdminOfflineGroupOnce> selectList(PageInfo pi) {
+		
+		return aDao.selectList(sqlSession, pi);
+	}
+
+	@Override
+	public int selectListCount() {
+		
+		return aDao.selectListCount(sqlSession);
 	}
 
 

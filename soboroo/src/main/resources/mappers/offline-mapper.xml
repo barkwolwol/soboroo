@@ -34,6 +34,9 @@
 		<result column="MEM_NO" property="memNo"/>
 		<result column="TABLE_NO" property="tableNo"/>
 		<result column="ATTEND_PASSWORD" property="attendPassword"/>
+		<result column="MEM_EMAIL" property="memEmail"/>
+		<result column="MEM_IMG" property="memImg"/>
+		<result column="MEM_NICKNAME" property="memNickname"/>
 	</resultMap>
 	
 	<resultMap id="uploadResultset" type="Upload">
@@ -90,7 +93,13 @@
 			 , TABLE_NO
 			 , ATTEND_PASSWORD
 			 , COUNT
+             , category_title
+             , mem_email
+             , mem_img
+             , mem_nickname
 		  from OFFLINE_GROUP_ONCE
+          join category using(category_no)
+          join member using(mem_no)
 		  where status = 'Y'
 		 order
 		    by NO desc

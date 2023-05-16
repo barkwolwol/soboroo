@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 
 
+
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,8 +13,11 @@ import org.springframework.stereotype.Repository;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
+import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.member.model.vo.Member;
+
+
 
 
 
@@ -115,6 +119,24 @@ public class AdminDao {
 		
 		return sqlSession.selectOne("adminMapper.updateMemInfoList",memNo);
 		
+	}
+	
+	public ArrayList<AdminOfflineGroupOnce> selectList(SqlSessionTemplate sqlSession, PageInfo pi){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectList", null, rowBounds);
+		
+	}
+	
+	
+	public int selectListCount(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("adminMapper.selectListCount");
 	}
 
 }

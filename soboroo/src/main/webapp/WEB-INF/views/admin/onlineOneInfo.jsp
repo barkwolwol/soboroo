@@ -501,14 +501,14 @@
 <table class="table table-stripped table-hover datatable">
 <thead class="thead-light">
 <tr>
-<th>회원 ID</th>
+<th>회원이름</th>
 <th>개설모임명</th>
 <th>카테고리</th>
 <th>모임 가입날짜</th>
 <th>모임 개설자</th>
 <th>조회수</th>
 <th>모임신고여부</th>
-<th>모임상태</th>
+<th>모임주소</th>
 <th class="text-end">Action</th>
 </tr>
 </thead>
@@ -564,7 +564,7 @@
 </td>
 <td class="text-primary">$1,222</td>
 <td>18 Mar 2022</td>
-<td><span class="badge bg-danger-light">Overdue</span></td>
+<td><span class="badge bg-danger-light">서울특별시 강남구</span></td>
 <td class="text-end">
 <div class="dropdown dropdown-action">
 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
