@@ -1,6 +1,7 @@
 package com.kh.soboroo.offline.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,8 +18,15 @@ public class OfflineDao {
 		return sqlSession.insert("offlineMapper.insertGroupOne", ogo);
 	}
 
-	public int insertGroupOneImg(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo, Upload u) {
-		return sqlSession.insert("offlineMapper.insertGroupOneImg", u);
+	public int insertGroupOneImg(SqlSessionTemplate sqlSession, Upload u) {
+	    List<Upload> uploads = u.getUploads();
+	    int result = 0;
+	    
+	    for (Upload upload : uploads) {
+	        result += sqlSession.insert("offlineMapper.insertGroupOneImg", upload);
+	    }
+	    
+	    return result;
 	}
 	
 	public int insertEntryListSelf(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {

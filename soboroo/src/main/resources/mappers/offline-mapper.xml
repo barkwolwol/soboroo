@@ -34,6 +34,7 @@
 		<result column="MEM_NO" property="memNo"/>
 		<result column="TABLE_NO" property="tableNo"/>
 		<result column="ATTEND_PASSWORD" property="attendPassword"/>
+		<result column="FILE_PATH" property="filePath"/>
 	</resultMap>
 	
 	<resultMap id="uploadResultset" type="Upload">
@@ -90,8 +91,11 @@
 			 , TABLE_NO
 			 , ATTEND_PASSWORD
 			 , COUNT
+			 , FILE_PATH
 		  from OFFLINE_GROUP_ONCE
+		  join UPLOAD USING(TABLE_NO)
 		  where status = 'Y'
+		    and file_level = 1
 		 order
 		    by NO desc
 	</select>
@@ -219,7 +223,30 @@
 		     , #{memNo}
 		     , #{tableNo}
 		     )
+	</insert>
 	
+	<insert id="insertGroupOneImg">
+		INSERT
+		  INTO UPLOAD
+		     (
+		       UPLOAD_NO
+		     , ORIGIN_NAME
+		     , CHANGE_NAME
+		     , GROUP_BOARD_NO
+		     , FILE_LEVEL
+		     , FILE_PATH
+		     , TABLE_NO
+		     )
+		VALUES
+		     (
+		       SEQ_UPLOAD.NEXTVAL
+		     , #{originName}
+		     , #{changeName}
+		     , SEQ_ON_GROUP_ONCE_NO.CURRVAL
+		     , #{fileLevel}
+		     , #{filePath}
+		     , #{tableNo}
+		     )
 	</insert>
 	
 	

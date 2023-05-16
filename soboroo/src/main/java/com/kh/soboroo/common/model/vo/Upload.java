@@ -1,5 +1,8 @@
 package com.kh.soboroo.common.model.vo;
 
+import java.sql.Date;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +20,10 @@ public class Upload {
 	private String originName;
 	private String changeName;
 	private int groupBoardNo;
+	private Date uploadDate;
+	private int fileLevel;
+	private String filePath;
 	private int tableNo;
+	
+	private List<Upload> uploads;
 }

@@ -1,10 +1,14 @@
 package com.kh.soboroo.offline.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.model.vo.Upload;
@@ -22,17 +26,16 @@ public class OfflineServiceImpl implements OfflineService {
 
 	@Override
 	public int insertGroupOne(OfflineGroupOnce ogo, Upload u) {
-		System.out.println("첨파있나요? : " + u);
-		int result1 = offDao.insertGroupOne(sqlSession, ogo);
-		int result2 = 1;
-		int result3 = offDao.insertEntryListSelf(sqlSession, ogo);
-		
-		if(u.getOriginName() != null) {
-			System.out.println("첨파있음");
-			result2 = offDao.insertGroupOneImg(sqlSession, ogo, u);
-		}
-		
-		return result1 * result2 * result3;
+	    int result1 = offDao.insertGroupOne(sqlSession, ogo);
+	    int result2 = 1;
+	    
+	    if (!u.getUploads().isEmpty()) {
+	        result2 = offDao.insertGroupOneImg(sqlSession, u);
+	    }
+	    
+	    int result3 = offDao.insertEntryListSelf(sqlSession, ogo);
+	    
+	    return result1 * result2 * result3;
 	}
 
 	public int selectListCount() {
@@ -49,6 +52,11 @@ public class OfflineServiceImpl implements OfflineService {
 
 	public OfflineGroupOnce selectGroupOne(int no) {
 		return offDao.selectGroupOne(sqlSession, no);
+	}
+
+	public int insertGroupOne(OfflineGroupOnce ogo, List<MultipartFile> upfiles, HttpSession session) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
