@@ -270,7 +270,7 @@ SELECT NO as "no", TITLE as "title", start_date, end_date
      	  #{groupNo},
      	  #{tableNo},
      	  #{alertContent},
-     	  #{memNo},
+     	  (select mem_no from member where mem_no=#{memNo}),
      	  #{alertType}
      	  )  
      </insert>
