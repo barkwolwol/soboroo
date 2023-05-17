@@ -6,7 +6,7 @@
 	<jsp:include page="../common/header.jsp"/>
 	
 	<meta charset="UTF-8">
-	<title>${ g.title }</title>		<!-- 같이 바리스타 자격증 취득해봐요 -->
+	<title>${ ogo.title }</title>		<!-- 같이 바리스타 자격증 취득해봐요 -->
 	
 	<!-- Favicon
 	================================================== -->
@@ -29,12 +29,12 @@
             <div class="row">
               <div class="col-lg-12">
                   <div class="banner-heading">
-                    <h1 class="banner-title">같이 공부하실분 구해요 그룹 정보</h1>
+                    <h1 class="banner-title">${ ogo.title }</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                           <li class="breadcrumb-item"><a href="listOne.on">온라인</a></li>
                           <li class="breadcrumb-item"><a href="listOne.on">반짝모임</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">취업/자격증</li>
+                          <li class="breadcrumb-item active" aria-current="page">${ ogo.categoryTitle }</li> <!-- categoryTitle -->
                         </ol>
                     </nav>
                   </div>
@@ -51,15 +51,15 @@
           <div class="col-lg-8">
             <div id="page-slider" class="page-slider small-bg" style="background-color: rgb(241, 238, 237);">
               <div class="item" style="height: 550px; position: relative;">
-                <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/online/coffee1.jpg" alt="모임소개이미지1" />
+                <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/online/coffee1.jpg" alt="모임소개이미지" />
               </div>
 
               <div class="item" style="height: 550px; position: relative;">
-                <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/online/coffee2.jpg" alt="모임소개이미지2" />
+                <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/online/coffee2.jpg" alt="모임소개이미지" />
               </div>
               
               <div class="item" style="height: 550px; position: relative;">
-                <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/online/penguin.jpg" alt="모임소개이미지3" />
+                <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/online/penguin.jpg" alt="모임소개이미지" />
               </div>
             </div><!-- Page slider end -->
             
@@ -71,43 +71,73 @@
 
           <div class="col-lg-4 mt-5 mt-lg-0">
 
-            <h3 class="column-title mrt-0">${ g.title }</h3>		<!-- 같이 바리스타 자격증 취득해봐요 -->
-            <p>${ g.content }</p>	<!-- 23년 04월 23일에 진행되는 바리스타 자격증 취득 준비를 위한 온라인 모임입니다. 서로가 갖고 있는 지식을 공유하며 합격 확률을 높이고자 열심히 활동할 준비가 된 분들을 모집합니다. 많은 참여 부탁드릴게요~ -->
+            <h3 class="column-title mrt-0">${ ogo.title }</h3>		<!-- 같이 바리스타 자격증 취득해봐요 -->
+            <p>${ ogo.simple }</p>	<!-- 23년 04월 23일에 진행되는 바리스타 자격증 취득 준비를 위한 온라인 모임입니다. 서로가 갖고 있는 지식을 공유하며 합격 확률을 높이고자 열심히 활동할 준비가 된 분들을 모집합니다. 많은 참여 부탁드릴게요~ -->
 
             <ul class="project-info list-unstyled">
               <li>
                 <p class="project-info-label">카테고리</p>
-                <p class="project-info-content">${ g.category }</p>				<!-- 자격증/교육 -->
+                <p class="project-info-content">${ ogo.categoryTitle }</p>				<!-- 자격증/교육 -->
               </li>
               <li>
-                <p class="project-info-label">모임시각</p>
-                <p class="project-info-content">${ g.date }</p> 				<!-- 2023년 04월 13일(목) 17:00~18:00 -->
+                <p class="project-info-label">모임일자</p>
+                <p class="project-info-content">${ ogo.startDate } ~ ${ ogo.endDate }</p> 				<!-- 2023년 04월 13일(목) 17:00~18:00 -->
               </li>
               <li>
                 <p class="project-info-label">모임장소</p>
-                <p class="project-info-content">온라인</p>
+                <p class="project-info-content">${ ogo.address } ${ ogo.addressDetail } <input type=button style="width:60px; height:20px; font-size:10px; text-align:center; line-height:15px" value="지도보기"></p>
               </li>
               <li>
                 <p class="project-info-label">그룹장</p>
-                <p class="project-info-content">${ g.nickName }</p>				<!-- 그룹장닉네임 -->
+                <p class="project-info-content">${ ogo.name }</p>				<!-- 그룹장닉네임 -->
               </li>
               <li>
               	<hr>
                 <p class="project-info-label">정원</p>
-                <p class="project-info-content">최대 ${ g.max }명</p>				<!-- 최대 30명 -->
+                <p class="project-info-content">최대 ${ ogo.max }명</p>				<!-- 최대 30명 -->
               </li>
               <li>
                 <p class="project-info-label">신청마감일</p>
-                <p class="project-info-content">2023년 04월 12일(수) 21:00</p>		<!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
+                <p class="project-info-content">${ ogo.endEnter }</p>		<!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
               </li>
               <li>
                 <p class="project-link">
                   <br>
-                  <a class="btn btn-primary" target="_blank" href="join.me">참가하기</a> 	<!-- 클릭시, 참가취소 로 변경되게끔! 인원수가 찬 경우, 대기하기로 출력하기 -->
+                  <a class="btn btn-primary" target="_blank" href="#" id="entryButton">참가하기</a> 	<!-- join.me / 클릭시, 참가취소 로 변경되게끔! 인원수가 찬 경우, 대기하기로 출력하기 -->
                   <a class="btn btn-primary" target="_blank" href="selectChat.ih">채팅하기</a>
                 </p>
               </li>
             </ul>
+            
+            <script>
+            $(function(){
+            	$("#entryButton").on("click", function(){
+            		var AlarmData = {
+            				"myAlarm_receiverEmail" : receiverEmail,
+            				"myAlarm_callerNickname" : memNickName,
+            				"myAlarm_content" : memNickName + "님이 회원님의 소모임에 참여했습니다.",
+            		};
+            		$.ajax({
+            			type : "post",
+            			url : "saveAlarm.my"
+            			data : JSON.stringify(AlarmData),
+            			contentType: "application/json; charset=utf-8",
+            			dataType : 'text',
+            			success : function(data){
+            				if(socket){
+            					let socketMsg = "scrap," + memNickname +","+ memberSeq +","+ receiverEmail +","+ essayboard_seq;
+            					console.log("msgmsg : " + socketMsg);
+            					socket.send(socketMsg);
+            				}
+
+            			},
+            			error : function(err){
+            				console.log(err);
+            			}
+            		})
+            	})
+            })
+            </script>
 
           </div><!-- Content col end -->
 
