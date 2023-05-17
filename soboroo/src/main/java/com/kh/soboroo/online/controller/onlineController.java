@@ -1,10 +1,16 @@
 package com.kh.soboroo.online.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.soboroo.online.model.service.onlineServiceImpl;
+
 @Controller
 public class onlineController {
+	
+	@Autowired
+	private onlineServiceImpl onService;
 	
 	   // 온라인 반짝모임 리스트 호출
 	   @RequestMapping("listOne.on")
