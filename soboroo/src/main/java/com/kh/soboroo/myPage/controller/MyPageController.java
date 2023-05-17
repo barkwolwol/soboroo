@@ -379,6 +379,7 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "deleteAlert.my")
+	@ResponseBody
 	public String deleteAlert(HttpSession session, @RequestParam(value = "valueArr[]", required = false) String[] ajaxMsg) {
 	    Member loginUser = (Member) session.getAttribute("loginUser");
 
@@ -392,6 +393,6 @@ public class MyPageController {
 	            myService.deleteAlert(memNo, no);
 	        }
 	    }
-	    return "myPage/myAlert";
+	    return "success";
 	}
 	}

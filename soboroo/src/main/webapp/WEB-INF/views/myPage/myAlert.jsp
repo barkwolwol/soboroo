@@ -255,16 +255,20 @@
 													      data: { "valueArr[]": valueArr },
 													      success: function(data) {
 													        if (data === "success") {
-													          // 삭제된 알림을 화면에서 제거
 													          for (var i = 0; i < valueArr.length; i++) {
-													            $("#alert-" + valueArr[i] + " .board-row").remove();
+													            $("#alert-" + valueArr[i]).remove();
 													          }
 													          alert("성공적으로 삭제되었습니다.");
 													        } 
 													      }
 													    });
 													  }
+													  
+													  // 폼 제출 동작 막기
+													  event.preventDefault();
 													}
+
+
 													</script>
 
 
