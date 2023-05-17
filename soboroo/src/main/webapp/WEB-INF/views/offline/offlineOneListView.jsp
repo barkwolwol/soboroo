@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>soboroo | 오프라인 반짝모임</title>
+	<title>soboroo | 참가하기</title>
 	<!-- Favicon
 	================================================== -->
   	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
@@ -14,20 +14,20 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 
-<div id="banner-area" class="banner-area" style="background-color: #ff8932;">
+<div id="banner-area" class="banner-area" style="background-image:url(${pageContext.request.contextPath}/resources/images/banner/with2.jpg)">
   <div class="banner-text">
     <div class="container">
         <div class="row">
           <div class="col-lg-12">
               <div class="banner-heading">
-                <h1 class="banner-title">오프라인 반짝모임</h1>
-                <nav aria-label="breadcrumb">
+                <h1 class="banner-title">With Us?</h1>
+                <!-- <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                       <li class="breadcrumb-item"><a href="#">Home</a></li>
                       <li class="breadcrumb-item"><a href="#">Services</a></li>
                       <li class="breadcrumb-item active" aria-current="page">All Services</li>
                     </ol>
-                </nav>
+                </nav> -->
               </div>
           </div><!-- Col end -->
         </div><!-- Row end -->

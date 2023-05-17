@@ -32,8 +32,8 @@
                     <h1 class="banner-title">${ ogo.title }</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
-                          <li class="breadcrumb-item"><a href="listOne.on">온라인</a></li>
-                          <li class="breadcrumb-item"><a href="listOne.on">반짝모임</a></li>
+                          <!-- <li class="breadcrumb-item"><a href="listOne.on">온라인</a></li> -->
+                          <!-- <li class="breadcrumb-item"><a href="listOne.on">반짝모임</a></li> -->
                           <li class="breadcrumb-item active" aria-current="page">${ ogo.categoryTitle }</li> <!-- categoryTitle -->
                         </ol>
                     </nav>
@@ -51,11 +51,11 @@
           <div class="col-lg-8">
             <div id="page-slider" class="page-slider small-bg" style="background-color: rgb(241, 238, 237);">
               <div class="item" style="height: 550px; position: relative;">
-                <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/online/coffee1.jpg" alt="모임소개이미지" />
+                <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/offline/coffee1.jpg" alt="모임소개이미지" />
               </div>
 
               <div class="item" style="height: 550px; position: relative;">
-                <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/online/coffee2.jpg" alt="모임소개이미지" />
+                <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/offline/coffee2.jpg" alt="모임소개이미지" />
               </div>
               
               <div class="item" style="height: 550px; position: relative;">
@@ -85,7 +85,14 @@
               </li>
               <li>
                 <p class="project-info-label">모임장소</p>
-                <p class="project-info-content">${ ogo.address } ${ ogo.addressDetail } <input type=button style="width:60px; height:20px; font-size:10px; text-align:center; line-height:15px" value="지도보기"></p>
+                <c:choose>
+                	<c:when test="${ empty ogo.address }">
+                		<p>온라인이거나 장소가 미정입니다.</p>
+                	</c:when>
+                	<c:otherwise>
+                		<p class="project-info-content">${ ogo.address } ${ ogo.addressDetail } <input type=button style="width:60px; height:20px; font-size:10px; text-align:center; line-height:15px" value="지도보기"></p>
+                	</c:otherwise>
+                </c:choose>
               </li>
               <li>
                 <p class="project-info-label">그룹장</p>
