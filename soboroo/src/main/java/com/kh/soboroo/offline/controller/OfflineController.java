@@ -19,8 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.soboroo.common.controller.CommonController;
+import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.common.model.vo.Upload;
 import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.offline.model.service.OfflineServiceImpl;
 import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
@@ -91,56 +91,11 @@ public class OfflineController {
 	 * @param model
 	 * @return
 	 */
-//	@RequestMapping("insertGroupOne.go")
-//	public String insertGroupOne(@RequestParam(value = "tag") String tag,
-//								 @RequestParam(value = "date") String date,	
-//								 @RequestParam(value = "enterDate") String enterDate,
-//			OfflineGroupOnce ogo, Upload u, MultipartFile upfile, HttpSession session, Model model) {
-//		
-//		
-//		if(date.length() < 11) {
-//			ogo.setStartDate(date.substring(0, 10));
-//			
-//		}else {
-//			ogo.setStartDate(date.substring(0, 10));
-//			ogo.setEndDate(date.substring(13, 23));
-//		}
-//		
-//		if(enterDate.length() < 11) {
-//			ogo.setStartEnter(date.substring(0, 10));
-//		}else {
-//			ogo.setStartEnter(date.substring(0, 10));
-//			ogo.setEndEnter(date.substring(13, 23));
-//		}
-//		
-//		ogo.setHashTag(tag);
-//		
-//		System.out.println(ogo);
-//		
-//		if(!upfile.getOriginalFilename().equals("")) { // 첨부파일 있을 경우
-//			String changeName = saveFile(upfile, session);
-//			u.setOriginName(upfile.getOriginalFilename());
-//			u.setChangeName("resources/uploadFiles/" + changeName);
-//		}
-//		
-//		int result = offService.insertGroupOne(ogo, u);
-//		
-//		if(result > 0) { // 성공 => 게시글 리스트 페이지 url 재요청 ("list.bo")
-//			session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
-//			return "redirect:listGroupOne.go?$tableNo=2";
-//			
-//		}else { // 실패 => 에러페이지 포워딩
-//			model.addAttribute("errorMsg", "게시글 등록 실패!");
-//			return "common/errorPage";
-//		}
-//		
-//	}
-	
 	@RequestMapping("insertGroupOne.go")
 	public String insertGroupOne(@RequestParam(value = "tag") String tag,
 	                             @RequestParam(value = "date") String date,	
 	                             @RequestParam(value = "enterDate") String enterDate,
-	                             OfflineGroupOnce ogo, Upload u, List<MultipartFile> upfiles,
+	                             OfflineGroupOnce ogo, GroupUpload gu, List<MultipartFile> upfiles,
 	                             HttpSession session, Model model) {
 	    
 	    if (date.length() < 11) {
@@ -164,7 +119,7 @@ public class OfflineController {
 	    if (!upfiles.isEmpty()) { // 첨부파일이 있을 경우
 	        List<String> savedFileNames = saveFiles(upfiles, session);
 	        
-	        List<Upload> uploads = new ArrayList(); // 업로드한 파일의 정보를 저장할 리스트
+	        List<GroupUpload> uploads = new ArrayList(); // 업로드한 파일의 정보를 저장할 리스트
 	        
 	        for (int i = 0; i < upfiles.size(); i++) {
 	            MultipartFile file = upfiles.get(i);
@@ -172,24 +127,24 @@ public class OfflineController {
 	            String filePath = "resources/uploadFiles/" + savedFileNames.get(i);
 	            String changeName = savedFileNames.get(i);
 	            
-	            Upload upload = new Upload();
-	            upload.setOriginName(originName != null ? originName : "");
-	            upload.setChangeName(changeName);
+	            GroupUpload gtoupUpload = new GroupUpload();
+	            gtoupUpload.setOriginName(originName != null ? originName : "");
+	            gtoupUpload.setChangeName(changeName);
 	            if (i == 0) {
-	                upload.setFileLevel(1); // 첫 번째 파일은 대표 이미지
+	            	gtoupUpload.setFileLevel(1); // 첫 번째 파일은 대표 이미지
 	            } else {
-	                upload.setFileLevel(2); // 나머지 파일은 추가 이미지
+	            	gtoupUpload.setFileLevel(2); // 나머지 파일은 추가 이미지
 	            }
-	            upload.setFilePath(filePath);
-	            upload.setTableNo(2);
+	            gtoupUpload.setFilePath(filePath);
+	            gtoupUpload.setTableNo(2);
 	            
-	            uploads.add(upload);
+	            uploads.add(gtoupUpload);
 	        }
 	        
-	        u.setUploads(uploads); // 업로드한 파일 리스트를 Upload 객체에 설정
+	        gu.setUploads(uploads); // 업로드한 파일 리스트를 Upload 객체에 설정
 	    }
 
-	    int result = offService.insertGroupOne(ogo, u);
+	    int result = offService.insertGroupOne(ogo, gu);
 	    
 	    if (result > 0) { // 성공 => 게시글 리스트 페이지 url 재요청 ("list.bo")
 	        session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
@@ -203,10 +158,12 @@ public class OfflineController {
 	@RequestMapping("detail.go")
 	public ModelAndView selectGroupOne(int no, Model model, ModelAndView mv) {
 		int result = offService.increaseCount(no);
+		List<GroupUpload> list = offService.selectAttachmentList(no);
 		
 		if(result > 0) {
 			OfflineGroupOnce ogo = offService.selectGroupOne(no);
 			mv.addObject("ogo", ogo).setViewName("offline/offlineDetailView");
+			mv.addObject("list", list).setViewName("offline/offlineDetailView");
 			
 		}else {
 			mv.addObject("errorMsg", "게시글 상세 조회 실패!").setViewName("common/errorPage");

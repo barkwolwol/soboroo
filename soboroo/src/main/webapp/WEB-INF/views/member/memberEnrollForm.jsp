@@ -21,11 +21,8 @@
 
             <form action="insert.me" method="post" onsubmit="" id="enrollForm">
                 <div class="form-group">
-                    <div id="checkResult" style="color: white; margin: 0; font-size:14px;">* 개인정보수정에 사용될 비밀번호 입니다.</div>
-                    <input type="password" class="form-control" id="memPwd" name="memPwd" placeholder="비밀번호를 입력해주세요" required><br>
-                    <input type="password" class="form-control" id="checkPwd" placeholder="비밀번호 확인 입력해주세요" required><br>
                     <input type="text" class="form-control" id="memName" name="memName" placeholder="이름을 입력해주세요" required><br>
-                    <input type="text" class="form-control" id="memPhone" name="memPhone" placeholder="전화번호를 입력해주세요" required><br>
+                    <input type="text" class="form-control" id="memPhone" name="memPhone" placeholder="전화번호를 입력해주세요" oninput="autoHyphen2(this)" required><br>
                 </div>
                 <div class="btns" align="center">
                     <button id="enrollBtn" type="submit" class="login_btn">회원가입</button>
@@ -33,6 +30,14 @@
             </form>
 		</div>
 	</div>
+
+    <script>
+        const autoHyphen2 = (target) => {
+            target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+        }
+    </script>
 
 	<jsp:include page="../common/footer.jsp"/>
 </body>

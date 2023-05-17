@@ -35,13 +35,16 @@
 		<result column="TABLE_NO" property="tableNo"/>
 		<result column="ATTEND_PASSWORD" property="attendPassword"/>
 		<result column="FILE_PATH" property="filePath"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
 	</resultMap>
 	
-	<resultMap id="uploadResultset" type="Upload">
+	<resultMap id="groupUploadResultset" type="GroupUpload">
 		<result column="UPLOAD_NO" property="uploadNo"/>
 		<result column="ORIGIN_NAME" property="originName"/>
 		<result column="CHANGE_NAME" property="changeName"/>
-		<result column="GROUP_BOARD_NO" property="groupBoardNo"/>
+		<result column="GROUP_BOARD_NO" property="bNo"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="FILE_PATH" property="filePath"/>
 		<result column="TABLE_NO" property="tableNo"/>
 	</resultMap>
 	
@@ -93,7 +96,7 @@
 			 , COUNT
 			 , FILE_PATH
 		  from OFFLINE_GROUP_ONCE
-		  join UPLOAD USING(TABLE_NO)
+		  join GROUP_UPLOAD USING(TABLE_NO)
 		  where status = 'Y'
 		    and file_level = 1
 		 order
@@ -227,7 +230,7 @@
 	
 	<insert id="insertGroupOneImg">
 		INSERT
-		  INTO UPLOAD
+		  INTO GROUP_UPLOAD
 		     (
 		       UPLOAD_NO
 		     , ORIGIN_NAME
@@ -249,6 +252,18 @@
 		     )
 	</insert>
 	
+	<select id="selectAttachmentList" resultMap="offlineGroupOnceResultSet">
+		select
+		       upload_no
+		     , origin_name
+		     , change_name
+		     , group_board_no
+		     , file_level
+		     , file_path
+		     , table_no
+		  from group_upload
+		 where group_board_no = #{no}
+	</select>
 	
 	
 	

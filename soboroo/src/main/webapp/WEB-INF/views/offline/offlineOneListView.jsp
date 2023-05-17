@@ -48,7 +48,7 @@
       <div class="col-lg-4 col-md-6 mb-5">
         <div class="ts-service-box">
             <div class="ts-service-image-wrapper">
-              <img loading="lazy" class="w-100" src="/${ ogo.filePath }" alt="service-image">
+              <img loading="lazy" class="w-100" src="${ ogo.filePath }" alt="service-image">
             </div>
             <div class="d-flex">
               <div class="ts-service-box-img">
@@ -59,7 +59,6 @@
                   <p>${ ogo.simple }</p>
                   <p>${ ogo.hashTag }</p>
                   <p>조회수 ${ ogo.count }</p>
-                  <p>${ ogo.enrollDate }</p>
                   <p>모임기간 ${ ogo.startDate } ~ ${ ogo.endDate }</p>
                   <p>접수기간 ${ ogo.startEnter } ~ ${ ogo.endEnter }</p>
                   <p>${ ogo.enrollDate }</p>

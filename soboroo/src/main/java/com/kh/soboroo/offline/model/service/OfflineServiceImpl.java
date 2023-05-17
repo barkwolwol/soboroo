@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.common.model.vo.Upload;
 import com.kh.soboroo.offline.model.dao.OfflineDao;
 import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 
@@ -25,12 +25,16 @@ public class OfflineServiceImpl implements OfflineService {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public int insertGroupOne(OfflineGroupOnce ogo, Upload u) {
+	public int insertGroupOne(OfflineGroupOnce ogo, GroupUpload gu) {
 	    int result1 = offDao.insertGroupOne(sqlSession, ogo);
 	    int result2 = 1;
 	    
-	    if (!u.getUploads().isEmpty()) {
-	        result2 = offDao.insertGroupOneImg(sqlSession, u);
+	    if (!gu.getUploads().isEmpty()) {
+	        for (GroupUpload groupUpload : gu.getUploads()) {
+	            if (groupUpload.getOriginName() != null && !groupUpload.getOriginName().isEmpty()) {
+	                result2 *= offDao.insertGroupOneImg(sqlSession, groupUpload);
+	            }
+	        }
 	    }
 	    
 	    int result3 = offDao.insertEntryListSelf(sqlSession, ogo);
@@ -54,9 +58,8 @@ public class OfflineServiceImpl implements OfflineService {
 		return offDao.selectGroupOne(sqlSession, no);
 	}
 
-	public int insertGroupOne(OfflineGroupOnce ogo, List<MultipartFile> upfiles, HttpSession session) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<GroupUpload> selectAttachmentList(int no) {
+		return offDao.selectAttachmentList(sqlSession, no);
 	}
 
 }

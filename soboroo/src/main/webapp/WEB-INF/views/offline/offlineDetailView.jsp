@@ -46,13 +46,12 @@
         <div class="row">
           <div class="col-lg-8">
             <div id="page-slider" class="page-slider small-bg">
-              <div class="item">
-                <img loading="lazy" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/online/coffee1.jpg" alt="모임소개이미지1" />
-              </div>
+              <c:forEach var="gu" items="${ list }">
+                <div class="item">
+                  <img loading="lazy" class="img-fluid" src="${ gu.filePath }" alt="모임소개이미지1" />
+                </div>
+              </c:forEach>
 
-              <div class="item">
-                <img loading="lazy" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/online/coffee2.jpg" alt="모임소개이미지2" />
-              </div>
             </div><!-- Page slider end -->
           </div><!-- Slider col end -->
 
