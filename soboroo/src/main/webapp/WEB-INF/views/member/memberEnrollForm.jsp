@@ -21,6 +21,9 @@
 
             <form action="insert.me" method="post" onsubmit="" id="enrollForm">
                 <div class="form-group">
+                    <div id="checkResult" style="color: white; margin: 0; font-size:14px;">* 개인정보수정에 사용될 비밀번호 입니다.</div>
+                    <input type="password" class="form-control" id="memPwd" name="memPwd" placeholder="비밀번호를 입력해주세요" required><br>
+                    <input type="password" class="form-control" id="checkPwd" placeholder="비밀번호 확인 입력해주세요" required><br>
                     <input type="text" class="form-control" id="memName" name="memName" placeholder="이름을 입력해주세요" required><br>
                     <input type="text" class="form-control" id="memPhone" name="memPhone" placeholder="전화번호를 입력해주세요" required><br>
                 </div>

@@ -34,11 +34,7 @@
 		<result column="MEM_NO" property="memNo"/>
 		<result column="TABLE_NO" property="tableNo"/>
 		<result column="ATTEND_PASSWORD" property="attendPassword"/>
-		<result column="FILE_PATH1" property="filePath1"/>
-		<result column="FILE_PATH2" property="filePath2"/>
-		<result column="FILE_PATH3" property="filePath3"/>
-		<result column="FILE_PATH4" property="filePath4"/>
-		<result column="FILE_PATH5" property="filePath5"/>
+		<result column="FILE_PATH" property="filePath"/>
 	</resultMap>
 	
 	<resultMap id="uploadResultset" type="Upload">
@@ -68,49 +64,40 @@
 	</select>
 	
 	<select id="selectList" resultMap="offlineGroupOnceResultSet">
-SELECT
-    O.NO,
-    O.TITLE,
-    O.ID,
-    O.NAME,
-    O.EMAIL,
-    O.PHONE,
-    O.SIMPLE,
-    TO_CHAR(O.START_DATE, 'YYYY/MM/DD hh:dd') AS "START_DATE",
-    TO_CHAR(O.END_DATE, 'YYYY/MM/DD hh:dd') AS "END_DATE",
-    TO_CHAR(O.START_ENTER, 'YYYY/MM/DD hh:dd') AS "START_ENTER",
-    TO_CHAR(O.END_ENTER, 'YYYY/MM/DD hh:dd') AS "END_ENTER",
-    O.CONTENT,
-    O.ADDRESS,
-    O.ADDRESS_DETAIL,
-    O.DISPLAY_NY,
-    O.EVENT_PASSWORD,
-    O.HASH_TAG,
-    O.URL,
-    O.MAX,
-    O.MAX_ACCESS,
-    O.ADULT_ACCESS,
-    O.CATEGORY_NO,
-    O.MEM_NO,
-    O.TABLE_NO,
-    O.ATTEND_PASSWORD,
-    O.COUNT,
-    U.FILE_PATH1
-FROM
-    OFFLINE_GROUP_ONCE O
-    JOIN (
-        SELECT
-            TABLE_NO,
-            MAX(FILE_PATH1) AS FILE_PATH1
-        FROM
-            GROUP_UPLOAD
-        GROUP BY
-            TABLE_NO
-    ) U ON O.TABLE_NO = U.TABLE_NO
-WHERE
-    O.STATUS = 'Y'
-ORDER BY
-    O.NO DESC
+		select
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , TO_CHAR(START_DATE, 'YYYY/MM/DD hh:dd') AS "START_DATE"
+		     , TO_CHAR(END_DATE, 'YYYY/MM/DD hh:dd') AS "END_DATE"
+		     , TO_CHAR(START_ENTER, 'YYYY/MM/DD hh:dd') AS "START_ENTER"
+		     , TO_CHAR(END_ENTER, 'YYYY/MM/DD hh:dd') AS "END_ENTER"
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+			 , EVENT_PASSWORD
+			 , HASH_TAG
+			 , URL
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , CATEGORY_NO
+			 , MEM_NO
+			 , TABLE_NO
+			 , ATTEND_PASSWORD
+			 , COUNT
+			 , FILE_PATH
+		  from OFFLINE_GROUP_ONCE
+		  join UPLOAD USING(TABLE_NO)
+		  where status = 'Y'
+		    and file_level = 1
+		 order
+		    by NO desc
 	</select>
 	
 	<update id="increaseCount">
@@ -122,75 +109,36 @@ ORDER BY
 	</update>
 	
 	<select id="selectGroupOne" resultMap="offlineGroupOnceResultSet">
-SELECT *
-FROM (
-    SELECT
-        NO,
-        TITLE,
-        ID,
-        NAME,
-        EMAIL,
-        PHONE,
-        SIMPLE,
-        START_DATE,
-        END_DATE,
-        START_ENTER,
-        END_ENTER,
-        CONTENT,
-        ADDRESS,
-        ADDRESS_DETAIL,
-        DISPLAY_NY,
-        EVENT_PASSWORD,
-        HASH_TAG,
-        URL,
-        MAX,
-        MAX_ACCESS,
-        ADULT_ACCESS,
-        CATEGORY_TITLE,
-        MEM_NO,
-        TABLE_NO,
-        ATTEND_PASSWORD,
-        COUNT,
-        MAX(FILE_PATH1) AS FILE_PATH1,
-        MAX(FILE_PATH2) AS FILE_PATH2,
-        MAX(FILE_PATH3) AS FILE_PATH3,
-        MAX(FILE_PATH4) AS FILE_PATH4,
-        MAX(FILE_PATH5) AS FILE_PATH5
-    FROM
-        OFFLINE_GROUP_ONCE
-    JOIN CATEGORY USING (CATEGORY_NO)
-    JOIN GROUP_UPLOAD USING (TABLE_NO)
-    WHERE
-        NO = #{no}
-    GROUP BY
-        NO,
-        TITLE,
-        ID,
-        NAME,
-        EMAIL,
-        PHONE,
-        SIMPLE,
-        START_DATE,
-        END_DATE,
-        START_ENTER,
-        END_ENTER,
-        CONTENT,
-        ADDRESS,
-        ADDRESS_DETAIL,
-        DISPLAY_NY,
-        EVENT_PASSWORD,
-        HASH_TAG,
-        URL,
-        MAX,
-        MAX_ACCESS,
-        ADULT_ACCESS,
-        CATEGORY_TITLE,
-        MEM_NO,
-        TABLE_NO,
-        ATTEND_PASSWORD,
-        COUNT
-)
-WHERE ROWNUM = 1;
+		select 
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , START_DATE
+		     , END_DATE
+		     , START_ENTER
+		     , END_ENTER
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+			 , EVENT_PASSWORD
+			 , HASH_TAG
+			 , URL
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , CATEGORY_TITLE
+			 , MEM_NO
+			 , TABLE_NO
+			 , ATTEND_PASSWORD
+			 , COUNT
+		  from OFFLINE_GROUP_ONCE
+          JOIN CATEGORY USING (CATEGORY_NO)
+		 where no = ${no}
 	</select>
 	
 	<insert id="insertGroupOne">
@@ -279,38 +227,24 @@ WHERE ROWNUM = 1;
 	
 	<insert id="insertGroupOneImg">
 		INSERT
-		  INTO GROUP_UPLOAD
+		  INTO UPLOAD
 		     (
-		       GROUP_UPLOAD_NO
-		     , ORIGIN_NAME1
-		     , ORIGIN_NAME2
-		     , ORIGIN_NAME3
-		     , ORIGIN_NAME4
-		     , ORIGIN_NAME5
-		     , FILE_PATH1
-		     , FILE_PATH2
-		     , FILE_PATH3
-		     , FILE_PATH4
-		     , FILE_PATH5
+		       UPLOAD_NO
+		     , ORIGIN_NAME
+		     , CHANGE_NAME
+		     , GROUP_BOARD_NO
 		     , FILE_LEVEL
-		     , GROUP_NO
+		     , FILE_PATH
 		     , TABLE_NO
 		     )
 		VALUES
 		     (
-		       SEQ_GROUP_UPLOAD_NO.NEXTVAL
-		     , #{originName1}
-		     , #{originName2}
-		     , #{originName3}
-		     , #{originName4}
-		     , #{originName5}
-		     , #{filePath1}
-		     , #{filePath2}
-		     , #{filePath3}
-		     , #{filePath4}
-		     , #{filePath5}
-		     , #{fileLevel}
+		       SEQ_UPLOAD.NEXTVAL
+		     , #{originName}
+		     , #{changeName}
 		     , SEQ_ON_GROUP_ONCE_NO.CURRVAL
+		     , #{fileLevel}
+		     , #{filePath}
 		     , #{tableNo}
 		     )
 	</insert>

@@ -47,7 +47,7 @@
           <div class="col-lg-8">
             <div id="page-slider" class="page-slider small-bg">
               <div class="item">
-                <img loading="lazy" class="img-fluid" src="${ ogo.filePath1 }" alt="모임소개이미지1" />
+                <img loading="lazy" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/online/coffee1.jpg" alt="모임소개이미지1" />
               </div>
 
               <div class="item">

@@ -19,8 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.soboroo.common.controller.CommonController;
-import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.common.model.vo.Upload;
 import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.offline.model.service.OfflineServiceImpl;
 import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
@@ -138,11 +138,11 @@ public class OfflineController {
 	
 	@RequestMapping("insertGroupOne.go")
 	public String insertGroupOne(@RequestParam(value = "tag") String tag,
-	                             @RequestParam(value = "date") String date,
+	                             @RequestParam(value = "date") String date,	
 	                             @RequestParam(value = "enterDate") String enterDate,
-	                             OfflineGroupOnce ogo, GroupUpload groupUpload, List<MultipartFile> upfiles,
+	                             OfflineGroupOnce ogo, Upload u, List<MultipartFile> upfiles,
 	                             HttpSession session, Model model) {
-
+	    
 	    if (date.length() < 11) {
 	        ogo.setStartDate(date.substring(0, 10));
 	    } else {
@@ -156,59 +156,44 @@ public class OfflineController {
 	        ogo.setStartEnter(enterDate.substring(0, 10));
 	        ogo.setEndEnter(enterDate.substring(13, 23));
 	    }
-
+	    
 	    ogo.setHashTag(tag);
-
+	    
 	    System.out.println(ogo);
-
+	    
 	    if (!upfiles.isEmpty()) { // 첨부파일이 있을 경우
 	        List<String> savedFileNames = saveFiles(upfiles, session);
-
-	        List<GroupUpload> uploads = new ArrayList<>(); // 업로드한 파일의 정보를 저장할 리스트
-
+	        
+	        List<Upload> uploads = new ArrayList(); // 업로드한 파일의 정보를 저장할 리스트
+	        
 	        for (int i = 0; i < upfiles.size(); i++) {
 	            MultipartFile file = upfiles.get(i);
 	            String originName = file.getOriginalFilename();
 	            String filePath = "resources/uploadFiles/" + savedFileNames.get(i);
 	            String changeName = savedFileNames.get(i);
-
-	            GroupUpload upload = new GroupUpload();
-	            upload.setOriginName1(originName);
-	            upload.setFilePath1(filePath);
-	            upload.setTableNo(groupUpload.getTableNo());
-
+	            
+	            Upload upload = new Upload();
+	            upload.setOriginName(originName != null ? originName : "");
+	            upload.setChangeName(changeName);
+	            if (i == 0) {
+	                upload.setFileLevel(1); // 첫 번째 파일은 대표 이미지
+	            } else {
+	                upload.setFileLevel(2); // 나머지 파일은 추가 이미지
+	            }
+	            upload.setFilePath(filePath);
+	            upload.setTableNo(2);
+	            
 	            uploads.add(upload);
 	        }
-
-	        // 첫 번째 파일을 대표 이미지로 설정 (fileLevel = 1)
-	        if (!uploads.isEmpty()) {
-	            GroupUpload firstUpload = uploads.get(0);
-	            firstUpload.setFileLevel(1);
-	        }
-
-	        groupUpload.setOriginName1(upfiles.size() > 0 ? upfiles.get(0).getOriginalFilename() : "");
-	        groupUpload.setOriginName2(upfiles.size() > 1 ? upfiles.get(1).getOriginalFilename() : "");
-	        groupUpload.setOriginName3(upfiles.size() > 2 ? upfiles.get(2).getOriginalFilename() : "");
-	        groupUpload.setOriginName4(upfiles.size() > 3 ? upfiles.get(3).getOriginalFilename() : "");
-	        groupUpload.setOriginName5(upfiles.size() > 4 ? upfiles.get(4).getOriginalFilename() : "");
-
-	        groupUpload.setFilePath1(upfiles.size() > 0 ? "resources/uploadFiles/" + savedFileNames.get(0) : "");
-	        groupUpload.setFilePath2(upfiles.size() > 1 ? "resources/uploadFiles/" + savedFileNames.get(1) : "");
-	        groupUpload.setFilePath3(upfiles.size() > 2 ? "resources/uploadFiles/" + savedFileNames.get(2) : "");
-	        groupUpload.setFilePath4(upfiles.size() > 3 ? "resources/uploadFiles/" + savedFileNames.get(3) : "");
-	        groupUpload.setFilePath5(upfiles.size() > 4 ? "resources/uploadFiles/" + savedFileNames.get(4) : "");
-
-	        groupUpload.setFileLevel(upfiles.size());
-	        groupUpload.setTableNo(2);
-
-	        groupUpload.setUploads(uploads); // 업로드한 파일 리스트를 GroupUpload 객체에 설정
+	        
+	        u.setUploads(uploads); // 업로드한 파일 리스트를 Upload 객체에 설정
 	    }
 
-	    int result = offService.insertGroupOne(ogo, groupUpload);
-
-	    if (result > 0) { // 성공 => 게시글 리스트 페이지 url 재요청 ("listGroupOne.go")
+	    int result = offService.insertGroupOne(ogo, u);
+	    
+	    if (result > 0) { // 성공 => 게시글 리스트 페이지 url 재요청 ("list.bo")
 	        session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
-	        return "redirect:listGroupOne.go?tableNo=2";
+	        return "redirect:listGroupOne.go?$tableNo=2";
 	    } else { // 실패 => 에러페이지 포워딩
 	        model.addAttribute("errorMsg", "게시글 등록 실패!");
 	        return "common/errorPage";
@@ -234,17 +219,19 @@ public class OfflineController {
 	
 	// 현재 넘어온 첨부파일 그 자체를 서버의 폴더에 저장시키는 역할
 	public List<String> saveFiles(List<MultipartFile> upfiles, HttpSession session) {
-	    List<String> savedFileNames = new ArrayList<>();
+	    List<String> savedFileNames = new ArrayList();
 
 	    for (MultipartFile upfile : upfiles) {
-	        if (!upfile.isEmpty()) {
+	        if (!upfile.getOriginalFilename().isEmpty()) {
 	            String originName = upfile.getOriginalFilename();
 	            String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 	            int ranNum = (int) (Math.random() * 90000 + 10000);
-	            String ext = "";
+	            String ext;
 	            int dotIndex = originName.lastIndexOf(".");
 	            if (dotIndex != -1) {
 	                ext = originName.substring(dotIndex);
+	            } else {
+	                ext = "";
 	            }
 	            String changeName = currentTime + ranNum + ext;
 	            String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");

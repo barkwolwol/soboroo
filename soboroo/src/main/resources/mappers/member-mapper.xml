@@ -33,6 +33,7 @@
 		     (
 		       mem_no
 		     , kakao_id  
+		     , mem_pwd
 		     , mem_email
 		     , mem_gender
 		     , mem_birth
@@ -47,6 +48,7 @@
 	         (
 	           SEQ_MEM_NO.NEXTVAL
 	         , #{kakaoId}
+	         , #{memPwd}
 	         , #{memEmail}
 	         , #{memGender}
 	         , #{memBirth}
@@ -62,6 +64,7 @@
 	<select id="loginMember" resultMap="memberResultSet">
 		select
 		       mem_no
+		     , mem_pwd
 		     , mem_email
 		     , mem_gender
 		     , mem_birth
