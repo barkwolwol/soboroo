@@ -1,6 +1,7 @@
 package com.kh.soboroo.myPage.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
@@ -63,5 +64,5 @@ public interface MyPageService {
 	
 	String findNickname(int memNo);
 	
-	int deleteAlert(Member loginUser, String no);
+	String deleteAlert(String memNo, String no);
 }

@@ -3,6 +3,7 @@ package com.kh.soboroo.myPage.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -377,21 +378,20 @@ public class MyPageController {
 	    return response;
 	}
 
-	@RequestMapping("deleteAlert.my")
-	public String deleteAlert(HttpServletRequest request, HttpSession session, @RequestParam(value = "valueArr[]", required = false) String[] ajaxMsg) {
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		if (ajaxMsg == null) {
-		    // 처리할 로직 또는 오류 처리
-			System.out.println("null이다");
-		} else {
-		    int size = ajaxMsg.length;
-		    for (int i = 0; i < size; i++) {
-		        myService.deleteAlert(loginUser, ajaxMsg[i]);
-		    }
-		
-	}
-		return "myPage/myAlert";
-	}
+	@RequestMapping(value = "deleteAlert.my")
+	public String deleteAlert(HttpSession session, @RequestParam(value = "valueArr[]", required = false) String[] ajaxMsg) {
+	    Member loginUser = (Member) session.getAttribute("loginUser");
 
+	    System.out.println(Arrays.toString(ajaxMsg));
+
+	    if (ajaxMsg != null) {
+	        int size = ajaxMsg.length;
+	        for (int i = 0; i < size; i++) {
+	            String no = ajaxMsg[i];
+	            String memNo = String.valueOf(loginUser.getMemNo());
+	            myService.deleteAlert(memNo, no);
+	        }
+	    }
+	    return "myPage/myAlert";
+	}
 	}

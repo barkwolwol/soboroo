@@ -1,6 +1,7 @@
 package com.kh.soboroo.myPage.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,11 +144,14 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public int deleteAlert(Member loginUser, String no) {
-		return myDao.deleteAlert(sqlSession, loginUser, no);
+	public String deleteAlert(String memNo, String no) {
+	    int count = myDao.deleteAlert(sqlSession, memNo, no);
+
+	    if (count > 0) {
+	        return "success";
+	    } else {
+	        return "failure";
+	    }
 	}
-
-	
-
 
 }

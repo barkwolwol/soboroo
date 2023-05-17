@@ -1,7 +1,12 @@
 package com.kh.soboroo.myPage.model.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -133,9 +138,16 @@ public class MyPageDao {
 	
 	}
 	
-	public int deleteAlert(SqlSessionTemplate sqlSession, Member loginUser, String no) {
-	    return sqlSession.update("myPageMapper.deleteAlert", no);
+	public int deleteAlert(SqlSessionTemplate sqlSession, String memNo, String no) {
+	    System.out.println("myDao.deleteAlert() 호출됨");
+	    System.out.println("myDao.deleteAlert() 호출됨" + memNo);
+	    System.out.println("myDao.deleteAlert() 호출됨" + no);
+	    Map<String, String> parameters = new HashMap<>();
+	    parameters.put("memNo", memNo);
+	    parameters.put("no", no);
+	    return sqlSession.update("myPageMapper.deleteAlert", parameters);
 	}
+
 
 
 }

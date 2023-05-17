@@ -175,14 +175,15 @@
 												      </tr>
 												    </c:when>
 												    <c:otherwise>
-												    <c:forEach var="g" items="${list}">
-													  <tr class="board-row">
-													    <td><input type="checkbox" class="row-checkbox" name="RowCheck" value="${g.idNo} "></td>
-													    <td data-table-no="${g.tableNo}" data-no="${g.groupNo}">${g.idNo}</td>
-													    <td>${g.alertContent}</td>
-													    <td>${g.alertDate}</td>
-													  </tr>
-													</c:forEach>
+												   <c:forEach var="g" items="${list}">
+  <tr class="board-row" id="alert-${g.idNo}">
+    <td><input type="checkbox" class="row-checkbox" name="RowCheck" value="${g.idNo} "></td>
+    <td data-table-no="${g.tableNo}" data-no="${g.groupNo}">${g.idNo}</td>
+    <td>${g.alertContent}</td>
+    <td>${g.alertDate}</td>
+  </tr>
+</c:forEach>
+
 													</c:otherwise>
 												  </c:choose>
 												</tbody>
@@ -234,38 +235,37 @@
 												});
 
 												function deleteAlert() {
-													var url = "deleteAlert.my"
-													var valueArr = new Array();
-													var list = $("input[name='RowCheck']");
-													for (var i = 0; i < list.length; i++) {
-														if (list[i].checked) {
-															valueArr.push(list[i].value);
-														}
+													  var url = "deleteAlert.my";
+													  var valueArr = new Array();
+													  var list = $("input[name='RowCheck']");
+													  for (var i = 0; i < list.length; i++) {
+													    if (list[i].checked) {
+													      valueArr.push(list[i].value);
+													    }
+													  }
+													  if (valueArr.length == 0) {
+													    alert("선택된 알림이 없습니다.");
+													  } else {
+													    var chk = confirm("정말 삭제하시겠습니까?");
+													    console.log(valueArr);
+													    $.ajax({
+													      url: url,
+													      type: 'POST',
+													      traditional: true,
+													      data: { "valueArr[]": valueArr },
+													      success: function(data) {
+													        if (data === "success") {
+													          // 삭제된 알림을 화면에서 제거
+													          for (var i = 0; i < valueArr.length; i++) {
+													            $("#alert-" + valueArr[i] + " .board-row").remove();
+													          }
+													          alert("성공적으로 삭제되었습니다.");
+													        } 
+													      }
+													    });
+													  }
 													}
-													if (valueArr.length == 0) {
-														alert("선택된 알림이 없습니다.");
-													} else {
-														var chk = confirm("정말 삭제하시겠습니까?");
-														console.log(valueArr);
-														$.ajax({
-																	url : url,
-																	type : 'POST',
-																	traditional : true,
-																	data : {
-																		"valueArr[]" : valueArr
-																	},
-																	success : function(data) {
-																		if (data = 1) {
-																			alert("성공적으로 삭제되었습니다.");
-																			/* location.replace("list"); */
-																		} else {
-																			alert("삭제가 취소되었습니다.");
-																		}
-																	}
-																})
-													}
-												}
-											</script>
+													</script>
 
 
 
