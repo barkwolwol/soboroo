@@ -104,6 +104,7 @@
                 <p class="project-link">
                   <br>
                   <a class="btn btn-primary" target="_blank" href="join.me">참가하기</a> 	<!-- 클릭시, 참가취소 로 변경되게끔! 인원수가 찬 경우, 대기하기로 출력하기 -->
+                  <a class="btn btn-primary" target="_blank" href="selectChat.ih">채팅하기</a>
                 </p>
               </li>
             </ul>

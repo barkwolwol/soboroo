@@ -1,5 +1,8 @@
 package com.kh.soboroo.online.model.dao;
 
-public class onlineDao {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class OnlineDao {
 
 }
