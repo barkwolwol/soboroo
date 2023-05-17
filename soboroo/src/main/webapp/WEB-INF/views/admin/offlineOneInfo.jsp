@@ -309,36 +309,16 @@
 <li>
 <div class="multipleSelection">
 <div class="selectbox">
-<p class="mb-0"><i data-feather="book-open" class="me-1 select-icon"></i>이용자 상태</p>
+<p class="mb-0"><i data-feather="book-open" class="me-1 select-icon"></i>모임노출여부</p>
 <span class="down-icon"><i data-feather="chevron-down"></i></span>
 </div>
 <div id="checkboxes">
 <form action="#">
-<p class="checkbox-title">상태 여부</p>
+<p class="checkbox-title">노출여부</p>
 <div class="selectbox-cont">
 <label class="custom_check w-100">
 <input type="checkbox" name="name" checked>
-<span class="checkmark"></span> All Invoices
-</label>
-<label class="custom_check w-100">
-<input type="checkbox" name="name">
-<span class="checkmark"></span> Paid
-</label>
-<label class="custom_check w-100">
-<input type="checkbox" name="name">
-<span class="checkmark"></span> Overdue
-</label>
-<label class="custom_check w-100">
-<input type="checkbox" name="name">
-<span class="checkmark"></span> Draft
-</label>
-<label class="custom_check w-100">
-<input type="checkbox" name="name">
-<span class="checkmark"></span> Recurring
-</label>
-<label class="custom_check w-100">
-<input type="checkbox" name="name">
-<span class="checkmark"></span> Cancelled
+<span class="checkmark"></span> ${ao.displayNY }
 </label>
 </div>
 </form>
@@ -356,7 +336,6 @@
 <span class="down-icon"><i data-feather="chevron-down"></i></span>
 </div>
 <div id="checkboxes">
-
 <form id="categoryForm" action="categoryForm.ad">
 <p class="checkbox-title">카테고리</p>
 <div class="form-custom">
@@ -364,35 +343,35 @@
 </div>
 <div class="selectbox-cont">
   <label class="custom_check w-100">
-    <input type="checkbox" name="category" ${ao.categoryNo == 1 ? 'checked' : ''}>
+    <input type="checkbox" name="edu" ${ao.categoryNo == 1 ? 'checked' : ''}>
     <span class="checkmark"></span> 교육/어학
   </label>
 <label class="custom_check w-100">
-<input type="checkbox" name="category" ${ao.categoryNo == 2 ? 'checked' : ''}>
+<input type="checkbox" name="work" ${ao.categoryNo == 2 ? 'checked' : ''}>
 <span class="checkmark"></span> 취업/자격증
 </label>
 <label class="custom_check w-100">
-<input type="checkbox" name="category" ${ao.categoryNo == 3 ? 'checked' : ''}>
+<input type="checkbox" name="trip" ${ao.categoryNo == 3 ? 'checked' : ''}>
 <span class="checkmark"></span> 여행
 </label>
 <label class="custom_check w-100">
-<input type="checkbox" name="category" ${ao.categoryNo == 4 ? 'checked' : ''}>
+<input type="checkbox" name="sports" ${ao.categoryNo == 4 ? 'checked' : ''}>
 <span class="checkmark"></span> 스포츠/운동
 </label>
 <label class="custom_check w-100">
-<input type="checkbox" name="category" ${ao.categoryNo == 5 ? 'checked' : ''}>
+<input type="checkbox" name="cook" ${ao.categoryNo == 5 ? 'checked' : ''}>
 <span class="checkmark"></span> 요리/음식
 </label>
 <label class="custom_check w-100">
-   <input type="checkbox" name="category" ${ao.categoryNo == 6 ? 'checked' : ''}>
+   <input type="checkbox" name="culture" ${ao.categoryNo == 6 ? 'checked' : ''}>
     <span class="checkmark"></span> 문화/예술
     </label>
     <label class="custom_check w-100">
-        <input type="checkbox" name="category" ${ao.categoryNo == 7 ? 'checked' : ''}>
+        <input type="checkbox" name="music" ${ao.categoryNo == 7 ? 'checked' : ''}>
         <span class="checkmark"></span> 영화/음악
         </label>
                 <label class="custom_check w-100">
-                     <input type="checkbox" name="category" ${ao.categoryNo == 8 ? 'checked' : ''}>
+                     <input type="checkbox" name="other" ${ao.categoryNo == 8 ? 'checked' : ''}>
                     <span class="checkmark"></span> 기타
                     </label>   
 </div>
@@ -465,7 +444,7 @@
 <img src="${pageContext.request.contextPath}/resources/admin/img/category/blog-4.jpg" alt="" style="width: 35%;">
 </span>
 <div class="inovices-dash-count">
-<div class="inovices-amount" style="font-size:15px">${r.max}</div>
+<div class="inovices-amount" style="font-size:15px">${r.max}명</div>
 </div>
 </div>
 <p class="inovices-all">최근생성 모임정원수<span></span></p>
@@ -512,8 +491,8 @@
 <table class="table table-stripped table-hover datatable">
 <thead class="thead-light">
 <tr>
-<th>회원 ID</th>
 <th>개설모임명</th>
+<th>회원닉네임</th>
 <th>카테고리</th>
 <th>모임 등록일자</th>
 <th>모임 시작일자</th>
@@ -524,7 +503,7 @@
 <th>모임 해시태그</th>
 <th>모임신고여부</th>
 <th>모임주소(상세주소)</th>
-<th class="text-end">Action</th>
+<th class="text-end">더보기</th>
 </tr>
 </thead>
 <c:forEach var="off" items="${list}">
@@ -535,9 +514,9 @@
 <input type="checkbox" name="invoice">
 <span class="checkmark"></span>
 </label>
-<a href="#" class="invoice-link">${off.memEmail }</a>
+<a href="detail.off?tableNo=${off.tableNo}&no=${off.no}" class="invoice-link">${off.title }</a>
 </td>
-<td>${off.title }</td>
+<td>${off.name }</td></a>
 <td><span class="badge bg-success-light">${off.categoryTitle }</span></td>
 <td>${off.enrollDate }</td>
 <td>${off.startDate }</td>
@@ -556,7 +535,8 @@
 <div class="dropdown dropdown-action">
 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
 <div class="dropdown-menu dropdown-menu-end">
-<a class="dropdown-item" href="listGroupOne.off"><i class="far fa-eye me-2"></i>모임리스트 보기</a>
+<a class="dropdown-item" href="listGroupOne.off"><i class="far fa-eye me-2"></i>모임리스트</a>
+<a class="dropdown-item" href="enrollGroupOne.off"><i class="far fa-edit me-2"></i>모임개설</a>
 </div>
 </div>
 </td>
@@ -578,7 +558,7 @@ function selectCategory() {
 	  $("input[name='category']:checked").each(function() {
 	    selectedCategories.push($(this).val());
 	  });
-
+		
 	  // AJAX 요청을 보내서 선택된 카테고리에 해당하는 모임 리스트를 가져옴
 	  $.ajax({
 	    url: "categoryForm.ad", // 모임 리스트를 가져올 API 엔드포인트
@@ -621,6 +601,7 @@ function selectCategory() {
 <script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/plugins/moment/moment.min.js"></script>
+
 <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap-datetimepicker.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>

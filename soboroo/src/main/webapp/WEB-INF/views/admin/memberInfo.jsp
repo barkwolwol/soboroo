@@ -303,7 +303,7 @@
 <th>연령제한여부</th>
 <th>회원가입일</th>
 <th>상태변경일</th>
-<th class="text-end">Actions</th>
+<th class="text-end">조회/탈퇴</th>
 </tr>
 </thead>
  <tbody>
@@ -321,7 +321,7 @@
 
 <c:choose>
 	<c:when test="${m.memStatus == 1}"><td><span class="badge badge-pill bg-success-light">일반회원</span></td></c:when>
-	<c:when test="${m.memStatus == 2}"><td><span class="badge badge-pill bg-secondary-light">휴먼회원</span></td></c:when>
+	<c:when test="${m.memStatus == 2}"><td><span class="badge badge-pill bg-info-light">휴먼회원</span></td></c:when>
 	<c:when test="${m.memStatus == 3}"><td><span class="badge badge-pill bg-warning-light">정지회원</span></td></c:when>
 	<c:when test="${m.memStatus == 4}"><td><span class="badge badge-pill bg-danger-light">탈퇴회원</span></td></c:when>
 	<c:when test="${m.memStatus == 5}"><td><span class="badge badge-pill bg-primary-light">관리자</span></td></c:when>
@@ -336,10 +336,8 @@
 <input type="hidden" value="${m.memNo}">
 <a href="updateInfo.ad?memNo=${m.memNo }" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-
 </td>
 </tr>
-
 </td>
 </tr>
 </c:forEach>
@@ -352,11 +350,37 @@
 </div>
 </div>
 </div>
-
 </div>
 
 
+<script>
+$(document).ready(function() {
+	  // When the "탈퇴" button is clicked
+	  $("#delete").click(function() {
+	    // Send an AJAX request
+	    $.ajax({
+	      url: "memberInfo.ad",
+	      type: "POST",
+	      dataType: "json",
+	      success: function(response) {
+	        // Handle the response from the server
+	        if (response.success) {
+	          // Show success message or perform any other actions
+	          console.log("탈퇴 성공");
+	        } else {
+	          // Show error message or perform any other actions
+	          console.log("탈퇴 실패");
+	        }
+	      },
+	      error: function() {
+	        // Handle error case
+	        console.log("오류 발생");
+	      }
+	    });
+	  });
+	});
 
+</script>
 
 
 <script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -390,15 +414,16 @@
   <div class="modal-btn delete-action">
   <div class="row">
   <div class="col-6">
-  <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">탈퇴</a>
-  </div>
-  <div class="col-6">
-  <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
+   <button type="submit" class="btn btn-primary paid-continue-btn" id="delete" style="width:100%">탈퇴</button>
+            </div>
+            <div class="col-6">
+   <button type="button" class="btn btn-primary paid-cancel-btn" data-bs-dismiss="modal" style="width:100%">취소</button>
 
 </div>
 
+<script>
 
-
+</script>
 
 </body>
 </html>

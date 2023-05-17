@@ -301,25 +301,20 @@
  <tbody>
 <tr>
 <td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-<a href="profile.html">${s.memName}<span>${s.memNo }</span></a>
+<h2 class="table-avatar" disabled>
+<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${s.memImg }" alt="User Image"></a>
+<a href="profile.html">${s.memName}<span></span></a>
 </h2>
 </td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">${s.memId}</a></td>
+<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">${s.memEmail}</a></td>
 <td>${s.memRprCount }</td>
 <td>${s.memUpdateDate }</td>
-<td>${s.memSuspensionDate }</td>
-
-<c:choose>
-	<c:when test="${m.memStatus == 3}"><td><span class="badge badge-pill bg-warning-light">정지회원</span></td></c:when>
-</c:choose>
+<td>${s.memUpdateDate }</td>
+<td><span class="badge badge-pill bg-warning-light">${s.memStatus == 3 ? '정지회원' : ''}</span></td>
 <td class="text-end">
 <a class="btn btn-sm btn-white text-success" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-edit me-1"></i>복구</a>
-
 </td>
-</tr> 
-
+</tr>
 </td>
 </tr>
 </c:forEach>

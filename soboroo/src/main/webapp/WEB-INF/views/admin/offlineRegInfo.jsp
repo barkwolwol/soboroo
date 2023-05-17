@@ -254,7 +254,7 @@
 <h3 class="page-title">모임관리</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">오프라인</a></li>
-<li class="breadcrumb-item active">반짝</li>
+<li class="breadcrumb-item active">정기</li>
 </ul>
 </div>
 </a>
@@ -311,36 +311,16 @@
 <li>
 <div class="multipleSelection">
 <div class="selectbox">
-<p class="mb-0"><i data-feather="book-open" class="me-1 select-icon"></i>이용자 상태</p>
+<p class="mb-0"><i data-feather="book-open" class="me-1 select-icon"></i>모임노출여부</p>
 <span class="down-icon"><i data-feather="chevron-down"></i></span>
 </div>
 <div id="checkboxes">
 <form action="#">
-<p class="checkbox-title">상태 여부</p>
+<p class="checkbox-title">노출여부</p>
 <div class="selectbox-cont">
 <label class="custom_check w-100">
 <input type="checkbox" name="name" checked>
-<span class="checkmark"></span> All Invoices
-</label>
-<label class="custom_check w-100">
-<input type="checkbox" name="name">
-<span class="checkmark"></span> Paid
-</label>
-<label class="custom_check w-100">
-<input type="checkbox" name="name">
-<span class="checkmark"></span> Overdue
-</label>
-<label class="custom_check w-100">
-<input type="checkbox" name="name">
-<span class="checkmark"></span> Draft
-</label>
-<label class="custom_check w-100">
-<input type="checkbox" name="name">
-<span class="checkmark"></span> Recurring
-</label>
-<label class="custom_check w-100">
-<input type="checkbox" name="name">
-<span class="checkmark"></span> Cancelled
+<span class="checkmark"></span> ${ao.displayNY }
 </label>
 </div>
 </form>

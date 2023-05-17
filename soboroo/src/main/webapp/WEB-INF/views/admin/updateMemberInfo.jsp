@@ -5,7 +5,7 @@
 
   <!-- Favicon
    ================================================== -->
-   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -16,12 +16,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/fontawesome.min.css">
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/all.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/select2/css/select2.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/style.css">
 </head>
+
 <body>
 
 <div class="main-wrapper">
@@ -265,11 +267,11 @@
 <div class="col-md-6">
 <div class="form-group">
 <label>회원 이름</label>
-<input type="text" id="memName" class="form-control" value="${m.memName }" readonly>
+<input type="text" id="memName" class="form-control" name="memName" value="${m.memName }" readonly>
 </div>
 <div class="form-group">
 <label>회원 아이디</label>
-<input type="email" id="memEmail" class="form-control" value="${m.memEmail }">
+<input type="email" id="memEmail" class="form-control" name="memEmail" value="${m.memEmail }" readonly>
 </div>
 <div class="form-group">
 
@@ -278,97 +280,119 @@
 
 <div class="form-group">
     <label>누적 신고 횟수</label>
-    <input type="text" id="rprCount" class="form-control" value="${m.memRprCount }" readonly>
+    <input type="text" id="rprCount"  name="memRprCount" class="form-control" value="${m.memRprCount }" readonly>
     </div>
-
-
 </div>
 
 <div class="col-md-6">
 <div class="form-group">
 <label>회원 닉네임</label>
-<input type="text" id="memNickname" class="form-control" value="${m.memNickname }">
+<input type="text" id="memNickname" name="memNickname" class="form-control" value="${m.memNickname }">
 </div>
 <div class="form-group">
 <label>핸드폰</label>
-<input type="text" id="phone" class="form-control" value="${m.memPhone}">
+<input type="text" id="phone" name="memPhone" class="form-control" value="${m.memPhone}">
 </div>
 <div class="form-group">
 <label>회원 상태</label>
-<span id="memStatus">${m.memStatus}</span>
-<select class="select" id="stateChange">
-<option selected value="${m.memStatus==1}">일반회원</option>
-<option value="${m.memStatus==2}">휴먼회원</option>
-<option value="${m.memStatus==4}">정지회원</option>
-<option value="${m.memStatus==3}">관리자</option>
-<option value="${m.memStatus==5}">탈퇴회원</option>
+<span id="memStatus"></span>
+<select class="select" id="stateChange" name="memStatus">
+<c:choose>
+<c:when test="${m.memStatus eq 1 }">
+<option value="1" selected>일반회원</option>
+</c:when>
+<c:otherwise>
+<option value="1">일반회원</option>
+</c:otherwise>
+</c:choose>
+<c:choose>
+<c:when test="${m.memStatus eq 2 }">
+<option value="2" selected>휴면회원</option>
+</c:when>
+<c:otherwise>
+<option value="2">휴면회원</option>
+</c:otherwise>
+</c:choose>
+<c:choose>
+<c:when test="${m.memStatus eq 3 }">
+<option value="3" selected>정지회원</option>
+</c:when>
+<c:otherwise>
+<option value="3">정지회원</option>
+</c:otherwise>
+</c:choose>
+<c:choose>
+<c:when test="${m.memStatus eq 4 }">
+<option value="4" selected>탈퇴회원</option>
+</c:when>
+<c:otherwise>
+<option value="4">탈퇴회원</option>
+</c:otherwise>
+</c:choose>
+<c:choose>
+<c:when test="${m.memStatus eq 5 }">
+<option value="5" selected>관리자</option>
+</c:when>
+<c:otherwise>
+<option value="5">관리자</option>
+</c:otherwise>
+</c:choose>
+
 </select>
 </div>
 </div>
 </div>
 <script>
-function updateMemberStatus() {
-	  var selectedStatus = $('#stateChange').val(); 
-
-	  $.ajax({
-	    url: 'updateMem.ad',
-	    type: 'POST',
-	    data: { memStatus: selectedStatus },
-	    success: function(response) {
-	     
-	      $('#modify_paid').modal('hide'); 
-	      $('#memStatus').text(selectedStatus); 
-	    },
-	    error: function(error) {
-	      
-	    }
-	  });
-	}
-
-
-	$(document).ready(function() {
-	  $('#modify_paid').on('shown.bs.modal', function() {
-	    $('#update').click(function() {
-	      updateMemberStatus();
-	    });
-	  });
-	});
+	   
+	   
+$('#modify_paid').on('shown.bs.modal', function() {
+    $('#update').click(function() {
+      updateMemberStatus();
+    })
+  })
 
 </script>
 
-</form>
+
+
 
 
 <div class="text-end mt-4">
-<!-- <button type="submit" class="btn btn-primary" id="modify_paid">수정하기</button> -->
-<a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modify_paid"><i class="far fa-edit me-1"></i>수정하기</a>
-</div>
-
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modify_paid"><i class="far fa-edit me-1"></i>수정하기</a>
 </div>
 
 <!-- 모달팝업 -->
 <div class="modal custom-modal fade" id="modify_paid" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-    <div class="modal-body">
-    <div class="form-header">
-    <h3>회원 상태 수정</h3>
-     <p>해당 회원 상태를 수정하시겠습니까?</p>
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>회원 상태 수정</h3>
+          <p>해당 회원 상태를 수정하시겠습니까?</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <button type="submit" class="btn btn-primary paid-continue-btn" id="update" style="width:100%">수정</button>
+            </div>
+            <div class="col-6">
+              <button type="button" class="btn btn-primary paid-cancel-btn" data-bs-dismiss="modal" style="width:100%">취소</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="modal-btn delete-action">
-    <div class="row">
-    <div class="col-6">
-    <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn" id="update">수정</a>
-    </div>
-    <div class="col-6">
-    <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
+  </div>
+</div>
 
+
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -384,5 +408,6 @@ function updateMemberStatus() {
 <script src="${pageContext.request.contextPath}/resources/admin/plugins/select2/js/select2.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
+
 </body>
 </html>

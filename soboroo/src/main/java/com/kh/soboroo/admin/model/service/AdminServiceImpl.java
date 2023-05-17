@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.kh.soboroo.admin.model.dao.AdminDao;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
+import com.kh.soboroo.admin.model.vo.AdminOfflineGroupRegular;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.common.model.vo.PageInfo;
@@ -80,6 +81,8 @@ public class AdminServiceImpl implements AdminService {
 		int result = aDao.adminMemberUpdate(sqlSession,m);
 		return result;
 	}
+	
+	
 
 	@Override
 	public AdminMember selectUpdateInfo(int memNo) {
@@ -104,15 +107,57 @@ public class AdminServiceImpl implements AdminService {
 
 		return aDao.selectOffList(sqlSession,no);
 	}
-
+	
 	@Override
 	public ArrayList<AdminOfflineGroupOnce> selectRecentList(PageInfo pi) {
 		
 		return aDao.selectRecentList(sqlSession,pi);
 	}
+	
+	@Override
+	public ArrayList<AdminOfflineGroupRegular> selectRegList(PageInfo pi) {
+		
+		return aDao.selectRegList(sqlSession,pi);
+	}
+
+	@Override
+	public int selectRegListCount() {
+		
+		return aDao.selectRegListCount(sqlSession);
+	}
+	
+	@Override
+	public AdminOfflineGroupRegular selectOffRegList(int no) {
+		
+		return aDao.selectOffRegList(sqlSession,no);
+	}
+	
+	@Override
+	public ArrayList<AdminOfflineGroupRegular> selectRegularRecentList(PageInfo pi) {
+
+		return aDao.selectRegularRecentList(sqlSession,pi);
+		
+	}
+
+	@Override
+	public int updateMemberStatus(AdminMember m , int memStatus) {
+		
+		int result = aDao.updateMemberStatus(sqlSession,m,memStatus);
+		
+		return result;
+	}
+
+	@Override
+	public AdminMember loginMember(HashMap<String, Object> userInfo) {
+
+		AdminMember loginUser = aDao.loginMember(sqlSession, userInfo);
+		
+		return loginUser;
+		
+	}
 
 
-
+	
 	
 	
 	
