@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -395,4 +396,28 @@ public class MyPageController {
 	    }
 	    return "success";
 	}
+	
+	@RestController
+	public class RecentPostsController {
+	    private List<String> recentPosts = new ArrayList<>();
+
+	    @GetMapping("/recent-posts")
+	    public List<String> getRecentPosts() {
+	        return recentPosts;
+	    }
+
+	    @PostMapping("/recent-posts")
+	    public void addRecentPost(@RequestBody String post) {
+	        recentPosts.add(post);
+	        if (recentPosts.size() > 3) {
+	            recentPosts.remove(0);
+	        }
+	    }
+	}
+
+	
+	
+	
+	
+	
 	}

@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,7 +14,6 @@
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
-
 <div id="banner-area" class="banner-area" style="background-color: #ff8932;">
   <div class="banner-text">
     <div class="container">

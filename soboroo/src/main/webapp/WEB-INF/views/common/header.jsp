@@ -298,11 +298,10 @@ $(function() {
 						    data-toggle="popover" title="최신 알림" data-html="true"
 						    data-content="
 						    			  <div>최신 알림이 없습니다.</div>
-						                  <a href='myAlert.my'>더보기</a>" data-placement="bottom"></i>
+						                  <a href='selectAlertList.my'>더보기</a>" data-placement="bottom"></i>
 						  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"></span>
 						</li>
 						</c:if>
-						<div id="msgStack"></div>
                     </ul>
 						
 				<script>
