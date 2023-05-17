@@ -156,49 +156,56 @@
 										<div class="innerOuter">
 											<br>
 											<!-- <br></br> -->
+											<form action="deleteAlert.my">
 											<table id="boardList" class="table table-hover"
 												align="center">
 												<thead align="center">
 													<tr>
+														<th><input type="checkbox" name="allCheck"></th>
 														<th>알림번호</th>
 														<th>알림내용</th>
 														<th>알림날짜</th>
 													</tr>
 												</thead>
 												<tbody align="center">
-													<c:choose>
-														<c:when test="${empty list }">
-															<tr>
-																<td colspan="3" align="center"
-																	style="pointer-events: none;">알림 내역이 없습니다.</td>
-															</tr>
-														</c:when>
-														<c:otherwise>
-															<c:forEach var="g" items="${list}">
-																<tr>
-																	<td class="bno">${g.idNo }</td> 
-																	<td>${g.alertContent }</td>
-																	<td>${g.alertDate }</td>
-																</tr>
-															</c:forEach>
-														</c:otherwise>
-													</c:choose>
+												  <c:choose>
+												    <c:when test="${empty list}">
+												      <tr>
+												        <td colspan="4" align="center" style="pointer-events: none;">알림 내역이 없습니다.</td>
+												      </tr>
+												    </c:when>
+												    <c:otherwise>
+												    <c:forEach var="g" items="${list}">
+													  <tr class="board-row">
+													    <td><input type="checkbox" class="row-checkbox" name="RowCheck" value="${g.idNo} "></td>
+													    <td data-table-no="${g.tableNo}" data-no="${g.groupNo}">${g.idNo}</td>
+													    <td>${g.alertContent}</td>
+													    <td>${g.alertDate}</td>
+													  </tr>
+													</c:forEach>
+													</c:otherwise>
+												  </c:choose>
 												</tbody>
-											</table>
-											
-											
-									<!-- 		<script>
-											
-												$(function() {
-													$("#boardList td").click(function() {
-														location.href = 'detail.off?tableNo='+ ${list.tableNo}
-																		+ '&no=' + ${list.no};
-													})
-												})
-											</script> -->
-											
-											<input type="button" class="btn btn-primary"
-												onclick="deleteAlert();" value="삭제하기">
+												</table>
+												<input type="submit" class="btn btn-primary" value="삭제하기" onclick="deleteAlert();">
+												</form>
+																								
+												<script>
+												  $(function() {
+												    $(".board-row").on("click", function() {
+												      var tableNo = $(this).find("td[data-table-no]").attr("data-table-no");
+												      var no = $(this).find("td[data-no]").attr("data-no");
+												      if (tableNo !== undefined && no !== undefined) {
+												        location.href = 'detail.off?tableNo=' + tableNo + '&no=' + no;
+												      }
+												    });
+												
+												    $(".row-checkbox").on("click", function(event) {
+												      event.stopPropagation();
+												    });
+												  });
+												</script>
+																							
 
 											<script>
 												$(function() {
@@ -232,28 +239,25 @@
 													var list = $("input[name='RowCheck']");
 													for (var i = 0; i < list.length; i++) {
 														if (list[i].checked) {
-															valueArr
-																	.push(list[i].value);
+															valueArr.push(list[i].value);
 														}
 													}
 													if (valueArr.length == 0) {
 														alert("선택된 알림이 없습니다.");
 													} else {
 														var chk = confirm("정말 삭제하시겠습니까?");
-														$
-																.ajax({
+														console.log(valueArr);
+														$.ajax({
 																	url : url,
 																	type : 'POST',
 																	traditional : true,
 																	data : {
-																		valueArr : valueArr
+																		"valueArr[]" : valueArr
 																	},
-																	success : function(
-																			data) {
+																	success : function(data) {
 																		if (data = 1) {
 																			alert("성공적으로 삭제되었습니다.");
-																			location
-																					.replace("list");
+																			/* location.replace("list"); */
 																		} else {
 																			alert("삭제가 취소되었습니다.");
 																		}

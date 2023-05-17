@@ -115,7 +115,6 @@
                             var groupNo = "${ogo.no}";
                             var title = "${ogo.title}";
                             var alertType = 1;
-                            console.log("콘솔" + writer)
                             var alertContent = memNickname + "님이 회원님의 " + title + " 소모임에 참여했습니다.";
                             var AlarmData = {
                                 "alertContent": alertContent,

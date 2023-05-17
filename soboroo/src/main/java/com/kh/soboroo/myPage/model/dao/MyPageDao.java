@@ -132,5 +132,10 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("myPageMapper.selectAlertList", loginUser, rowBounds);
 	
 	}
+	
+	public int deleteAlert(SqlSessionTemplate sqlSession, Member loginUser, String no) {
+	    return sqlSession.update("myPageMapper.deleteAlert", no);
+	}
+
 
 }

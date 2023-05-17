@@ -142,6 +142,11 @@ public class MyPageServiceImpl implements MyPageService {
 		return myDao.findNickname(sqlSession, memNo);
 	}
 
+	@Override
+	public int deleteAlert(Member loginUser, String no) {
+		return myDao.deleteAlert(sqlSession, loginUser, no);
+	}
+
 	
 
 

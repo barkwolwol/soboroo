@@ -377,5 +377,21 @@ public class MyPageController {
 	    return response;
 	}
 
+	@RequestMapping("deleteAlert.my")
+	public String deleteAlert(HttpServletRequest request, HttpSession session, @RequestParam(value = "valueArr[]", required = false) String[] ajaxMsg) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if (ajaxMsg == null) {
+		    // 처리할 로직 또는 오류 처리
+			System.out.println("null이다");
+		} else {
+		    int size = ajaxMsg.length;
+		    for (int i = 0; i < size; i++) {
+		        myService.deleteAlert(loginUser, ajaxMsg[i]);
+		    }
+		
+	}
+		return "myPage/myAlert";
+	}
 
 	}

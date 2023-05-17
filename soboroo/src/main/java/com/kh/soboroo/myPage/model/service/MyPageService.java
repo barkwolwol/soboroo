@@ -63,4 +63,5 @@ public interface MyPageService {
 	
 	String findNickname(int memNo);
 	
+	int deleteAlert(Member loginUser, String no);
 }

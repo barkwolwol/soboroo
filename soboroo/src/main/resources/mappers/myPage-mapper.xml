@@ -293,4 +293,11 @@ SELECT NO as "no", TITLE as "title", start_date, end_date
      	   and alert_read_ny = 'N' 
      	 order by alert_date desc       
      </select>
+     <update id="deleteAlert">
+     	update 
+     	       alert
+     	   set alert_read_ny = 'Y'
+     	 where mem_no = #{memNo}  
+     	   and id_no = #{no}    
+     </update>
 </mapper>
