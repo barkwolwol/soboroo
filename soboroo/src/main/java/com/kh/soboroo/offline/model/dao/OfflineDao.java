@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.model.vo.Upload;
 import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
@@ -18,15 +19,8 @@ public class OfflineDao {
 		return sqlSession.insert("offlineMapper.insertGroupOne", ogo);
 	}
 
-	public int insertGroupOneImg(SqlSessionTemplate sqlSession, Upload u) {
-	    List<Upload> uploads = u.getUploads();
-	    int result = 0;
-	    
-	    for (Upload upload : uploads) {
-	        result += sqlSession.insert("offlineMapper.insertGroupOneImg", upload);
-	    }
-	    
-	    return result;
+	public int insertGroupOneImg(SqlSessionTemplate sqlSession, GroupUpload groupUpload) {
+	    return sqlSession.insert("offlineMapper.insertGroupOneImg", groupUpload);
 	}
 	
 	public int insertEntryListSelf(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {

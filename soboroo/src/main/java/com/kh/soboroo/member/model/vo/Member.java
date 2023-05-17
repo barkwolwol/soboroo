@@ -17,7 +17,6 @@ public class Member {
 	
 	 private int memNo;
 	 private String kakaoId;
-	 private String memPwd;
 	 private String memEmail;
 	 private String memGender;
 	 private String memBirth;

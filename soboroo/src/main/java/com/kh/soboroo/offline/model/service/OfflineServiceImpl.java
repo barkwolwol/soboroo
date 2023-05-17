@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.common.model.vo.Upload;
 import com.kh.soboroo.offline.model.dao.OfflineDao;
 import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 
@@ -25,16 +25,16 @@ public class OfflineServiceImpl implements OfflineService {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public int insertGroupOne(OfflineGroupOnce ogo, Upload u) {
+	public int insertGroupOne(OfflineGroupOnce ogo, GroupUpload groupUpload) {
 	    int result1 = offDao.insertGroupOne(sqlSession, ogo);
 	    int result2 = 1;
-	    
-	    if (!u.getUploads().isEmpty()) {
-	        result2 = offDao.insertGroupOneImg(sqlSession, u);
+
+	    if (!groupUpload.getUploads().isEmpty()) {
+	        result2 = offDao.insertGroupOneImg(sqlSession, groupUpload);
 	    }
-	    
+
 	    int result3 = offDao.insertEntryListSelf(sqlSession, ogo);
-	    
+
 	    return result1 * result2 * result3;
 	}
 
