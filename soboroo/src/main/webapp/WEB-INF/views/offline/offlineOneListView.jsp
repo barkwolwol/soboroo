@@ -58,7 +58,7 @@
                   <h3 class="service-box-title"><a href="detail.off?tableNo=${ ogo.tableNo }&no=${ ogo.no }">${ ogo.title }</a></h3>
                   <p>${ ogo.simple }</p>
                   <p>${ ogo.hashTag }</p>
-                  <a class="learn-more d-inline-block" href="detail.off?groupNum=1" aria-label="service-details"><i class="fa fa-caret-right"></i> 더보기</a>
+                  <a class="learn-more d-inline-block" href="detail.off?tableNo=${ ogo.tableNo }&no=${ ogo.no }" aria-label="service-details"><i class="fa fa-caret-right"></i> 더보기</a>
               </div>
             </div>
         </div><!-- Service1 end -->

@@ -745,6 +745,7 @@
 		</section>
 		<!--/ News end -->
 		
+		<!-- 
 		<section id="goal" class="news">
 		  <div class="container">
 		    <div class="row text-center">
@@ -753,7 +754,7 @@
 		          <h3 class="section-sub-title">목표 소모임</h3>
 		        </div>
 		    </div>
-		    <!--/ Title row end -->
+		    <!--/ Title row end 
 		
 		    <div class="row">
 		        <div class="col-lg-4 col-md-6 mb-4">
@@ -773,8 +774,8 @@
 		                    </span>
 		                </div>
 		              </div>
-		          </div><!-- Latest post end -->
-		        </div><!-- 1st post col end -->
+		          </div><!-- Latest post end 
+		        </div><!-- 1st post col end 
 		
 		        <div class="col-lg-4 col-md-6 mb-4">
 		          <div class="latest-post">
@@ -793,8 +794,8 @@
 		                    </span>
 		                </div>
 		              </div>
-		          </div><!-- Latest post end -->
-		        </div><!-- 2nd post col end -->
+		          </div><!-- Latest post end 
+		        </div><!-- 2nd post col end 
 		
 		        <div class="col-lg-4 col-md-6 mb-4">
 		          <div class="latest-post">
@@ -813,20 +814,20 @@
 		                    </span>
 		                </div>
 		              </div>
-		          </div><!-- Latest post end -->
-		        </div><!-- 3rd post col end -->
+		          </div><!-- Latest post end 
+		        </div><!-- 3rd post col end 
 		    </div>
-		    <!--/ Content row end -->
+		    <!--/ Content row end 
 		
 		    <div class="general-btn text-center mt-4">
 		        <a class="btn btn-primary" href="news-left-sidebar.html">더보기</a>
 		    </div>
 		
 		  </div>
-		  <!--/ Container end -->
+		  <!--/ Container end 
 		</section>
 		<!--/ News end -->
-
+		
 
 	
 		<jsp:include page="common/footer.jsp"/>  

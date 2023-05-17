@@ -87,6 +87,7 @@
                 <p class="project-info-label">모임장소</p>
                 <c:choose>
                 	<c:when test="${ empty ogo.address }">
+                		<a href="https://meet.google.com/czp-gqri-usc">온라인 회의로 이동하기</a>
                 		<p>온라인이거나 장소가 미정입니다.</p>
                 	</c:when>
                 	<c:otherwise>
