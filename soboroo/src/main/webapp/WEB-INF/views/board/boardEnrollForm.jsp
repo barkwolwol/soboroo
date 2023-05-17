@@ -67,7 +67,9 @@
             .write-header .write-btn {
                 float: right;
             }
-
+			label{
+				position: relative !important;
+			}
             .write-header .board-name {
                 font-size: 20px;
                 float: left;
@@ -256,7 +258,7 @@
                             </tr>
 
                             <tr>
-                                <th colspan="2"><label for="content" style="position: ;"></label></th>
+                                <th colspan="2"><label for="content" ></label></th>
                             </tr>
                             
                             <tr >

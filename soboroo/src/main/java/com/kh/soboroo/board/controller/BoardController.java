@@ -186,5 +186,12 @@ public class BoardController {
 			return result > 0 ? "success" :"fail";
 		}
 		
+		/*
+		 * @ResponseBody
+		 * 
+		 * @RequestMapping("Relist.bo") public String ajaxselectReplyComment(int bno) {
+		 * ArrayList<Reply> relist = bService.selectReplyComment(bno); return new
+		 * Gson().toJson(relist); }
+		 */
 	
 }

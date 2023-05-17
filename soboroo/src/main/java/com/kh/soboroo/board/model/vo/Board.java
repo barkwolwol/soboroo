@@ -27,4 +27,7 @@ public class Board {
 	private String finalName;
 	private String memNickname;
 	private String memImg;
+	private int fileLevel;
+	private String filePath;
+	/* private String recoment; */
 }

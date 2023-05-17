@@ -175,13 +175,12 @@
                     <tr>
                        <td colspan="3">댓글 (<span id="rcount">0</span>) </td> 
                     </tr>
-                    
                 </thead>
                 <tbody>
-                  
                 </tbody>
                 
             </table>
+            
             </form>
         </div>
         <br><br>
@@ -196,7 +195,6 @@
 		
 	$(function() {
 		selectReplyList();  // 화면이 랜더링 되자마자 댓글 조회를 하겠다
-		
 	})
 
 	

@@ -17,7 +17,7 @@
 		<result column = "table_no" property = "tableNo"/>
 		<result column = "mem_nickname" property ="memNickname"/>
 		<result column = "mem_img" property ="memImg"/>
-		
+		<!-- <result column = "recoment" property ="recoment"/> -->
 	</resultMap>
 	
 	<resultMap type="Reply" id="replyResultSet">
@@ -33,6 +33,8 @@
 		 <result column = "mem_no" property = "memNo"/>
 		 <result column = "table_no" property = "tableNo"/>
 		 <result column = "mem_nickname" property ="memNickname"/>
+		 <!-- <result column = "recoment" property ="recoment"/> -->
+		 
 	</resultMap> 
 		
 	<select id="selectBoardListCount" resultType="_int">
@@ -187,8 +189,7 @@
 		   , modify_name
 		   , group_board_no
 		   , table_no
-		   , mem_nickname
-		   , mem_img
+		   
 		    )
 		    values 
 		    (
@@ -197,11 +198,9 @@
 		  , #{ changeName }
 		  , 1
 		  , 10
-		  , #{ memNickname}
-		  , #{ memImg}
+		 
 		    )
-	
-	
+
 	</insert>
 	
 	<update id = "updateUpload">
@@ -250,6 +249,7 @@
 		   join member using(mem_no)
 		 where group_board_no = #{groupBoardNo}
 		   and del_ny = 'N'
+		   and table_no = 10
 		 order
 		    by reply_no desc
 	</select> 
@@ -263,6 +263,7 @@
           , reper_no
           , group_board_no
           , mem_no
+          , table_no
 		  )
 		  values
 		  (
@@ -271,8 +272,33 @@
            , #{reperNo}
            , #{groupBoardNo}
            , #{memNo}
+           , 10
 		  )
 	</insert>
+	
+<!-- 	<select id="selectReplyComment" resultMap="replyResultSet">
+		select 
+			   reply_no
+			 , reply_content
+			 , to_char(enroll_date, 'MM"월"DD"일" HH"시"MI"분"SS"초"') as "enroll_date"
+             , modify_date
+             , del_ny
+             , recomment_ny
+             , reper_no
+             , group_board_no
+             , mem_no
+             , table_no
+             , mem_nickname
+             , RECOMENT
+		  from reply 
+		   join member on (mem_no = recoment)
+		 where group_board_no = #{groupBoardNo}
+		   and del_ny = 'N'
+		   and table_no = 10
+		 order
+		    by reply_no desc
+	</select>  -->
+	
 	
 	
 </mapper>

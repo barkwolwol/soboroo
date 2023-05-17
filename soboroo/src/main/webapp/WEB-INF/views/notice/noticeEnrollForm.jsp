@@ -29,6 +29,9 @@
             #enrollForm>table * {
                 margin: 5px;
             }
+            label{
+				position: relative !important;
+			}
 
             select {
                 width: 150px;

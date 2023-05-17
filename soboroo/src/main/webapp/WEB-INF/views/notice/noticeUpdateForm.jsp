@@ -26,7 +26,9 @@
 
     <style>
         
-        
+        label{
+				position: relative !important;
+			}
         #enrollForm>table * {
             margin: 5px;
         }

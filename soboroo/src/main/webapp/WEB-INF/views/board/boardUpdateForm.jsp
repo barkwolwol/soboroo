@@ -25,7 +25,11 @@
         
         #enrollForm>table * {
             margin: 5px;
+            
         }
+        label{
+				position: relative !important;
+			}
         select {
             width: 130px;
             /* 원하는 너비설정 */
