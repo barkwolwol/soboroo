@@ -309,13 +309,4 @@
 		   and table_no = #{tableNo}
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </mapper>

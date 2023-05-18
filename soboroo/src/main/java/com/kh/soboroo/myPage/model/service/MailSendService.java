@@ -30,7 +30,7 @@ public class MailSendService {
 		makeRandomNumber();
 		String setFrom = ".com"; // email-config에 설정한 자신의 이메일 주소를 입력 
 		String toMail = email;
-		String title = "소보루 비밀번호 변경 인증 메일입니다."; // 이메일 제목 
+		String title = "소보루 본인인증 메일입니다."; // 이메일 제목 
 		String content = 
 			    "회원님의 인증 번호는 " + authNumber + "입니다." + 
 			    "<br>" + 

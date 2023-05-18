@@ -75,66 +75,57 @@
 		</div>
 		<!-- Banner area end -->
 
-		<section id="main-container" class="main-container">
-			<div class="container">
-				<div class="row">
+	<section id="main-container" class="main-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 order-1 order-lg-0">
+        <div class="sidebar sidebar-left">
+          <div class="widget recent-posts">
+            <h3 class="widget-title">가장 인기있는 소모임</h3>
+            <ul id="recent-posts" class="list-unstyled">
+              <li class="d-flex align-items-center">
+              </li>
+            </ul>
+          </div>
+          
 
-					<div class="col-lg-4 order-1 order-lg-0">
+<script>
+  $(function(){
+    topGroupList();
 
-						<div class="sidebar sidebar-left">
-
-
-							<div class="widget recent-posts">
-								<h3 class="widget-title">최근 조회한 소모임</h3>
-								<ul class="list-unstyled">
-									<li class="d-flex align-items-center">
-										<div class="posts-thumb">
-											<a href="#"><img loading="lazy" alt="img"
-												src="${pageContext.request.contextPath}/resources/images/news/news1.jpg"></a>
-										</div>
-										<div class="post-info">
-											<h4 class="entry-title">
-												<a href="#">광진구에서 풋살해요!</a>
-											</h4>
-										</div>
-									</li>
-									<!-- 1st post end-->
-
-									<li class="d-flex align-items-center">
-										<div class="posts-thumb">
-											<a href="#"><img loading="lazy" alt="img"
-												src="${pageContext.request.contextPath}/resources/images/news/news2.jpg"></a>
-										</div>
-										<div class="post-info">
-											<h4 class="entry-title">
-												<a href="#">안양에서 독서모임 구합니다~</a>
-											</h4>
-										</div>
-									</li>
-									<!-- 2nd post end-->
-
-									<li class="d-flex align-items-center">
-										<div class="posts-thumb">
-											<a href="#"><img loading="lazy" alt="img"
-												src="${pageContext.request.contextPath}/resources/images/news/news3.jpg"></a>
-										</div>
-										<div class="post-info">
-											<h4 class="entry-title">
-												<a href="#">강남에서 독서모임 하실 분?</a>
-											</h4>
-										</div>
-									</li>
-									<!-- 3rd post end-->
-
-								</ul>
-
-							</div>
-							<!-- Recent post end -->
+    function topGroupList(){
+      $.ajax({
+        url:"topList.bo",
+        success:function(data){
+          console.log(data);
+          
+          let value = "";
+          for (let i in data) {
+            value += "<li class='d-flex align-items-center'>";
+            value += "<div class='post-thumb'>";
+            value += "<a href='http://localhost:3500/soboroo/detail.go?tableNo=" + data[i].tableNo + "&no=" + data[i].no + "'>";
+            value += "<img style='width:70px; height:50px; margin-right:10px' loading='lazy' alt='img' src='${pageContext.request.contextPath}/resources/images/logo_3.png'></a>";
+            /* value += "<img style='width:70px; height:50px; margin-right:10px' loading='lazy' alt='img' src='${pageContext.request.contextPath}/'" + data[i].thumbnail+"'></a>"; */
+            value += "</div>";
+            value += "<div class='post-info'>";
+            value += "<h4 class='entry-title'>";
+            value += "<a href='http://localhost:3500/soboroo/detail.go?tableNo=" + data[i].tableNo + "&no=" + data[i].no + "'>" + data[i].title + "</a>";
+            value += "</h4>";
+            value += "</div>";
+            value += "</li>";
+          }
 
 
-
-
-
+          
+          $("#recent-posts").html(value);
+          
+        }, error : function(){
+          console.log("ajax 통신 실패!");
+        }
+      });
+    }
+  });
+</script>
 						</div>
 						<!-- Sidebar end -->
 					</div>
@@ -282,7 +273,7 @@
 								<!-- 3rd post end -->
 
 
-								<nav class="paging" aria-label="Page navigation example"
+<%-- 								<nav class="paging" aria-label="Page navigation example"
 									style="margin: auto;">
 									<ul class="pagination"
 										style="padding-left: 270px; padding-top: 10px;">
@@ -318,22 +309,37 @@
   </c:otherwise>
 </c:choose>
 </ul>
-</nav>
-<!-- 								<nav class="paging" aria-label="Page navigation example"
-									style="margin: auto;">
-									<ul class="pagination"
-										style="padding-left: 270px; padding-top: 10px;">
-										<li class="page-item"><a class="page-link" href="#"><i
-												class="fas fa-angle-double-left"></i></a></li>
-										<li class="page-item"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#"><i
-												class="fas fa-angle-double-right"></i></a></li>
-									</ul>
-								</nav> -->
-
-								<!-- </div> -->
+</nav> --%>
+<div class="pagination_wrap">
+    <div class="pagination">
+      <c:choose>
+        <c:when test="${ pi.currentPage eq 1 }">
+            <a href="" class="btn_prev disabled">이전</a>
+        </c:when>
+        <c:otherwise>
+            <a href="selectAlertList.my?cpage=${ pi.currentPage - 1 }" class="btn_prev">이전</a>
+        </c:otherwise>
+      </c:choose>
+      <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+        <c:choose>
+          <c:when test="${ p eq pi.currentPage }">
+            <a href="selectAlertList.my?cpage=${ p }" class="page_move active disabled">${ p }</a>
+          </c:when>
+          <c:otherwise>
+              <a href="selectAlertList.my?cpage=${ p }" class="page_move active">${ p }</a>
+          </c:otherwise>
+        </c:choose>
+      </c:forEach>
+      <c:choose>
+        <c:when test="${ pi.currentPage eq pi.maxPage }">
+          <a href="" class="btn_next disabled">다음</a>
+        </c:when>
+        <c:otherwise>
+          <a href="selectAlertList.my?cpage=${ pi.currentPage + 1 }" class="btn_next">다음</a>
+        </c:otherwise>
+        </c:choose>
+    </div>
+</div>
 								<!-- Content Col end -->
 
 							</div>

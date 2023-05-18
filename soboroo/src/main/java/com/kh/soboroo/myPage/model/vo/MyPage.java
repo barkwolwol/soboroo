@@ -24,6 +24,8 @@ public class MyPage {
 	private Date endDate;
 	private Date enrollDate;
 	private int tableNo;
+	private String thumbnail;
+	private String simple;
 
 }	
 	

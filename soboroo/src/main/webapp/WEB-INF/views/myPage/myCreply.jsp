@@ -71,51 +71,50 @@
 
 
 							<div class="widget recent-posts">
-								<h3 class="widget-title">최근 조회한 소모임</h3>
-								<ul class="list-unstyled">
-									<li class="d-flex align-items-center">
-										<div class="posts-thumb">
-											<a href="#"><img loading="lazy" alt="img"
-												src="${pageContext.request.contextPath}/resources/images/news/news1.jpg"></a>
-										</div>
-										<div class="post-info">
-											<h4 class="entry-title">
-												<a href="#">광진구에서 풋살해요!</a>
-											</h4>
-										</div>
-									</li>
-									<!-- 1st post end-->
+								            <h3 class="widget-title">가장 인기있는 소모임</h3>
+            <ul id="recent-posts" class="list-unstyled">
+              <li class="d-flex align-items-center">
+              </li>
+            </ul>
+          </div>
+          
 
-									<li class="d-flex align-items-center">
-										<div class="posts-thumb">
-											<a href="#"><img loading="lazy" alt="img"
-												src="${pageContext.request.contextPath}/resources/images/news/news2.jpg"></a>
-										</div>
-										<div class="post-info">
-											<h4 class="entry-title">
-												<a href="#">안양에서 독서모임 구합니다~</a>
-											</h4>
-										</div>
-									</li>
-									<!-- 2nd post end-->
+<script>
+  $(function(){
+    topGroupList();
 
-									<li class="d-flex align-items-center">
-										<div class="posts-thumb">
-											<a href="#"><img loading="lazy" alt="img"
-												src="${pageContext.request.contextPath}/resources/images/news/news3.jpg"></a>
-										</div>
-										<div class="post-info">
-											<h4 class="entry-title">
-												<a href="#">강남에서 독서모임 하실 분?</a>
-											</h4>
-										</div>
-									</li>
-									<!-- 3rd post end-->
+    function topGroupList(){
+      $.ajax({
+        url:"topList.bo",
+        success:function(data){
+          console.log(data);
+          
+          let value = "";
+          for (let i in data) {
+            value += "<li class='d-flex align-items-center'>";
+            value += "<div class='post-thumb'>";
+            value += "<a href='http://localhost:3500/soboroo/detail.go?tableNo=" + data[i].tableNo + "&no=" + data[i].no + "'>";
+            value += "<img style='width:70px; height:50px; margin-right:10px' loading='lazy' alt='img' src='${pageContext.request.contextPath}/resources/images/logo_3.png'></a>";
+            value += "</div>";
+            value += "<div class='post-info'>";
+            value += "<h4 class='entry-title'>";
+            value += "<a href='http://localhost:3500/soboroo/detail.go?tableNo=" + data[i].tableNo + "&no=" + data[i].no + "'>" + data[i].title + "</a>";
+            value += "</h4>";
+            value += "</div>";
+            value += "</li>";
+          }
 
-								</ul>
 
-							</div>
-							<!-- Recent post end -->
+          
+          $("#recent-posts").html(value);
+          
+        }, error : function(){
+          console.log("ajax 통신 실패!");
+        }
+      });
+    }
+  });
+</script>
 
 						</div>
 						<!-- Sidebar end -->
@@ -137,45 +136,50 @@
 										<!-- <br><br> -->
 										<div class="innerOuter">
 											<br>
-											<table id="ReplyList" class="table table-hover"
-												align="center">
-												<thead align="center">
-													<tr>
-														<th>댓글번호</th>
-														<th>내용</th>
-														<th>작성일</th>
-													</tr>
-												</thead>
-												<tbody align="center">
-													<c:choose>
-														<c:when test="${empty list }">
-															<tr>
-																<td colspan="3" align="center"
-																	style="pointer-events: none;">작성한 댓글이 없습니다.</td>
-															</tr>
-														</c:when>
-														<c:otherwise>
-															<c:forEach var="r" items="${list}">
-																<tr class="board-row">
-																	<td class="rno" data-bno="${r.groupBoardNo}">${r.replyNo }</td>
-																	<td>${r.replyContent }</td>
-																	<td>${r.enrollDate }</td>
-																</tr>
-															</c:forEach>
-														</c:otherwise>
-													</c:choose>
-												</tbody>
-											</table>
-											<script>
-												$(function() {
-													$(".board-row").on("click", function() {
-														
-														var groupBoardNo = $(this).find("td[data-bno]").attr("data-bno");
-														console.log(groupBoardNo+"groupBoardNo");
-														location.href = 'detail.bo?bno='+ groupBoardNo;
-													})
-												})
-											</script>
+											<table id="ReplyList" class="table table-hover" align="center">
+  <thead align="center">
+    <tr>
+      <th>댓글번호</th>
+      <th>내용</th>
+      <th>작성일</th>
+    </tr>
+  </thead>
+  <tbody align="center">
+    <c:choose>
+      <c:when test="${empty list}">
+        <tr>
+          <td colspan="3" align="center" style="pointer-events: none;">작성한 댓글이 없습니다.</td>
+        </tr>
+      </c:when>
+      <c:otherwise>
+        <c:forEach var="r" items="${list}">
+          <tr class="board-row">
+            <td data-bno="${r.groupBoardNo}">${r.replyNo}</td>
+            <td>${r.replyContent}</td>
+            <td>${r.enrollDate}</td>
+          </tr>
+        </c:forEach>
+      </c:otherwise>
+    </c:choose>
+  </tbody>
+</table>
+
+<script>
+	console.log("${r.groupBoardNo}")
+</script>
+
+<script>
+
+
+  $(function() {
+    $(".board-row").on("click", function() {
+      var groupBoardNo = $(this).find("td[data-bno]").attr("data-bno");
+      console.log(groupBoardNo + "groupBoardNo");
+      location.href = 'detail.bo?bno=' + groupBoardNo;
+    });
+  });
+</script>
+
 
 										</div>
 									</div>
@@ -183,7 +187,7 @@
 								</div>
 								<!-- 3rd post end -->
 
-								<nav class="paging" aria-label="Page navigation example"
+<%-- 								<nav class="paging" aria-label="Page navigation example"
 									style="margin: auto;">
 									<ul class="pagination"
 										style="padding-left: 270px; padding-top: 10px;">
@@ -218,7 +222,38 @@
   </c:otherwise>
 </c:choose>
 									</ul>
-								</nav>
+								</nav> --%>
+								
+																								<div class="pagination_wrap">
+    <div class="pagination">
+      <c:choose>
+        <c:when test="${ pi.currentPage eq 1 }">
+            <a href="" class="btn_prev disabled">이전</a>
+        </c:when>
+        <c:otherwise>
+            <a href="communityReplyList.my?cpage=${ pi.currentPage - 1 }" class="btn_prev">이전</a>
+        </c:otherwise>
+      </c:choose>
+      <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+        <c:choose>
+          <c:when test="${ p eq pi.currentPage }">
+            <a href="communityReplyList.my?cpage=${ p }" class="page_move active disabled">${ p }</a>
+          </c:when>
+          <c:otherwise>
+              <a href="communityReplyList.my?cpage=${ p }" class="page_move active">${ p }</a>
+          </c:otherwise>
+        </c:choose>
+      </c:forEach>
+      <c:choose>
+        <c:when test="${ pi.currentPage eq pi.maxPage }">
+          <a href="" class="btn_next disabled">다음</a>
+        </c:when>
+        <c:otherwise>
+          <a href="communityReplyList.my?cpage=${ pi.currentPage + 1 }" class="btn_next">다음</a>
+        </c:otherwise>
+        </c:choose>
+    </div>
+</div>
 
 								<!-- </div> -->
 								<!-- Content Col end -->

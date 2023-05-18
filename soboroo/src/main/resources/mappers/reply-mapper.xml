@@ -41,7 +41,8 @@
 		select
 			   r.reply_no,
 			   r.reply_content,
-			   to_char(r.enroll_date, 'YYYY-MM-DD') as "enroll_date"
+			   to_char(r.enroll_date, 'YYYY-MM-DD') as "enroll_date",
+			   r.group_board_no
 		  from reply r
 		  join member m
 		    on r.mem_no = m.mem_no
