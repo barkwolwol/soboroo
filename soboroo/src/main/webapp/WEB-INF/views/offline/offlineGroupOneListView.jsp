@@ -63,7 +63,7 @@
                   <p>접수기간 ${ ogo.startEnter } ~ ${ ogo.endEnter }</p>
                   <p>${ ogo.enrollDate }</p>
                   
-                  <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> 더보기</a>
+                  <a class="learn-more d-inline-block" href="detail.go?tableNo=${ ogo.tableNo }&no=${ ogo.no }" aria-label="service-details"><i class="fa fa-caret-right"></i> 더보기</a>
               </div>
             </div>
         </div><!-- Service1 end -->

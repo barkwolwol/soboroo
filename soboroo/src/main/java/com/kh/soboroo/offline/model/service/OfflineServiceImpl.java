@@ -49,16 +49,20 @@ public class OfflineServiceImpl implements OfflineService {
 		return offDao.selectList(sqlSession, pi, tableNo);
 	}
 
-	public int increaseCount(int no) {
-		return offDao.increaseCount(sqlSession, no);
+	/*
+	public int increaseCount(int tableNo, int no) {
+		return offDao.increaseCount(sqlSession, tableNo, no);
 	}
+	*/
 
+	/*
 	public OfflineGroupOnce selectDetail(int no) {
 		return offDao.selectDetail(sqlSession, no);
 	}
+	*/
 
-	public List<GroupUpload> selectAttachmentList(int no) {
-		return offDao.selectAttachmentList(sqlSession, no);
+	public List<GroupUpload> selectAttachmentList(int tableNo, int no) {
+		return offDao.selectAttachmentList(sqlSession, tableNo, no);
 	}
 
 //	public int insertOfflineGroupReg(OfflineGroupOnce ogo, GroupUpload gu) {
