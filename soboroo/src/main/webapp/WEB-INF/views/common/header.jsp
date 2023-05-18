@@ -239,7 +239,8 @@ $(function() {
                     <ul class="nav navbar-nav mr-auto align-items-center">
 
                       <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">온라인 <i class="fa fa-angle-down"></i></a>
+                        <a href="onList.go?tableNo=2">온라인</a>
+                        <!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">온라인 <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="listOne.on">반짝모임</a></li>
                           <li><a href="listReg.on">정기모임</a></li>
@@ -250,23 +251,24 @@ $(function() {
                               <li><a href="listDday.on">D-DAY</a></li>
                             </ul>
                           </li>
-                        </ul>
+                        </ul> -->
                       </li>
 
                       <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">오프라인 <i
+                        <a href="offList.go?tableNo=6">오프라인</a>
+                        <!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">오프라인<i
                             class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="listGroupOne.go?tableNo=2">반짝모임</a></li>
-                          <li><a href="listReg.off">정기모임</a></li>
+                          <li><a href="listOfflineGroupOne.off?tableNo=6">반짝모임</a></li>
+                          <li><a href="listOfflineGroupReg.off?tableNo=7">정기모임</a></li>
                           <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">목표모임</a>
                             <ul class="dropdown-menu">
-                              <li><a href="listGoal.off">꾸준한 습관</a></li>
-                              <li><a href="listDday.off">D-DAY</a></li>
+                              <li><a href="listOfflineChallengeDday.go?tableNo=8">D-DAY</a></li>
+                              <li><a href="listOfflineChallengeReg.go?tableNo=9">꾸준한 습관</a></li>
                             </ul>
                           </li>
-                        </ul>
+                        </ul> -->
                       </li>
 
                       <li class="nav-item"><a class="nav-link" href="list.bo?category=0">자유게시판</a></li>
@@ -290,6 +292,11 @@ $(function() {
                               <li><a href="communityReplyList.my">커뮤니티 댓글 조회</a></li>
                             </ul>
                           <li><a href="updateInfo.my">개인정보 수정</a></li>
+                          <c:choose>
+                        <c:when test="${ loginUser.memStatus eq 5 }">
+                          <li><a class="btn btn-primary" href="adminHome.ad">관리페이지</a></li>
+                        </c:when>
+                      </c:choose>
                     </ul>
                       </li>
 						<li class="nav-item">
@@ -301,28 +308,22 @@ $(function() {
 						</li>
 						</c:if>
                     </ul>
-						
-				<script>
-				  $(function() {
-				    $('[data-toggle="popover"]').popover();
-				  });
-				</script>
-
                     <ul class="nav navbar-nav ml-auto align-items-center">
                       <li class="header-get-a-quote">
                       <c:choose>
                         <c:when test="${ empty loginUser }">
                           <a class="btn btn-primary" href="loginPage.me">로그인</a>
-                        </c:when>
-                        <c:otherwise>
+                          </c:when>
+                          <c:otherwise>
                           <!-- 로그인 후-->
                           <label id="table-avatar">
                             <a id="table-avatar" href="${ loginUser.memImg }" target="_blank"><img class="rounded-circle" src="${ loginUser.memImg }" alt="User Image"></a>
                           </label>&nbsp;&nbsp;
                           <a>${ loginUser.memNickname }님</a> &nbsp;&nbsp;
                           <a href="logout.me">로그아웃</a>
-                        </c:otherwise>
-                      </c:choose>
+                          </c:otherwise>
+                          </c:choose>
+      
                       </li>
                     </ul>
                    </div>
@@ -361,6 +362,11 @@ $(function() {
       <!-- Template custom -->
       <script src="${pageContext.request.contextPath}/resources/js/script.js"></script>
 
+      <script>
+				  $(function() {
+				    $('[data-toggle="popover"]').popover();
+				  });
+				</script>
 
     </body>
 

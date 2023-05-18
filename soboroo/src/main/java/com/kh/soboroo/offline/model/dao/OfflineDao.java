@@ -14,8 +14,8 @@ import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 @Repository
 public class OfflineDao {
 
-	public int insertGroupOne(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {
-		return sqlSession.insert("offlineMapper.insertGroupOne", ogo);
+	public int insertOfflineGroupOne(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {
+		return sqlSession.insert("offlineMapper.insertOfflineGroupOne", ogo);
 	}
 
 	public int insertGroupOneImg(SqlSessionTemplate sqlSession, GroupUpload groupUpload) {
@@ -30,7 +30,7 @@ public class OfflineDao {
 		return sqlSession.selectOne("offlineMapper.selectListCount");
 	}
 
-	public ArrayList<OfflineGroupOnce> selectList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<OfflineGroupOnce> selectList(SqlSessionTemplate sqlSession, PageInfo pi, int tableNo) {
 		// 몇 개의 게시글을 건너 뛸껀지
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		
@@ -39,20 +39,34 @@ public class OfflineDao {
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("offlineMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("offlineMapper.selectList", tableNo, rowBounds);
 	}
 
 	public int increaseCount(SqlSessionTemplate sqlSession, int no) {
 		return sqlSession.update("offlineMapper.increaseCount", no);
 	}
 
-	public OfflineGroupOnce selectGroupOne(SqlSessionTemplate sqlSession, int no) {
-		return sqlSession.selectOne("offlineMapper.selectGroupOne", no);
+	public OfflineGroupOnce selectDetail(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.selectOne("offlineMapper.selectDetail", no);
 	}
 
 	public List<GroupUpload> selectAttachmentList(SqlSessionTemplate sqlSession, int no) {
 		return sqlSession.selectList("offlineMapper.selectAttachmentList", no);
 	}
+
+//	public int insertOfflineGroupReg(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {
+//		return sqlSession.insert("offlineMapper.insertOfflineGroupReg", ogo);
+//	}
+//
+//	public int insertOfflineChallengeDday(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {
+//		return sqlSession.insert("offlineMapper.insertOfflineChallengeDday", ogo);
+//	}
+//
+//	public int insertOfflineChallengeReg(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {
+//		return sqlSession.insert("offlineMapper.insertOfflineChallengeReg", ogo);
+//	}
+	
+	
 
 
 }

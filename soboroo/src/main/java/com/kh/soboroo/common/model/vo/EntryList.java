@@ -1,4 +1,4 @@
-package com.kh.soboroo.offline.model.vo;
+package com.kh.soboroo.common.model.vo;
 
 import java.sql.Date;
 
