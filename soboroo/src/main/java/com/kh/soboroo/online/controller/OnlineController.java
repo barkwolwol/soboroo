@@ -122,24 +122,24 @@ public class OnlineController {
        }
    }
    
-//   // 상세조회
-//   @RequestMapping("detail.go")
-//   public ModelAndView selectDetail(int no, Model model, ModelAndView mv) {
-//      int result = onService.increaseCount(no);
-//      List<GroupUpload> list = onService.selectAttachmentList(no);
-//      
-//      if(result > 0) {
-//         OnlineGroupOnce ogo = onService.selectDetail(no);
-//         mv.addObject("ogo", ogo).setViewName("offline/detailView");
-//         mv.addObject("list", list).setViewName("offline/detailView");
-//         
-//      }else {
-//         mv.addObject("errorMsg", "게시글 상세 조회 실패!").setViewName("common/errorPage");
-//      }
-//      
-//      return mv;
-//      
-//   }
+   // 상세조회
+   @RequestMapping("detail.go")
+   public ModelAndView selectDetail(int no, Model model, ModelAndView mv) {
+      int result = onService.increaseCount(no);
+      List<GroupUpload> list = onService.selectAttachmentList(no);
+      
+      if(result > 0) {
+         OnlineGroupOnce ogo = onService.selectDetail(no);
+         mv.addObject("ogo", ogo).setViewName("offline/detailView");
+         mv.addObject("list", list).setViewName("offline/detailView");
+         
+      }else {
+         mv.addObject("errorMsg", "게시글 상세 조회 실패!").setViewName("common/errorPage");
+      }
+      
+      return mv;
+      
+   }
    
    
    // 현재 넘어온 첨부파일 그 자체를 서버의 폴더에 저장시키는 역할

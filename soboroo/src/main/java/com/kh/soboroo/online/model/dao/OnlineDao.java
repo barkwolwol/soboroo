@@ -46,9 +46,9 @@ public class OnlineDao {
       return sqlSession.update("onlineMapper.increaseCount", no);
    }
 
-//   public OnlineGroupOnce selectDetail(SqlSessionTemplate sqlSession, int no) {
-//      return sqlSession.selectOne("onlineMapper.selectDetail", no);
-//   }
+   public OnlineGroupOnce selectDetail(SqlSessionTemplate sqlSession, int no) {
+      return sqlSession.selectOne("onlineMapper.selectDetail", no);
+   }
 
    public List<GroupUpload> selectAttachmentList(SqlSessionTemplate sqlSession, int no) {
       return sqlSession.selectList("onlineMapper.selectAttachmentList", no);

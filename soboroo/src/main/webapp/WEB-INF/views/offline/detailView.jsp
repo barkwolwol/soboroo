@@ -53,6 +53,7 @@
 
         <div class="row">
           <div class="col-lg-8">
+            <!--
             <div id="page-slider" class="page-slider small-bg" style="background-color: rgb(241, 238, 237);">
               <div class="item" style="height: 550px; position: relative;">
                 <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/offline/coffee1.jpg" alt="모임소개이미지" />
@@ -65,13 +66,13 @@
               <div class="item" style="height: 550px; position: relative;">
                 <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${pageContext.request.contextPath}/resources/images/online/penguin.jpg" alt="모임소개이미지" />
               </div>
-
-            <!--<div id="page-slider" class="page-slider small-bg">
+ 			-->
+            <div id="page-slider" class="page-slider small-bg" style="background-color: rgb(241, 238, 237);">
               <c:forEach var="gu" items="${ list }">
-                <div class="item">
-                  <img loading="lazy" class="img-fluid" src="${ gu.filePath }" alt="모임소개이미지1" />
+                <div class="item" style="height: 550px; position: relative;">
+                  <img loading="lazy" style="max-width: 100%; max-height: 550px; position: absolute; top: 50%; left: 50%; transform : translate(-50%,-50%);" src="${ gu.filePath }" alt="모임소개이미지" />
                 </div>
-              </c:forEach> -->
+              </c:forEach>
 
             </div><!-- Page slider end -->
             
