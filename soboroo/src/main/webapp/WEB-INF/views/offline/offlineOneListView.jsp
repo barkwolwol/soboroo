@@ -39,7 +39,7 @@
   <div class="container">
   	<div style="text-align: right">
       <c:if test="${ not empty loginUser }">
-        <a class="btn btn-primary" href="enrollGroupOne.off">새로운 모임</a>
+        <a class="btn btn-primary" href="enrollGroupOne.go">새로운 모임</a>
       </c:if>
   	</div>
   	<br>
@@ -48,16 +48,21 @@
       <div class="col-lg-4 col-md-6 mb-5">
         <div class="ts-service-box">
             <div class="ts-service-image-wrapper">
-              <img loading="lazy" class="w-100" src="${pageContext.request.contextPath}/resources/images/logo_3.png" alt="service-image">
+              <img loading="lazy" class="w-100" src="${ ogo.filePath }" alt="service-image">
             </div>
             <div class="d-flex">
               <div class="ts-service-box-img">
                   <%-- <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/icon-image/service-icon1.png" alt="service-icon"> --%>
               </div>
               <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="detail.off?tableNo=${ ogo.tableNo }&no=${ ogo.no }">${ ogo.title }</a></h3>
+                  <h3 class="service-box-title"><a href="detail.go?tableNo=${ ogo.tableNo }&no=${ ogo.no }">${ ogo.title }</a></h3>
                   <p>${ ogo.simple }</p>
                   <p>${ ogo.hashTag }</p>
+                  <p>조회수 ${ ogo.count }</p>
+                  <p>모임기간 ${ ogo.startDate } ~ ${ ogo.endDate }</p>
+                  <p>접수기간 ${ ogo.startEnter } ~ ${ ogo.endEnter }</p>
+                  <p>${ ogo.enrollDate }</p>
+                  
                   <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> 더보기</a>
               </div>
             </div>

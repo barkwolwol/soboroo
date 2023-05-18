@@ -11,6 +11,9 @@
 	<!-- Favicon
 	================================================== -->
 	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=22931d135d75b509838f23be2834c5c7&libraries=services"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
   <div class="body-inner">
@@ -44,13 +47,12 @@
         <div class="row">
           <div class="col-lg-8">
             <div id="page-slider" class="page-slider small-bg">
-              <div class="item">
-                <img loading="lazy" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/online/coffee1.jpg" alt="모임소개이미지1" />
-              </div>
+              <c:forEach var="gu" items="${ list }">
+                <div class="item">
+                  <img loading="lazy" class="img-fluid" src="${ gu.filePath }" alt="모임소개이미지1" />
+                </div>
+              </c:forEach>
 
-              <div class="item">
-                <img loading="lazy" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/online/coffee2.jpg" alt="모임소개이미지2" />
-              </div>
             </div><!-- Page slider end -->
           </div><!-- Slider col end -->
 
@@ -70,13 +72,11 @@
               </li>
               <li>
                 <p class="project-info-label">모임장소</p>
-                <p class="project-info-content">${ ogo.address } ${ ogo.addressDetail } <input type=button style="width:60px; height:20px; font-size:10px; text-align:center; line-height:15px" value="지도보기"></p>
+                <p class="project-info-content">${ ogo.address } ${ ogo.addressDetail }&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#mapModal">지도보기</a>
               </li>
               <li>
                 <p class="project-info-label">그룹장</p>
                 <p class="project-info-content">${ ogo.name }</p>
-                
-                
               </li>
               <li>
               	<hr>
@@ -94,6 +94,29 @@
                 </p>
               </li>
             </ul>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="mapModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id="map" style="width:100%;height:350px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <script>
+              var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                  mapOption = { 
+                      center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                      level: 3 // 지도의 확대 레벨
+                  };
+              
+              // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+              var map = new kakao.maps.Map(mapContainer, mapOption); 
+              
+              map.relayout();
+              </script>
+
             
             <script>
             

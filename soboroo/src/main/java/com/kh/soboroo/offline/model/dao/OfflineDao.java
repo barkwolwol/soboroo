@@ -1,13 +1,14 @@
 package com.kh.soboroo.offline.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.common.model.vo.Upload;
 import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 
 @Repository
@@ -17,8 +18,8 @@ public class OfflineDao {
 		return sqlSession.insert("offlineMapper.insertGroupOne", ogo);
 	}
 
-	public int insertGroupOneImg(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo, Upload u) {
-		return sqlSession.insert("offlineMapper.insertGroupOneImg", u);
+	public int insertGroupOneImg(SqlSessionTemplate sqlSession, GroupUpload groupUpload) {
+	    return sqlSession.insert("offlineMapper.insertGroupOneImg", groupUpload);
 	}
 	
 	public int insertEntryListSelf(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {
@@ -47,6 +48,10 @@ public class OfflineDao {
 
 	public OfflineGroupOnce selectGroupOne(SqlSessionTemplate sqlSession, int no) {
 		return sqlSession.selectOne("offlineMapper.selectGroupOne", no);
+	}
+
+	public List<GroupUpload> selectAttachmentList(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.selectList("offlineMapper.selectAttachmentList", no);
 	}
 
 
