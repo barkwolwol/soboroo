@@ -177,6 +177,7 @@
       location.href = 'detail.go?tableNo=' + tableNo + '&no=' + $(this).children(".bno").text();
     });
   });
+  
 </script>
 
 										
