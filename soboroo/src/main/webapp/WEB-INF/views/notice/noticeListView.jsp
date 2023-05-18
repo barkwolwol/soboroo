@@ -106,6 +106,7 @@
 
 	            <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼-->
 	   		 <c:if test="${not empty loginUser }"> 
+	   		 <%--  <c:if test="${ loginUser.memName eq '관리자' }">  --%>
            		<a class="btn btn-secondary btn-sm" style="float:right" href="notenrollForm.no">글쓰기</a>
               </c:if> 
             <br></br>
@@ -124,7 +125,7 @@
                 <c:forEach var="n" items="${ list }">
 	                    <tr>
 	                        <td class="nno" name="nno">${ n.ntcNo }</td>
-	                        <td>관리자</td>
+	                        <td>${ loginUser.memNickname }</td>
 	                        <td>${n.ntcTitle}</td>
 	                        <td>${n.ntcContent }</td>
 	                        <td>${n.ntcCount }</td>

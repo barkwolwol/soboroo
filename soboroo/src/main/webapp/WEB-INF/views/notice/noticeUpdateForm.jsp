@@ -26,7 +26,9 @@
 
     <style>
         
-        
+        label{
+				position: relative !important;
+			}
         #enrollForm>table * {
             margin: 5px;
         }
@@ -188,10 +190,10 @@
            
                 <div class="left" style="margin-left: 25%; margin-top: 20px; display: inline-block; margin-bottom: 20px; ">
                     <div class="avatar" style="float:left;">
-                        <img  src="${pageContext.request.contextPath}/resources/images/default_profile.png" class="avatar-image" >
+                        <img  src="${loginUser.memImg}" class="avatar-image" >
                     </div>
                     <div class="author" style="margin-left: 50px; display: block;">
-                        <div class="write" >${ n.ntcWriter }</div>
+                        <div class="write" >${ loginUser.memNickname }</div>
                     </div>
                 </div>
             

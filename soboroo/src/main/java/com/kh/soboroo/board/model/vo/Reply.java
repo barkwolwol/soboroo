@@ -26,4 +26,5 @@ public class Reply {
 	private int tableNo;
 	private int groupBoardNo;
 	private String memNickname;
+	private String recoment;
 }

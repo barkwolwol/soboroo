@@ -37,6 +37,8 @@ public interface BoardService {
 		
 		// 7. 댓글 작성용 서비스 (ajax)
 		int insertReply(Reply r);
+
+		/* ArrayList<Reply> selectReplyComment(int boardNo); */
 		
 		
 		
