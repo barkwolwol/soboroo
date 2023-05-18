@@ -99,6 +99,7 @@
 		  join GROUP_UPLOAD USING(TABLE_NO)
 		  where status = 'Y'
 		    and file_level = 1
+		    AND GROUP_BOARD_NO = NO
 		 order
 		    by NO desc
 	</select>
