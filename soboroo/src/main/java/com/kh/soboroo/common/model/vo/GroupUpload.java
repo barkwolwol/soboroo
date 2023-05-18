@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter					// setter 메소드
 @Getter					// getter 메소드
 @ToString				// toString 메소드
-public class Upload {
+public class GroupUpload {
 
 	private int uploadNo;
 	private String originName;
@@ -25,5 +25,5 @@ public class Upload {
 	private String filePath;
 	private int tableNo;
 	
-	private List<Upload> uploads;
+	private List<GroupUpload> uploads;
 }

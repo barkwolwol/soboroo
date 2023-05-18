@@ -37,71 +37,47 @@
 		
 			<div class="content_area">
 			
-				<form id="" action="insertGroupOne.off" method="POST" encType="multipart/form-data" data-event_method_type="advance" data-open_type="open">
+				<form id="allForm" action="insertGroupOne.go" method="POST" encType="multipart/form-data" data-event_method_type="advance" data-open_type="open">
 					<input type="hidden" name="id" value="${ loginUser.memNickname }">
 					<input type="hidden" name="memNo" value="${ loginUser.memNo }">
 					<input type="hidden" name="tableNo" value="2">
 
 					<article class="event_thumbnail">
-						<div id="thumbnail11" class="thumbnail">
-							<img src="resources/images/logo_3.png" alt="모임 이미지" data-time="1682652657" style="width: 300; height: 300;" id="preview">
-							<input type="file" id="test" class="fileupload" name="upfile" accept=".gif,.jpg,.jpeg,.png" style="display: none;" onchange="readURL(this)">
-							<button type="button" class="img_change_btn" onclick="imgUp();">사진변경</button>
-							<button type="button" class="img_delete_btn" onclick="imgDel();">삭제하기</button>
+						<div id="thumbnail1" class="thumbnail">
+							<img src="resources/images/logo_3.png" alt="모임 이미지" data-time="1682652657" id="preview">
+						  	<input multiple="multiple" type="file" id="test" class="fileupload" name="upfiles" accept=".gif,.jpg,.jpeg,.png" style="display: none;" onchange="readURL(this)">
+						  	<button type="button" class="img_change_btn" onclick="imgUp('test');">사진변경</button>
+						  	<button type="button" class="img_delete_btn" onclick="imgDel('preview', 'test', 'thumbnail1');">삭제하기</button>
 						</div>
 					</article>
+					  
 
 					<script>
-						$(document).ready(function(){
-							$("#onoff-list").on("click","li",function(e){
-								console.log($(e.target).data("value"));
-								$("#onoff-title").text($(e.target).data("value"));
-							})
-						})
-						$('#selectbox_btn_onoff').click(function(event){ event.stopPropagation(); $('#onoff-list').toggle(); })
-						$(document).click(function(){ $('#onoff-list').hide(); })
-
-						$(document).ready(function(){
-							$("#period-list").on("click","li",function(e){
-								console.log($(e.target).data("value"));
-								$("#period-title").text($(e.target).data("value"));
-							})
-						})
-						$('#selectbox_btn_period').click(function(event){ event.stopPropagation(); $('#period-list').toggle(); })
-						$(document).click(function(){ $('#period-list').hide(); })
-
-						$(document).ready(function(){
-							$("#goal-list").on("click","li",function(e){
-								console.log($(e.target).data("value"));
-								$("#goal-title").text($(e.target).data("value"));
-							})
-						})
-						$('#selectbox_btn_goal').click(function(event){ event.stopPropagation(); $('#goal-list').toggle(); })
-						$(document).click(function(){ $('#goal-list').hide(); })
-					</script>
-
-					<script>
-						function imgUp(){
-							$('.fileupload').click();
+						function imgUp(inputId) {
+						  $('#' + inputId).click();
 						}
-
+					  
 						function readURL(input) {
-							if(input.files && input.files[0]) {
-								var reader = new FileReader();
-								reader.onload = function(e) {
-									$("#preview").attr("src", e.target.result);
-								};
-								reader.readAsDataURL(input.files[0]);
-								document.getElementById('thumbnail11').className += ' upload';
-							}
+						  if (input.files && input.files[0]) {
+							var reader = new FileReader();
+							reader.onload = function (e) {
+							  $(input).siblings("img").attr("src", e.target.result);
+							};
+							reader.readAsDataURL(input.files[0]);
+							$(input).parent().addClass('upload');
+						  }
 						}
-
-						function imgDel() {
-							$("#preview").attr("src", "resources/images/logo_3.png");
-							$("#test").val("");
-							document.getElementById('thumbnail11').className = 'thumbnail';
+					  
+						function imgDel(previewId, inputId, thumbnailId) {
+						  if (thumbnailId === 'thumbnail1') {
+							$("#" + previewId).attr("src", "resources/images/logo_3.png");
+						  }else {
+							$("#" + previewId).attr("src", null);
+						  }
+						  $("#" + inputId).val("");
+						  $("#" + thumbnailId).removeClass('upload');
 						}
-					</script>
+					  </script>
 	
 					<article class="default_info">
 						<h3>기본정보<span class="required">필수</span></h3>
@@ -109,7 +85,6 @@
 						<div class="group_container">
 							<fieldset class="event_name_category">
 								<legend>카테고리/모임명</legend>
-	
 								<div class="input_wrap">
 									<div class="form_row">
 										<div class="selectbox" data-list_show="false">
@@ -132,7 +107,6 @@
 										<input type="text" name="title" placeholder="모임명을 입력해주세요." value="" maxlength="64" data-parsley-required-message="모임명을 입력해주세요." data-parsley-class-handler=".event_name_category .form_row">
 									</div>
 								</div>
-								
 							</fieldset>
 
 							<script>
@@ -147,32 +121,23 @@
 										$("#category-title").text(category);
 
 										switch (category){
-											case 0 : 
-												$("#category-title").text("카테고리 선택");
+											case 0 : $("#category-title").text("카테고리 선택");
 												break;
-											case 1 :
-												$("#category-title").text("교육/어학");
+											case 1 : $("#category-title").text("교육/어학");
 												break;
-											case 2 :
-												$("#category-title").text("취업/자격증");
+											case 2 : $("#category-title").text("취업/자격증");
 												break;
-											case 3 :
-												$("#category-title").text("여행");
+											case 3 : $("#category-title").text("여행");
 												break;
-											case 4 :
-												$("#category-title").text("스포츠/운동");
+											case 4 : $("#category-title").text("스포츠/운동");
 												break;
-											case 5 :
-												$("#category-title").text("요리/음식");
+											case 5 : $("#category-title").text("요리/음식");
 												break;
-											case 6 :
-												$("#category-title").text("문화/예술");
+											case 6 : $("#category-title").text("문화/예술");
 												break;
-											case 7 :
-												$("#category-title").text("영화/음악");
+											case 7 : $("#category-title").text("영화/음악");
 												break;
-											case 8 :
-												$("#category-title").text("기타");
+											case 8 : $("#category-title").text("기타");
 												break; 
 										}
 									})
@@ -181,7 +146,6 @@
 								$('#selectbox_btn_category').click(function(event){ event.stopPropagation(); $('#category-list').toggle(); })
 
 								$(document).click(function(){ $('#category-list').hide(); })
-
 							</script>
 
 							<fieldset class="contact">
@@ -260,8 +224,6 @@
 								$('#selectbox_btn_email').click(function(event){ event.stopPropagation(); $('#email-list').toggle(); })
 
 								$(document).click(function(){ $('#email-list').hide(); })
-
-								
 							</script>
 
 							<fieldset class="introduce">
@@ -292,7 +254,40 @@
 	
 					<article class="event_detail">
 						<h3>상세정보<span class="required">필수</span></h3>
-	
+
+						<div class="event_thumbnail sizeModify">
+							<div id="thumbnail2" class="thumbnail sizeModify">
+							  	<img id="preview2" class="sizeModify">
+							  	<input multiple="multiple" type="file" id="test2" class="fileupload" name="upfiles" accept=".gif,.jpg,.jpeg,.png" style="display: none;" onchange="readURL(this)">
+							  	<button type="button" class="img_change_btn" onclick="imgUp('test2');">사진추가</button>
+								<button type="button" class="img_delete_btn" onclick="imgDel('preview2', 'test2', 'thumbnail2');">삭제하기</button>
+							</div>
+						</div>
+						<div class="event_thumbnail sizeModify">
+							<div id="thumbnail3" class="thumbnail sizeModify">
+							  	<img id="preview3" class="sizeModify">
+							  	<input multiple="multiple" type="file" id="test3" class="fileupload" name="upfiles" accept=".gif,.jpg,.jpeg,.png" style="display: none;" onchange="readURL(this)">
+							  	<button type="button" class="img_change_btn" onclick="imgUp('test3');">사진추가</button>
+								<button type="button" class="img_delete_btn" onclick="imgDel('preview3', 'test3', 'thumbnail3');">삭제하기</button>
+							</div>
+						</div>
+						<div class="event_thumbnail sizeModify">
+							<div id="thumbnail4" class="thumbnail sizeModify">
+							  	<img id="preview4" class="sizeModify">
+							  	<input multiple="multiple" type="file" id="test4" class="fileupload" name="upfiles" accept=".gif,.jpg,.jpeg,.png" style="display: none;" onchange="readURL(this)">
+							  	<button type="button" class="img_change_btn" onclick="imgUp('test4');">사진추가</button>
+								<button type="button" class="img_delete_btn" onclick="imgDel('preview4', 'test4', 'thumbnail4');">삭제하기</button>
+							</div>
+						</div>
+						<div class="event_thumbnail sizeModify">
+							<div id="thumbnail5" class="thumbnail sizeModify">
+							  	<img id="preview5" class="sizeModify">
+							  	<input multiple="multiple" type="file" id="test5" class="fileupload" name="upfiles" accept=".gif,.jpg,.jpeg,.png" style="display: none;" onchange="readURL(this)">
+							  	<button type="button" class="img_change_btn" onclick="imgUp('test5');">사진추가</button>
+								<button type="button" class="img_delete_btn" onclick="imgDel('preview5', 'test5', 'thumbnail5');">삭제하기</button>
+							</div>
+						</div>
+
 						<div id="smarteditor">
 							<textarea name="content" id="editorTxt11" 
 									  rows="10" cols="10" 
@@ -382,7 +377,7 @@
 									<div class="person_apply_wrap">
 										<div class="form_row over_capacity" data-input_type="radio">
 											<div class="group_capacity">
-												<input type="text" name="max" class="capacity" title="모집 정원 입력" placeholder="모집 정원 입력" maxlength="7" value="">
+												<input type="number" name="max" class="capacity" title="모집 정원 입력" placeholder="모집 정원 입력" maxlength="7" value="">
 											</div>
 											<br>
 											<br>
@@ -424,6 +419,8 @@
 							minDate: "today",
 							dateFormat: "Y/m/d",
 							local: 'ko'
+							// enableTime : true,
+							// time_24hr : true
 						});
 
 						applyDate.flatpickr({
@@ -431,12 +428,9 @@
 							minDate: "today",
 							dateFormat: "Y/m/d",
 							local: 'ko'
+							// enableTime : true,
+							// time_24hr : true
 						});
-					</script>
-
-					<script>
-						
-
 					</script>
 
 					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -734,6 +728,6 @@
 	<script src="https://static.onoffmix.com/js/pc/dist/event/plugin/event_informing.js"></script>
 
 	<jsp:include page="../common/footer.jsp"/>
-	
+
 </body>
 </html>
