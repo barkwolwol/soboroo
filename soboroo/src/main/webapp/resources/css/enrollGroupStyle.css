@@ -108,3 +108,10 @@
     vertical-align: middle;
     color: #333;
 }
+
+.sizeModify {
+    width: 150px !important;
+    height: 120px !important;
+    margin-bottom: 10px !important;
+    margin-right: 5px !important;
+}

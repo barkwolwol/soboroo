@@ -34,13 +34,17 @@
 		<result column="MEM_NO" property="memNo"/>
 		<result column="TABLE_NO" property="tableNo"/>
 		<result column="ATTEND_PASSWORD" property="attendPassword"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
 	</resultMap>
 	
-	<resultMap id="uploadResultset" type="Upload">
+	<resultMap id="groupUploadResultset" type="GroupUpload">
 		<result column="UPLOAD_NO" property="uploadNo"/>
 		<result column="ORIGIN_NAME" property="originName"/>
 		<result column="CHANGE_NAME" property="changeName"/>
-		<result column="GROUP_BOARD_NO" property="groupBoardNo"/>
+		<result column="GROUP_BOARD_NO" property="bNo"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="FILE_PATH" property="filePath"/>
 		<result column="TABLE_NO" property="tableNo"/>
 	</resultMap>
 	
@@ -71,10 +75,10 @@
 		     , EMAIL
 		     , PHONE
 		     , SIMPLE
-		     , START_DATE
-		     , END_DATE
-		     , START_ENTER
-		     , END_ENTER
+		     , TO_CHAR(START_DATE, 'YYYY/MM/DD hh:dd') AS "START_DATE"
+		     , TO_CHAR(END_DATE, 'YYYY/MM/DD hh:dd') AS "END_DATE"
+		     , TO_CHAR(START_ENTER, 'YYYY/MM/DD hh:dd') AS "START_ENTER"
+		     , TO_CHAR(END_ENTER, 'YYYY/MM/DD hh:dd') AS "END_ENTER"
 		     , CONTENT
 		     , ADDRESS
 		     , ADDRESS_DETAIL
@@ -90,8 +94,11 @@
 			 , TABLE_NO
 			 , ATTEND_PASSWORD
 			 , COUNT
+			 , FILE_PATH
 		  from OFFLINE_GROUP_ONCE
+		  join GROUP_UPLOAD USING(TABLE_NO)
 		  where status = 'Y'
+		    and file_level = 1
 		 order
 		    by NO desc
 	</select>
@@ -219,9 +226,44 @@
 		     , #{memNo}
 		     , #{tableNo}
 		     )
-	
 	</insert>
 	
+	<insert id="insertGroupOneImg">
+		INSERT
+		  INTO GROUP_UPLOAD
+		     (
+		       UPLOAD_NO
+		     , ORIGIN_NAME
+		     , CHANGE_NAME
+		     , GROUP_BOARD_NO
+		     , FILE_LEVEL
+		     , FILE_PATH
+		     , TABLE_NO
+		     )
+		VALUES
+		     (
+		       SEQ_UPLOAD.NEXTVAL
+		     , #{originName}
+		     , #{changeName}
+		     , SEQ_ON_GROUP_ONCE_NO.CURRVAL
+		     , #{fileLevel}
+		     , #{filePath}
+		     , #{tableNo}
+		     )
+	</insert>
+	
+	<select id="selectAttachmentList" resultMap="offlineGroupOnceResultSet">
+		select
+		       upload_no
+		     , origin_name
+		     , change_name
+		     , group_board_no
+		     , file_level
+		     , file_path
+		     , table_no
+		  from group_upload
+		 where group_board_no = #{no}
+	</select>
 	
 	
 	
