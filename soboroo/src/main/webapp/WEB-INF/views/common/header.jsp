@@ -237,7 +237,16 @@ $(function() {
 
                   <div id="navbar-collapse" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav mr-auto align-items-center">
-
+					  
+					  <!-- 
+					  <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">참가하기 <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="listGroupOne.go?tableNo=2">모임참가</a></li>
+                        </ul>
+                      </li>
+					   -->
+					  
                       <li class="nav-item dropdown">
                         <a href="onList.go?tableNo=2">온라인</a>
                         <!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">온라인 <i class="fa fa-angle-down"></i></a>
