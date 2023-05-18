@@ -42,6 +42,7 @@
 		    count(*) as "count"
 		    from board
 		    where del_ny = 'N'
+		      and rep_ny = 'N'
 
 		    <if test="category != 0">
 		    and category = #{ category }
@@ -67,6 +68,7 @@
        join member using (mem_no)
        join category c on (b.category = c.category_no)
 	  where del_ny = 'N'
+	    and rep_ny = 'N'
 
 	  <if test="category != 0">
 	    and category = #{ category }
@@ -275,6 +277,13 @@
            , 10
 		  )
 	</insert>
+	
+	<update id="reportBoard">
+		update 
+				board
+			set rep_ny='Y'
+			where board_no = #{ boardNo } 
+	</update>
 	
 <!-- 	<select id="selectReplyComment" resultMap="replyResultSet">
 		select 
