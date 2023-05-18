@@ -84,11 +84,11 @@
     <body>
     
     <c:if test="${ not empty alertMsg }">
-		<script>
-			alert("${ alertMsg }");
-		</script>
-		<c:remove var="alertMsg" scope="session"/>
-	</c:if>
+      <script>
+        alert("${ alertMsg }");
+      </script>
+      <c:remove var="alertMsg" scope="session"/>
+	  </c:if>
 	
 	<script>
 		var socket = null;
@@ -224,7 +224,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">오프라인 <i
                             class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="listGroupOne.off?tableNo=2">반짝모임</a></li>
+                          <li><a href="listGroupOne.go?tableNo=2">반짝모임</a></li>
                           <li><a href="listReg.off">정기모임</a></li>
                           <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">목표모임</a>
@@ -291,8 +291,10 @@
                         </c:when>
                         <c:otherwise>
                           <!-- 로그인 후-->
-                          <label>${ loginUser.memNickname }님 환영합니다</label> &nbsp;&nbsp;
-                          <!-- <a href="myPage.me">마이페이지</a> -->
+                          <label id="table-avatar">
+                            <a id="table-avatar" href="${ loginUser.memImg }" target="_blank"><img class="rounded-circle" src="${ loginUser.memImg }" alt="User Image"></a>
+                          </label>&nbsp;&nbsp;
+                          <a>${ loginUser.memNickname }님</a> &nbsp;&nbsp;
                           <a href="logout.me">로그아웃</a>
                         </c:otherwise>
                       </c:choose>

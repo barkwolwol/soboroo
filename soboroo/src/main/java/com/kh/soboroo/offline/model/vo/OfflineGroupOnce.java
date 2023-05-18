@@ -46,5 +46,7 @@ public class OfflineGroupOnce {
 	private String status;
 	
 	private String categoryTitle;
+	private String filePath;
+	private String fileLevel;
 	
 }
