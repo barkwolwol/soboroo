@@ -211,64 +211,6 @@
 											    modal.find('.modal-body textarea').val('');	// textarea 초기화
 											});
 											</script>
-                                        <div class="entry-content">
-                                            <div class="content">
-                                                <!-- <br><br> -->
-                                                <br>
-                                                <!-- <br></br> -->
-                                                <div>
-                                                    <div>
-                                                        <form action="updateNick.my" id="checkNick">
-                                                            <div class="mb-3">
-                                                                <input type="text" class="form-control"
-                                                                    id="exampleInputEmail1" name="memNickname" aria-describedby="emailHelp"
-                                                                    style="width: 690px; padding: 5px 10px;" placeholder="변경할 닉네임">
-                                                                <div id="nickCheck" class="form-text" style="padding-left: 5px;"></div>
-                                                            </div>
-                                                    <div class="post-footer">
-                                                        <button type="submit" class="btn btn-primary">변경하기</button>
-                                                    </div>
-                                                    </form>
-                                                    </div>
-                                                    
-                                                    
-                                                    <script>
-                                                    	$(function(){
-                                                    		const $nickInput = $("#checkNick input[name=memNickname]");
-                                                    		console.log($nickInput.val());
-                                                    		
-                                                    		
-                           
-                                                    		
-                                                    		$nickInput.keyup(function(){
-                                                    			
-                                                    			$.ajax({
-                                                    				url:"checkNick.my",
-                                                    				data:{checkNick:$nickInput.val()},
-                                                    				success:function(result){
-                                                    					if(result == "NNNNN"){
-                                                    						$("#nickCheck").show();
-                                                    						$("#nickCheck").css("color", "#ff8932").text("이미 존재하는 닉네임입니다. 다시 입력해주세요.");
-                                                    						
-                                                    						$("#checkNick").find(":submit").attr("disabled", true);
-                                                    					} else {
-                                                    						$("#nickCheck").show();
-                                                    						$("#nickCheck").css("color", "#ff8932").text("사용 가능한 닉네임입니다.");
-                                                    						
-                                                    						$("#checkNick").find(":submit").removeAttr("disabled");
-                                                    					}
-                                                    					}, error:function(){
-                                                    						console.log("ajax 통신 실패!")
-                                                    				} 
-                                                    			});
-                                                    		})
-                                                    	})
-                                                    </script>
-                                                </div>
-                                            </div>
-                                        </div> <!-- post-body end -->
-                                    </div><!-- 3rd post end -->
-                                </div>
 
 										</div>
 									</div>

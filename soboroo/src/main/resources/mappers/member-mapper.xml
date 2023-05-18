@@ -105,4 +105,10 @@
 		   set mem_status = 4
 		 where mem_no = #{memNo}   
 	</update>
+	<select id="findNickname" resultType="String">
+		select mem_nickname
+		  from member
+		 where mem_no=#{memNo} 
+	
+	</select>
 </mapper>

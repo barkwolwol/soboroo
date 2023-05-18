@@ -1,14 +1,20 @@
 package com.kh.soboroo.myPage.model.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.entryList.model.vo.EntryList;
+import com.kh.soboroo.offline.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeDday;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeRegular;
@@ -111,7 +117,36 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("myPageMapper.selectMySchedule", loginUser);
 	}
 	
+	public int insertAlert(SqlSessionTemplate sqlSession, Alert a) {
+		return sqlSession.insert("myPageMapper.insertAlert", a);
+	}
 	
+	public String findNickname(SqlSessionTemplate sqlSession, int memNo) {
+		return sqlSession.selectOne("memberMapper.findNickname", memNo);
+	}
 	
+	public int selectAlertListCount(SqlSessionTemplate sqlSession,Member loginUser) {
+		return sqlSession.selectOne("myPageMapper.selectAlertListCount", loginUser);
+	}
+	
+	public ArrayList<Alert> selectAlertList(SqlSessionTemplate sqlSession,Member loginUser, PageInfo pi){
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectAlertList", loginUser, rowBounds);
+	
+	}
+	
+	public int deleteAlert(SqlSessionTemplate sqlSession, String memNo, String no) {
+	    System.out.println("myDao.deleteAlert() 호출됨");
+	    System.out.println("myDao.deleteAlert() 호출됨" + memNo);
+	    System.out.println("myDao.deleteAlert() 호출됨" + no);
+	    Map<String, String> parameters = new HashMap<>();
+	    parameters.put("memNo", memNo);
+	    parameters.put("no", no);
+	    return sqlSession.update("myPageMapper.deleteAlert", parameters);
+	}
+
 
 }

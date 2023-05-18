@@ -1,10 +1,12 @@
 package com.kh.soboroo.myPage.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.entryList.model.vo.EntryList;
+import com.kh.soboroo.offline.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeDday;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeRegular;
@@ -32,6 +34,10 @@ public interface MyPageService {
 
 	Member loginMember(Member m);
 	
+	int selectAlertListCount(Member loginUser);
+	
+	ArrayList<Alert> selectAlertList(Member loginUser, PageInfo pi);
+	
 	int selectListCount(Member loginUser);
 	
 	int selectGroupReplyListCount(Member loginUser);
@@ -54,4 +60,9 @@ public interface MyPageService {
 	
 	ArrayList<Object> selectMySchedule(Member loginUser);
 	
+	int insertAlert(Alert a);
+	
+	String findNickname(int memNo);
+	
+	String deleteAlert(String memNo, String no);
 }

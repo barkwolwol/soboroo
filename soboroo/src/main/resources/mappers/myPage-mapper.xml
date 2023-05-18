@@ -15,14 +15,25 @@
 </resultMap>
 
 <resultMap type="EntryList" id="entryListResultSet">
-	<result column="no" property="no"/>
-	<result column="title" property="title"/>
+	<result column="group_no" property="groupNo"/>
+	<result column="group_title" property="groupTitle"/>
 	<result column="entry_id" property="entryId"/>
 	<result column="wait_ny" property="waitNy"/>
 	<result column="start_date" property="startDate"/>
 	<result column="end_date" property="endDate"/>
 	<result column="mem_no" property="memNo"/>
 	<result column="table_no" property="tableNo"/>
+</resultMap>
+
+<resultMap type="Alert" id="alertResultSet">
+	<result column="id_no" property="idNo"/>
+	<result column="group_no" property="groupNo"/>
+	<result column="table_no" property="tableNo"/>
+	<result column="alert_content" property="alertContent"/>
+	<result column="mem_no" property="memNo"/>
+	<result column="alert_date" property="alertDate"/>
+	<result column="alert_type" property="alertType"/>
+	<result column="alert_read_ny" property="alertReadNy"/>
 </resultMap>
 
 	<select id="selectGroupBoardListCount" resultType="_int">
@@ -242,4 +253,51 @@ SELECT NO as "no", TITLE as "title", start_date, end_date
 
 
      </select>
+     <insert id="insertAlert">
+     	insert 
+     	  into alert
+     	  (
+     	  ID_NO,
+     	  GROUP_NO,
+     	  TABLE_NO,
+		  ALERT_CONTENT,
+		  MEM_NO,
+		  ALERT_TYPE
+     	  )
+     	values
+     	  (
+     	  SEQ_ALERT.NEXTVAL,
+     	  #{groupNo},
+     	  #{tableNo},
+     	  #{alertContent},
+     	  (select mem_no from member where mem_no=#{memNo}),
+     	  #{alertType}
+     	  )  
+     </insert>
+     <select id="selectAlertListCount" resultType="_int">
+     	select
+     		   count(*)
+     	  from alert
+     	 where mem_no = #{memNo} 
+     	   and alert_read_ny = 'N'	   
+     </select>
+     <select id="selectAlertList" resultMap="alertResultSet">
+     	select 
+     		   id_no,
+     		   group_no,
+     		   table_no,
+     		   alert_content,
+     		   alert_date
+     	  from alert
+     	 where mem_no = #{memNo}
+     	   and alert_read_ny = 'N' 
+     	 order by alert_date desc       
+     </select>
+     <update id="deleteAlert"  parameterType="map"> 
+     	update 
+     	       alert
+     	   set alert_read_ny = 'Y'
+     	 where mem_no = #{memNo}  
+     	   and id_no = #{no}    
+     </update>
 </mapper>

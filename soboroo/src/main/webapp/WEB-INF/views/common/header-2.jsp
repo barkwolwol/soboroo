@@ -41,9 +41,9 @@
 
       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-		  <!-- sockJS -->
-		<!-- <script src="resources/js/sockjs.min.js"></script> -->
-		<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+        <!-- sockJS -->
+      <!-- <script src="resources/js/sockjs.min.js"></script> -->
+      <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
       <!-- <script src="https://code.jquery.com/jquery-3.3.1/slim.min.js"></script> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -84,65 +84,65 @@
     <body>
     
     <c:if test="${ not empty alertMsg }">
-		<script>
-			alert("${ alertMsg }");
-		</script>
-		<c:remove var="alertMsg" scope="session"/>
-	</c:if>
-	
-	<script>
-		var socket = null;
-		$(document).ready(function(){
-			connectWs();
-		});
-		
-		function connectWs(){
-			sock = new SockJS( "<c:url value="/echo"/>" );
-			socket = sock;
-			
-			sock.onopen = function(){
-				console.log('웹소켓 연결됨');
-			}
-			
-			sock.onmessage = function(evt){
-				var data = evt.data;
-				console.log("ReceiveMessage : " + data + "\n");
-				
-				$.ajax({
-					url : 'countAlarm.my',
-					type : 'POST',
-					dataType : 'text',
-					success : function(data){
-						if(data == '0'){
-							
-						} else {
-							$('#alarmCountSpan').addClass('bell-badge-danger bell-badge')
-							$('#alarmCountSpan').text(data)
-						}
-					},
-					error : function(err){
-						console.log("ajax 통신 실패!")
-					}
-					
-				});
-				
-				var toastTop = app.toast.create({
-					text : "알림 : " + data + "\n",
-					position : "top",
-					closeButton : true
-					
-				});
-				toastTop.open();
-			};
-			
-			sock.onclose = function(){
-				console.log("연결 해제");
-			};
-			
-			sock.onerror = function(err) {console.log('Errors : ' + err);};
-		}
-			
-	</script>
+      <script>
+         alert("${ alertMsg }");
+      </script>
+      <c:remove var="alertMsg" scope="session"/>
+   </c:if>
+   
+   <script>
+      var socket = null;
+      $(document).ready(function(){
+         connectWs();
+      });
+      
+      function connectWs(){
+         sock = new SockJS( "<c:url value="/echo"/>" );
+         socket = sock;
+         
+         sock.onopen = function(){
+            console.log('웹소켓 연결됨');
+         }
+         
+         sock.onmessage = function(evt){
+            var data = evt.data;
+            console.log("ReceiveMessage : " + data + "\n");
+            
+            $.ajax({
+               url : 'countAlarm.my',
+               type : 'POST',
+               dataType : 'text',
+               success : function(data){
+                  if(data == '0'){
+                     
+                  } else {
+                     $('#alarmCountSpan').addClass('bell-badge-danger bell-badge')
+                     $('#alarmCountSpan').text(data)
+                  }
+               },
+               error : function(err){
+                  console.log("ajax 통신 실패!")
+               }
+               
+            });
+            
+            var toastTop = app.toast.create({
+               text : "알림 : " + data + "\n",
+               position : "top",
+               closeButton : true
+               
+            });
+            toastTop.open();
+         };
+         
+         sock.onclose = function(){
+            console.log("연결 해제");
+         };
+         
+         sock.onerror = function(err) {console.log('Errors : ' + err);};
+      }
+         
+   </script>
 
 
    <div id="top-bar" class="top-bar">
@@ -258,25 +258,25 @@
                           <li><a href="updateInfo.my">개인정보 수정</a></li>
                     </ul>
                       </li>
-						<li class="nav-item">
-						  <i style="margin-bottom:10px;" id="bellIcon" class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
-						    data-trigger="focus" title="최신 알림" data-html="true"
-						    data-content="<div>XXX님이 회원님의 소모임에 참가했습니다.</div>
-						                  <div>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</div>
-						                  <div>XXX님이 회원님의 소모임 게시글에 댓글을 남겼습니다.</div>
-						                  <div>XXX님의 소모임에 참여되었습니다.</div>
-						                  <div>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</div>
-						                  <a href='myAlert.my'>더보기</a>" data-placement="bottom"></i>
-						  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"></span>
-						</li>
+                  <li class="nav-item">
+                    <i style="margin-bottom:10px;" id="bellIcon" class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
+                      data-trigger="focus" title="최신 알림" data-html="true"
+                      data-content="<div>XXX님이 회원님의 소모임에 참가했습니다.</div>
+                                    <div>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</div>
+                                    <div>XXX님이 회원님의 소모임 게시글에 댓글을 남겼습니다.</div>
+                                    <div>XXX님의 소모임에 참여되었습니다.</div>
+                                    <div>XXX님이 회원님의 커뮤니티 게시글에 댓글을 남겼습니다.</div>
+                                    <a href='myAlert.my'>더보기</a>" data-placement="bottom"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"></span>
+                  </li>
                     </ul>
-						<div id="msgStack"></div>
-						
-				<script>
-				  $(function() {
-				    $('[data-toggle="popover"]').popover();
-				  });
-				</script>
+                  <div id="msgStack"></div>
+                  
+            <script>
+              $(function() {
+                $('[data-toggle="popover"]').popover();
+              });
+            </script>
 
 
 
@@ -313,37 +313,36 @@
    <!--/ Header end -->
 
 
-	
-	
-	  <!-- Javascript Files
-	  ================================================== -->
-	
-	  <!-- initialize jQuery Library 
-	  <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>-->
-	  <!-- Bootstrap jQuery 
-	  <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script>-->
-	  
-	  <!-- 서머노트 bootstrap 	-->  
-	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   
+   
+     <!-- Javascript Files
+     ================================================== -->
+   
+     <!-- initialize jQuery Library 
+     <script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery.min.js"></script>-->
+     <!-- Bootstrap jQuery 
+     <script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/bootstrap.min.js" defer="defer"></script>-->
+     
+     <!-- 서머노트 bootstrap    -->  
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-	  
-	  <!-- Slick Carousel -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick.min.js"></script>
-	  <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick-animation.min.js"></script>
-	  <!-- Color box -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/colorbox/jquery.colorbox.js"></script>
-	  <!-- shuffle -->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/shuffle/shuffle.min.js" defer="defer"></script>
-	
-	
-	  <!-- Google Map API Key-->
-	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer="defer"></script>
-	  <!-- Google Map Plugin-->
-	  <script src="${pageContext.request.contextPath}/resources/plugins/google-map/map.js" defer="defer"></script>
-	
-	  <!-- Template custom -->
-	  <script src="${pageContext.request.contextPath}/resources/js/script.js"></script>
-	
-	
-</body>
-</html>
+     
+     <!-- Slick Carousel -->
+     <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick.min.js"></script>
+     <script src="${pageContext.request.contextPath}/resources/plugins/slick/slick-animation.min.js"></script>
+     <!-- Color box -->
+     <script src="${pageContext.request.contextPath}/resources/plugins/colorbox/jquery.colorbox.js"></script>
+     <!-- shuffle -->
+     <script src="${pageContext.request.contextPath}/resources/plugins/shuffle/shuffle.min.js" defer="defer"></script>
+   
+   
+     <!-- Google Map API Key-->
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer="defer"></script>
+     <!-- Google Map Plugin-->
+     <script src="${pageContext.request.contextPath}/resources/plugins/google-map/map.js" defer="defer"></script>
+   
+     <!-- Template custom -->
+     <script src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+   
+   </body>
+   </html>
