@@ -9,13 +9,14 @@
    </settings>
 
    <typeAliases>
+      <typeAlias type="com.kh.soboroo.alert.model.vo.Alert" alias="Alert"/>
     <!--   <typeAlias type="com.kh.soboroo.alert.model.vo.Alert" alias="Alert"/> -->
       <typeAlias type="com.kh.soboroo.common.model.vo.Upload" alias="Upload"/>
       <typeAlias type="com.kh.soboroo.member.model.vo.Member" alias="Member"/>
       <typeAlias type="com.kh.soboroo.notice.model.vo.Notice" alias="Notice"/>
       <typeAlias type="com.kh.soboroo.board.model.vo.Board" alias="Board"/>
-      <typeAlias type="com.kh.soboroo.reply.model.vo.Reply" alias="Reply"/>
-      <typeAlias type="com.kh.soboroo.myPage.model.vo.MyPage" alias="MyPage"/>
+		<typeAlias type="com.kh.soboroo.reply.model.vo.Reply" alias="Reply"/>
+		<typeAlias type="com.kh.soboroo.myPage.model.vo.MyPage" alias="MyPage"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminBoard" alias="AdminBoard"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminCategory" alias="AdminCategory"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminMember" alias="AdminMember"/>

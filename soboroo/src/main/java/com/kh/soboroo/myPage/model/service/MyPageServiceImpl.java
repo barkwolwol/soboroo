@@ -1,14 +1,16 @@
 package com.kh.soboroo.myPage.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.entryList.model.vo.EntryList;
+import com.kh.soboroo.offline.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.dao.MyPageDao;
 import com.kh.soboroo.myPage.model.vo.MyPage;
@@ -76,7 +78,15 @@ public class MyPageServiceImpl implements MyPageService {
 		return myDao.selectGroupBoardListCount(sqlSession, loginUser);
 	}
 	
+	@Override
+	public int selectAlertListCount(Member loginUser) {
+		return myDao.selectAlertListCount(sqlSession, loginUser);
+	}
 
+	@Override
+	public ArrayList<Alert> selectAlertList(Member loginUser, PageInfo pi) {
+		return myDao.selectAlertList(sqlSession, loginUser, pi);
+	}
 	@Override
 	public ArrayList<Board> selectList(Member loginUser, PageInfo pi) {
 		
@@ -123,5 +133,24 @@ public class MyPageServiceImpl implements MyPageService {
 		return myDao.selectMySchedule(sqlSession, loginUser);
 	}
 
+	@Override
+	public int insertAlert(Alert a) {
+		return myDao.insertAlert(sqlSession, a);
+	}
 
+	@Override
+	public String findNickname(int memNo) {
+		return myDao.findNickname(sqlSession, memNo);
+	}
+
+	@Override
+	public String deleteAlert(String memNo, String no) {
+	    int count = myDao.deleteAlert(sqlSession, memNo, no);
+
+	    if (count > 0) {
+	        return "success";
+	    } else {
+	        return "failure";
+	    }
+	}
 }

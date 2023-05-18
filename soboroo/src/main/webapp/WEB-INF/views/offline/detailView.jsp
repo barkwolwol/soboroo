@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -89,7 +90,7 @@
               <li>
                 <p class="project-link">
                   <br>
-                  <a class="btn btn-primary" target="_blank" href="#" id="entryButton">참가하기</a>
+                  <a class="btn btn-primary" target="_blank"  id="entryButton">참가하기</a>
                 </p>
               </li>
             </ul>
@@ -118,34 +119,65 @@
 
             
             <script>
-            $(function(){
-            	$("#entryButton").on("click", function(){
-            		var AlarmData = {
-            				"myAlarm_receiverEmail" : receiverEmail,
-            				"myAlarm_callerNickname" : memNickName,
-            				"myAlarm_content" : memNickName + "님이 회원님의 소모임에 참여했습니다.",
-            		};
-            		$.ajax({
-            			type : "post",
-            			url : "saveAlarm.my"
-            			data : JSON.stringify(AlarmData),
-            			contentType: "application/json; charset=utf-8",
-            			dataType : 'text',
-            			success : function(data){
-            				if(socket){
-            					let socketMsg = "scrap," + memNickname +","+ memberSeq +","+ receiverEmail +","+ essayboard_seq;
-            					console.log("msgmsg : " + socketMsg);
-            					socket.send(socketMsg);
-            				}
+            
+             
+            $(function() {
+                $("#entryButton").on("click", function() {
+                    var memNickname = "${loginUser.memNickname}";
 
-            			},
-            			error : function(err){
-            				console.log(err);
-            			}
-            		})
-            	})
-            })
-            </script>
+                    var memNo = "${ogo.memNo}";
+
+                    $.ajax({
+                        type: "post",
+                        data: { "memNo": memNo },
+                        url: "findNick.my",
+                        dataType: 'json',
+                        success: function(data) {
+                            var writer = data.memNickname; // memNickname을 받아와서 writer에 할당합니다.
+                            var tableNo = "${ogo.tableNo}";
+                            var groupNo = "${ogo.no}";
+                            var title = "${ogo.title}";
+                            var alertType = 1;
+                            var alertContent = memNickname + "님이 회원님의 " + title + " 소모임에 참여했습니다.";
+                            var AlarmData = {
+                                "alertContent": alertContent,
+                                "tableNo" : tableNo,
+                                "groupNo" : groupNo,
+                                "alertType" : alertType
+                            };
+                            
+
+                            console.log(AlarmData);
+                            $.ajax({
+                                type: "post",
+                                data: JSON.stringify(AlarmData),
+                                url: "saveAlert.my",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: 'text',
+                                success: function(data) {
+                                    console.log(data);
+                                    if (socket) {
+                                        var socketMsg = "apply," + memNickname + "," + writer + "," + title;
+                                        console.log("msgmsg: " + socketMsg);
+                                        // $("#socketMessageDiv").text(socketMsg);
+                                        socket.send(socketMsg);
+                                        console.log('socketMsg 보냄');
+                                    }
+                                },
+                                error: function(err) {
+                                    console.log(err);
+                                }
+                            });
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    });
+                    });
+
+            });
+
+</script>
 
           </div><!-- Content col end -->
 
@@ -186,9 +218,6 @@
 			</table>
 		</div>
 		<!-- 버튼 여부에 따라 보이는 부분 끝 -->
-		
-		
-		
 		
 		
       	<hr>

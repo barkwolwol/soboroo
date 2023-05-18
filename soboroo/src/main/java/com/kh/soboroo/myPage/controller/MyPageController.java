@@ -3,8 +3,14 @@ package com.kh.soboroo.myPage.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +20,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
-import com.kh.soboroo.entryList.model.vo.EntryList;
+import com.kh.soboroo.offline.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.service.MailSendService;
 import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;
@@ -37,6 +48,8 @@ import com.kh.soboroo.myPage.model.vo.OnlineChallengeRegular;
 import com.kh.soboroo.myPage.model.vo.OnlineGroupOnce;
 import com.kh.soboroo.myPage.model.vo.OnlineGroupRegular;
 import com.kh.soboroo.reply.model.vo.Reply;
+
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 public class MyPageController {
@@ -194,6 +207,22 @@ public class MyPageController {
 	        return "redirect:update.my";
 	    }
 	}
+	
+	@RequestMapping("selectAlertList.my")
+	public ModelAndView selectAlertList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int listCount = myService.selectAlertListCount(loginUser);
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		
+		ArrayList<Alert> list = myService.selectAlertList(loginUser, pi);
+		
+		System.out.println("알람"+list);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("myPage/myAlert");
+		return mv;
+	}
 
 	
 	@RequestMapping("communityList.my")
@@ -216,7 +245,6 @@ public class MyPageController {
 	    Member loginUser = (Member)session.getAttribute("loginUser");
 	    
 	    int listCount = myService.selectGroupBoardListCount(loginUser);
-	    
 	    PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 	    ArrayList<Object> list = myService.selectTestList(loginUser, pi);
 	    
@@ -315,5 +343,108 @@ public class MyPageController {
 		return "myPage/checkEmail";
 	}
 
+	@RequestMapping("saveAlert.my")
+	public String insertAlert(@RequestBody Alert alertData, HttpSession session, Model model) {
+	    Member loginUser = (Member) session.getAttribute("loginUser");
+	    
+	    // Alert 객체 생성 및 데이터 설정
+	    Alert a = new Alert();
+	    a.setMemNo(loginUser.getMemNo());
+	    a.setAlertContent(alertData.getAlertContent());
+	    a.setTableNo(alertData.getTableNo());
+	    a.setGroupNo(alertData.getGroupNo());
+	    a.setAlertType(alertData.getAlertType());
+	    System.out.println("컨트롤러 ㅁ : " + a);
+	    int result = myService.insertAlert(a);
+	    if (result > 0) {
+			/*
+			 * String socketMsg = "apply," + loginUser.getMemNickname() + "," +
+			 * loginUser.getMemNickname();
+			 * 
+			 * session.setAttribute("socketMsg", socketMsg);
+			 */System.out.println("알림 디비 넣기 성공");
+	    } else {
+	        System.out.println("알림 디비 넣기 실패");
+	    }
+	    return "redirect:/";
+	}
+	
+	@RequestMapping("saveReplyAlert.my")
+	public String insertReplyAlert(@RequestBody Alert alertData, HttpSession session, Model model) {
+	    Member loginUser = (Member) session.getAttribute("loginUser");
+	    
+	    // Alert 객체 생성 및 데이터 설정
+	    Alert a = new Alert();
+	    a.setMemNo(loginUser.getMemNo());
+	    a.setAlertContent(alertData.getAlertContent());
+	    a.setTableNo(alertData.getTableNo());
+	    a.setGroupNo(alertData.getGroupNo());
+	   // a.setGroupNo(alertData.getGroupNo());
+	    a.setAlertType(alertData.getAlertType());
+	    System.out.println("컨트롤러 ㅁ : " + a);
+	    int result = myService.insertAlert(a);
+	    if (result > 0) {
+			/*
+			 * String socketMsg = "apply," + loginUser.getMemNickname() + "," +
+			 * loginUser.getMemNickname();
+			 * 
+			 * session.setAttribute("socketMsg", socketMsg);
+			 */System.out.println("알림 디비 넣기 성공");
+	    } else {
+	        System.out.println("알림 디비 넣기 실패");
+	    }
+	    return "redirect:/";
+	}
+	
+	@RequestMapping("findNick.my")
+	@ResponseBody // JSON 형식으로 응답을 반환하기 위해 추가
+	public Map<String, String> findNickname(@RequestParam(value = "memNo") int memNo) {
+		System.out.println("memNo" + memNo);
+	    Map<String, String> response = new HashMap<>();
+	    String memNickname = myService.findNickname(memNo);
+	    response.put("memNickname", memNickname);
+	    return response;
+	}
 
+	@RequestMapping(value = "deleteAlert.my")
+	@ResponseBody
+	public String deleteAlert(HttpSession session, @RequestParam(value = "valueArr[]", required = false) String[] ajaxMsg) {
+	    Member loginUser = (Member) session.getAttribute("loginUser");
+
+	    System.out.println(Arrays.toString(ajaxMsg));
+
+	    if (ajaxMsg != null) {
+	        int size = ajaxMsg.length;
+	        for (int i = 0; i < size; i++) {
+	            String no = ajaxMsg[i];
+	            String memNo = String.valueOf(loginUser.getMemNo());
+	            myService.deleteAlert(memNo, no);
+	        }
+	    }
+	    return "success";
+	}
+	
+	@RestController
+	public class RecentPostsController {
+	    private List<String> recentPosts = new ArrayList<>();
+
+	    @GetMapping("/recent-posts")
+	    public List<String> getRecentPosts() {
+	        return recentPosts;
+	    }
+
+	    @PostMapping("/recent-posts")
+	    public void addRecentPost(@RequestBody String post) {
+	        recentPosts.add(post);
+	        if (recentPosts.size() > 3) {
+	            recentPosts.remove(0);
+	        }
+	    }
+	}
+
+	
+	
+	
+	
+	
 	}

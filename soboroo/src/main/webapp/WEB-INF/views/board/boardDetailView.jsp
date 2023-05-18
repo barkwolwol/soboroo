@@ -103,7 +103,7 @@
 	                <a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onclick="postFormSubmit(2);">지우기</a>
 	            </c:if>
 	            <c:if test="${b.memNickname ne loginUser.memNickname }">
-	            	<a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onclick="test01();">신고</a>
+	            	<a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" id="test1">신고</a>
                 </c:if>
                 </div>
             </c:if>
@@ -111,8 +111,8 @@
             </div>
             
             <form id="postForm" action="" method="post">
-            <input type="hidden" name="bno" value="${b.boardNo }">
-            <input type="hidden" name="memNo" value="${ loginUser.memNo }">
+            <input type="hidden" name="bno" value="${b.boardNo }" data-boardNo="${b.boardNo }">
+            <input type="hidden" name="memNo" value="${ loginUser.memNo }" data-memNo="${ b.memNo }">
             </form>
             <script>
             		function test01(){
@@ -138,11 +138,11 @@
     
     <tr>
         <th width="100">제목</th>
-        <td colspan="3">${ b.boardTitle }</td>
+        <td colspan="3" data-title="${b.boardTitle }">${ b.boardTitle }</td>
     </tr>
     <tr>
         <th>작성자</th>
-        <td>${b.memNickname }</td>
+        <td data-nickname="${b.memNickname }">${b.memNickname }</td>
         <th>작성일</th>
         <td>${ b.createDate }</td>
     </tr>
@@ -180,7 +180,7 @@
 			                        <th colspan="2">
 			                            <textarea class="form-control" name="" id="content" cols="55" rows="2" style="resize:none; width:100%"></textarea>
 			                        </th>
-			                        <th style="vertical-align: middle"><button  type="button" class="btn btn-secondary" onclick="addReply();">등록하기</button></th>
+			                        <th style="vertical-align: middle"><button  type="button" class="btn btn-secondary" onclick="addReply();" id="enrollButton">등록하기</button></th>
 			                    </tr>
 	                    </c:otherwise>
                     </c:choose> 
@@ -287,6 +287,138 @@
 	}
 		
     </script>
+    
+    <script>
+    
+    $(function(){
+    	$("#enrollButton").on("click", function(){
+    		 var memNickname = "${loginUser.memNickname}";
+
+             var memNo = "${b.memNo}";
+             
+             console.log(memNickname);
+             console.log(memNo);
+
+             $.ajax({
+                 type: "post",
+                 data: { "memNo": memNo },
+                 url: "findNick.my",
+                 dataType: 'json',
+                 success: function(data) {
+                     var writer = data.memNickname; // memNickname을 받아와서 writer에 할당합니다.
+                     var tableNo = 10;
+                     var groupNo = "${b.boardNo}";
+                     var title = "${b.boardTitle}";
+                     var alertType = 2;
+                     var alertContent = memNickname + "님이 회원님의 " + title + " 게시글에 댓글을 남겼습니다.";
+                     var AlarmData = {
+                         "alertContent": alertContent,
+                         "tableNo" : tableNo,
+                         "groupNo" : groupNo,
+                         "alertType" : alertType
+                     };
+                     
+
+                     console.log(AlarmData);
+                     $.ajax({
+                         type: "post",
+                         data: JSON.stringify(AlarmData),
+                         url: "saveReplyAlert.my",
+                         contentType: "application/json; charset=utf-8",
+                         dataType: 'text',
+                         success: function(data) {
+                             console.log(data);
+                             if (socket) {
+                                 var socketMsg = "reply," + memNickname + "," + writer + "," + title;
+                                 console.log("msgmsg: " + socketMsg);
+                                 // $("#socketMessageDiv").text(socketMsg);
+                                 socket.send(socketMsg);
+                                 console.log('socketMsg 보냄');
+                             }
+                         },
+                         error: function(err) {
+                             console.log(err);
+                         }
+                     });
+                 },
+                 error: function(err) {
+                     console.log(err);
+                 }
+             });
+             });
+
+     });
+
+    </script>
+    
+    <script>
+    $(function(){
+    	$("#test1").on("click", function(){
+    		if(confirm("게시글을 신고하시겠습니까?")==true){
+    		console.log('ㅎㅇ');
+    		
+    		 var memNickname = "${loginUser.memNickname}";
+
+             var memNo = "${b.memNo}";
+             
+             console.log(memNickname);
+             console.log(memNo);
+
+             $.ajax({
+                 type: "post",
+                 data: { "memNo": memNo },
+                 url: "findNick.my",
+                 dataType: 'json',
+                 success: function(data) {
+                     var writer = data.memNickname; // memNickname을 받아와서 writer에 할당합니다.
+                     var tableNo = 10;
+                     var groupNo = "${b.boardNo}";
+                     var title = "${b.boardTitle}";
+                     var alertType = 3;
+                     var alertContent = "회원님의 " + title + " 게시글이 신고되었습니다.";
+                     var AlarmData = {
+                         "alertContent": alertContent,
+                         "tableNo" : tableNo,
+                         "groupNo" : groupNo,
+                         "alertType" : alertType
+                     };
+                     
+
+                     console.log(AlarmData);
+                     $.ajax({
+                         type: "post",
+                         data: JSON.stringify(AlarmData),
+                         url: "saveReplyAlert.my",
+                         contentType: "application/json; charset=utf-8",
+                         dataType: 'text',
+                         success: function(data) {
+                             console.log(data);
+                             if (socket) {
+                                 var socketMsg = "report," + memNickname + "," + writer + "," + title;
+                                 console.log("msgmsg: " + socketMsg);
+                                 // $("#socketMessageDiv").text(socketMsg);
+                                 socket.send(socketMsg);
+                                 console.log('socketMsg 보냄');
+                                 alert("신고되었습니다.")
+                             }
+                         },
+                         error: function(err) {
+                             console.log(err);
+                         }
+                     });
+                 },
+                 error: function(err) {
+                     console.log(err);
+                 }
+             });
+            
+    	} else {
+    		return false;
+    	}
+    	 });
+     });
+
+    </script>
      
 	    <!-- Button trigger modal -->
 	<button style="visibility: hidden;" id="test11" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -294,6 +426,7 @@
 	</button>
 	
 	<!-- Modal -->
+	<%-- 
 	<div   class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -310,12 +443,77 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-	        <button type="submit" class="btn btn-primary">확인</button>
+	        <button type="submit" class="btn btn-primary" id="reportBoard">확인</button>
 	      </div>
+	      
 	       </form>
 	    </div>
 	  </div>
-	</div>
+	</div> --%>
+	
+<!-- 	<script>
+    $(function(){
+    	$("#test").on("click", function(){
+    		console.log('ㅎㅇ');
+    		
+    		 var memNickname = "${loginUser.memNickname}";
+
+             var memNo = "${b.memNo}";
+             
+             console.log(memNickname);
+             console.log(memNo);
+
+             $.ajax({
+                 type: "post",
+                 data: { "memNo": memNo },
+                 url: "findNick.my",
+                 dataType: 'json',
+                 success: function(data) {
+                     var writer = data.memNickname; // memNickname을 받아와서 writer에 할당합니다.
+                     var tableNo = 10;
+                     var groupNo = "${b.boardNo}";
+                     var title = "${b.boardTitle}";
+                     var alertType = 3;
+                     var alertContent = "회원님의 " + title + " 게시글이 신고되었습니다.";
+                     var AlarmData = {
+                         "alertContent": alertContent,
+                         "tableNo" : tableNo,
+                         "groupNo" : groupNo,
+                         "alertType" : alertType
+                     };
+                     
+
+                     console.log(AlarmData);
+                     $.ajax({
+                         type: "post",
+                         data: JSON.stringify(AlarmData),
+                         url: "saveReplyAlert.my",
+                         contentType: "application/json; charset=utf-8",
+                         dataType: 'text',
+                         success: function(data) {
+                             console.log(data);
+                             if (socket) {
+                                 var socketMsg = "report," + memNickname + "," + writer + "," + title;
+                                 console.log("msgmsg: " + socketMsg);
+                                 // $("#socketMessageDiv").text(socketMsg);
+                                 socket.send(socketMsg);
+                                 console.log('socketMsg 보냄');
+                             }
+                         },
+                         error: function(err) {
+                             console.log(err);
+                         }
+                     });
+                 },
+                 error: function(err) {
+                     console.log(err);
+                 }
+             });
+             });
+
+     });
+
+    </script> -->
     
             
 
