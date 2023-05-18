@@ -1,6 +1,7 @@
 package com.kh.soboroo.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.soboroo.board.model.dao.BoardDao;
 import com.kh.soboroo.board.model.vo.Board;
+import com.kh.soboroo.board.model.vo.Reply;
 import com.kh.soboroo.common.model.vo.PageInfo;
 
 @Service
@@ -20,13 +22,13 @@ public class BoardServiceImpl implements BoardService{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int selectBoardListCount() {
-		return bDao.selectBoardListCount(sqlSession);
+	public int selectBoardListCount(int category) {
+		return bDao.selectBoardListCount(sqlSession, category);
 	}
 
 	@Override
-	public ArrayList<Board> selectBoardList(PageInfo pi) {
-		return bDao.selectBoardList(sqlSession, pi);
+	public ArrayList<Board> selectBoardList(PageInfo pi, int category) {
+		return bDao.selectBoardList(sqlSession, pi, category);
 	}
 
 	@Override
@@ -41,20 +43,46 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public int insertBoard(Board b) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bDao.insertBoard(sqlSession, b);
 	}
 
 	@Override
 	public int updateBoard(Board b) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bDao.updateBoard(sqlSession,b);
 	}
 
 	@Override
 	public int deleteBoard(int boardNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bDao.deleteBoard(sqlSession, boardNo);
 	}
+
+	@Override
+	public int selectSearchCount(HashMap<String, String> map) {
+		return bDao.selectSearchCount(sqlSession, map);
+	}
+
+	@Override
+	public ArrayList<Board> selectSearchList(HashMap<String, String> map, PageInfo pi) {
+		return bDao.selectSearchList(sqlSession, map, pi);
+	}
+
+	@Override
+	public int updateUpload(int uploadNo) {
+		return bDao.updateUpload(sqlSession, uploadNo);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(int boardNo) {
+		return bDao.selectReplyList(sqlSession, boardNo);	}
+
+	@Override
+	public int insertReply(Reply r) {
+		return bDao.insertReply(sqlSession, r);
+	}
+
+	
+	
+
+	
 
 }

@@ -236,7 +236,7 @@
                         </ul>
                       </li>
 
-                      <li class="nav-item"><a class="nav-link" href="list.bo">자유게시판</a></li>
+                      <li class="nav-item"><a class="nav-link" href="list.bo?category=0">자유게시판</a></li>
 
                       <li class="nav-item"><a class="nav-link" href="list.no">공지사항</a></li>
 

@@ -121,9 +121,9 @@ public class NoticeController {
 	 
 		
 		@RequestMapping("update.no")
-		public String updateBoard(Notice n,HttpSession session, Model model) {
+		public String updateNotice(Notice n,HttpSession session, Model model) {
 				
-		 System.out.println(n);
+		 //System.out.println(n);
 			int result = nService.updateNotice(n);
 			if(result > 0) { // 수정 성공=> 상세페이지
 				session.setAttribute("alertMsg", "게시글이 수정되었습니다.");
