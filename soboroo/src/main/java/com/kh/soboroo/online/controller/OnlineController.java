@@ -37,9 +37,9 @@ public class OnlineController {
 	}
 
 	// 온라인 모임 상세 페이지 호출
-	@RequestMapping("detail.on")
+	@RequestMapping("detail.go")
 	public String onDetailView(int groupNum) {
-		return "online/onlineDetailView";
+		return "offline/detailView";
 	}
 
 }

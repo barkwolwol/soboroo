@@ -27,7 +27,7 @@
 </head>
 <body>
   <div class="body-inner">
-    <div id="banner-area" class="banner-area" style="background-image:url(${pageContext.request.contextPath}/resources/images/banner/banner-online2.jpg)">
+    <div id="banner-area" class="banner-area" style="background-image:url(${pageContext.request.contextPath}/resources/images/banner/with2.jpg)">
       <div class="banner-text">
         <div class="container">
             <div class="row">
@@ -105,102 +105,153 @@
             </div>
             
           </div><!-- Slider col end -->
+		  
+		  <c:choose>
+		  	<c:when test="${ not empty ogo.address }">
+		  	
+	          <div class="col-lg-4 mt-5 mt-lg-0">
+	
+	            <h3 class="column-title mrt-0">${ ogo.title }</h3>		<!-- 같이 바리스타 자격증 취득해봐요 -->
+	            <p>${ ogo.simple }</p>	<!-- 23년 04월 23일에 진행되는 바리스타 자격증 취득 준비를 위한 온라인 모임입니다. 서로가 갖고 있는 지식을 공유하며 합격 확률을 높이고자 열심히 활동할 준비가 된 분들을 모집합니다. 많은 참여 부탁드릴게요~ -->
+	
+	            <ul class="project-info list-unstyled">
+	              <li>
+	                <p class="project-info-label">카테고리</p>
+	                <p class="project-info-content">${ ogo.categoryTitle }</p>				<!-- 자격증/교육 -->
+	              </li>
+	              <li>
+	                <p class="project-info-label">모임일자</p>
+	                <p class="project-info-content">${ ogo.startDate } ~ ${ ogo.endDate }</p> 				<!-- 2023년 04월 13일(목) 17:00~18:00 -->
+	              </li>
+	              <li>
+	                <p class="project-info-label">모임장소</p>
+	                <p class="project-info-content">${ ogo.address } ${ ogo.addressDetail }&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#mapModal">지도보기</a>
+	              </li>
+	              <li>
+	                <p class="project-info-label">그룹장</p>
+	                <p class="project-info-content">${ ogo.name }</p>				<!-- 그룹장닉네임 -->
+	              </li>
+	              <li>
+	              	<hr>
+	                <p class="project-info-label">정원</p>
+	                <p class="project-info-content">최대 ${ ogo.max }명</p>				<!-- 최대 30명 -->
+	              </li>
+	              <li>
+	                <p class="project-info-label">신청마감일</p>
+	                <p class="project-info-content">${ ogo.endEnter }</p>		<!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
+	              </li>
+	              <li>
+	                <p class="project-link">
+	                  <br>
+	                  <a class="btn btn-primary" target="_blank" href="#" id="entryButton">참가하기</a> 	<!-- join.me / 클릭시, 참가취소 로 변경되게끔! 인원수가 찬 경우, 대기하기로 출력하기 -->
+	                  <a class="btn btn-primary" target="_blank" href="selectChat.ih">채팅하기</a>
+	                </p>
+	              </li>
+	            </ul>
+	            
+	            
+	            <!-- The Modal -->
+	            <div class="modal fade" id="mapModal">
+	              <div class="modal-dialog">
+	                <div class="modal-content">
+	                    <div id="map" style="width:100%;height:350px;"></div>
+	                </div>
+	              </div>
+	            </div>
+	
+	            <script>
+	              var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	                  mapOption = { 
+	                      center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	                      level: 3 // 지도의 확대 레벨
+	                  };
+	              
+	              // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+	              var map = new kakao.maps.Map(mapContainer, mapOption); 
+	              
+	              map.relayout();
+	              </script>
+	            
+	          </div><!-- Content col end -->
+		  		
+		  	</c:when>
+		  	<c:otherwise>
+		  		<div class="col-lg-4 mt-5 mt-lg-0">
+		
+		            <h3 class="column-title mrt-0">${ ogo.title }</h3>		<!-- 같이 바리스타 자격증 취득해봐요 -->
+		            <p>${ ogo.simple }</p>	<!-- 23년 04월 23일에 진행되는 바리스타 자격증 취득 준비를 위한 온라인 모임입니다. 서로가 갖고 있는 지식을 공유하며 합격 확률을 높이고자 열심히 활동할 준비가 된 분들을 모집합니다. 많은 참여 부탁드릴게요~ -->
+		
+		            <ul class="project-info list-unstyled">
+		              <li>
+		                <p class="project-info-label">카테고리</p>
+		                <p class="project-info-content">${ ogo.categoryTitle }</p>				<!-- 자격증/교육 -->
+		              </li>
+		              <li>
+		                <p class="project-info-label">모임일자</p>
+		                <p class="project-info-content">${ ogo.startDate } ~ ${ ogo.endDate }</p> 				<!-- 2023년 04월 13일(목) 17:00~18:00 -->
+		              </li>
+		              <li>
+		                <p class="project-info-label">그룹장</p>
+		                <p class="project-info-content">${ ogo.name }</p>				<!-- 그룹장닉네임 -->
+		              </li>
+		              <li>
+		              	<hr>
+		                <p class="project-info-label">정원</p>
+		                <p class="project-info-content">최대 ${ ogo.max }명</p>				<!-- 최대 30명 -->
+		              </li>
+		              <li>
+		                <p class="project-info-label">신청마감일</p>
+		                <p class="project-info-content">${ ogo.endEnter }</p>		<!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
+		              </li>
+		              <li>
+		                <p class="project-info-label">온라인 회의링크</p>
+		                <a class="btn btn-primary" target="_blank" href="https://meet.google.com/czp-gqri-usc">이동하기</a>
+		              </li>
+		              <hr>
+		              <li>
+		                <p class="project-link">
+		                  <br>
+		                  <a class="btn btn-primary" target="_blank" href="#" id="entryButton">참가하기</a> 	<!-- join.me / 클릭시, 참가취소 로 변경되게끔! 인원수가 찬 경우, 대기하기로 출력하기 -->
+		                  <a class="btn btn-primary" target="_blank" href="selectChat.ih">채팅하기</a>
+		                </p>
+		              </li>
+		            </ul>
+		
+		
+		          </div><!-- Content col end -->
+		  	</c:otherwise>
+		  </c:choose>
+		  
+          <script>
+          $(function(){
+          	$("#entryButton").on("click", function(){
+          		var AlarmData = {
+          				"myAlarm_receiverEmail" : receiverEmail,
+          				"myAlarm_callerNickname" : memNickName,
+          				"myAlarm_content" : memNickName + "님이 회원님의 소모임에 참여했습니다.",
+          		};
+          		$.ajax({
+          			type : "post",
+          			url : "saveAlarm.my"
+          			data : JSON.stringify(AlarmData),
+          			contentType: "application/json; charset=utf-8",
+          			dataType : 'text',
+          			success : function(data){
+          				if(socket){
+          					let socketMsg = "scrap," + memNickname +","+ memberSeq +","+ receiverEmail +","+ essayboard_seq;
+          					console.log("msgmsg : " + socketMsg);
+          					socket.send(socketMsg);
+          				}
 
-          <div class="col-lg-4 mt-5 mt-lg-0">
-
-            <h3 class="column-title mrt-0">${ ogo.title }</h3>		<!-- 같이 바리스타 자격증 취득해봐요 -->
-            <p>${ ogo.simple }</p>	<!-- 23년 04월 23일에 진행되는 바리스타 자격증 취득 준비를 위한 온라인 모임입니다. 서로가 갖고 있는 지식을 공유하며 합격 확률을 높이고자 열심히 활동할 준비가 된 분들을 모집합니다. 많은 참여 부탁드릴게요~ -->
-
-            <ul class="project-info list-unstyled">
-              <li>
-                <p class="project-info-label">카테고리</p>
-                <p class="project-info-content">${ ogo.categoryTitle }</p>				<!-- 자격증/교육 -->
-              </li>
-              <li>
-                <p class="project-info-label">모임일자</p>
-                <p class="project-info-content">${ ogo.startDate } ~ ${ ogo.endDate }</p> 				<!-- 2023년 04월 13일(목) 17:00~18:00 -->
-              </li>
-              <li>
-                <p class="project-info-label">그룹장</p>
-                <p class="project-info-content">${ ogo.name }</p>				<!-- 그룹장닉네임 -->
-              </li>
-              <li>
-              	<hr>
-                <p class="project-info-label">정원</p>
-                <p class="project-info-content">최대 ${ ogo.max }명</p>				<!-- 최대 30명 -->
-              </li>
-              <li>
-                <p class="project-info-label">신청마감일</p>
-                <p class="project-info-content">${ ogo.endEnter }</p>		<!-- 별도 설정없는 경우, 모임 시각으로 설정 -->
-              </li>
-              <li>
-                <p class="project-info-label">온라인 회의링크</p>
-                <a class="btn btn-primary" target="_blank" href="https://meet.google.com/czp-gqri-usc">이동하기</a>
-              </li>
-              <hr>
-              <li>
-                <p class="project-link">
-                  <br>
-                  <a class="btn btn-primary" target="_blank" href="#" id="entryButton">참가하기</a> 	<!-- join.me / 클릭시, 참가취소 로 변경되게끔! 인원수가 찬 경우, 대기하기로 출력하기 -->
-                  <a class="btn btn-primary" target="_blank" href="selectChat.ih">채팅하기</a>
-                </p>
-              </li>
-            </ul>
-
-            <!-- The Modal 
-            <div class="modal fade" id="mapModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                    <div id="map" style="width:100%;height:350px;"></div>
-                </div>
-              </div>
-            </div>
-
-            <script>
-              var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-                  mapOption = { 
-                      center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                      level: 3 // 지도의 확대 레벨
-                  };
-              
-              // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-              var map = new kakao.maps.Map(mapContainer, mapOption); 
-              
-              map.relayout();
-              </script>
-			-->
-            
-            <script>
-            $(function(){
-            	$("#entryButton").on("click", function(){
-            		var AlarmData = {
-            				"myAlarm_receiverEmail" : receiverEmail,
-            				"myAlarm_callerNickname" : memNickName,
-            				"myAlarm_content" : memNickName + "님이 회원님의 소모임에 참여했습니다.",
-            		};
-            		$.ajax({
-            			type : "post",
-            			url : "saveAlarm.my"
-            			data : JSON.stringify(AlarmData),
-            			contentType: "application/json; charset=utf-8",
-            			dataType : 'text',
-            			success : function(data){
-            				if(socket){
-            					let socketMsg = "scrap," + memNickname +","+ memberSeq +","+ receiverEmail +","+ essayboard_seq;
-            					console.log("msgmsg : " + socketMsg);
-            					socket.send(socketMsg);
-            				}
-
-            			},
-            			error : function(err){
-            				console.log(err);
-            			}
-            		})
-            	})
-            })
-            </script>
-
-          </div><!-- Content col end -->
+          			},
+          			error : function(err){
+          				console.log(err);
+          			}
+          		})
+          	})
+          })
+          </script>
+		  
 
         </div><!-- Row end -->
         
@@ -236,7 +287,6 @@
 	        <tbody>
 	        </tbody>
          </table>
-         
          
          <script>
 	    	$(function(){
@@ -298,7 +348,7 @@
 	    	}
 	    	
 	     </script>
-         -->   
+          -->  
             
 		
 
