@@ -103,7 +103,7 @@
 	                <a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onclick="postFormSubmit(2);">지우기</a>
 	            </c:if>
 	            <c:if test="${b.memNickname ne loginUser.memNickname }">
-	            	<a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onClick="text01();" id="test1">신고</a>
+	            	<a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" id="test1">신고</a>
                 </c:if>
                 </div>
             </c:if>
@@ -351,74 +351,85 @@
 
     </script>
     
-    <script>
+<script>
     $(function(){
-    	$("#test1").on("click", function(){
-    		if(confirm("게시글을 신고하시겠습니까?")==true){
-    		console.log('ㅎㅇ');
-    		
-    		 var memNickname = "${loginUser.memNickname}";
+        $("#test1").on("click", function(){
+            if(confirm("게시글을 신고하시겠습니까?")){
+                
+                console.log('ㅎㅇ');
+                
+                var memNickname = "${loginUser.memNickname}";
+                
+                var memNo = "${b.memNo}";
+                
+                console.log(memNickname);
+                console.log(memNo);
 
-             var memNo = "${b.memNo}";
-             
-             console.log(memNickname);
-             console.log(memNo);
+                $.ajax({
+                    type: "post",
+                    data: { "memNo": memNo },
+                    url: "findNick.my",
+                    dataType: 'json',
+                    success: function(data) {
+                        var writer = data.memNickname; // memNickname을 받아와서 writer에 할당합니다.
+                        var tableNo = 10;
+                        var groupNo = "${b.boardNo}";
+                        var title = "${b.boardTitle}";
+                        var alertType = 3;
+                        var alertContent = "회원님의 " + title + " 게시글이 신고되었습니다.";
+                        var AlarmData = {
+                            "alertContent": alertContent,
+                            "tableNo" : tableNo,
+                            "groupNo" : groupNo,
+                            "alertType" : alertType
+                        };
 
-             $.ajax({
-                 type: "post",
-                 data: { "memNo": memNo },
-                 url: "findNick.my",
-                 dataType: 'json',
-                 success: function(data) {
-                     var writer = data.memNickname; // memNickname을 받아와서 writer에 할당합니다.
-                     var tableNo = 10;
-                     var groupNo = "${b.boardNo}";
-                     var title = "${b.boardTitle}";
-                     var alertType = 3;
-                     var alertContent = "회원님의 " + title + " 게시글이 신고되었습니다.";
-                     var AlarmData = {
-                         "alertContent": alertContent,
-                         "tableNo" : tableNo,
-                         "groupNo" : groupNo,
-                         "alertType" : alertType
-                     };
-                     
 
-                     console.log(AlarmData);
-                     $.ajax({
-                         type: "post",
-                         data: JSON.stringify(AlarmData),
-                         url: "saveReplyAlert.my",
-                         contentType: "application/json; charset=utf-8",
-                         dataType: 'text',
-                         success: function(data) {
-                             console.log(data);
-                             if (socket) {
-                                 var socketMsg = "report," + memNickname + "," + writer + "," + title;
-                                 console.log("msgmsg: " + socketMsg);
-                                 // $("#socketMessageDiv").text(socketMsg);
-                                 socket.send(socketMsg);
-                                 console.log('socketMsg 보냄');
-                                 alert("신고되었습니다.");
-                             }
-                         },
-                         error: function(err) {
-                             console.log(err);
-                         }
-                     });
-                 },
-                 error: function(err) {
-                     console.log(err);
-                 }
-             });
-            
-    	} else {
-    		return false;
-    	}
-    	 });
-     });
+                        console.log(AlarmData);
+                        $.ajax({
+                            type: "POST",
+                            data: JSON.stringify(AlarmData),
+                            url: "saveReplyAlert.my", // saveReplyAlert.my에 대한 URL을 설정합니다.
+                            contentType: "application/json; charset=utf-8",
+                            dataType: 'text',
+                            success: function(data) {
+                                console.log(data);
+                                
+                                // report.bo에 대한 AJAX 요청을 보냅니다.
+                                $.ajax({
+                                    type: "POST",
+                                    data: { "boardNo": groupNo }, // groupNo를 매개변수로 전달합니다.
+                                    url: "report.bo", // report.bo에 대한 URL을 설정합니다.
+                                    dataType: 'text',
+                                    success: function(data) {
+                                        console.log(data);
+                                        
+                                        if (socket) {
+                                            var socketMsg = "report," + memNickname + "," + writer + "," + title;
+                                            console.log("msgmsg: " + socketMsg);
+                                            // $("#socketMessageDiv").text(socketMsg);
+                                            socket.send(socketMsg);
+                                            console.log('socketMsg 보냄');
+                                            alert("신고되었습니다.");
+                                           window.location.href= "list.bo?category=0";
+                                        }
+                                    },
+                                    error: function(err) {
+                                        console.log(err);
+                                    }
+                                });
+                            },
+                            error: function(err) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
 
-    </script>
      
 	    <!-- Button trigger modal -->
 	<button style="visibility: hidden;" id="test11" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
