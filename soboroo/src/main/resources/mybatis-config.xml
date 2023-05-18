@@ -15,8 +15,8 @@
       <typeAlias type="com.kh.soboroo.member.model.vo.Member" alias="Member"/>
       <typeAlias type="com.kh.soboroo.notice.model.vo.Notice" alias="Notice"/>
       <typeAlias type="com.kh.soboroo.board.model.vo.Board" alias="Board"/>
-		<typeAlias type="com.kh.soboroo.reply.model.vo.Reply" alias="Reply"/>
-		<typeAlias type="com.kh.soboroo.myPage.model.vo.MyPage" alias="MyPage"/>
+      <typeAlias type="com.kh.soboroo.reply.model.vo.Reply" alias="Reply"/>
+      <typeAlias type="com.kh.soboroo.myPage.model.vo.MyPage" alias="MyPage"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminBoard" alias="AdminBoard"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminCategory" alias="AdminCategory"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminMember" alias="AdminMember"/>
@@ -26,8 +26,7 @@
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminGroupUpload" alias="AdminGroupUpload"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce" alias="AdminOfflineGroupOnce"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOnlineGroupOnce" alias="AdminOnlineGroupOnce"/>
-      <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineGroupOnce" alias="OfflineGroupOnce"/>
-
+      <typeAlias type="com.kh.soboroo.online.model.vo.OnlineGroupOnce" alias="OfflineGroupOnce"/>
       <typeAlias type="com.kh.soboroo.online.model.vo.OnlineGroupOnce" alias="OnlineGroupOnce"/>
       <typeAlias type="com.kh.soboroo.common.model.vo.EntryList" alias="EntryList"/>
       <typeAlias type="com.kh.soboroo.common.model.vo.GroupUpload" alias="GroupUpload"/>
@@ -43,8 +42,8 @@
       <mapper resource="/mappers/admin-mapper.xml"/>
       <mapper resource="/mappers/offline-mapper.xml"/>
       <mapper resource="/mappers/online-mapper.xml"/>
-	   <mapper resource="/mappers/reply-mapper.xml"/>  
-	   <mapper resource="/mappers/myPage-mapper.xml"/>  
+      <mapper resource="/mappers/reply-mapper.xml"/>  
+      <mapper resource="/mappers/myPage-mapper.xml"/>  
    </mappers> 
    <!-- 유의사항 :  미리 등록해두려면 해당 mapper 파일이 진짜 존재하고 있는 상태여야함! 뿐만 아니라 namespace 등록까지 지정돼있어야함(namespace값 중복 불가) -->
    
