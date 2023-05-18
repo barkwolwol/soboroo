@@ -21,7 +21,6 @@
 
 <jsp:include page="common/header.jsp"/>
 	<div class="body-inner">
-
 		<div class="banner-carousel banner-carousel-2 mb-0" style="height: 300px;">
 			  <div class="banner-carousel-item" style="background-image:url(${pageContext.request.contextPath}/resources/images/logo_3.png); height: 300px;">
 			    <div class="container">
@@ -171,14 +170,14 @@
 		    <!--/ Title row end -->
 		
 			<ul class="event_lists thumbnail_mode">
-				<c:forEach var="ogo" items="${ list }">
+				<c:forEach var="ong" items="${ list }">
 				  <li>
 					<article class="event_area event_main">
-					  <a href="detail.go?tableNo=${ ogo.tableNo }&no=${ ogo.no }">
+					  <a href="detail.go?tableNo=${ ong.tableNo }&no=${ ong.no }">
 						<div class="event_thumbnail">
 						  <c:choose>
-							<c:when test="${ not empty ogo.thumbnail }">
-							  <img loading="lazy" src="${ ogo.thumbnail }" alt="service-image">
+							<c:when test="${ not empty ong.thumbnail }">
+							  <img loading="lazy" src="${ ong.thumbnail }" alt="service-image">
 							</c:when>
 							<c:otherwise>
 							  <img loading="lazy" src="resources/images/logo_3.png" alt="service-image">
@@ -187,7 +186,7 @@
 						</div>
 						<div class="event_info_area">
 						  <div class="title_area">
-							<h5 class="title ellipsis">${ ogo.title }</h5>
+							<h5 class="title ellipsis">${ ong.title }</h5>
 						  </div>
 				
 						  <div class="event_info">
@@ -287,6 +286,6 @@
 	  </div><!-- Body inner end -->
 
 
-
+	  
 </body>
 </html>

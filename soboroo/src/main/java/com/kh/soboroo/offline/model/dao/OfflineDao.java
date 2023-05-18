@@ -69,6 +69,10 @@ public class OfflineDao {
 		return sqlSession.selectList("offlineMapper.selectAttachmentList", on);
 	}
 
+	public List<OfflineGroupOnce> selectOffMainList(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectList("offlineMapper.selectOffMainList");
+	}
+
 //	public int insertOfflineGroupReg(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {
 //		return sqlSession.insert("offlineMapper.insertOfflineGroupReg", ogo);
 //	}

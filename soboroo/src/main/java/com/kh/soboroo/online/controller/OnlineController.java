@@ -23,6 +23,7 @@ import com.kh.soboroo.common.controller.CommonController;
 import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
+import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 import com.kh.soboroo.online.model.service.OnlineServiceImpl;
 import com.kh.soboroo.online.model.vo.OnlineGroupOnce;
 
@@ -31,6 +32,19 @@ public class OnlineController {
 	
 	@Autowired
 	private OnlineServiceImpl onService;
+	
+	// 메인페이지 리스트 조회
+	@RequestMapping("selectOnMainList.go")
+	public ModelAndView selectOnMainList(ModelAndView mv) {
+		
+		int listCount = onService.selectListCount();
+		
+		List<OnlineGroupOnce> list = onService.selectOnMainList();
+		
+		mv.addObject("list", list).addObject("listCount", listCount).setViewName("index-2");
+		
+		return mv;
+	}
 	
 	// 온라인 반짝모임 리스트 조회
 	@RequestMapping("onList.go")

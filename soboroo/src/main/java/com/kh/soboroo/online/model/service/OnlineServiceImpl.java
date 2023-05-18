@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 import com.kh.soboroo.online.model.dao.OnlineDao;
 import com.kh.soboroo.online.model.vo.OnlineGroupOnce;
 
@@ -60,6 +61,10 @@ public class OnlineServiceImpl {
    public List<GroupUpload> selectAttachmentList(int tableNo, int no) {
       return onDao.selectAttachmentList(sqlSession, tableNo, no);
    }
+
+public List<OnlineGroupOnce> selectOnMainList() {
+	return onDao.selectOnMainList(sqlSession);
+}
 
 
 }

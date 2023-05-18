@@ -34,6 +34,19 @@ public class OfflineController {
 	@Autowired
 	private OfflineServiceImpl offService;
 	
+	// 메인페이지 리스트 조회
+	@RequestMapping("selectOffMainList.go")
+	public ModelAndView selectOffMainList(ModelAndView mv) {
+		
+		int listCount = offService.selectListCount();
+		
+		List<OfflineGroupOnce> list = offService.selectOffMainList();
+		
+		mv.addObject("list", list).addObject("listCount", listCount).setViewName("index-2");
+		
+		return mv;
+	}
+	
 	// 오프라인 반짝모임 리스트 조회
 	@RequestMapping("offList.go")
 	public ModelAndView selectListOfflineGroupOne(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, 
