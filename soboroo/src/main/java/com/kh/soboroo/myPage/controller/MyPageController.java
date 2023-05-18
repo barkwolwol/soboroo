@@ -1,6 +1,7 @@
 package com.kh.soboroo.myPage.controller;
 
 import java.io.IOException;
+
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -400,7 +401,7 @@ public class MyPageController {
 	@ResponseBody // JSON 형식으로 응답을 반환하기 위해 추가
 	public Map<String, String> findNickname(@RequestParam(value = "memNo") int memNo) {
 		System.out.println("memNo" + memNo);
-	    Map<String, String> response = new HashMap<>();
+	    Map<String, String> response = new HashMap();
 	    String memNickname = myService.findNickname(memNo);
 	    response.put("memNickname", memNickname);
 	    return response;
@@ -426,7 +427,7 @@ public class MyPageController {
 	
 	@RestController
 	public class RecentPostsController {
-	    private List<String> recentPosts = new ArrayList<>();
+	    private List<String> recentPosts = new ArrayList();
 
 	    @GetMapping("/recent-posts")
 	    public List<String> getRecentPosts() {

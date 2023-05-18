@@ -143,7 +143,7 @@ public class MyPageDao {
 	    System.out.println("myDao.deleteAlert() 호출됨");
 	    System.out.println("myDao.deleteAlert() 호출됨" + memNo);
 	    System.out.println("myDao.deleteAlert() 호출됨" + no);
-	    Map<String, String> parameters = new HashMap<>();
+	    Map<String, String> parameters = new HashMap();
 	    parameters.put("memNo", memNo);
 	    parameters.put("no", no);
 	    return sqlSession.update("myPageMapper.deleteAlert", parameters);

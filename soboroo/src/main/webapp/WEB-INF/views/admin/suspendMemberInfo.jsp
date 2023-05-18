@@ -2,13 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+ <!-- Favicon
+   ================================================== -->
+   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 <title>soboroo admin - 정지회원 관리</title>
 
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
+
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
@@ -172,10 +175,10 @@
                     <ul>
                         <li class="menu-title"><span>MENU</span></li>
                         <li>
-                            <a href="index.html"><i data-feather="home"></i> <span>대시보드</span></a>
+                            <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
-                            <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
+                            <a href="memberInfo.ad"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="memberInfo.ad">회원 관리</a></li>
@@ -188,22 +191,22 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="onlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 일반 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 일반 / 정기</a></li>
-                                        <li><a href="onlinegoal.ad">온라인 목표 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 목표 / 단위별</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인모임</a></li>
+                                        <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                        <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
                                     </ul>
                                
                                 <li class="submenu">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 일반 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 일반 / 정기</a></li>
-                                        <li><a href="offlinegoal.ad">오프라인 목표 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 목표 / 단위별</a></li>
+                                        <li><a href="offlineone.ad">오프라인모임</a></li> 
+                                        <!-- <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li> --> 
                                     </ul>
                          
                             </ul>
@@ -298,25 +301,20 @@
  <tbody>
 <tr>
 <td>
-<h2 class="table-avatar">
-<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="User Image"></a>
-<a href="profile.html">${s.memName}<span>${s.memNo }</span></a>
+<h2 class="table-avatar" disabled>
+<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${s.memImg }" alt="User Image"></a>
+<a href="profile.html">${s.memName}<span>soboroo ${w.memNo }</span></a>
 </h2>
 </td>
-<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">${s.memId}</a></td>
+<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">${s.memEmail}</a></td>
 <td>${s.memRprCount }</td>
 <td>${s.memUpdateDate }</td>
-<td>${s.memSuspensionDate }</td>
-
-<c:choose>
-	<c:when test="${m.memStatus == 3}"><td><span class="badge badge-pill bg-warning-light">정지회원</span></td></c:when>
-</c:choose>
+<td>${s.memUpdateDate }</td>
+<td><span class="badge badge-pill bg-warning-light" name="stop">${s.memStatus == 3 ? '정지' : ''}</span></td>
 <td class="text-end">
 <a class="btn btn-sm btn-white text-success" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-edit me-1"></i>복구</a>
-
 </td>
-</tr> 
-
+</tr>
 </td>
 </tr>
 </c:forEach>

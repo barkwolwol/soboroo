@@ -5,24 +5,25 @@
 
   <!-- Favicon
    ================================================== -->
-   <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png">
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 <title>soboroo admin - 회원 정보 조회</title>
 
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/fontawesome.min.css">
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome/css/all.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/select2/css/select2.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/style.css">
 </head>
+
 <body>
 
 <div class="main-wrapper">
@@ -180,7 +181,7 @@
                             <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
-                            <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
+                            <a href="memberInfo.ad"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="memberInfo.ad">회원 관리</a></li>
@@ -193,22 +194,22 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="onlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 일반 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 일반 / 정기</a></li>
-                                        <li><a href="onlinegoal.ad">온라인 목표 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 목표 / 단위별</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인모임</a></li>
+                                        <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                        <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
                                     </ul>
                                
                                 <li class="submenu">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 일반 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 일반 / 정기</a></li>
-                                        <li><a href="offlinegoal.ad">오프라인 목표 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 목표 / 단위별</a></li>
+                                        <li><a href="offlineone.ad">오프라인모임</a></li> 
+                                        <!-- <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li> --> 
                                     </ul>
                          
                             </ul>
@@ -236,7 +237,6 @@
             </div>
         </div>
         <!-- 사이드바 끝  -->
-
 
 <div class="page-wrapper">
 <div class="content container-fluid">
@@ -266,11 +266,11 @@
 <div class="col-md-6">
 <div class="form-group">
 <label>회원 이름</label>
-<input type="text" id="memName" class="form-control" value="${m.memName }" readonly>
+<input type="text" id="memName" class="form-control" name="memName" value="${m.memName }" readonly>
 </div>
 <div class="form-group">
 <label>회원 아이디</label>
-<input type="email" id="memEmail" class="form-control" value="${m.memEmail }">
+<input type="email" id="memEmail" class="form-control" name="memEmail" value="${m.memEmail }" readonly>
 </div>
 <div class="form-group">
 
@@ -279,83 +279,122 @@
 
 <div class="form-group">
     <label>누적 신고 횟수</label>
-    <input type="text" id="rprCount" class="form-control" value="${m.memRprCount }" readonly>
+    <input type="text" id="rprCount"  name="memRprCount" class="form-control" value="${m.memRprCount }" readonly>
     </div>
-
-
 </div>
 
 <div class="col-md-6">
 <div class="form-group">
 <label>회원 닉네임</label>
-<input type="text" id="memNickname" class="form-control" value="${m.memNickname }">
+<input type="text" id="memNickname" name="memNickname" class="form-control" value="${m.memNickname }">
 </div>
 <div class="form-group">
 <label>핸드폰</label>
-<input type="text" id="phone" class="form-control" value="${m.memPhone}">
+<input type="text" id="phone" name="memPhone" class="form-control" value="${m.memPhone}">
 </div>
 <div class="form-group">
 <label>회원 상태</label>
-<select class="select" id="stateChange">
-<option selected value="${m.memStatus==3}">관리자</option>
-<option value="${m.memStatus==2}">휴먼회원</option>
-<option value="${m.memStatus==3}">정지회원</option>
-<option value="${m.memStatus==1}">일반회원</option>
-<option value="${m.memStatus==5}">탈퇴회원</option>
+<span id="memStatus"></span>
+<select class="select" id="stateChange" name="memStatus">
+<c:choose>
+<c:when test="${m.memStatus eq 1 }">
+<option value="1" selected>일반회원</option>
+</c:when>
+<c:otherwise>
+<option value="1">일반회원</option>
+</c:otherwise>
+</c:choose>
+<c:choose>
+<c:when test="${m.memStatus eq 2 }">
+<option value="2" selected>휴면회원</option>
+</c:when>
+<c:otherwise>
+<option value="2">휴면회원</option>
+</c:otherwise>
+</c:choose>
+<c:choose>
+<c:when test="${m.memStatus eq 3 }">
+<option value="3" selected>정지회원</option>
+</c:when>
+<c:otherwise>
+<option value="3">정지회원</option>
+</c:otherwise>
+</c:choose>
+<c:choose>
+<c:when test="${m.memStatus eq 4 }">
+<option value="4" selected>탈퇴회원</option>
+</c:when>
+<c:otherwise>
+<option value="4">탈퇴회원</option>
+</c:otherwise>
+</c:choose>
+<c:choose>
+<c:when test="${m.memStatus eq 5 }">
+<option value="5" selected>관리자</option>
+</c:when>
+<c:otherwise>
+<option value="5">관리자</option>
+</c:otherwise>
+</c:choose>
+
 </select>
 </div>
 </div>
 </div>
+<script>
+	   
+	   
+$('#modify_paid').on('shown.bs.modal', function() {
+    $('#update').click(function() {
+      updateMemberStatus();
+    })
+  })
 
-</form>
+</script>
+
+
+
 
 
 <div class="text-end mt-4">
-<!-- <button type="submit" class="btn btn-primary" id="modify_paid">수정하기</button> -->
-<a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modify_paid"><i class="far fa-edit me-1"></i>수정하기</a>
-</div>
-
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modify_paid"><i class="far fa-edit me-1"></i>수정하기</a>
 </div>
 
 <!-- 모달팝업 -->
 <div class="modal custom-modal fade" id="modify_paid" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-    <div class="modal-body">
-    <div class="form-header">
-    <h3>회원 상태 수정</h3>
-     <p>해당 회원 상태를 수정하시겠습니까?</p>
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>회원 상태 수정</h3>
+          <p>해당 회원 상태를 수정하시겠습니까?</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <button type="submit" class="btn btn-primary paid-continue-btn" id="update" style="width:100%">수정</button>
+            </div>
+            <div class="col-6">
+              <button type="button" class="btn btn-primary paid-cancel-btn" data-bs-dismiss="modal" style="width:100%">취소</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="modal-btn delete-action">
-    <div class="row">
-    <div class="col-6">
-    <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn" id="update">수정</a>
-    </div>
-    <div class="col-6">
-    <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
-
+  </div>
 </div>
 
-<script>
-//수정하기 버튼 클릭 이벤트 처리
-document.getElementById("modify_paid").addEventListener("click", function() {
-  // 서버로 전송할 데이터 준비
-  var memEmail = document.getElementById("memEmail").value;
-  var memNickname = document.getElementById("memNickname").value;
-  var memPhone = document.getElementById("memPhone").value;
-  var memStatus = document.getElementById("memStatus").value;
-  var rprCount = document.getElementById("rprCount").value;
-  }
-  
-  
 
-</script>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
 
@@ -368,5 +407,6 @@ document.getElementById("modify_paid").addEventListener("click", function() {
 <script src="${pageContext.request.contextPath}/resources/admin/plugins/select2/js/select2.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
+
 </body>
 </html>
