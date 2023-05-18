@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
+import com.kh.soboroo.online.model.vo.OnlineGroupOnce;
 
 @Repository
 public class OfflineDao {
@@ -42,16 +43,30 @@ public class OfflineDao {
 		return (ArrayList)sqlSession.selectList("offlineMapper.selectList", tableNo, rowBounds);
 	}
 
-	public int increaseCount(SqlSessionTemplate sqlSession, int no) {
-		return sqlSession.update("offlineMapper.increaseCount", no);
+	/*
+	public int increaseCount(SqlSessionTemplate sqlSession, int tableNo, int no) {
+		
+		OnlineGroupOnce on = new OnlineGroupOnce();
+		on.setTableNo(tableNo);
+		on.setNo(no);
+		
+		return sqlSession.update("offlineMapper.increaseCount", on);
 	}
+	*/
 
+	/*
 	public OfflineGroupOnce selectDetail(SqlSessionTemplate sqlSession, int no) {
 		return sqlSession.selectOne("offlineMapper.selectDetail", no);
 	}
+	*/
 
-	public List<GroupUpload> selectAttachmentList(SqlSessionTemplate sqlSession, int no) {
-		return sqlSession.selectList("offlineMapper.selectAttachmentList", no);
+	public List<GroupUpload> selectAttachmentList(SqlSessionTemplate sqlSession, int tableNo, int no) {
+		
+		OnlineGroupOnce on = new OnlineGroupOnce();
+		on.setTableNo(tableNo);
+		on.setNo(no);
+		
+		return sqlSession.selectList("offlineMapper.selectAttachmentList", on);
 	}
 
 //	public int insertOfflineGroupReg(SqlSessionTemplate sqlSession, OfflineGroupOnce ogo) {
