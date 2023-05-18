@@ -49,16 +49,16 @@ public class OnlineServiceImpl {
       return onDao.selectListOn(sqlSession, pi, tableNo);
    }
 
-   public int increaseCount(int no) {
-      return onDao.increaseCount(sqlSession, no);
+   public int increaseCount(int tableNo, int no) {
+      return onDao.increaseCount(sqlSession, tableNo, no);
    }
 
    public OnlineGroupOnce selectDetail(int tableNo, int no) {
       return onDao.selectDetail(sqlSession, tableNo, no);
    }
 
-   public List<GroupUpload> selectAttachmentList(int no) {
-      return onDao.selectAttachmentList(sqlSession, no);
+   public List<GroupUpload> selectAttachmentList(int tableNo, int no) {
+      return onDao.selectAttachmentList(sqlSession, tableNo, no);
    }
 
 

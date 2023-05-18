@@ -43,27 +43,44 @@ public class OnlineDao {
       return (ArrayList)sqlSession.selectList("onlineMapper.selectListOn", tableNo, rowBounds);
    }
 
-   public int increaseCount(SqlSessionTemplate sqlSession, int no) {
-      return sqlSession.update("onlineMapper.increaseCount", no);
+   public int increaseCount(SqlSessionTemplate sqlSession, int tableNo, int no) {
+	   
+	  OnlineGroupOnce on = new OnlineGroupOnce();
+	  on.setTableNo(tableNo);
+	  on.setNo(no);
+      
+      if(tableNo == 2) {
+    	   return sqlSession.update("onlineMapper.increaseCount", on);
+	   }else {
+		   return sqlSession.update("offlineMapper.increaseCount", on);
+	   }
    }
 
    public OnlineGroupOnce selectDetail(SqlSessionTemplate sqlSession, int tableNo, int no) {
 	   
+	   OnlineGroupOnce on = new OnlineGroupOnce();
+	   on.setTableNo(tableNo);
+	   on.setNo(no);
+	   
 	   if(tableNo == 2) {
-		   OnlineGroupOnce on = new OnlineGroupOnce();
-		   on.setTableNo(tableNo);
-		   on.setNo(no);
 		   return sqlSession.selectOne("onlineMapper.selectDetail", on);
 	   }else {
-		   OfflineGroupOnce off = new OfflineGroupOnce();
-		   off.setTableNo(tableNo);
-		   off.setNo(no);
-		   return sqlSession.selectOne("offlineMapper.selectDetail", off);
+		   return sqlSession.selectOne("offlineMapper.selectDetail", on);
 	   }
    }
 
-   public List<GroupUpload> selectAttachmentList(SqlSessionTemplate sqlSession, int no) {
-      return sqlSession.selectList("onlineMapper.selectAttachmentList", no);
+   public List<GroupUpload> selectAttachmentList(SqlSessionTemplate sqlSession, int tableNo, int no) {
+	   
+	   OnlineGroupOnce on = new OnlineGroupOnce();
+	   on.setTableNo(tableNo);
+	   on.setNo(no);
+	   
+	   if(tableNo == 2) {
+		   return sqlSession.selectList("onlineMapper.selectAttachmentList", on);
+	   }else {
+		   return sqlSession.selectList("offlineMapper.selectAttachmentList", on);
+	   }
+	   
    }
 
 
