@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 <title>soboroo admin - 공지사항 관리</title>
 
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
+
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
@@ -185,7 +185,7 @@
                             <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
-                            <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
+                            <a href="memberInfo.ad"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="memberInfo.ad">회원 관리</a></li>
@@ -198,22 +198,22 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="onlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 일반 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 일반 / 정기</a></li>
-                                        <li><a href="onlinegoal.ad">온라인 목표 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 목표 / 단위별</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인모임</a></li>
+                                        <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                        <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
                                     </ul>
                                
                                 <li class="submenu">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 일반 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 일반 / 정기</a></li>
-                                        <li><a href="offlinegoal.ad">오프라인 목표 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 목표 / 단위별</a></li>
+                                        <li><a href="offlineone.ad">오프라인모임</a></li> 
+                                        <!-- <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li> --> 
                                     </ul>
                          
                             </ul>
@@ -241,7 +241,7 @@
             </div>
         </div>
         <!-- 사이드바 끝  -->
-
+        
 <div class="page-wrapper">
 <div class="content container-fluid">
 
@@ -290,7 +290,7 @@
 <table class="table table-stripped table-hover datatable">
 <thead class="thead-light">
 <tr>
-<th>번호</th>
+<th>공지사항 글번호</th>
 <th>제목</th>
 <th>작성자</th>
 <th>조회수</th>
@@ -317,10 +317,12 @@
 <td>${n.ntcCreateDate }</td>
 <td>${n.ntcUpdateDate }</td>
 <td>${ n.ntcDelNy }</td>
+<input type="hidden" value="${n.ntcNo })">
 <td class="text-end">
 <a href="notenrollForm.no" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>작성</a>
-<a href="update.no" class="btn btn-sm btn-white text-warning"><i class="far fa-edit me-1"></i>수정</a>
-<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>삭제</a>
+<a href="updateForm.no?nno=${n.ntcNo}" class="btn btn-sm btn-white text-warning"><i class="far fa-edit me-1"></i>수정</a>
+<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid" data-ntcNo="${n.ntcNo}"><i class="far fa-trash-alt me-1"></i>삭제</a>
+
 </td>
 </tr>
 </c:forEach>
@@ -363,8 +365,32 @@
 
 
 
-
 <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  $(".paid-continue-btn").click(function() {
+    var ntcNo = $("#delete_paid").data("ntcNo");
+    
+    $.ajax({
+      url: "deleteNo.ad",  // 삭제 요청을 보낼 URL
+      type: "POST",
+      data: { ntcNo: ntcNo },  // 삭제할 공지사항의 ID 값을 전송
+      success: function(result) {
+        // 삭제 성공 시, 필요한 처리를 여기에 작성
+        alert("공지사항이 삭제되었습니다.");
+        location.reload();  // 페이지를 새로고침하여 변경된 내용을 반영
+      },
+      error: function(result) {
+        // 삭제 실패 시, 필요한 처리를 여기에 작성
+        alert("삭제에 실패하였습니다. 다시 시도해주세요.");
+        console.log(result);
+      }
+    });
+  });
+});
+</script>
+
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
 
