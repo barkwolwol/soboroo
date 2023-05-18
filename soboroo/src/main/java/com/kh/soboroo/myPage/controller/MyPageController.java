@@ -369,6 +369,33 @@ public class MyPageController {
 	    return "redirect:/";
 	}
 	
+	@RequestMapping("saveReplyAlert.my")
+	public String insertReplyAlert(@RequestBody Alert alertData, HttpSession session, Model model) {
+	    Member loginUser = (Member) session.getAttribute("loginUser");
+	    
+	    // Alert 객체 생성 및 데이터 설정
+	    Alert a = new Alert();
+	    a.setMemNo(loginUser.getMemNo());
+	    a.setAlertContent(alertData.getAlertContent());
+	    a.setTableNo(alertData.getTableNo());
+	    a.setGroupNo(alertData.getGroupNo());
+	   // a.setGroupNo(alertData.getGroupNo());
+	    a.setAlertType(alertData.getAlertType());
+	    System.out.println("컨트롤러 ㅁ : " + a);
+	    int result = myService.insertAlert(a);
+	    if (result > 0) {
+			/*
+			 * String socketMsg = "apply," + loginUser.getMemNickname() + "," +
+			 * loginUser.getMemNickname();
+			 * 
+			 * session.setAttribute("socketMsg", socketMsg);
+			 */System.out.println("알림 디비 넣기 성공");
+	    } else {
+	        System.out.println("알림 디비 넣기 실패");
+	    }
+	    return "redirect:/";
+	}
+	
 	@RequestMapping("findNick.my")
 	@ResponseBody // JSON 형식으로 응답을 반환하기 위해 추가
 	public Map<String, String> findNickname(@RequestParam(value = "memNo") int memNo) {

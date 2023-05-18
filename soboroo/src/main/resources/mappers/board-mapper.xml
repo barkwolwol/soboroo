@@ -62,7 +62,8 @@
 		  , category_title as "category"
 		  , mem_nickname
 		  , table_no
-		  ,mem_img
+		  , mem_img
+		  , mem_no
 	   from board b
        join member using (mem_no)
        join category c on (b.category = c.category_no)
@@ -96,6 +97,7 @@
 			 , count
 		 	 , table_no
 		 	 , mem_img
+		 	 , mem_no
 		  from board b
           join category c on (b.category = c.category_no)
           join member using(mem_no)
@@ -116,7 +118,8 @@
       b.board_no,
       b.board_title,
       b.count,
-      to_char(b.create_date, 'YYYY-MM-DD') as "create_date"
+      to_char(b.create_date, 'YYYY-MM-DD') as "create_date",
+      b.mem_no
     FROM board b
     JOIN member m
       ON b.mem_no = m.mem_no

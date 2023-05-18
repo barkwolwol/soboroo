@@ -176,13 +176,13 @@
 												    </c:when>
 												    <c:otherwise>
 												   <c:forEach var="g" items="${list}">
-  <tr class="board-row" id="alert-${g.idNo}">
-    <td><input type="checkbox" class="row-checkbox" name="RowCheck" value="${g.idNo} "></td>
-    <td data-table-no="${g.tableNo}" data-no="${g.groupNo}">${g.idNo}</td>
-    <td>${g.alertContent}</td>
-    <td>${g.alertDate}</td>
-  </tr>
-</c:forEach>
+													  <tr class="board-row" id="alert-${g.idNo}">
+													    <td><input type="checkbox" class="row-checkbox" name="RowCheck" value="${g.idNo} "></td>
+													    <td data-table-no="${g.tableNo}" data-no="${g.groupNo}">${g.idNo}</td>
+													    <td>${g.alertContent}</td>
+													    <td>${g.alertDate}</td>
+													  </tr>
+													</c:forEach>
 
 													</c:otherwise>
 												  </c:choose>
@@ -196,8 +196,10 @@
 												    $(".board-row").on("click", function() {
 												      var tableNo = $(this).find("td[data-table-no]").attr("data-table-no");
 												      var no = $(this).find("td[data-no]").attr("data-no");
-												      if (tableNo !== undefined && no !== undefined) {
-												        location.href = 'detail.off?tableNo=' + tableNo + '&no=' + no;
+												      if (tableNo == 10 && no !== undefined) {
+												        location.href = 'detail.bo?bno=' + no;
+												      } else {
+												    	  location.href = 'detail.go?tableNo=' + tableNo + '&no=' + no;
 												      }
 												    });
 												

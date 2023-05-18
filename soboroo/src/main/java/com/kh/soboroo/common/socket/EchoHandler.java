@@ -78,8 +78,10 @@ public class EchoHandler extends TextWebSocketHandler{
             logger.info("Received apply message: {}", msg);
             // 작성자가 로그인해서 있다면
             WebSocketSession boardWriterSession = userSessionMap.get(receiver);
-            if ("reply".equals(cmd) && boardWriterSession != null && boardWriterSession.isOpen()) {
-                TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 게시글에 댓글을 남겼습니다.");
+            if ("reply".equals(cmd) && boardWriterSession != null) {
+            	 logger.info("Received apply message: {}", msg);
+                 System.out.println("Received apply message: " + msg);
+                TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 " + title + "게시글에 댓글을 남겼습니다.");
                 try {
                     boardWriterSession.sendMessage(tmpMsg);
                 } catch (IllegalStateException e) {
@@ -90,27 +92,8 @@ public class EchoHandler extends TextWebSocketHandler{
                         userNotifications = new ArrayList<>();
                         notifications.put(receiver, userNotifications);
                     }
-                    userNotifications.add(caller + "님이 회원님의 게시글에 댓글을 남겼습니다.");
+                    userNotifications.add(caller + "님이 회원님의 " + title + "게시글에 댓글을 남겼습니다.");
                 }
-            }
-
-            System.out.println("boardWriterSession"+boardWriterSession);
-            if("reply".equals(cmd)&&boardWriterSession != null) {
-               TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 게시글에 댓글을 남겼습니다.");
-               try {
-                    boardWriterSession.sendMessage(tmpMsg);
-                } catch (IllegalStateException e) {
-                    // 세션이 이미 종료된 경우
-                    // 알림을 저장하고 사용자가 다시 로그인했을 때 알림을 전송하도록 처리
-                    List<String> userNotifications = notifications.get(receiver);
-                    if (userNotifications == null) {
-                        userNotifications = new ArrayList<>();
-                        notifications.put(receiver, userNotifications);
-                    }
-                    userNotifications.add(caller + "님이 회원님의 게시글에 댓글을 남겼습니다.");
-                }
-               
-               
             } else if ("board".equals(cmd) && boardWriterSession != null) {
                TextMessage tmpMsg = new TextMessage("회원님의 게시글이 신고되었습니다.");
                try {
