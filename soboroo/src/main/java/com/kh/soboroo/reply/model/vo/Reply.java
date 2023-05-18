@@ -16,7 +16,7 @@ import lombok.ToString;
 public class Reply {
 	 private int replyNo;
 	 private String replyContent;
-	 private Date enrollDate;
+	 private String enrollDate;
 	 private Date modifyDate;
 	 private String delNy;
 	 private String repNy;
@@ -25,4 +25,5 @@ public class Reply {
 	 private int groupBoardNo;
 	 private int memNo;
 	 private int tableNo;
+	 private String memNickname;
 }
