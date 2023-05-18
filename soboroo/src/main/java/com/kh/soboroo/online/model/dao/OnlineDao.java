@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 import com.kh.soboroo.online.model.vo.OnlineGroupOnce;
 
 @Repository
@@ -86,4 +85,3 @@ public class OnlineDao {
 
 
 }
-

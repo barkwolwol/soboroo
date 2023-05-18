@@ -35,7 +35,7 @@ import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
-import com.kh.soboroo.offline.model.vo.EntryList;
+import com.kh.soboroo.common.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.service.MailSendService;
 import com.kh.soboroo.myPage.model.service.MyPageServiceImpl;
@@ -401,7 +401,7 @@ public class MyPageController {
 	@ResponseBody // JSON 형식으로 응답을 반환하기 위해 추가
 	public Map<String, String> findNickname(@RequestParam(value = "memNo") int memNo) {
 		System.out.println("memNo" + memNo);
-	    Map<String, String> response = new HashMap<>();
+	    Map<String, String> response = new HashMap();
 	    String memNickname = myService.findNickname(memNo);
 	    response.put("memNickname", memNickname);
 	    return response;
@@ -427,7 +427,7 @@ public class MyPageController {
 	
 	@RestController
 	public class RecentPostsController {
-	    private List<String> recentPosts = new ArrayList<>();
+	    private List<String> recentPosts = new ArrayList();
 
 	    @GetMapping("/recent-posts")
 	    public List<String> getRecentPosts() {

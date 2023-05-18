@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.offline.model.vo.EntryList;
+import com.kh.soboroo.common.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeDday;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeRegular;
@@ -142,7 +142,7 @@ public class MyPageDao {
 	    System.out.println("myDao.deleteAlert() 호출됨");
 	    System.out.println("myDao.deleteAlert() 호출됨" + memNo);
 	    System.out.println("myDao.deleteAlert() 호출됨" + no);
-	    Map<String, String> parameters = new HashMap<>();
+	    Map<String, String> parameters = new HashMap();
 	    parameters.put("memNo", memNo);
 	    parameters.put("no", no);
 	    return sqlSession.update("myPageMapper.deleteAlert", parameters);
