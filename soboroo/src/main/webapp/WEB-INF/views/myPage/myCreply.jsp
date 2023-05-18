@@ -156,8 +156,8 @@
 														</c:when>
 														<c:otherwise>
 															<c:forEach var="r" items="${list}">
-																<tr>
-																	<td class="rno">${r.replyNo }</td>
+																<tr class="board-row">
+																	<td class="rno" data-bno="${r.groupBoardNo}">${r.replyNo }</td>
 																	<td>${r.replyContent }</td>
 																	<td>${r.enrollDate }</td>
 																</tr>
@@ -168,8 +168,11 @@
 											</table>
 											<script>
 												$(function() {
-													$("#replyList>tbody>tr").click(function() {
-														location.href = 'detail.bo?cno='+ $(this).children(".bno").text();
+													$(".board-row").on("click", function() {
+														
+														var groupBoardNo = $(this).find("td[data-bno]").attr("data-bno");
+														console.log(groupBoardNo+"groupBoardNo");
+														location.href = 'detail.bo?bno='+ groupBoardNo;
 													})
 												})
 											</script>
