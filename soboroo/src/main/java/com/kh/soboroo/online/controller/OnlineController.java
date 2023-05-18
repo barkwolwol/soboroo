@@ -111,70 +111,69 @@ public class OnlineController {
 	        gu.setUploads(uploads); // 업로드한 파일 리스트를 Upload 객체에 설정
 	    }
 
-	    int result = onService.insertOfflineGroupOne(ong, gu);
-	    
-	    if (result > 0) { // 성공 => 게시글 리스트 페이지 url 재요청 ("list.bo")
-	        session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
-	        return "redirect:onList.go?tableNo=2";
-	    } else { // 실패 => 에러페이지 포워딩
-	        model.addAttribute("errorMsg", "게시글 등록 실패!");
-	        return "common/errorPage";
-	    }
-	}
-	
-//	// 상세조회
-//	@RequestMapping("detail.go")
-//	public ModelAndView selectDetail(int no, Model model, ModelAndView mv) {
-//		int result = onService.increaseCount(no);
-//		List<GroupUpload> list = onService.selectAttachmentList(no);
-//		
-//		if(result > 0) {
-//			OnlineGroupOnce ogo = onService.selectDetail(no);
-//			mv.addObject("ogo", ogo).setViewName("offline/detailView");
-//			mv.addObject("list", list).setViewName("offline/detailView");
-//			
-//		}else {
-//			mv.addObject("errorMsg", "게시글 상세 조회 실패!").setViewName("common/errorPage");
-//		}
-//		
-//		return mv;
-//		
-//	}
-	
-	
-	// 현재 넘어온 첨부파일 그 자체를 서버의 폴더에 저장시키는 역할
-	public List<String> saveFiles(List<MultipartFile> upfiles, HttpSession session) {
-	    List<String> savedFileNames = new ArrayList();
+       int result = onService.insertOfflineGroupOne(ong, gu);
+       
+       if (result > 0) { // 성공 => 게시글 리스트 페이지 url 재요청 ("list.bo")
+           session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
+           return "redirect:onList.go?tableNo=2";
+       } else { // 실패 => 에러페이지 포워딩
+           model.addAttribute("errorMsg", "게시글 등록 실패!");
+           return "common/errorPage";
+       }
+   }
+   
+   // 상세조회
+   @RequestMapping("detail.go")
+   public ModelAndView selectDetail(int tableNo, int no, Model model, ModelAndView mv) {
+      int result = onService.increaseCount(tableNo, no);
+      List<GroupUpload> list = onService.selectAttachmentList(tableNo, no);
+      
+      if(result > 0) {
+         OnlineGroupOnce ogo = onService.selectDetail(tableNo, no);
+         mv.addObject("ogo", ogo).setViewName("offline/detailView");
+         mv.addObject("list", list).setViewName("offline/detailView");
+         
+      }else {
+         mv.addObject("errorMsg", "게시글 상세 조회 실패!").setViewName("common/errorPage");
+      }
+      
+      return mv;
+      
+   }
+   
+   
+   // 현재 넘어온 첨부파일 그 자체를 서버의 폴더에 저장시키는 역할
+   public List<String> saveFiles(List<MultipartFile> upfiles, HttpSession session) {
+       List<String> savedFileNames = new ArrayList();
 
-	    for (MultipartFile upfile : upfiles) {
-	        if (!upfile.getOriginalFilename().isEmpty()) {
-	            String originName = upfile.getOriginalFilename();
-	            String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-	            int ranNum = (int) (Math.random() * 90000 + 10000);
-	            String ext;
-	            int dotIndex = originName.lastIndexOf(".");
-	            if (dotIndex != -1) {
-	                ext = originName.substring(dotIndex);
-	            } else {
-	                ext = "";
-	            }
-	            String changeName = currentTime + ranNum + ext;
-	            String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+       for (MultipartFile upfile : upfiles) {
+           if (!upfile.getOriginalFilename().isEmpty()) {
+               String originName = upfile.getOriginalFilename();
+               String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+               int ranNum = (int) (Math.random() * 90000 + 10000);
+               String ext;
+               int dotIndex = originName.lastIndexOf(".");
+               if (dotIndex != -1) {
+                   ext = originName.substring(dotIndex);
+               } else {
+                   ext = "";
+               }
+               String changeName = currentTime + ranNum + ext;
+               String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
 
-	            try {
-	                upfile.transferTo(new File(savePath + changeName));
-	                savedFileNames.add(changeName);
-	            } catch (IllegalStateException e) {
-	                e.printStackTrace();
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	            }
-	        } else {
-	            savedFileNames.add(""); // 파일이 없을 경우 빈 문자열 추가
-	        }
-	    }
+               try {
+                   upfile.transferTo(new File(savePath + changeName));
+                   savedFileNames.add(changeName);
+               } catch (IllegalStateException e) {
+                   e.printStackTrace();
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
+           } else {
+               savedFileNames.add(""); // 파일이 없을 경우 빈 문자열 추가
+           }
+       }
 
-	    return savedFileNames;
-	}
-	   
+       return savedFileNames;
+   }
 }

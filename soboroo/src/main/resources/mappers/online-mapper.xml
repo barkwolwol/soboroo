@@ -267,6 +267,7 @@
 		     , table_no
 		  from group_upload
 		 where group_board_no = #{no}
+		   and table_no = #{tableNo}
 	</select>
 	
 	

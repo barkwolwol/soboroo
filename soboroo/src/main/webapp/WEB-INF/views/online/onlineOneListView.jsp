@@ -14,13 +14,14 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 
-<div id="banner-area" class="banner-area" style="background-color: #ff8932;"">
+<div id="banner-area" class="banner-area" style="background-image:url(${pageContext.request.contextPath}/resources/images/banner/banner-online2.jpg)">
   <div class="banner-text">
     <div class="container">
         <div class="row">
           <div class="col-lg-12">
               <div class="banner-heading">
                 <h1 class="banner-title">온라인 반짝모임</h1>
+                <!-- 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                       <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -28,6 +29,7 @@
                       <li class="breadcrumb-item active" aria-current="page">All Services</li>
                     </ol>
                 </nav>
+                 -->
               </div>
           </div><!-- Col end -->
         </div><!-- Row end -->
@@ -49,7 +51,7 @@
                   <%-- <img loading="lazy" src="${pageContext.request.contextPath}/resources/images/icon-image/service-icon1.png" alt="service-icon"> --%>
               </div>
               <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="detail.on?groupNum=1" target="_blank">Zero Harm Everyday</a></h3>
+                  <h3 class="service-box-title"><a href="detail.go?groupNum=1" target="_blank">Zero Harm Everyday</a></h3>
                   <p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for talent like. Lorem ipsum dolor suscipit.</p>
                   <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
               </div>

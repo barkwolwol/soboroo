@@ -108,7 +108,7 @@
 		update
 		       OFFLINE_GROUP_ONCE
 		   set count = count + 1
-		 where no = #{no}
+		 where table_no = #{tableNo} and no = #{no}
 		   and status = 'Y'
 	</update>
 	
@@ -267,6 +267,7 @@
 		     , table_no
 		  from group_upload
 		 where group_board_no = #{no}
+		   and table_no = #{tableNo}
 	</select>
 	
 	
