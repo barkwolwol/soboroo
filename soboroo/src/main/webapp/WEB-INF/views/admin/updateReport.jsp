@@ -154,7 +154,7 @@
 <li class="nav-item dropdown has-arrow main-drop">
 <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
 <span class="user-img">
-<img src="assets/img/profiles/usermain.jpg" alt="">
+<img src="${pageContext.request.contextPath}/resources/admin/img/profiles/usermain.jpg" alt="">
 <span class="status online"></span>
 </span>
 <span>Admin</span>
@@ -194,9 +194,9 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="onlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="offlineone.ad">온라인모임</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인모임</a></li>
                                         <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
                                         <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
                                         <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
@@ -269,14 +269,6 @@
 <div class="form-group">
 <label>회원 이메일</label>
 <input type="email" class="form-control" value="admin2@naver.com">
-</div>
-<div class="form-group">
-<label>참가중인 모임</label>
-<select class="select">
-<option selected>온라인 일반/정기</option>
-<option>오프라인 일반/정기</option>
-<option>오프라인 목표/기간별</option>
-</select>
 </div>
 
 <div class="form-group">

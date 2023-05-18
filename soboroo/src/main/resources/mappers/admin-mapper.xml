@@ -102,11 +102,63 @@
 		<result column="MEM_NO" property="memNo"/>
 		<result column="TABLE_NO" property="tableNo"/>
 		<result column="ATTEND_PASSWORD" property="attendPassword"/>
-		<result column="MEM_EMAIL" property="memEmail"/>
+		<result column="COUNT" property="count"/>
+		<result column="STATUS" property="status"/>
 		<result column="MEM_IMG" property="memImg"/>
 		<result column="MEM_NICKNAME" property="memNickname"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
 	</resultMap>
 	
+	
+	<resultMap id="adminOnResultSet" type="AdminOnlineGroupOnce">
+		<result column="NO" property="no"/>
+		<result column="TITLE" property="title"/>
+		<result column="ID" property="id"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="SIMPLE" property="simple"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="START_DATE" property="startDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="START_ENTER" property="startEnter"/>
+		<result column="END_ENTER" property="endEnter"/>
+		<result column="CONTENT" property="content"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="ADDRESS_DETAIL" property="addressDetail"/>
+		<result column="DISPLAY_NY" property="displayNY"/>
+		<result column="EVENT_PASSWORD" property="eventPassword"/>
+		<result column="HASH_TAG" property="hashTag"/>
+		<result column="DEL_NY" property="delNY"/>
+		<result column="REP_NY" property="repNY"/>
+		<result column="URL" property="url"/>
+		<result column="MAX" property="max"/>
+		<result column="MAX_ACCESS" property="maxAccess"/>
+		<result column="ADULT_ACCESS" property="adultAccess"/>
+		<result column="CATEGORY_NO" property="categoryNo"/>
+		<result column="CATEGORY_TITLE" property="categoryTitle"/>
+		<result column="MEM_NO" property="memNo"/>
+		<result column="TABLE_NO" property="tableNo"/>
+		<result column="ATTEND_PASSWORD" property="attendPassword"/>
+		<result column="COUNT" property="count"/>
+		<result column="STATUS" property="status"/>
+		<result column="MEM_IMG" property="memImg"/>
+		<result column="MEM_NICKNAME" property="memNickname"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+	</resultMap>
+	
+	<resultMap id="groupUploadResultset" type="GroupUpload">
+		<result column="UPLOAD_NO" property="uploadNo"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="GROUP_BOARD_NO" property="bNo"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="TABLE_NO" property="tableNo"/>
+	</resultMap>
 
 	<select id="loginMember" resultMap="adminMemResultSet">
 		select
@@ -271,6 +323,14 @@
 		
 	</update>
 	
+	<update id="deleteAdNotice">
+		update
+			   notice
+		   set ntc_del_ny = 'Y'
+		 where ntc_no = #{ntcNo}
+
+	</update>
+	
 	<select id="updateMemInfoList" resultMap="adminMemResultSet">
 		select 
         mem_email
@@ -285,46 +345,84 @@
 	</select>
 	
 	<select id="selectList" resultMap="adminOffResultSet">
-	select
-			   NO	
+		select
+		       NO
 		     , TITLE
 		     , ID
 		     , NAME
 		     , EMAIL
 		     , PHONE
 		     , SIMPLE
-		     , ENROLL_DATE
-		     , START_DATE
-		     , END_DATE
-		     , START_ENTER
-		     , END_ENTER
+		     , TO_CHAR(START_DATE, 'YYYY/MM/DD hh:dd') AS "ENROLL_DATE"
+ 		     , TO_CHAR(START_DATE, 'YYYY/MM/DD hh:dd') AS "START_DATE"
+		     , TO_CHAR(END_DATE, 'YYYY/MM/DD hh:dd') AS "END_DATE"
+		     , TO_CHAR(START_ENTER, 'YYYY/MM/DD hh:dd') AS "START_ENTER"
+		     , TO_CHAR(END_ENTER, 'YYYY/MM/DD hh:dd') AS "END_ENTER"
 		     , CONTENT
 		     , ADDRESS
 		     , ADDRESS_DETAIL
 		     , DISPLAY_NY
-			 , EVENT_PASSWORD
+             , del_ny
+             , rep_ny
 			 , HASH_TAG
-			 , URL
 			 , MAX
 			 , MAX_ACCESS
 			 , ADULT_ACCESS
-			 , CATEGORY_NO
-			 , MEM_NO
 			 , TABLE_NO
-			 , ATTEND_PASSWORD
 			 , COUNT
+			 , MEM_IMG
              , category_title
-             , mem_email
-             , mem_img
              , mem_nickname
-             , rep_ny
 		  from OFFLINE_GROUP_ONCE
-          join category using(category_no)
-          join member using(mem_no)
+		  join GROUP_UPLOAD USING (TABLE_NO)
+		  join MEMBER USING (MEM_NO)
+          join category using (category_no)
 		  where status = 'Y'
+		    AND table_no = 6
 		 order
 		    by NO desc
 	</select>
+	
+	
+	<select id="selectOnList" resultMap="adminOnResultSet">
+		select
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , TO_CHAR(START_DATE, 'YYYY/MM/DD hh:dd') AS "ENROLL_DATE"
+ 		     , TO_CHAR(START_DATE, 'YYYY/MM/DD hh:dd') AS "START_DATE"
+		     , TO_CHAR(END_DATE, 'YYYY/MM/DD hh:dd') AS "END_DATE"
+		     , TO_CHAR(START_ENTER, 'YYYY/MM/DD hh:dd') AS "START_ENTER"
+		     , TO_CHAR(END_ENTER, 'YYYY/MM/DD hh:dd') AS "END_ENTER"
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+             , del_ny
+             , rep_ny
+			 , HASH_TAG
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , TABLE_NO
+			 , COUNT
+			 , MEM_IMG
+             , category_title
+             , mem_nickname
+		  from ONLINE_GROUP_ONCE
+		  join GROUP_UPLOAD USING (TABLE_NO)
+		  join MEMBER USING (MEM_NO)
+          join category using (category_no)
+		  where status = 'Y'
+		    AND table_no = 2
+		 order
+		    by NO desc
+	</select>
+	
 
 	<select id="selectListCount" resultType="_int">
 			select 
@@ -333,47 +431,35 @@
 			 where status = 'Y'
 		</select>
 		
-	<select id="selectOffList" resultMap="adminOffResultSet">
-	select
-		       NO
-		     , TITLE
+		<select id="selectOnListCount" resultType="_int">
+			select 
+			       count(*)
+			  from ONLINE_GROUP_ONCE
+			 where status = 'Y'
+		</select>
+		
+		
+		<select id="selectOnRecentList"  resultMap="adminOnResultSet">
+	select title,max,category_title,mem_img,id,name
+            from(
+            select   
+		      TITLE
 		     , ID
 		     , NAME
-		     , EMAIL
-		     , PHONE
-		     , SIMPLE
-		     , ENROLL_DATE
-		     , START_DATE
-		     , END_DATE
-		     , START_ENTER
-		     , END_ENTER
-		     , CONTENT
-		     , ADDRESS
-		     , ADDRESS_DETAIL
-		     , DISPLAY_NY
-			 , EVENT_PASSWORD
-			 , HASH_TAG
-			 , URL
 			 , MAX
-			 , MAX_ACCESS
-			 , ADULT_ACCESS
-			 , CATEGORY_NO
-			 , MEM_NO
-			 , TABLE_NO
-			 , ATTEND_PASSWORD
-			 , COUNT
              , category_title
-             , mem_email
              , mem_img
-             , mem_nickname
-             , rep_ny
-		  from OFFLINE_GROUP_ONCE
-          join category using(category_no)
-          join member using(mem_no)
-		  where status = 'Y' AND no = #{no}
-		 order
-		    by NO asc
+              from ONLINE_GROUP_ONCE
+              join category using(category_no)
+              join member using(mem_no) 
+              order 
+                    by enroll_date desc
+             )
+             where rownum = 1
 	</select>
+	
+		
+		
 	
 	<select id="selectRecentList"  resultMap="adminOffResultSet">
 	select title,max,category_title,mem_img,id,name

@@ -194,7 +194,7 @@
 
 
 
-      <!-- 사이드바 시작  -->
+     <!-- 사이드바 시작  -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">
                 <div id="sidebar-menu" class="sidebar-menu">
@@ -217,9 +217,9 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="onlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="offlineone.ad">온라인모임</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인모임</a></li>
                                         <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
                                         <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
                                         <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
@@ -332,7 +332,7 @@
                                             </td>
                                                 
                                             <td><a href="detail.bo?bno=${b.boardNo }">${b.boardTitle}</a></td>
-                                            <td>${b.categoryTitle}</td>
+                                            <td><span class="badge bg-success-light">${b.categoryTitle}</td>
                                             <td class="text-primary">${b.memEmail}</td>
                                             <td>${b.count}</td>
                                             <td>${b.createDate}</td>
@@ -347,7 +347,6 @@
                                                         class="far fa-trash-alt me-1"></i>삭제</a>
                                             </td>
                                         </tr>
-                                         
                                     </tbody>
                                     </c:forEach>
                                 </table>

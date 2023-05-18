@@ -1,19 +1,17 @@
 package com.kh.soboroo.admin.model.vo;
 
-import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @NoArgsConstructor		// 기본생성자
 @AllArgsConstructor		// 전체 매개변수 생성자
 @Setter					// setter 메소드
 @Getter					// getter 메소드
 @ToString				// toString 메소드
-public class AdminOfflineGroupOnce {
+public class AdminOnlineGroupOnce {
 	
 	private int no;
 	private String title;
@@ -51,5 +49,4 @@ public class AdminOfflineGroupOnce {
 	private String fileLevel;
 	private String memImg;
 	private String memNickname;
-	
 }

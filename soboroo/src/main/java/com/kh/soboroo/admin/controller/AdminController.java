@@ -1,11 +1,9 @@
 package com.kh.soboroo.admin.controller;
 
 import java.io.Console;
-
+import java.io.File;
 
 import java.util.ArrayList;
-
-
 
 import java.util.HashMap;
 
@@ -14,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,10 +22,10 @@ import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
-
+import com.kh.soboroo.admin.model.vo.AdminOnlineGroupOnce;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
-import com.kh.soboroo.member.model.service.MemberServiceImpl;
+
 
 
 
@@ -171,10 +168,7 @@ public class AdminController {
 		public String updateReportInfo() {
 			return "admin/updateReport";
 		}
-		
-		
-
-		
+	
 		// 관리자 정지 회원 페이지 호출
 		/**
 		 * @param currentPage
@@ -208,33 +202,8 @@ public class AdminController {
 			return mv;
 		}
 		
-		// 관리자 온라인 반짝 모임 관리 페이지 호출
-		@RequestMapping("onlineone.ad")
-		public String onlineOneInfo() {
-			return "admin/onlineOneInfo";
-		}
-		
-		// 관리자 온라인 정기 모임 관리 페이지 노출
-		@RequestMapping("onlineleg.ad")
-		public String onlineRegInfo() {
-			return "admin/onlineRegInfo";
-		}
-		
-		// 관리자 온라인 목표 모임 관리 페이지 노출
-		@RequestMapping("onlinegoal.ad")
-		public String onlineGoalInfo() {
-			return "admin/onlineGoalInfo";
-		}
-		
-		// 관리자 온라인 디데이 모임 관리 페이지 노출
-		@RequestMapping("onlineDday.ad")
-		public String onlineDdayInfo() {
-			return "admin/onlineDdayInfo";
-		}
-		
-		
 	
-		// 관리자 오프라인 반짝 모임 관리 페이지 호출
+		// 관리자 오프라인 모임 관리 페이지 호출
 		/**
 		 * @param currentPage
 		 * @param no
@@ -243,84 +212,49 @@ public class AdminController {
 		 */
 		@RequestMapping("offlineone.ad")
 		public ModelAndView selectList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
-									   @RequestParam(value="no", defaultValue = "2") int no, ModelAndView mv) {
+				@RequestParam(value = "tableNo", defaultValue = "6") int tableNo,ModelAndView mv) {
 			
 			int listCount = aService.selectListCount();
 			
-			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 6);
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 						
-			ArrayList<AdminOfflineGroupOnce> list = aService.selectList(pi);
+			ArrayList<AdminOfflineGroupOnce> list = aService.selectList(pi,tableNo);
 			
 			ArrayList<AdminOfflineGroupOnce> rlist = aService.selectRecentList(pi);
-			
-			AdminOfflineGroupOnce ao = aService.selectOffList(no);
 						
 			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/offlineOneInfo");
 			
-			mv.addObject("ao", ao).setViewName("admin/offlineOneInfo");
-			
 			mv.addObject("pi", pi).addObject("rlist", rlist).setViewName("admin/offlineOneInfo");
-			
+				
 			System.out.println(rlist);
 					
 			return mv;
 					
 		}
 		
+		// 관리자 온라인 모임 관리
 		
-		// 관리자 오프라인 목표 모임 관리 페이지 노출
-		@RequestMapping("offlinegoal.ad")
-		public ModelAndView offlineGoalInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
-				   @RequestParam(value="no", defaultValue = "2") int no, ModelAndView mv) {
+		@RequestMapping("onlineone.ad")
+		public ModelAndView selectOnList(@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
+				@RequestParam(value = "tableNo", defaultValue = "2") int tableNo,ModelAndView mv) {
 			
-				int listCount = aService.selectListCount();
-				
-				PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 6);
-					
-				ArrayList<AdminOfflineGroupOnce> list = aService.selectList(pi);
-				
-				ArrayList<AdminOfflineGroupOnce> rlist = aService.selectRecentList(pi);
-				
-				AdminOfflineGroupOnce ao = aService.selectOffList(no);
-					
-				mv.addObject("pi", pi).addObject("list", list).setViewName("admin/offlineGoalInfo");
-				
-				mv.addObject("ao", ao).setViewName("admin/offlineGoalInfo");
-				
-				mv.addObject("pi", pi).addObject("rlist", rlist).setViewName("admin/offlineGoalInfo");
-				
-				System.out.println(rlist);
-				
-				return mv;
-				
-				}
+			int listCount = aService.selectOnListCount();
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 						
-		// 관리자 오프라인 디데이 모임 관리 페이지 노출
-		@RequestMapping("offlineDday.ad")
-		public ModelAndView offlineDdayInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
-				   @RequestParam(value="no", defaultValue = "2") int no, ModelAndView mv) {
+			ArrayList<AdminOnlineGroupOnce> list = aService.selectOnList(pi,tableNo);
 			
-				int listCount = aService.selectListCount();
+			ArrayList<AdminOnlineGroupOnce> rlist = aService.selectOnRecentList(pi);
+						
+			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/onlineOneInfo");
+			
+			mv.addObject("pi", pi).addObject("rlist", rlist).setViewName("admin/onlineOneInfo");
 				
-				PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 6);
+			System.out.println(rlist);
 					
-				ArrayList<AdminOfflineGroupOnce> list = aService.selectList(pi);
-				
-				ArrayList<AdminOfflineGroupOnce> rlist = aService.selectRecentList(pi);
-				
-				AdminOfflineGroupOnce ao = aService.selectOffList(no);
+			return mv;
 					
-				mv.addObject("pi", pi).addObject("list", list).setViewName("admin/offlineDdayInfo");
-				
-				mv.addObject("ao", ao).setViewName("admin/offlineDdayInfo");
-				
-				mv.addObject("pi", pi).addObject("rlist", rlist).setViewName("admin/offlineDdayInfo");
-				
-				System.out.println(rlist);
-				
-				return mv;
-				
-				}
+		}
 		
 		
 		// 관리자 통합 신고 관리 페이지 호출
@@ -360,7 +294,6 @@ public class AdminController {
 				
 				mv.addObject("pi", pi).addObject("list", list).setViewName("admin/boardInfo");
 				
-				
 				return mv;
 			}
 		
@@ -386,6 +319,32 @@ public class AdminController {
 			return mv;
 
 		}
+		
+		// 관리자 공지사항 삭제
+		@RequestMapping("deleteNo.ad")
+		public String deleteAdNotice(AdminNotice n,int ntcNo, String filePath, HttpSession session, Model model) {
+			
+			int result = aService.deleteAdNotice(n,ntcNo);
+			
+			System.out.println(ntcNo);
+			
+			System.out.println(result);
+			
+			if(result > 0) {
+
+				session.setAttribute("alertMsg", "성공적으로 게시글이 삭제 되었습니다");
+				return "redirect:notice.ad";
+				
+			}else {
+				// 삭제 실패
+				//에러문구 담아서 에러페이지 포워딩(모델)
+				model.addAttribute("errorMsg", "게시글 삭제 실패!");
+				return "common/errorPage";
+			}
+			
+			
+		}
+		
 		
 		
 		

@@ -252,7 +252,7 @@
 <h3 class="page-title">모임관리</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">오프라인</a></li>
-<li class="breadcrumb-item active">반짝</li>
+<li class="breadcrumb-item active">모임</li>
 </ul>
 </div>
 </a>
@@ -401,8 +401,7 @@
 <div class="invoices-tabs">
 <ul>
 <li><a href="invoices.html" class="active">모임 게시판</a></li>
-<li><a href="#">모임일정</a></li>
-<li><a href="#">모임공지사항</a></li>
+<li><a href="selectMySchedule.my">모임일정</a></li>
 <li><a href="#">모임신고</a></li>
 </ul>
 </div>
@@ -508,7 +507,7 @@
 </thead>
 <c:forEach var="off" items="${list}">
 <tbody>
-<tr class="group-meeting" data-category="${off.categoryNo}">
+<tr class="group-meeting" data-category="${off.categoryTitle}">
 <td>
 <label class="custom_check">
 <input type="checkbox" name="invoice">
@@ -535,8 +534,8 @@
 <div class="dropdown dropdown-action">
 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
 <div class="dropdown-menu dropdown-menu-end">
-<a class="dropdown-item" href="listGroupOne.go?tableNo=${off.tableNo }"><i class="far fa-eye me-2"></i>모임리스트</a>
-<a class="dropdown-item" href="enrollGroupOne.go"><i class="far fa-edit me-2"></i>모임개설</a>
+<a class="dropdown-item" href="offList.go?tableNo=${off.tableNo }"><i class="far fa-eye me-2"></i>모임리스트</a>
+<a class="dropdown-item" href="enrollOfflineGroupOne.go"><i class="far fa-edit me-2"></i>모임개설</a>
 </div>
 </div>
 </td>

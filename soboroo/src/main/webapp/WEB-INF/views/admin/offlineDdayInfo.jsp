@@ -198,9 +198,9 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="onlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="offlineone.ad">온라인모임</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인모임</a></li>
                                         <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
                                         <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
                                         <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
@@ -241,7 +241,6 @@
             </div>
         </div>
         <!-- 사이드바 끝  -->
-
 
 <!-- 모임 복붙 시작 -->
 <div class="page-wrapper">

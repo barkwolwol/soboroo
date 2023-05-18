@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 
 
+
+
+
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,7 +16,7 @@ import org.springframework.stereotype.Service;
 import com.kh.soboroo.admin.model.dao.AdminDao;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
-
+import com.kh.soboroo.admin.model.vo.AdminOnlineGroupOnce;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.common.model.vo.PageInfo;
@@ -92,9 +95,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public ArrayList<AdminOfflineGroupOnce> selectList(PageInfo pi) {
+	public ArrayList<AdminOfflineGroupOnce> selectList(PageInfo pi, int tableNo) {
 		
-		return aDao.selectList(sqlSession, pi);
+		return aDao.selectList(sqlSession, pi, tableNo);
 	}
 
 	@Override
@@ -103,17 +106,14 @@ public class AdminServiceImpl implements AdminService {
 		return aDao.selectListCount(sqlSession);
 	}
 
-	@Override
-	public AdminOfflineGroupOnce selectOffList(int no) {
 
-		return aDao.selectOffList(sqlSession,no);
-	}
 	
 	@Override
 	public ArrayList<AdminOfflineGroupOnce> selectRecentList(PageInfo pi) {
 		
 		return aDao.selectRecentList(sqlSession,pi);
 	}
+	
 	
 
 	@Override
@@ -145,6 +145,33 @@ public class AdminServiceImpl implements AdminService {
 	public ArrayList<AdminMember> selectWithdrawMemberList(PageInfo pi) {
 		
 		return aDao.selectWithdrawMemberList(sqlSession,pi);
+	}
+
+	@Override
+	public ArrayList<AdminOnlineGroupOnce> selectOnList(PageInfo pi, int tableNo) {
+		
+		return aDao.selectOnList(sqlSession, pi, tableNo);
+	}
+
+	@Override
+	public int selectOnListCount() {
+
+		return aDao.selectOnListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<AdminOnlineGroupOnce> selectOnRecentList(PageInfo pi) {
+
+		return aDao.selectOnRecentList(sqlSession,pi);
+	}
+
+	@Override
+	public int deleteAdNotice(AdminNotice n ,int ntcNo) {
+		
+		int result = aDao.deleteAdNotice(sqlSession,ntcNo,n);
+				
+		return result;
+		
 	}
 
 
