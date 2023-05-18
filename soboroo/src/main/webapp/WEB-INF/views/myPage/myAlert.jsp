@@ -272,7 +272,7 @@
 								<!-- 3rd post end -->
 
 
-								<nav class="paging" aria-label="Page navigation example"
+<%-- 								<nav class="paging" aria-label="Page navigation example"
 									style="margin: auto;">
 									<ul class="pagination"
 										style="padding-left: 270px; padding-top: 10px;">
@@ -308,22 +308,37 @@
   </c:otherwise>
 </c:choose>
 </ul>
-</nav>
-<!-- 								<nav class="paging" aria-label="Page navigation example"
-									style="margin: auto;">
-									<ul class="pagination"
-										style="padding-left: 270px; padding-top: 10px;">
-										<li class="page-item"><a class="page-link" href="#"><i
-												class="fas fa-angle-double-left"></i></a></li>
-										<li class="page-item"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#"><i
-												class="fas fa-angle-double-right"></i></a></li>
-									</ul>
-								</nav> -->
-
-								<!-- </div> -->
+</nav> --%>
+<div class="pagination_wrap">
+    <div class="pagination">
+      <c:choose>
+        <c:when test="${ pi.currentPage eq 1 }">
+            <a href="" class="btn_prev disabled">이전</a>
+        </c:when>
+        <c:otherwise>
+            <a href="selectAlertList.my?cpage=${ pi.currentPage - 1 }" class="btn_prev">이전</a>
+        </c:otherwise>
+      </c:choose>
+      <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+        <c:choose>
+          <c:when test="${ p eq pi.currentPage }">
+            <a href="selectAlertList.my?cpage=${ p }" class="page_move active disabled">${ p }</a>
+          </c:when>
+          <c:otherwise>
+              <a href="selectAlertList.my?cpage=${ p }" class="page_move active">${ p }</a>
+          </c:otherwise>
+        </c:choose>
+      </c:forEach>
+      <c:choose>
+        <c:when test="${ pi.currentPage eq pi.maxPage }">
+          <a href="" class="btn_next disabled">다음</a>
+        </c:when>
+        <c:otherwise>
+          <a href="selectAlertList.my?cpage=${ pi.currentPage + 1 }" class="btn_next">다음</a>
+        </c:otherwise>
+        </c:choose>
+    </div>
+</div>
 								<!-- Content Col end -->
 
 							</div>
