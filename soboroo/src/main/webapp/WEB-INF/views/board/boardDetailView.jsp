@@ -115,10 +115,10 @@
             <input type="hidden" name="memNo" value="${ loginUser.memNo }" data-memNo="${ b.memNo }">
             </form>
             <script>
-            		function test01(){
-            			$("#test11").click();
-            			
-            		}
+            function test01() {
+                window.location.href = "report.bo";
+            }
+
             
             
             		function postFormSubmit(num) {
