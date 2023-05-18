@@ -1,6 +1,12 @@
 package com.kh.soboroo.admin.model.service;
 
 import java.util.ArrayList;
+
+
+
+
+
+
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -9,10 +15,11 @@ import org.springframework.stereotype.Service;
 
 import com.kh.soboroo.admin.model.dao.AdminDao;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
+import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
+import com.kh.soboroo.admin.model.vo.AdminOnlineGroupOnce;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.member.model.vo.Member;
 
 
 
@@ -78,6 +85,8 @@ public class AdminServiceImpl implements AdminService {
 		int result = aDao.adminMemberUpdate(sqlSession,m);
 		return result;
 	}
+	
+	
 
 	@Override
 	public AdminMember selectUpdateInfo(int memNo) {
@@ -85,8 +94,88 @@ public class AdminServiceImpl implements AdminService {
 		return aDao.selectUpdateInfo(sqlSession, memNo);
 	}
 
+	@Override
+	public ArrayList<AdminOfflineGroupOnce> selectList(PageInfo pi, int tableNo) {
+		
+		return aDao.selectList(sqlSession, pi, tableNo);
+	}
+
+	@Override
+	public int selectListCount() {
+		
+		return aDao.selectListCount(sqlSession);
+	}
 
 
+	
+	@Override
+	public ArrayList<AdminOfflineGroupOnce> selectRecentList(PageInfo pi) {
+		
+		return aDao.selectRecentList(sqlSession,pi);
+	}
+	
+	
+
+	@Override
+	public int updateMemberStatus(AdminMember m , int memStatus) {
+		
+		int result = aDao.updateMemberStatus(sqlSession,m,memStatus);
+		
+		return result;
+	}
+
+	@Override
+	public AdminMember loginMember(HashMap<String, Object> userInfo) {
+
+		AdminMember loginUser = aDao.loginMember(sqlSession, userInfo);
+		
+		return loginUser;
+		
+	}
+
+	@Override
+	public int deleteAdminInfo(AdminMember loginUser) {
+	
+		int result = aDao.deleteAdminInfo(sqlSession, loginUser);
+		
+		return result;
+	}
+
+	@Override
+	public ArrayList<AdminMember> selectWithdrawMemberList(PageInfo pi) {
+		
+		return aDao.selectWithdrawMemberList(sqlSession,pi);
+	}
+
+	@Override
+	public ArrayList<AdminOnlineGroupOnce> selectOnList(PageInfo pi, int tableNo) {
+		
+		return aDao.selectOnList(sqlSession, pi, tableNo);
+	}
+
+	@Override
+	public int selectOnListCount() {
+
+		return aDao.selectOnListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<AdminOnlineGroupOnce> selectOnRecentList(PageInfo pi) {
+
+		return aDao.selectOnRecentList(sqlSession,pi);
+	}
+
+	@Override
+	public int deleteAdNotice(AdminNotice n ,int ntcNo) {
+		
+		int result = aDao.deleteAdNotice(sqlSession,ntcNo,n);
+				
+		return result;
+		
+	}
+
+
+	
 	
 	
 	

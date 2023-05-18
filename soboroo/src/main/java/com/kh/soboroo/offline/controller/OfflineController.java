@@ -1,6 +1,7 @@
 package com.kh.soboroo.offline.controller;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.soboroo.admin.controller.AdminController;
 import com.kh.soboroo.common.controller.CommonController;
 import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
@@ -40,7 +42,7 @@ public class OfflineController {
 		
 		int listCount = offService.selectListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 6);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 		
 		ArrayList<OfflineGroupOnce> list = offService.selectList(pi, tableNo);
 		
@@ -166,6 +168,7 @@ public class OfflineController {
 	            gtoupUpload.setChangeName(changeName);
 	            if (i == 0) {
 	            	gtoupUpload.setFileLevel(1); // 첫 번째 파일은 대표 이미지
+	            	ogo.setThumbnail(filePath);
 	            } else {
 	            	gtoupUpload.setFileLevel(2); // 나머지 파일은 추가 이미지
 	            }
@@ -385,102 +388,6 @@ public class OfflineController {
 //	    }
 //	}
 
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/*
 	// 상세조회
 	@RequestMapping("detail.go")

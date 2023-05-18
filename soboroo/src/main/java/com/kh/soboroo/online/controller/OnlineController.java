@@ -28,88 +28,88 @@ import com.kh.soboroo.online.model.vo.OnlineGroupOnce;
 
 @Controller
 public class OnlineController {
-   
-   @Autowired
-   private OnlineServiceImpl onService;
-   
-   // 온라인 반짝모임 리스트 조회
-   @RequestMapping("onList.go")
-   public ModelAndView selectListOnlineGroupOne(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, 
-                                @RequestParam(value = "tableNo") int tableNo,
-                                ModelAndView mv) {
-      
-      int listCount = onService.selectListCount();
-      
-      PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 6);
-      
-      ArrayList<OnlineGroupOnce> list = onService.selectListOn(pi, tableNo);
-      
-      mv.addObject("pi", pi).addObject("list", list).setViewName("online/onlineGroupOneListView");
-      
-      return mv;
-   }
-   
-   // 오프라인 반짝모임 생성 페이지 이동
-   @RequestMapping("enrollOnlineGroupOne.go")
-   public String enrollOfflineGroupOne() {
-      return "online/enrollOnlineGroupOne";
-   }
-   
-   // 오프라인 반짝모임 생성
-   @RequestMapping("insertOnlineGroupOne.go")
-   public String insertOfflineGroupOne(@RequestParam(value = "tag") String tag,
-                                @RequestParam(value = "date") String date,   
-                                @RequestParam(value = "enterDate") String enterDate,
-                                OnlineGroupOnce ong, GroupUpload gu, List<MultipartFile> upfiles,
-                                HttpSession session, Model model) {
-       
-       if (date.length() < 11) {
-          ong.setStartDate(date.substring(0, 10));
-       } else {
-          ong.setStartDate(date.substring(0, 10));
-          ong.setEndDate(date.substring(13, 23));
-       }
+	
+	@Autowired
+	private OnlineServiceImpl onService;
+	
+	// 온라인 반짝모임 리스트 조회
+	@RequestMapping("onList.go")
+	public ModelAndView selectListOnlineGroupOne(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, 
+			                       @RequestParam(value = "tableNo") int tableNo,
+			                       ModelAndView mv) {
+		
+		int listCount = onService.selectListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		
+		ArrayList<OnlineGroupOnce> list = onService.selectListOn(pi, tableNo);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("online/onlineGroupOneListView");
+		
+		return mv;
+	}
+	
+	// 오프라인 반짝모임 생성 페이지 이동
+	@RequestMapping("enrollOnlineGroupOne.go")
+	public String enrollOfflineGroupOne() {
+		return "online/enrollOnlineGroupOne";
+	}
+	
+	// 오프라인 반짝모임 생성
+	@RequestMapping("insertOnlineGroupOne.go")
+	public String insertOfflineGroupOne(@RequestParam(value = "tag") String tag,
+	                             @RequestParam(value = "date") String date,	
+	                             @RequestParam(value = "enterDate") String enterDate,
+	                             OnlineGroupOnce ong, GroupUpload gu, List<MultipartFile> upfiles,
+	                             HttpSession session, Model model) {
+	    
+	    if (date.length() < 11) {
+	    	ong.setStartDate(date.substring(0, 10));
+	    } else {
+	    	ong.setStartDate(date.substring(0, 10));
+	    	ong.setEndDate(date.substring(13, 23));
+	    }
 
-       if (enterDate.length() < 11) {
-          ong.setStartEnter(enterDate.substring(0, 10));
-       } else {
-          ong.setStartEnter(enterDate.substring(0, 10));
-          ong.setEndEnter(enterDate.substring(13, 23));
-       }
-       
-       ong.setHashTag(tag);
-       
-       System.out.println(ong);
-       
-       if (!upfiles.isEmpty()) { // 첨부파일이 있을 경우
-           List<String> savedFileNames = saveFiles(upfiles, session);
-           
-           List<GroupUpload> uploads = new ArrayList(); // 업로드한 파일의 정보를 저장할 리스트
-           
-           for (int i = 0; i < upfiles.size(); i++) {
-               MultipartFile file = upfiles.get(i);
-               String originName = file.getOriginalFilename();
-               String filePath = "resources/uploadFiles/" + savedFileNames.get(i);
-               String changeName = savedFileNames.get(i);
-               
-               GroupUpload groupUpload = new GroupUpload();
-               groupUpload.setOriginName(originName != null ? originName : "");
-               groupUpload.setChangeName(changeName);
-               
-               if (i == 0) {
-                  groupUpload.setFileLevel(1); // 첫 번째 파일은 대표 이미지
-                  ong.setTumbnail(filePath);
-               } else {
-                  groupUpload.setFileLevel(2); // 나머지 파일은 추가 이미지
-               }
-               groupUpload.setFilePath(filePath);
-               groupUpload.setTableNo(2);
-               
-               uploads.add(groupUpload);
-           }
-           
-           gu.setUploads(uploads); // 업로드한 파일 리스트를 Upload 객체에 설정
-       }
+	    if (enterDate.length() < 11) {
+	    	ong.setStartEnter(enterDate.substring(0, 10));
+	    } else {
+	    	ong.setStartEnter(enterDate.substring(0, 10));
+	    	ong.setEndEnter(enterDate.substring(13, 23));
+	    }
+	    
+	    ong.setHashTag(tag);
+	    
+	    System.out.println(ong);
+	    
+	    if (!upfiles.isEmpty()) { // 첨부파일이 있을 경우
+	        List<String> savedFileNames = saveFiles(upfiles, session);
+	        
+	        List<GroupUpload> uploads = new ArrayList(); // 업로드한 파일의 정보를 저장할 리스트
+	        
+	        for (int i = 0; i < upfiles.size(); i++) {
+	            MultipartFile file = upfiles.get(i);
+	            String originName = file.getOriginalFilename();
+	            String filePath = "resources/uploadFiles/" + savedFileNames.get(i);
+	            String changeName = savedFileNames.get(i);
+	            
+	            GroupUpload groupUpload = new GroupUpload();
+	            groupUpload.setOriginName(originName != null ? originName : "");
+	            groupUpload.setChangeName(changeName);
+	            
+	            if (i == 0) {
+	            	groupUpload.setFileLevel(1); // 첫 번째 파일은 대표 이미지
+	            	ong.setThumbnail(filePath);
+	            } else {
+	            	groupUpload.setFileLevel(2); // 나머지 파일은 추가 이미지
+	            }
+	            groupUpload.setFilePath(filePath);
+	            groupUpload.setTableNo(2);
+	            
+	            uploads.add(groupUpload);
+	        }
+	        
+	        gu.setUploads(uploads); // 업로드한 파일 리스트를 Upload 객체에 설정
+	    }
 
        int result = onService.insertOfflineGroupOne(ong, gu);
        

@@ -2,8 +2,7 @@ package com.kh.soboroo.admin.model.dao;
 
 import java.util.ArrayList;
 
-
-
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -12,8 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
+import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
+import com.kh.soboroo.admin.model.vo.AdminOnlineGroupOnce;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.member.model.vo.Member;
 
 
 
@@ -79,8 +79,7 @@ public class AdminDao {
 	public ArrayList<AdminMember> selectSusMemberList(SqlSessionTemplate sqlSession, PageInfo pi){
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
-		
-		
+
 		int limit = pi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
@@ -102,8 +101,8 @@ public class AdminDao {
 		
 	}
 	
-	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.selectOne("memberMapper.loginMember", m);
+	public AdminMember loginMember(SqlSessionTemplate sqlSession, HashMap<String, Object> userInfo) {
+		return sqlSession.selectOne("adminMapper.loginMember", userInfo);
 	}
 	
 	public int adminMemberUpdate(SqlSessionTemplate sqlSession, AdminMember m) {
@@ -116,5 +115,83 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.updateMemInfoList",memNo);
 		
 	}
+	
+	public ArrayList<AdminOfflineGroupOnce> selectList(SqlSessionTemplate sqlSession, PageInfo pi , int tableNo){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectList", tableNo, rowBounds);
+		
+	}
+	
+	
+	public int selectListCount(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("adminMapper.selectListCount");
+	}
+	
+	
+	public ArrayList<AdminOfflineGroupOnce> selectRecentList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectRecentList", pi);
+	}
+	
+	
+	public int updateMemberStatus(SqlSessionTemplate sqlSession, AdminMember m , int memStatus) {
+		
+		m.setMemStatus(memStatus);
+		return sqlSession.update("adminMemberUpdate",m);
+	}
+	
+	
+	public int deleteAdminInfo(SqlSessionTemplate sqlSession, AdminMember loginUser) {
+		
+		return sqlSession.update("adminMapper.deleteAdminInfo", loginUser);
+	}
+	
+	public int deleteAdNotice(SqlSessionTemplate sqlSession, int ntcNo , AdminNotice n) {
+		
+		n.setNtcNo(ntcNo);
+		
+		return sqlSession.update("adminMapper.deleteAdNotice", ntcNo);
+	}
+	
+	public ArrayList<AdminMember> selectWithdrawMemberList(SqlSessionTemplate sqlSession, PageInfo pi){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectWithdrawMemberList", null, rowBounds);
+	}
+	
+	public int selectOnListCount(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("adminMapper.selectOnListCount", sqlSession);
+	}
+	
+	public ArrayList<AdminOnlineGroupOnce> selectOnRecentList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectOnRecentList", pi);
+	}
+	
+	
+	public ArrayList<AdminOnlineGroupOnce> selectOnList(SqlSessionTemplate sqlSession, PageInfo pi , int tableNo){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectOnList", tableNo, rowBounds);
+		
+	}
+	
+	
 
 }

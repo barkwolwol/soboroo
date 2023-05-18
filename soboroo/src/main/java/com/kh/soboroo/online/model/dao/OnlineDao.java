@@ -9,15 +9,14 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 import com.kh.soboroo.online.model.vo.OnlineGroupOnce;
 
 @Repository
 public class OnlineDao {
 
-   public int insertOnlineGroupOne(SqlSessionTemplate sqlSession, OnlineGroupOnce ong) {
-      return sqlSession.insert("onlineMapper.insertOnlineGroupOne", ong);
-   }
+
+	public int insertOnlineGroupOne(SqlSessionTemplate sqlSession, OnlineGroupOnce ong) {
+		return sqlSession.insert("onlineMapper.insertOnlineGroupOne", ong);
 
    public int insertGroupOneImg(SqlSessionTemplate sqlSession, GroupUpload groupUpload) {
        return sqlSession.insert("onlineMapper.insertGroupOneImg", groupUpload);

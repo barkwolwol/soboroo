@@ -44,7 +44,7 @@ public class OfflineGroupOnce {
 	private String attendPassword;
 	private int count;
 	private String status;
-	private String tumbnail;
+	private String thumbnail;
 	
 	private String categoryTitle;
 	private String filePath;
