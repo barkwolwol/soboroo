@@ -156,6 +156,20 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
+	@Override
+	public int deleteAdminInfo(AdminMember loginUser) {
+	
+		int result = aDao.deleteAdminInfo(sqlSession, loginUser);
+		
+		return result;
+	}
+
+	@Override
+	public ArrayList<AdminMember> selectWithdrawMemberList(PageInfo pi) {
+		
+		return aDao.selectWithdrawMemberList(sqlSession,pi);
+	}
+
 
 	
 	

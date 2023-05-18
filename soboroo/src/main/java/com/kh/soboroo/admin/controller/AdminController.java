@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -111,6 +112,43 @@ public class AdminController {
 			
 			return mv;
 			
+			
+		
+			
+		}
+		
+		
+		// 관리자 회원 탈퇴
+		@ResponseBody
+		@RequestMapping("deleteMem.ad")
+		public String deleteAdminInfo(AdminMember m, HttpSession session) {
+			
+			AdminMember loginUser = (AdminMember)session.getAttribute("loginUser");
+			
+			loginUser.setMemStatus(m.getMemStatus());
+			
+			int result = aService.deleteAdminInfo(loginUser);
+			
+			System.out.println(result);
+			
+			System.out.println(loginUser);
+			
+			 if(result > 0) {
+			       
+			        session.removeAttribute("loginUser");
+			        
+			        session.setAttribute("alertMsg", "회원 탈퇴되었습니다. 이용해주셔서 감사합니다.");
+			        
+			        return "redirect:/";
+			        
+			       
+			    } else {
+			        session.setAttribute("alertMsg", "회원 탈퇴에 실패하였습니다.");
+			        return "redirect:memberInfo.ad";
+			        
+			    }
+			
+			
 		}
 		
 		
@@ -157,8 +195,15 @@ public class AdminController {
 		
 		// 관리자 탈퇴 회원 페이지 호출
 		@RequestMapping("withdrawMember.ad")
-		public String withdrawMember() {
-			return "admin/withdrawalMemberInfo";
+		public ModelAndView withdrawMember(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, ModelAndView mv) {
+			
+			PageInfo pi = Pagination.getPageInfo(0, currentPage, 10, 10);
+			
+			ArrayList<AdminMember> list = aService.selectWithdrawMemberList(pi);
+			
+			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/withdrawalMemberInfo");
+			
+			return mv;
 		}
 		
 		// 관리자 온라인 반짝 모임 관리 페이지 호출
@@ -370,11 +415,7 @@ public class AdminController {
 		
 		@RequestMapping("updateMem.ad")
 	    public String updateMemberStatus(AdminMember m, HashMap<String, Object> userInfo, HttpSession session,int memStatus, Model model) {
-	        // 회원 상태를 업데이트하는 로직을 수행합니다.
-	        // memStatus를 사용하여 해당 회원의 상태를 업데이트합니다.
-	        // 필요한 데이터베이스 작업 등을 수행하고 결과를 반환합니다.
-	        
-	        // 예시로 "success" 문자열을 반환하도록 작성했습니다.
+	    
 				System.out.println(memStatus);
 				
 				System.out.println(m);

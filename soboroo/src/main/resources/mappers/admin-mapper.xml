@@ -259,6 +259,24 @@
 	
 	</select>
 	
+	<select id="selectWithdrawMemberList" resultMap="adminMemResultSet">
+			select
+		 	mem_no
+		 ,	mem_img
+		 ,	mem_name	
+		 ,	mem_no 
+	     ,  mem_name
+	     ,  mem_email
+	     ,  mem_rpr_count
+	     ,  to_char(mem_update_date,'YYYY-MM-DD') as mem_update_date
+	     ,  to_char(mem_update_date + 7 ,'YYYY-MM-DD') as mem_suspension_date
+	     ,  mem_status
+     from member 
+	where mem_status = 4
+	
+	
+	</select>
+	
 	
 	<select id="selectReportList" resultMap="adminMemResultSet">
 		select 
@@ -525,6 +543,13 @@
              where rownum = 1
 	
 	</select>
+	
+	<update id="deleteAdminInfo">
+		update 
+				member
+		sete mem_status = 4		
+		where mem_no = #{memNo}
+	</update>
 		
 	
 		

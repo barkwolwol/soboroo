@@ -195,22 +195,22 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                    <ul><li><a href="offlineone.ad">온라인모임</a></li>
+                                        <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
                                         <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
                                     </ul>
                                
                                 <li class="submenu">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlineone.ad">오프라인모임</a></li> 
+                                        <!-- <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
                                         <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li> --> 
                                     </ul>
                          
                             </ul>
@@ -340,6 +340,40 @@
 </tr>
 </td>
 </tr>
+<script>
+
+//탈퇴 버튼 클릭 시 페이지 이동과 값 전달
+document.getElementById('delete').addEventListener('click', function() {
+  // 탈퇴 처리를 위한 값을 가져옵니다.
+  var withdrawalInfo = {
+    // 값들을 채워주세요
+  };
+
+  // withdrawalMemberInfo.ad 페이지로 POST 요청을 보냅니다.
+  fetch('withdrawalMemberInfo.ad', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(withdrawalInfo),
+  })
+  .then(function(response) {
+    if (response.ok) {
+      // 탈퇴 성공 후 페이지 이동 또는 처리
+      window.location.href = 'withdrawalMemberInfo.ad';
+    } else {
+      // 탈퇴 실패 처리
+      console.log('탈퇴 실패');
+    }
+  })
+  .catch(function(error) {
+    // 예외 처리
+    console.log('오류 발생: ' + error);
+  });
+});
+
+
+</script>
 </c:forEach>
 </tbody>
 </table>
@@ -351,54 +385,6 @@
 </div>
 </div>
 </div>
-
-
-<script>
-$(document).ready(function() {
-	  // When the "탈퇴" button is clicked
-	  $("#delete").click(function() {
-	    // Send an AJAX request
-	    $.ajax({
-	      url: "memberInfo.ad",
-	      type: "POST",
-	      dataType: "json",
-	      success: function(response) {
-	        // Handle the response from the server
-	        if (response.success) {
-	          // Show success message or perform any other actions
-	          console.log("탈퇴 성공");
-	        } else {
-	          // Show error message or perform any other actions
-	          console.log("탈퇴 실패");
-	        }
-	      },
-	      error: function() {
-	        // Handle error case
-	        console.log("오류 발생");
-	      }
-	    });
-	  });
-	});
-
-</script>
-
-
-<script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/admin/js/feather.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
-
-
-
 
 
 <!-- 모달팝업 -->
@@ -421,9 +407,30 @@ $(document).ready(function() {
 
 </div>
 
-<script>
 
-</script>
+
+
+<script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/js/feather.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
+
+
+
+
+
+
 
 </body>
 </html>

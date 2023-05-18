@@ -198,22 +198,22 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                    <ul><li><a href="offlineone.ad">온라인모임</a></li>
+                                        <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
                                         <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
                                     </ul>
                                
                                 <li class="submenu">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlineone.ad">오프라인모임</a></li> 
+                                        <!-- <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
                                         <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li> --> 
                                     </ul>
                          
                             </ul>
@@ -535,8 +535,8 @@
 <div class="dropdown dropdown-action">
 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
 <div class="dropdown-menu dropdown-menu-end">
-<a class="dropdown-item" href="listGroupOne.off"><i class="far fa-eye me-2"></i>모임리스트</a>
-<a class="dropdown-item" href="enrollGroupOne.off"><i class="far fa-edit me-2"></i>모임개설</a>
+<a class="dropdown-item" href="listGroupOne.go?tableNo=${off.tableNo }"><i class="far fa-eye me-2"></i>모임리스트</a>
+<a class="dropdown-item" href="enrollGroupOne.go"><i class="far fa-edit me-2"></i>모임개설</a>
 </div>
 </div>
 </td>

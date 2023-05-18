@@ -191,22 +191,22 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                    <ul><li><a href="offlineone.ad">온라인모임</a></li>
+                                        <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
                                         <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
                                     </ul>
                                
                                 <li class="submenu">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlineone.ad">오프라인모임</a></li> 
+                                        <!-- <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
                                         <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li> --> 
                                     </ul>
                          
                             </ul>
@@ -303,14 +303,14 @@
 <td>
 <h2 class="table-avatar" disabled>
 <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="${s.memImg }" alt="User Image"></a>
-<a href="profile.html">${s.memName}<span></span></a>
+<a href="profile.html">${s.memName}<span>soboroo ${w.memNo }</span></a>
 </h2>
 </td>
 <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60021209010e0a0f080e130f0e200518010d100c054e030f0d">${s.memEmail}</a></td>
 <td>${s.memRprCount }</td>
 <td>${s.memUpdateDate }</td>
 <td>${s.memUpdateDate }</td>
-<td><span class="badge badge-pill bg-warning-light">${s.memStatus == 3 ? '정지회원' : ''}</span></td>
+<td><span class="badge badge-pill bg-warning-light" name="stop">${s.memStatus == 3 ? '정지' : ''}</span></td>
 <td class="text-end">
 <a class="btn btn-sm btn-white text-success" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-edit me-1"></i>복구</a>
 </td>

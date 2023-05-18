@@ -42,9 +42,15 @@ public interface AdminService {
 	// 관리자 회원 상태 변경
 	int updateMemberStatus(AdminMember m ,int memStatus);
 	
+	int deleteAdminInfo(AdminMember loginUser);
+	
 	
 	// 관리자 정지회원 관리
 	ArrayList<AdminMember> selectSusMemberList(PageInfo pi);
+	
+	// 관리자 탈퇴회원 관리
+	ArrayList<AdminMember> selectWithdrawMemberList(PageInfo pi);
+	
 	
 	
 	// 관리자 통합신고 관리
@@ -78,8 +84,9 @@ public interface AdminService {
 	// 오프라인 정기모임 관리 리스트에서 최근 모임 조회
 	ArrayList<AdminOfflineGroupRegular> selectRegularRecentList(PageInfo pi);
 	
-	
+	// 관리자 로그인
 	AdminMember loginMember(HashMap<String, Object> userInfo);
+	
 	
 	
 	

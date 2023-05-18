@@ -194,22 +194,22 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                    <ul><li><a href="offlineone.ad">온라인모임</a></li>
+                                        <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
                                         <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
                                     </ul>
                                
                                 <li class="submenu">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlineone.ad">오프라인모임</a></li> 
+                                        <!-- <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
                                         <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li> --> 
                                     </ul>
                          
                             </ul>
@@ -237,7 +237,6 @@
             </div>
         </div>
         <!-- 사이드바 끝  -->
-
 
 <div class="page-wrapper">
 <div class="content container-fluid">
@@ -312,42 +311,50 @@
 <option>탈퇴회원</option>
 </select>
 </div>
-</div>
-</div>
-</div>
-</div>
-</form>
 
+</div>
 <div class="text-end mt-4">
-<!-- <button type="submit" class="btn btn-primary" id="modify_paid">수정하기</button> -->
-<a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modify_paid"><i class="far fa-edit me-1"></i>수정하기</a>
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modify_paid"><i class="far fa-edit me-1"></i>수정하기</a>
 </div>
 
 <!-- 모달팝업 -->
 <div class="modal custom-modal fade" id="modify_paid" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-    <div class="modal-body">
-    <div class="form-header">
-    <h3>회원 상태 수정</h3>
-     <p>해당 회원 상태를 수정하시겠습니까?</p>
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>회원 상태 수정</h3>
+          <p>해당 회원 상태를 수정하시겠습니까?</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <button type="submit" class="btn btn-primary paid-continue-btn" id="update" style="width:100%">수정</button>
+            </div>
+            <div class="col-6">
+              <button type="button" class="btn btn-primary paid-cancel-btn" data-bs-dismiss="modal" style="width:100%">취소</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="modal-btn delete-action">
-    <div class="row">
-    <div class="col-6">
-    <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">수정</a>
-    </div>
-    <div class="col-6">
-    <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
-
+  </div>
 </div>
+</div>
+</div>
+</div>
+
+
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
 
 
 <script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>

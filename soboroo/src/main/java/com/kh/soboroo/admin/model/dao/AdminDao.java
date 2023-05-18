@@ -180,5 +180,20 @@ public class AdminDao {
 	}
 	
 	
+	public int deleteAdminInfo(SqlSessionTemplate sqlSession, AdminMember loginUser) {
+		
+		return sqlSession.update("adminMapper.deleteAdminInfo", loginUser);
+	}
+	
+	public ArrayList<AdminMember> selectWithdrawMemberList(SqlSessionTemplate sqlSession, PageInfo pi){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectWithdrawMemberList", null, rowBounds);
+	}
 
 }
