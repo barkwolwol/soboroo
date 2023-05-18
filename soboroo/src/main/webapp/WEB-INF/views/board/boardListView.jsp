@@ -142,7 +142,7 @@
 	                        <td class="bno" name="bno">${ b.boardNo }</td>
 	                        <td>${ b.category}</td>
 	                        <td>${ b.boardTitle}</td>
-	                        <td>${ b.memNo }</td>
+	                        <td>${ b.memNickname }</td>
 	                        <td>${ b.count }</td>
 	                        <td>${ b.createDate }</td>
 	                    </tr>
