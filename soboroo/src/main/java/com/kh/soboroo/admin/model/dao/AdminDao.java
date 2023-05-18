@@ -1,6 +1,8 @@
 package com.kh.soboroo.admin.model.dao;
 
 import java.util.ArrayList;
+
+
 import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
@@ -11,7 +13,7 @@ import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
-import com.kh.soboroo.admin.model.vo.AdminOfflineGroupRegular;
+
 import com.kh.soboroo.common.model.vo.PageInfo;
 
 
@@ -146,32 +148,14 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectRecentList", pi);
 	}
 	
-	public ArrayList<AdminOfflineGroupRegular> selectRegList(SqlSessionTemplate sqlSession, PageInfo pi){
-		
-		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
-		
-		int limit = pi.getBoardLimit();
-		
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		return (ArrayList)sqlSession.selectList("adminMapper.selectRegList", null, rowBounds);
-		
-	}
+
 	
 	public int selectRegListCount(SqlSessionTemplate sqlSession) {
 		
 		return sqlSession.selectOne("adminMapper.selectRegListCount");
 	}
 	
-	
-	public AdminOfflineGroupRegular selectOffRegList(SqlSessionTemplate sqlSession, int no) {
-		return sqlSession.selectOne("adminMapper.selectOffRegList",no);
-	}
-	
-	
-	public ArrayList<AdminOfflineGroupRegular> selectRegularRecentList(SqlSessionTemplate sqlSession, PageInfo pi) {
-		return (ArrayList)sqlSession.selectList("adminMapper.selectRegularRecentList", pi);
-	}
+
 	
 	public int updateMemberStatus(SqlSessionTemplate sqlSession, AdminMember m , int memStatus) {
 		

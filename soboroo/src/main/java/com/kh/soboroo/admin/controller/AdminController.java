@@ -2,6 +2,7 @@ package com.kh.soboroo.admin.controller;
 
 import java.io.Console;
 
+
 import java.util.ArrayList;
 
 
@@ -24,7 +25,7 @@ import com.kh.soboroo.admin.model.vo.AdminBoard;
 import com.kh.soboroo.admin.model.vo.AdminMember;
 import com.kh.soboroo.admin.model.vo.AdminNotice;
 import com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce;
-import com.kh.soboroo.admin.model.vo.AdminOfflineGroupRegular;
+
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
 import com.kh.soboroo.member.model.service.MemberServiceImpl;
@@ -38,6 +39,7 @@ import com.kh.soboroo.member.model.service.MemberServiceImpl;
 
 /**
  * @author cyj
+
  *
  */
 /**
@@ -265,32 +267,6 @@ public class AdminController {
 					
 		}
 		
-		// 관리자 오프라인 정기 모임 관리 페이지 노출
-		@RequestMapping("offlineleg.ad")
-		public ModelAndView offlineRegInfo(@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
-				   @RequestParam(value="no", defaultValue = "2") int no, ModelAndView mv) {
-			
-		int listCount = aService.selectRegListCount();
-		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 6);
-			
-		ArrayList<AdminOfflineGroupRegular> list = aService.selectRegList(pi);
-		
-		ArrayList<AdminOfflineGroupRegular> rlist = aService.selectRegularRecentList(pi);
-		
-		AdminOfflineGroupRegular ao = aService.selectOffRegList(no);
-			
-		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/offlineRegInfo");
-		
-		mv.addObject("ao", ao).setViewName("admin/offlineRegInfo");
-		
-		mv.addObject("pi", pi).addObject("rlist", rlist).setViewName("admin/offlineRegInfo");
-		
-		System.out.println(rlist);
-		
-		return mv;
-
-		}
 		
 		// 관리자 오프라인 목표 모임 관리 페이지 노출
 		@RequestMapping("offlinegoal.ad")
