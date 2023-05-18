@@ -17,10 +17,11 @@ public class OnlineDao {
 
 	public int insertOnlineGroupOne(SqlSessionTemplate sqlSession, OnlineGroupOnce ong) {
 		return sqlSession.insert("onlineMapper.insertOnlineGroupOne", ong);
+	}
 
-   public int insertGroupOneImg(SqlSessionTemplate sqlSession, GroupUpload groupUpload) {
-       return sqlSession.insert("onlineMapper.insertGroupOneImg", groupUpload);
-   }
+	public int insertGroupOneImg(SqlSessionTemplate sqlSession, GroupUpload groupUpload) {
+		return sqlSession.insert("onlineMapper.insertGroupOneImg", groupUpload);
+	}
    
    public int insertEntryListSelf(SqlSessionTemplate sqlSession, OnlineGroupOnce ong) {
       return sqlSession.insert("onlineMapper.insertEntryListSelf", ong);
