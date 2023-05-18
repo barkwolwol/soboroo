@@ -78,7 +78,7 @@
                 <div class="avatar" style="float: left;margin-top: 30px;"><img class="avatar-image" src="${loginUser.memImg }"></div>
                 <br> 
             <div class="author">
-                <div class="write" style=" font-size: 13px;">${loginUser.memNickname }</div>
+                <div class="write" style=" font-size: 13px;">관리자</div>
              
                 <div class="board_name">
                     <a href="list.no" style="color: black;">
@@ -90,8 +90,8 @@
                 <div class="hit-count body_font_color_70" style="float: left;
                 font-size: 13px; margin-left: 10px;">조회수 ${n.ntcCount }</div>
                 <div class="tools txt">
-                 <c:if test="${not empty loginUser }"> 
-                 <%--  <c:if test="${ loginUser.memName eq '관리자' }">  --%>
+                <%--  <c:if test="${not empty loginUser }">  --%>
+                <c:if test="${ loginUser.memName eq '관리자' }"> 
                 <a  type="button" style="margin-right: 10px;float: left; font-size: 13px; margin-left: 5px; color: orange; font-weight: 900;"  onclick="postFormSubmit(1);" >수정</a>
                 <a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onclick="postFormSubmit(2);">지우기</a></div>
            		</c:if>
