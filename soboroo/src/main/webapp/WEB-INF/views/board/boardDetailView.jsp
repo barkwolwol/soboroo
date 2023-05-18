@@ -336,12 +336,6 @@
      });
 
     </script>
-     
-    
-    
-    
-            
-
     <!-- 이쪽에 푸터바 포함할꺼임 -->
     <jsp:include page="../common/footer.jsp"/>
 </body>
