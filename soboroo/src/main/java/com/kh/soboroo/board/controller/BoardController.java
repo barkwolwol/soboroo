@@ -195,7 +195,7 @@ public class BoardController {
 		 */
 		@RequestMapping("report.bo")
 		public String reportBoard(int boardNo,HttpSession session, Model model) {
-				
+				System.out.println("컨트롤러");
 		 //System.out.println(b);
 			int result = bService.reportBoard(boardNo);
 			//System.out.println(result);

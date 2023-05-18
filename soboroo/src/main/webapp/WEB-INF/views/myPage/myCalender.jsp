@@ -56,54 +56,51 @@
 						<div class="sidebar sidebar-left">
 
 							<div class="widget recent-posts">
-								<h3 class="widget-title">최근 조회한 소모임</h3>
-								<ul class="list-unstyled">
-									<li class="d-flex align-items-center"
-										style="padding-bottom: 0px; margin-bottom: 10px;">
-										<div class="posts-thumb">
-											<a href="#"><img loading="lazy" alt="img"
-												src="${pageContext.request.contextPath}/resources/images/news/news1.jpg"></a>
-										</div>
-										<div class="post-info">
-											<h4 class="entry-title">
-												<a href="#">광진구에서 풋살해요!</a>
-											</h4>
-										</div>
-									</li>
-									<!-- 1st post end-->
+								            <h3 class="widget-title">가장 인기있는 소모임</h3>
+            <ul id="recent-posts" class="list-unstyled">
+              <li class="d-flex align-items-center">
+              </li>
+            </ul>
+          </div>
+          
 
-									<li class="d-flex align-items-center"
-										style="padding-bottom: 0px; margin-bottom: 10px;">
-										<div class="posts-thumb">
-											<a href="#"><img loading="lazy" alt="img"
-												src="${pageContext.request.contextPath}/resources/images/news/news2.jpg"></a>
-										</div>
-										<div class="post-info">
-											<h4 class="entry-title">
-												<a href="#">안양에서 독서모임 구합니다~</a>
-											</h4>
-										</div>
-									</li>
-									<!-- 2nd post end-->
+<script>
+  $(function(){
+    topGroupList();
 
-									<li class="d-flex align-items-center"
-										style="padding-bottom: 0px; margin-bottom: 10px;">
-										<div class="posts-thumb">
-											<a href="#"><img loading="lazy" alt="img"
-												src="${pageContext.request.contextPath}/resources/images/news/news3.jpg"></a>
-										</div>
-										<div class="post-info">
-											<h4 class="entry-title">
-												<a href="#">강남에서 독서모임 하실 분?</a>
-											</h4>
-										</div>
-									</li>
-									<!-- 3rd post end-->
+    function topGroupList(){
+      $.ajax({
+        url:"topList.bo",
+        success:function(data){
+          console.log(data);
+          
+          let value = "";
+          for (let i in data) {
+            value += "<li class='d-flex align-items-center'>";
+            value += "<div class='post-thumb'>";
+            value += "<a href='http://localhost:3500/soboroo/detail.go?tableNo=" + data[i].tableNo + "&no=" + data[i].no + "'>";
+            value += "<img style='width:70px; height:50px; margin-right:10px' loading='lazy' alt='img' src='${pageContext.request.contextPath}/resources/images/logo_3.png'></a>";
+            value += "</div>";
+            value += "<div class='post-info'>";
+            value += "<h4 class='entry-title'>";
+            value += "<a href='http://localhost:3500/soboroo/detail.go?tableNo=" + data[i].tableNo + "&no=" + data[i].no + "'>" + data[i].title + "</a>";
+            value += "</h4>";
+            value += "</div>";
+            value += "</li>";
+          }
 
-								</ul>
 
-							</div>
-							<!-- Recent post end --!>
+          
+          $("#recent-posts").html(value);
+          
+        }, error : function(){
+          console.log("ajax 통신 실패!");
+        }
+      });
+    }
+  });
+</script>
+	
 
 
 
@@ -154,16 +151,17 @@
 
 
 <script language="javascript">
-  var list = [
-    <c:forEach var="list" items="${list}">
+  var eventsList = [
+    <c:forEach var="event" items="${list}">
       {
-        title: '${list.title}',
-        start: '${list.startDate}',
+        title: '${event.title}',
+        start: '${event.startDate}',
         end: (function() {
-        	  var endDate = new Date('${list.endDate}');
+        	  var endDate = new Date('${event.endDate}');
         	  endDate.setDate(endDate.getDate() + 1);
         	  return endDate.toISOString().split('T')[0];
-        	})()
+        	})(),
+        url: '${pageContext.request.contextPath}/detail.go?tableNo=${event.tableNo}&no=${event.no}'
       }<c:if test="${!loop.last}">,</c:if>
     </c:forEach>
   ];
@@ -172,15 +170,21 @@
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
-      events: list,
-      editable: false,
-      eventClick:function(info){
-    	  window.location.href='myAlert.my';
-      }
+      events: eventsList,
+      eventClick: function(info) {
+        var eventUrl = info.event.extendedProps.url;
+        
+        // 페이지 이동 처리
+        if (eventUrl) {
+          window.location.href = eventUrl;
+        }
+      },
+      editable: false
     });
     calendar.render();
   });
 </script>
+
 <!-- <script language="javascript">
   var list = [
     <c:forEach var="item" items="${list}">

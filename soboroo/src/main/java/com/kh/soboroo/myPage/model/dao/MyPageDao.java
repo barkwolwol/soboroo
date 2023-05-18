@@ -14,8 +14,9 @@ import org.springframework.stereotype.Repository;
 import com.kh.soboroo.alert.model.vo.Alert;
 import com.kh.soboroo.board.model.vo.Board;
 import com.kh.soboroo.common.model.vo.PageInfo;
-import com.kh.soboroo.offline.model.vo.EntryList;
+import com.kh.soboroo.common.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
+import com.kh.soboroo.myPage.model.vo.MyPage;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeDday;
 import com.kh.soboroo.myPage.model.vo.OfflineChallengeRegular;
 import com.kh.soboroo.myPage.model.vo.OfflineGroupOnce;
@@ -146,6 +147,10 @@ public class MyPageDao {
 	    parameters.put("memNo", memNo);
 	    parameters.put("no", no);
 	    return sqlSession.update("myPageMapper.deleteAlert", parameters);
+	}
+	
+	public ArrayList<MyPage> selectTopGroupList(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectTopBoardList");
 	}
 
 

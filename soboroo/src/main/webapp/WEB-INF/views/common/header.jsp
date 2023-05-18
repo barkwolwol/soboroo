@@ -287,9 +287,9 @@ $(function() {
                             <ul class="dropdown-menu">
                               <li><a href="selectMyGroup.my">참여 소모임 조회</a></li>
                               <li><a href="groupBoardList.my">소모임 게시글 조회</a></li>
-                              <li><a href="groupBoardReplyList.my">소모임 댓글 조회</a></li>
-                              <li><a href="communityList.my">커뮤니티 게시글 조회</a></li>
-                              <li><a href="communityReplyList.my">커뮤니티 댓글 조회</a></li>
+                              <!-- <li><a href="groupBoardReplyList.my">소모임 댓글 조회</a></li> -->
+                              <li><a href="communityList.my">자유게시판 게시글 조회</a></li>
+                              <li><a href="communityReplyList.my">자유게시판 댓글 조회</a></li>
                             </ul>
                           <li><a href="updateInfo.my">개인정보 수정</a></li>
                           <c:choose>

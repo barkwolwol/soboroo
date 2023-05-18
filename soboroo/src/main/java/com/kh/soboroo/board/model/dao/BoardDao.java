@@ -73,6 +73,7 @@ public class BoardDao {
 	}
 
 	public int reportBoard(SqlSessionTemplate sqlSession, int boardNo) {
+		System.out.println("다오");
 		return sqlSession.update("boardMapper.reportBoard", boardNo);
 	}
 

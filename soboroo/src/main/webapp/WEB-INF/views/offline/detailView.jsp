@@ -126,6 +126,10 @@
                     var memNickname = "${loginUser.memNickname}";
 
                     var memNo = "${ogo.memNo}";
+                    
+                    console.log(memNickname);
+                    console.log(memNo);
+                    
 
                     $.ajax({
                         type: "post",

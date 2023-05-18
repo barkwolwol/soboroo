@@ -103,7 +103,7 @@
 	                <a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onclick="postFormSubmit(2);">지우기</a>
 	            </c:if>
 	            <c:if test="${b.memNickname ne loginUser.memNickname }">
-	            	<a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" id="test1">신고</a>
+	            	<a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onClick="text01();" id="test1">신고</a>
                 </c:if>
                 </div>
             </c:if>
@@ -399,7 +399,7 @@
                                  // $("#socketMessageDiv").text(socketMsg);
                                  socket.send(socketMsg);
                                  console.log('socketMsg 보냄');
-                                 alert("신고되었습니다.")
+                                 alert("신고되었습니다.");
                              }
                          },
                          error: function(err) {

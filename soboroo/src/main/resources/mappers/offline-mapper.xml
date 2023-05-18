@@ -268,13 +268,4 @@
 		 where group_board_no = #{no}
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </mapper>

@@ -442,6 +442,12 @@ public class MyPageController {
 	    }
 	}
 
+	@ResponseBody
+	@RequestMapping(value="topList.bo", produces="application/json; charset=utf-8")
+	public String ajaxTopGroupList() {
+		ArrayList<MyPage> list = myService.selectTopGroupList();
+		return new Gson().toJson(list);
+	}
 	
 	
 	
