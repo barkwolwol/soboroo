@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 <title>soboroo admin - 회원관리</title>
 
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/admin/img/favicon.png">
+
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/bootstrap.min.css">
 
@@ -182,7 +182,7 @@
                             <a href="adminHome.ad"><i data-feather="home"></i> <span>대시보드</span></a>
                         </li>
                         <li class="submenu" class="active">
-                            <a href="#"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
+                            <a href="memberInfo.ad"><i data-feather="pie-chart"></i> <span>회원 관리</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="memberInfo.ad">회원 관리</a></li>
@@ -195,22 +195,22 @@
                                         class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu" align="left">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
+                                    <a href="onlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 72px;">온라인 모임</span> <span
                                     class="menu-arrow"></span></a>
-                                    <ul><li><a href="onlineone.ad">온라인 일반 / 반짝</a></li>
-                                        <li><a href="onlineleg.ad">온라인 일반 / 정기</a></li>
-                                        <li><a href="onlinegoal.ad">온라인 목표 / 기간</a></li>
-                                        <li><a href="onlineDday.ad">온라인 목표 / 단위별</a></li>
+                                    <ul><li><a href="onlineone.ad">온라인모임</a></li>
+                                        <!-- <li><a href="onlineleg.ad">온라인 / 정기</a></li>
+                                        <li><a href="onlinegoal.ad">온라인 / 기간</a></li>
+                                        <li><a href="onlineDday.ad">온라인 / 단위별</a></li> -->
                                     </ul>
                                
                                 <li class="submenu">
-                                    <a href="#"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
+                                    <a href="offlineone.ad"><i data-feather="clipboard"></i> <span style="margin-right: 60px;">오프라인 모임</span> <span
                                     class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="offlineone.ad">오프라인 일반 / 반짝</a></li>
-                                        <li><a href="offlineleg.ad">오프라인 일반 / 정기</a></li>
-                                        <li><a href="offlinegoal.ad">오프라인 목표 / 기간</a></li>
-                                        <li><a href="offlineDday.ad">오프라인 목표 / 단위별</a></li>
+                                        <li><a href="offlineone.ad">오프라인모임</a></li> 
+                                        <!-- <li><a href="offlineleg.ad">오프라인 / 정기</a></li>
+                                        <li><a href="offlinegoal.ad">오프라인 / 기간</a></li>
+                                        <li><a href="offlineDday.ad">오프라인 / 단위별</a></li> --> 
                                     </ul>
                          
                             </ul>
@@ -303,7 +303,7 @@
 <th>연령제한여부</th>
 <th>회원가입일</th>
 <th>상태변경일</th>
-<th class="text-end">Actions</th>
+<th class="text-end">조회/탈퇴</th>
 </tr>
 </thead>
  <tbody>
@@ -321,7 +321,7 @@
 
 <c:choose>
 	<c:when test="${m.memStatus == 1}"><td><span class="badge badge-pill bg-success-light">일반회원</span></td></c:when>
-	<c:when test="${m.memStatus == 2}"><td><span class="badge badge-pill bg-secondary-light">휴먼회원</span></td></c:when>
+	<c:when test="${m.memStatus == 2}"><td><span class="badge badge-pill bg-info-light">휴먼회원</span></td></c:when>
 	<c:when test="${m.memStatus == 3}"><td><span class="badge badge-pill bg-warning-light">정지회원</span></td></c:when>
 	<c:when test="${m.memStatus == 4}"><td><span class="badge badge-pill bg-danger-light">탈퇴회원</span></td></c:when>
 	<c:when test="${m.memStatus == 5}"><td><span class="badge badge-pill bg-primary-light">관리자</span></td></c:when>
@@ -336,12 +336,44 @@
 <input type="hidden" value="${m.memNo}">
 <a href="updateInfo.ad?memNo=${m.memNo }" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i>조회</a>
 <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>탈퇴</a>
-
 </td>
 </tr>
-
 </td>
 </tr>
+<script>
+
+//탈퇴 버튼 클릭 시 페이지 이동과 값 전달
+document.getElementById('delete').addEventListener('click', function() {
+  // 탈퇴 처리를 위한 값을 가져옵니다.
+  var withdrawalInfo = {
+    // 값들을 채워주세요
+  };
+
+  // withdrawalMemberInfo.ad 페이지로 POST 요청을 보냅니다.
+  fetch('withdrawalMemberInfo.ad', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(withdrawalInfo),
+  })
+  .then(function(response) {
+    if (response.ok) {
+      // 탈퇴 성공 후 페이지 이동 또는 처리
+      window.location.href = 'withdrawalMemberInfo.ad';
+    } else {
+      // 탈퇴 실패 처리
+      console.log('탈퇴 실패');
+    }
+  })
+  .catch(function(error) {
+    // 예외 처리
+    console.log('오류 발생: ' + error);
+  });
+});
+
+
+</script>
 </c:forEach>
 </tbody>
 </table>
@@ -352,29 +384,7 @@
 </div>
 </div>
 </div>
-
 </div>
-
-
-
-
-
-<script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/admin/js/feather.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
-
-
-
 
 
 <!-- 모달팝업 -->
@@ -390,12 +400,34 @@
   <div class="modal-btn delete-action">
   <div class="row">
   <div class="col-6">
-  <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">탈퇴</a>
-  </div>
-  <div class="col-6">
-  <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">취소</a>
+   <button type="submit" class="btn btn-primary paid-continue-btn" id="delete" style="width:100%">탈퇴</button>
+            </div>
+            <div class="col-6">
+   <button type="button" class="btn btn-primary paid-cancel-btn" data-bs-dismiss="modal" style="width:100%">취소</button>
 
 </div>
+
+
+
+
+<script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/js/jquery-3.6.0.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/js/bootstrap.bundle.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/js/feather.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/datatables.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/admin/js/script.js"></script>
+
+
+
 
 
 
