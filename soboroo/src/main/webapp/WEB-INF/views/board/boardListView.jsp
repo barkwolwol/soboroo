@@ -85,7 +85,7 @@
 <body>
 	  <!-- 이쪽에 헤더바 포함할꺼임 -->
     <jsp:include page="../common/header.jsp"/>
-<div id="banner-area" class="banner-area" style="background-image:url(https://rabbitstamp.com/_dj/img/sub_banner_img09.jpg)">
+<div id="banner-area" class="banner-area" style="background-image:url(https://media.istockphoto.com/id/1211824965/ko/%EB%B2%A1%ED%84%B0/%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0-%EB%B0%B0%EB%84%88-%EA%B1%B0%EB%8C%80%ED%95%9C-%EB%8B%A8%EC%96%B4-%EC%9D%B4%EC%95%BC%EA%B8%B0-%EA%B7%BC%EC%B2%98%EC%97%90-%EC%84%9C%EC%9E%88%EB%8A%94-%EB%A7%8C%ED%99%94-%EC%82%AC%EB%9E%8C%EB%93%A4.jpg?s=170667a&w=0&k=20&c=vybq9vh5vys-vu4NZn6ShdfBBjNC2mcXepgmHyIkxXE=)">
                     <div class="banner-text">
                         <div class="container">
                             <div class="row">
@@ -104,15 +104,15 @@
             <div align="center">
             <nav id="topMenu" style="margin-bottom: 25px; margin-left: 10%;" >
                 <ul>
-                        <li><a class="menuLink" href="0">전체</a></li>
-                        <li><a class="menuLink" href="1">교육/어학</a></li>
-                        <li><a class="menuLink" href="2">취업/자격증</a></li>
-                        <li><a class="menuLink" href="3">여행</a></li>
-                        <li><a class="menuLink" href="4">스포츠/운동</a></li>
-                        <li><a class="menuLink" href="5">요리/음식</a></li>
-                        <li><a class="menuLink" href="6">문화/예술</a></li>
-                        <li><a class="menuLink" href="7">영화/음악</a></li>
-                        <li><a class="menuLink" href="8">기타</a></li>
+                        <li><a class="menuLink" href="list.bo?category=0">전체</a></li>
+                        <li><a class="menuLink" href="list.bo?category=1">교육/어학</a></li>
+                        <li><a class="menuLink" href="list.bo?category=2">취업/자격증</a></li>
+                        <li><a class="menuLink" href="list.bo?category=3">여행</a></li>
+                        <li><a class="menuLink" href="list.bo?category=4">스포츠/운동</a></li>
+                        <li><a class="menuLink" href="list.bo?category=5">요리/음식</a></li>
+                        <li><a class="menuLink" href="list.bo?category=6">문화/예술</a></li>
+                        <li><a class="menuLink" href="list.bo?category=7">영화/음악</a></li>
+                        <li><a class="menuLink" href="list.bo?category=8">기타</a></li>
                 </ul>
             </nav>
             </div>
@@ -120,7 +120,10 @@
 
 
 	            <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼-->
+	           <c:if test="${not empty loginUser }"> 
            		<a class="btn btn-secondary btn-sm" style="float:right" href="enroll.bo">글쓰기</a>
+           	  </c:if>  
+           
             <br></br>
             <table id="boardList" class="table table-hover" align="center">
                 <thead>
@@ -128,7 +131,6 @@
                     <th>글번호</th>
                     <th>분류</th>
                     <th>제목</th>
-                    <th>내용</th>
                     <th>작성자</th>
                     <th>조회수</th>
                     <th>작성일</th>
@@ -140,7 +142,6 @@
 	                        <td class="bno" name="bno">${ b.boardNo }</td>
 	                        <td>${ b.category}</td>
 	                        <td>${ b.boardTitle}</td>
-	                        <td>${ b.boardContent }</td>
 	                        <td>${ b.memNo }</td>
 	                        <td>${ b.count }</td>
 	                        <td>${ b.createDate }</td>
@@ -159,22 +160,41 @@
           	</script>
 			
             <div id="pagingArea">
-                <ul class="pagination">
-                	
-	                    <li class="page-item disabled"><a class="page-link" href="">Previous</a></li>
-                    	<li class="page-item"><a class="page-link" href="">1</a></li>
-                    	<li class="page-item"><a class="page-link" href="">2</a></li>
-                    	<li class="page-item"><a class="page-link" href="">3</a></li>
-                    	<li class="page-item"><a class="page-link" href="">4</a></li>
-                    	<li class="page-item"><a class="page-link" href="">5</a></li>
-	                    <li class="page-item"><a class="page-link" href="">Next</a></li>
-                </ul>
-            </div>
+                  <ul class="pagination">
+                      	  
+                      	  <c:choose>
+	                      	  <c:when test="${ pi.currentPage eq 1 }">
+		                           <li class="page-item disabled"><a class="page-link" href="">Previous</a></li>
+		                      </c:when> 
+		                      <c:otherwise>
+		                           <li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage - 1 }&category=0">Previous</a></li>
+		                      </c:otherwise>
+                          </c:choose>
+                          
+                          
+                          
+                          <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                          	<li class="page-item"><a class="page-link" href="list.bo?cpage=${ p }&category=0">${ p }</a></li>
+                          </c:forEach>
+                          
+                          
+                          <c:choose>
+                          	  <c:when test="${pi.currentPage eq pi.maxPage }">
+	                          	  <li class="page-item disabled"><a class="page-link" href="">Next</a></li>
+	                          </c:when>
+	                          <c:otherwise>
+	                          	  <li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage + 1 }&category=0">Next</a></li>
+	                          </c:otherwise>
+                          </c:choose>
+                          
+                          
+                  </ul>
+              </div>
            
             <br clear="both"><br>
             
 
-            <form id="searchForm" action="" method="get" align="center">
+            <form id="searchForm" action="search.bo" method="get" align="center">
                 <div class="select">
                     <select class="custom-select" name="condition">
                         <option value="writer">작성자</option>
@@ -189,6 +209,14 @@
             </form>
             <br><br>
         </div>
+        <c:if test="${ not empty condition }">
+           <script>
+              $(function(){
+                 $("#search-area option[value=${condition}]").attr("selected", true);
+              })
+              
+           </script>
+        </c:if>
         <br><br>
     </div>
 

@@ -15,18 +15,39 @@
 		<result column = "category" property = "category"/>
 		<result column = "mem_no" property = "memNo"/>
 		<result column = "table_no" property = "tableNo"/>
+		<result column = "mem_nickname" property ="memNickname"/>
 	</resultMap>
+	
+	<resultMap type="Reply" id="replyResultSet">
+		 <result column = "reply_no" property = "replyNo"/>
+		 <result column = "reply_content" property = "replyContent"/>
+		 <result column = "enroll_date" property = "enrollDate"/>
+		 <result column = "modify_date" property = "modifyDate"/>
+		 <result column = "del_ny" property = "delNy"/>
+		 <result column = "rep_ny" property = "repNy"/>
+		 <result column = "recomment_ny" property = "recommentNy"/>
+		 <result column = "reper_no" property = "reperNo"/>
+		 <result column = "group_board_no" property = "groupBoardNo"/>
+		 <result column = "mem_no" property = "memNo"/>
+		 <result column = "table_no" property = "tableNo"/>
+		 <result column = "mem_nickname" property ="memNickname"/>
+	</resultMap> 
 		
 	<select id="selectBoardListCount" resultType="_int">
 		select    
 		    count(*) as "count"
 		    from board
 		    where del_ny = 'N'
-		      and rep_ny = 'N'
+
+		    <if test="category != 0">
+		    and category = #{ category }
+		    </if>
+
 	</select>	
 	
+	
 	<select id="selectBoardList" resultMap="boardResultSet">
-		select
+			select
 		    board_no
 		  , board_title
 		  , board_content
@@ -34,12 +55,18 @@
 		  , modify_date
 		  , count
 		  , del_ny
-		  , category
-		  , mem_no
+		  , category_title as "category"
+		  , mem_nickname
 		  , table_no
-	   from board
+	   from board b
+       join member using (mem_no)
+       join category c on (b.category = c.category_no)
 	  where del_ny = 'N'
-	    and rep_ny = 'N'
+
+	  <if test="category != 0">
+	    and category = #{ category }
+	  </if>
+
 	  order
 		 by board_no desc
 	</select>
@@ -56,41 +83,187 @@
 	<select id="selectBoard" resultMap="boardResultSet">
 		select
 			   board_no
-			 , category
+			 , category_title as "category"
 			 , board_title
+             , mem_nickname
 			 , to_char(create_date, 'YYYY-MM-DD') as "create_date"
 			 , board_content
 			 , count
 		 	 , table_no
-		  from board
+		  from board b
+          join category c on (b.category = c.category_no)
+          join member using(mem_no)
 		 where board_no = #{boardNo}
 	</select>
 	
-	<select id="selectListCount" resultType="_int">
-		select
-				count(*)
-		   from board
-		  where del_ny='N'
-		    and rep_ny = 'N' 	
-		    and mem_no = #{memNo}	
-		    
-	</select>
 
-	<select id="selectList" resultMap="boardResultSet">
-	   SELECT 
-      b.board_no,
-      b.board_title,
-      b.count,
-      to_char(b.create_date, 'YYYY-MM-DD') as "create_date"
-    FROM board b
-    JOIN member m
-      ON b.mem_no = m.mem_no
-    WHERE b.del_ny = 'N'
-      and b.rep_ny = 'N'
-      AND m.mem_no = #{memNo}
-    ORDER BY b.board_no DESC
-	</select>
+	<select id="selectSearchCount" resultType="_int">
+			select    
+		    count(*) as "count"
+		    from board
+            join member using(mem_no)
+		    where del_ny = 'N'
+		  <choose>
+	  	<when test="condition == 'writer'">
+	  		and mem_nickname 
+	  	</when>
+	  	<when test="condition == 'title'">
+      		and board_title 
+      	</when>
+      	<otherwise>
+      		and board_content 
+      	</otherwise>
+	  </choose>
+      like '%' || #{keyword} || '%'
+ 	</select>
+ 	
+ 	<select id="selectSearchList" resultMap="boardResultSet">
+	 	select
+		    board_no
+		  , board_title
+		  , board_content
+		  , to_char(create_date, 'YYYY-MM-DD') as "create_date"
+		  , modify_date
+		  , count
+		  , del_ny
+		  , category_title as "category"
+		  , mem_nickname
+		  , table_no
+	   from board b
+       join member using (mem_no)
+       join category c on (b.category = c.category_no)
+	  where del_ny = 'N'
+	  <choose>
+	  	<when test="condition == 'writer'">
+	  		and mem_nickname 
+	  	</when>
+	  	<when test="condition == 'title'">
+      		and board_title 
+      	</when>
+      	<otherwise>
+      		and board_content 
+      	</otherwise>
+	  </choose>
+      like '%' || #{keyword} || '%'
+	  order
+		 by board_no desc
+ 	
+ 	</select>
 	
+	<insert id="insertBoard">
+		insert into
+		    board
+		    (
+		        board_no
+		      , board_title
+		      , board_content
+		      , category
+		      , mem_no
+		    )
+		    values
+		    (
+		    seq_board.nextval
+		  , #{ boardTitle }
+		  , #{ boardContent }
+		  , #{ category}
+		  , #{ memNo}
+    		)
+	
+	</insert>
+	
+	<insert id="insertUpload">
+	
+	insert
+	    into upload
+		    (
+		     upload_no
+		   , origin_name
+		   , modify_name
+		   , group_board_no
+		   , table_no
+		    )
+		    values 
+		    (
+		    seq_upload.nextval
+		  , #{ originName }
+		  , #{ changeName }
+		  , 1
+		  , 10
+		    )
+	
+	
+	</insert>
+	
+	<update id = "updateUpload">
+		update upload
+		   set group_board_no = seq_board.currval
+		 where upload_no = #{uploadNo}  
+	</update>
+	
+	<select id="selectUploadNo" resultType="_int">
+	  select 
+	         seq_upload.currval
+	   from  dual
+	</select>
 
 
+	<update id="updateBoard">
+		update
+		 	board
+		set board_title = #{boardTitle}
+		  , board_content = #{boardContent}
+		  , modify_date = sysdate
+	  where board_no = #{boardNo}
+	</update>
+	
+	<update id="deleteBoard">
+		update
+			   board
+		   set del_ny = 'Y'
+		 where board_no = #{boardNo}
+	</update>
+	
+	<select id="selectReplyList" resultMap="replyResultSet">
+		select 
+			   reply_no
+			 , reply_content
+			 , to_char(enroll_date, 'MM"월"DD"일" HH"시"MI"분"SS"초"') as "enroll_date"
+             , modify_date
+             , del_ny
+             , recomment_ny
+             , reper_no
+             , group_board_no
+             , mem_no
+             , table_no
+             , mem_nickname
+		  from reply 
+		   join member using(mem_no)
+		 where group_board_no = #{groupBoardNo}
+		   and del_ny = 'N'
+		 order
+		    by reply_no desc
+	</select> 
+	
+	<insert id="insertReply">
+	 	insert
+		  into	reply
+		  (
+		    reply_no
+		  , reply_content
+          , reper_no
+          , group_board_no
+          , mem_no
+		  )
+		  values
+		  (
+		  	 seq_reply.nextval
+		   , #{replyContent}
+           , #{reperNo}
+           , #{groupBoardNo}
+           , #{memNo}
+		  )
+	
+	
+	
+	</insert>
 </mapper>
