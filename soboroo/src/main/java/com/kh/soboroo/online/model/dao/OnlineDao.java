@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
+import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 import com.kh.soboroo.online.model.vo.OnlineGroupOnce;
 
 @Repository
@@ -46,8 +47,19 @@ public class OnlineDao {
       return sqlSession.update("onlineMapper.increaseCount", no);
    }
 
-   public OnlineGroupOnce selectDetail(SqlSessionTemplate sqlSession, int no) {
-      return sqlSession.selectOne("onlineMapper.selectDetail", no);
+   public OnlineGroupOnce selectDetail(SqlSessionTemplate sqlSession, int tableNo, int no) {
+	   
+	   if(tableNo == 2) {
+		   OnlineGroupOnce on = new OnlineGroupOnce();
+		   on.setTableNo(tableNo);
+		   on.setNo(no);
+		   return sqlSession.selectOne("onlineMapper.selectDetail", on);
+	   }else {
+		   OfflineGroupOnce off = new OfflineGroupOnce();
+		   off.setTableNo(tableNo);
+		   off.setNo(no);
+		   return sqlSession.selectOne("offlineMapper.selectDetail", off);
+	   }
    }
 
    public List<GroupUpload> selectAttachmentList(SqlSessionTemplate sqlSession, int no) {

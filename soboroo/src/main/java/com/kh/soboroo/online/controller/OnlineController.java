@@ -124,12 +124,12 @@ public class OnlineController {
    
    // 상세조회
    @RequestMapping("detail.go")
-   public ModelAndView selectDetail(int no, Model model, ModelAndView mv) {
+   public ModelAndView selectDetail(int tableNo, int no, Model model, ModelAndView mv) {
       int result = onService.increaseCount(no);
       List<GroupUpload> list = onService.selectAttachmentList(no);
       
       if(result > 0) {
-         OnlineGroupOnce ogo = onService.selectDetail(no);
+         OnlineGroupOnce ogo = onService.selectDetail(tableNo, no);
          mv.addObject("ogo", ogo).setViewName("offline/detailView");
          mv.addObject("list", list).setViewName("offline/detailView");
          

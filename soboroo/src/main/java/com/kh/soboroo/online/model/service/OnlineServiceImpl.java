@@ -53,8 +53,8 @@ public class OnlineServiceImpl {
       return onDao.increaseCount(sqlSession, no);
    }
 
-   public OnlineGroupOnce selectDetail(int no) {
-      return onDao.selectDetail(sqlSession, no);
+   public OnlineGroupOnce selectDetail(int tableNo, int no) {
+      return onDao.selectDetail(sqlSession, tableNo, no);
    }
 
    public List<GroupUpload> selectAttachmentList(int no) {
