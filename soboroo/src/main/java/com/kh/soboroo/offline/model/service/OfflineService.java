@@ -5,6 +5,5 @@ import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 
 public interface OfflineService {
 	
-	int insertGroupOne(OfflineGroupOnce ogo, GroupUpload gu);
 
 }

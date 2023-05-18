@@ -21,19 +21,9 @@
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminMember" alias="AdminMember"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminNotice" alias="AdminNotice"/>
       <typeAlias type="com.kh.soboroo.admin.model.vo.AdminReply" alias="AdminReply"/>
-      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOfflineGroupOnce" alias="AdminOfflineGroupOnce"/>
-      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOfflineGroupRegular" alias="AdminOfflineGroupRegular"/>
-      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOfflineChallengeRegular" alias="AdminOfflineChallengeRegular"/>
-      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOfflineChallengeDday" alias="AdminOfflineChallengeDday"/>
-      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOnlineGroupOnce" alias="AdminOnlineGroupOnce"/>
-      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOnlineGroupRegular" alias="AdminOnlineGroupRegular"/>
-      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOnlineChallengeRegular" alias="AdminOnlineChallengeRegular"/>
-      <typeAlias type="com.kh.soboroo.admin.model.vo.AdminOnlineChallengeDday" alias="AdminOnlineChallengeDday"/>       
-      <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineChallengeDday" alias="OfflineChallengeDday"/>
-      <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineChallengeRegular" alias="OfflineChallengeRegular"/>
       <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineGroupOnce" alias="OfflineGroupOnce"/>
-      <typeAlias type="com.kh.soboroo.offline.model.vo.OfflineGroupRegular" alias="OfflineGroupRegular"/>
-      <typeAlias type="com.kh.soboroo.offline.model.vo.EntryList" alias="EntryList"/>
+      <typeAlias type="com.kh.soboroo.online.model.vo.OnlineGroupOnce" alias="OnlineGroupOnce"/>
+      <typeAlias type="com.kh.soboroo.common.model.vo.EntryList" alias="EntryList"/>
       <typeAlias type="com.kh.soboroo.common.model.vo.GroupUpload" alias="GroupUpload"/>
    </typeAliases>
    
@@ -44,8 +34,10 @@
       <mapper resource="/mappers/board-mapper.xml"/>  
       <mapper resource="/mappers/admin-mapper.xml"/>
       <mapper resource="/mappers/offline-mapper.xml"/>
-      <mapper resource="/mappers/myPage-mapper.xml"/>
-      <mapper resource="/mappers/reply-mapper.xml"/>
+      <mapper resource="/mappers/online-mapper.xml"/>
+	    <mapper resource="/mappers/reply-mapper.xml"/>  
+	    <mapper resource="/mappers/myPage-mapper.xml"/>  
+
    </mappers> 
    <!-- 유의사항 :  미리 등록해두려면 해당 mapper 파일이 진짜 존재하고 있는 상태여야함! 뿐만 아니라 namespace 등록까지 지정돼있어야함(namespace값 중복 불가) -->
    

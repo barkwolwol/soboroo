@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "mybatis-3-mapper.dtd" >
- <mapper namespace="offlineMapper">
-	<resultMap id="offlineGroupOnceResultSet" type="OfflineGroupOnce">
+ <mapper namespace="onlineMapper">
+	<resultMap id="onlineGroupOnceResultSet" type="OnlineGroupOnce">
 		<result column="NO" property="no"/>
 		<result column="TITLE" property="title"/>
 		<result column="ID" property="id"/>
@@ -62,11 +62,11 @@
 	<select id="selectListCount" resultType="_int">
 		select 
 		       count(*)
-		  from OFFLINE_GROUP_ONCE
+		  from ONLINE_GROUP_ONCE
 		 where status = 'Y'
 	</select>
 	
-	<select id="selectList" resultMap="offlineGroupOnceResultSet">
+	<select id="selectListOn" resultMap="onlineGroupOnceResultSet">
 		select
 		       NO
 		     , TITLE
@@ -95,7 +95,7 @@
 			 , ATTEND_PASSWORD
 			 , COUNT
 			 , FILE_PATH
-		  from OFFLINE_GROUP_ONCE
+		  from ONLINE_GROUP_ONCE
 		  join GROUP_UPLOAD USING (TABLE_NO)
 		  where status = 'Y'
 		    and file_level = 1
@@ -107,13 +107,13 @@
 	
 	<update id="increaseCount">
 		update
-		       OFFLINE_GROUP_ONCE
+		       ONLINE_GROUP_ONCE
 		   set count = count + 1
 		 where no = #{no}
 		   and status = 'Y'
 	</update>
 	
-	<select id="selectDetail" resultMap="offlineGroupOnceResultSet">
+	<select id="selectDetail" resultMap="onlineGroupOnceResultSet">
 		select 
 		       NO
 		     , TITLE
@@ -141,15 +141,15 @@
 			 , TABLE_NO
 			 , ATTEND_PASSWORD
 			 , COUNT
-		  from OFFLINE_GROUP_ONCE
+		  from ONLINE_GROUP_ONCE
           JOIN CATEGORY USING (CATEGORY_NO)
 		 where no = #{no}
 		 and table_no = #{tableNo}
 	</select>
 	
-	<insert id="insertOfflineGroupOne">
+	<insert id="insertOnlineGroupOne">
 		INSERT
-		  INTO OFFLINE_GROUP_ONCE
+		  INTO ONLINE_GROUP_ONCE
 		     (
 		       NO
 		     , TITLE
@@ -179,7 +179,7 @@
 		     )
 		VALUES
 		     (
-		       SEQ_OFF_GROUP_ONCE_NO.NEXTVAL
+		       SEQ_ON_GROUP_ONCE_NO.NEXTVAL
 		     , #{title}
 		     , #{id}
 		     , #{name}
@@ -221,7 +221,7 @@
 		     )
 		VALUES
 		     (
-		       SEQ_OFF_GROUP_ONCE_NO.CURRVAL
+		       SEQ_ON_GROUP_ONCE_NO.CURRVAL
 		     , #{title}
 		     , #{id}
 		     , #{startDate}
@@ -248,14 +248,14 @@
 		       SEQ_UPLOAD.NEXTVAL
 		     , #{originName}
 		     , #{changeName}
-		     , SEQ_OFF_GROUP_ONCE_NO.CURRVAL
+		     , SEQ_ON_GROUP_ONCE_NO.CURRVAL
 		     , #{fileLevel}
 		     , #{filePath}
 		     , #{tableNo}
 		     )
 	</insert>
 	
-	<select id="selectAttachmentList" resultMap="offlineGroupOnceResultSet">
+	<select id="selectAttachmentList" resultMap="onlineGroupOnceResultSet">
 		select
 		       upload_no
 		     , origin_name
