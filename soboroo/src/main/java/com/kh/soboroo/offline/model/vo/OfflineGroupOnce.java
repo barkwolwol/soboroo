@@ -46,8 +46,7 @@ public class OfflineGroupOnce {
 	private String status;
 	
 	private String categoryTitle;
-	private String memEmail;
-	private String memImg;
-	private String memNickname;
+	private String filePath;
+	private String fileLevel;
 	
 }
