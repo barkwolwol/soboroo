@@ -514,7 +514,7 @@
 <input type="checkbox" name="invoice">
 <span class="checkmark"></span>
 </label>
-<a href="detail.off?tableNo=${off.tableNo}&no=${off.no}" class="invoice-link">${off.title }</a>
+<a href="detail.go?tableNo=${off.tableNo}&no=${off.no}" class="invoice-link">${off.title }</a>
 </td>
 <td>${off.name }</td></a>
 <td><span class="badge bg-success-light">${off.categoryTitle }</span></td>

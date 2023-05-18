@@ -36,7 +36,6 @@
 		<result column="mem_no" property="memNo"/>
 		<result column="kakao_id" property="kakaoId"/>
 		<result column="mem_id" property="memId"/>
-		<result column="mem_pwd" property="memPwd"/>
 		<result column="mem_email" property="memEmail"/>
 		<result column="mem_gender" property="memGender"/>
 		<result column="mem_birth" property="memBirth"/>
@@ -149,7 +148,6 @@
 	<select id="loginMember" resultMap="adminMemResultSet">
 		select
 		       mem_no
-		     , mem_pwd
 		     , mem_email
 		     , mem_gender
 		     , mem_birth
@@ -226,7 +224,6 @@
 		select
 		      mem_no
 		    , kakao_id
-		    , mem_pwd
 		    , mem_email
 		    , mem_gender
 		    , mem_birth
