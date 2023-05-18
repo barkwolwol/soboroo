@@ -83,6 +83,11 @@ public class BoardServiceImpl implements BoardService{
 	 * @Override public ArrayList<Reply> selectReplyComment(int boardNo) { return
 	 * bDao.selectReplyComment(sqlSession, boardNo); }
 	 */
+
+	@Override
+	public int reportBoard(int boardNo) {
+		return bDao.reportBoard(sqlSession, boardNo);
+	}
 	
 	
 

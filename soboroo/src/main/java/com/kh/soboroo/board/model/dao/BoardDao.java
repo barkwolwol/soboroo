@@ -72,6 +72,10 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertReply", r);
 	}
 
+	public int reportBoard(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.update("boardMapper.reportBoard", boardNo);
+	}
+
 	/*
 	 * public ArrayList<Reply> selectReplyComment(SqlSessionTemplate sqlSession, int
 	 * boardNo) { return

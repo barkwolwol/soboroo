@@ -42,6 +42,7 @@
 		    count(*) as "count"
 		    from board
 		    where del_ny = 'N'
+		      and rep_ny = 'N'
 
 		    <if test="category != 0">
 		    and category = #{ category }
@@ -62,11 +63,13 @@
 		  , category_title as "category"
 		  , mem_nickname
 		  , table_no
-		  ,mem_img
+		  , mem_img
+		  , mem_no
 	   from board b
        join member using (mem_no)
        join category c on (b.category = c.category_no)
 	  where del_ny = 'N'
+	    and rep_ny = 'N'
 
 	  <if test="category != 0">
 	    and category = #{ category }
@@ -96,12 +99,37 @@
 			 , count
 		 	 , table_no
 		 	 , mem_img
+		 	 , mem_no
 		  from board b
           join category c on (b.category = c.category_no)
           join member using(mem_no)
 		 where board_no = #{boardNo}
 	</select>
 	
+		<select id="selectListCount" resultType="_int">
+		select
+				count(*)
+		   from board
+		  where del_ny='N' 	
+		    and rep_ny = 'N'
+		    and mem_no = #{memNo}	
+	</select>
+
+	<select id="selectList" resultMap="boardResultSet">
+	   SELECT 
+      b.board_no,
+      b.board_title,
+      b.count,
+      to_char(b.create_date, 'YYYY-MM-DD') as "create_date",
+      b.mem_no
+    FROM board b
+    JOIN member m
+      ON b.mem_no = m.mem_no
+    WHERE b.del_ny = 'N'
+      and rep_ny = 'N'
+      AND m.mem_no = #{memNo}
+    ORDER BY b.board_no DESC
+	</select>
 
 	<select id="selectSearchCount" resultType="_int">
 			select    
@@ -275,6 +303,13 @@
            , 10
 		  )
 	</insert>
+	
+	<update id="reportBoard">
+		update 
+				board
+			set rep_ny='Y'
+			where board_no = #{ boardNo } 
+	</update>
 	
 <!-- 	<select id="selectReplyComment" resultMap="replyResultSet">
 		select 

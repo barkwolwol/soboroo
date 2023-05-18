@@ -32,15 +32,15 @@
 	<main id="content" class="event_add">
 		<section>
 			<div class="head_area">
-				<h2>오프라인 반짝모임 개설하기</h2>
+				<h2>오프라인 꾸준한 습관 개설하기</h2>
 			</div>
 		
 			<div class="content_area">
 			
-				<form id="allForm" action="insertGroupOne.go" method="POST" encType="multipart/form-data" data-event_method_type="advance" data-open_type="open">
+				<form id="allForm" action="insertOfflineChallengeReg.go" method="POST" encType="multipart/form-data" data-event_method_type="advance" data-open_type="open">
 					<input type="hidden" name="id" value="${ loginUser.memNickname }">
 					<input type="hidden" name="memNo" value="${ loginUser.memNo }">
-					<input type="hidden" name="tableNo" value="2">
+					<input type="hidden" name="tableNo" value="9">
 
 					<article class="event_thumbnail">
 						<div id="thumbnail1" class="thumbnail">
