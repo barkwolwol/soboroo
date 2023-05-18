@@ -36,6 +36,7 @@
 		<result column="ATTEND_PASSWORD" property="attendPassword"/>
 		<result column="FILE_PATH" property="filePath"/>
 		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="THUMBNAIL" property="thumbnail"/>
 	</resultMap>
 	
 	<resultMap id="groupUploadResultset" type="GroupUpload">
@@ -89,18 +90,16 @@
 			 , MAX
 			 , MAX_ACCESS
 			 , ADULT_ACCESS
-			 , CATEGORY_NO
+			 , CATEGORY_TITLE
 			 , MEM_NO
 			 , TABLE_NO
 			 , ATTEND_PASSWORD
 			 , COUNT
-			 , FILE_PATH
+             , THUMBNAIL
 		  from ONLINE_GROUP_ONCE
-		  join GROUP_UPLOAD USING (TABLE_NO)
+		  join category USING (CATEGORY_NO)
 		  where status = 'Y'
-		    and file_level = 1
 		    and table_no = #{tableNo}
-		    AND GROUP_BOARD_NO = NO
 		 order
 		    by NO desc
 	</select>
@@ -176,6 +175,7 @@
 			 , MEM_NO
 			 , TABLE_NO
 			 , ATTEND_PASSWORD
+			 , THUMBNAIL
 		     )
 		VALUES
 		     (
@@ -204,6 +204,7 @@
 		     , #{memNo}
 		     , #{tableNo}
 		     , #{attendPassword}
+		     , #{thumbnail}
 		     )
 	</insert>
 	

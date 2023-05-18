@@ -44,6 +44,7 @@ public class OnlineGroupOnce {
 	private String attendPassword;
 	private int count;
 	private String status;
+	private String thumbnail;
 	
 	private String categoryTitle;
 	private String filePath;

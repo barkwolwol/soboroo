@@ -40,7 +40,7 @@ public class OnlineController {
 		
 		int listCount = onService.selectListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 6);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 		
 		ArrayList<OnlineGroupOnce> list = onService.selectListOn(pi, tableNo);
 		
@@ -92,18 +92,20 @@ public class OnlineController {
 	            String filePath = "resources/uploadFiles/" + savedFileNames.get(i);
 	            String changeName = savedFileNames.get(i);
 	            
-	            GroupUpload gtoupUpload = new GroupUpload();
-	            gtoupUpload.setOriginName(originName != null ? originName : "");
-	            gtoupUpload.setChangeName(changeName);
-	            if (i == 0) {
-	            	gtoupUpload.setFileLevel(1); // 첫 번째 파일은 대표 이미지
-	            } else {
-	            	gtoupUpload.setFileLevel(2); // 나머지 파일은 추가 이미지
-	            }
-	            gtoupUpload.setFilePath(filePath);
-	            gtoupUpload.setTableNo(2);
+	            GroupUpload groupUpload = new GroupUpload();
+	            groupUpload.setOriginName(originName != null ? originName : "");
+	            groupUpload.setChangeName(changeName);
 	            
-	            uploads.add(gtoupUpload);
+	            if (i == 0) {
+	            	groupUpload.setFileLevel(1); // 첫 번째 파일은 대표 이미지
+	            	ong.setThumbnail(filePath);
+	            } else {
+	            	groupUpload.setFileLevel(2); // 나머지 파일은 추가 이미지
+	            }
+	            groupUpload.setFilePath(filePath);
+	            groupUpload.setTableNo(2);
+	            
+	            uploads.add(groupUpload);
 	        }
 	        
 	        gu.setUploads(uploads); // 업로드한 파일 리스트를 Upload 객체에 설정

@@ -36,6 +36,9 @@
       <!-- Template styles-->
       <link rel="stylesheet" href="resources/css/style.css">
 
+      <link rel="stylesheet" href="https://static.onoffmix.com/css/pc/event/event-search.css">
+      <link rel="stylesheet" href="resources/css/listStyle.css">
+
       <!-- fontawesome 라이브러리 -->
       <script src="https://kit.fontawesome.com/66bc1e54e8.js" crossorigin="anonymous"></script>
 
