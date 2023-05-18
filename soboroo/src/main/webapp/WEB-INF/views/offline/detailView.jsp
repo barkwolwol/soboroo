@@ -87,6 +87,84 @@
 
             </div><!-- Page slider end -->
             
+            <script>
+            
+             
+            $(function() {
+                $("#entryButton").on("click", function() {
+                    var memNickname = "${loginUser.memNickname}";
+
+                    var memNo = "${ogo.memNo}";
+                    
+                    console.log(memNickname);
+                    console.log(memNo);
+                    
+
+                    $.ajax({
+                        type: "post",
+                        data: { "memNo": memNo },
+                        url: "findNick.my",
+                        dataType: 'json',
+                        success: function(data) {
+                            var writer = data.memNickname; // memNickname을 받아와서 writer에 할당합니다.
+                            var tableNo = "${ogo.tableNo}";
+                            var groupNo = "${ogo.no}";
+                            var title = "${ogo.title}";
+                            var alertType = 1;
+                            var alertContent = memNickname + "님이 회원님의 " + title + " 소모임에 참여했습니다.";
+                            var AlarmData = {
+                                "alertContent": alertContent,
+                                "tableNo" : tableNo,
+                                "groupNo" : groupNo,
+                                "alertType" : alertType
+                            };
+                            
+
+                            console.log(AlarmData);
+                            $.ajax({
+                                type: "post",
+                                data: JSON.stringify(AlarmData),
+                                url: "saveAlert.my",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: 'text',
+                                success: function(data) {
+                                    console.log(data);
+                                    if (socket) {
+                                        var socketMsg = "apply," + memNickname + "," + writer + "," + title;
+                                        console.log("msgmsg: " + socketMsg);
+                                        // $("#socketMessageDiv").text(socketMsg);
+                                        socket.send(socketMsg);
+                                        console.log('socketMsg 보냄');
+                                    }
+                                },
+                                error: function(err) {
+                                    console.log(err);
+                                }
+                            });
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    });
+                    });
+
+            });
+
+</script>
+
+          </div><!-- Content col end -->
+
+        </div><!-- Row end -->
+		
+		
+		
+		
+		
+		<!-- 여기부터는 참가버튼 누른 경우에만 보여야 함 -->
+		<hr>
+		
+		<div>
+			<table border="1" align="center">
             <!-- 여기는 참가버튼 누른 경우에만 보여야 함 -->
             <div class="entry-list-me">
             	<table border="1" align="center" width="100%" height="auto">

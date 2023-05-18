@@ -11,6 +11,8 @@
 	<result column = "start_date" property="startDate"/>
 	<result column = "end_date" property="endDate"/>
 	<result column = "enroll_date" property="enrollDate"/>
+	<result column = "thumbnail" property="thumbnail"/>
+	<result column = "simple" property="simple"/>
 	<result column = "table_no" property="tableNo"/>
 </resultMap>
 
@@ -165,40 +167,40 @@
 	
 	<select id="selectMyGroupList" resultMap="entryListResultSet">
 	SELECT * FROM (
-  SELECT "no", "title", start_date, end_date FROM (
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+  SELECT "no", "title", start_date, end_date, table_no FROM (
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM OFFLINE_CHALLENGE_D_DAY
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM OFFLINE_CHALLENGE_REGULAR
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM OFFLINE_GROUP_ONCE
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-   SELECT NO as "no", TITLE as "title", start_date, end_date
+   SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM OFFLINE_GROUP_REGULAR
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM online_challenge_D_DAY
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM online_challenge_regular
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-SELECT NO as "no", TITLE as "title", start_date, end_date
+SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM online_group_once
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM online_group_regular
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     union
-    SELECT group_NO as "no", group_TITLE as "title", start_date, end_date
+    SELECT group_NO as "no", group_TITLE as "title", start_date, end_date, table_no
     FROM entry_list
     WHERE wait_NY='N' AND mem_no = #{memNo}
   )
@@ -212,40 +214,40 @@ SELECT NO as "no", TITLE as "title", start_date, end_date
      
      <select id="selectMySchedule" resultMap="myPageResultSet">
            SELECT * FROM (
-  SELECT "no", "title", start_date, end_date FROM (
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+  SELECT "no", "title", start_date, end_date, table_no FROM (
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM OFFLINE_CHALLENGE_D_DAY
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM OFFLINE_CHALLENGE_REGULAR
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM OFFLINE_GROUP_ONCE
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-   SELECT NO as "no", TITLE as "title", start_date, end_date
+   SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM OFFLINE_GROUP_REGULAR
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM online_challenge_D_DAY
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date, end_date
+    SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
     FROM online_challenge_regular
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date as "startDate", end_date as "endDate"
+    SELECT NO as "no", TITLE as "title", start_date as "startDate", end_date as "endDate", table_no
     FROM online_group_once
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     UNION
-    SELECT NO as "no", TITLE as "title", start_date as "startDate", end_date as "endDate"
+    SELECT NO as "no", TITLE as "title", start_date as "startDate", end_date as "endDate", table_no
     FROM online_group_regular
     WHERE del_ny = 'N' AND REP_NY='N' AND mem_no = #{memNo}
     union
-    SELECT group_NO as "no", group_TITLE as "title", start_date, end_date 
+    SELECT group_NO as "no", group_TITLE as "title", start_date, end_date , table_no
     FROM entry_list
     WHERE wait_NY='N' AND ENTRY_ID = #{kakaoId}
   )
@@ -300,4 +302,23 @@ SELECT NO as "no", TITLE as "title", start_date, end_date
      	 where mem_no = #{memNo}  
      	   and id_no = #{no}    
      </update>
+     <select id="selectTopBoardList" resultMap="myPageResultSet">
+     	select * 
+     	  from (
+     	select count, no, title, table_no, thumbnail, simple from (
+   			select count, title, no, table_no, thumbnail, simple
+   			 FROM OFFLINE_GROUP_ONCE
+    WHERE del_ny = 'N' AND REP_NY='N'
+   			UNION
+   			select count, title, no, table_no, thumbnail, simple
+   			FROM online_group_once
+    WHERE del_ny = 'N' AND REP_NY='N'
+     	)  
+     	 order 
+     	    by count desc
+     	  )
+     	 where rownum between 1 and 3
+     	  
+     	  
+     </select>
 </mapper>

@@ -75,7 +75,6 @@ public class EchoHandler extends TextWebSocketHandler{
             System.out.println("cmd"+cmd);
             System.out.println("caller"+caller);
             System.out.println("receiver"+receiver);
-            logger.info("Received apply message: {}", msg);
             // 작성자가 로그인해서 있다면
             WebSocketSession boardWriterSession = userSessionMap.get(receiver);
             if ("reply".equals(cmd) && boardWriterSession != null) {
@@ -110,7 +109,6 @@ public class EchoHandler extends TextWebSocketHandler{
                 }
             } else if ("apply".equals(cmd)&& boardWriterSession != null) {
                logger.info("Received apply message: {}", msg);
-               System.out.println("Received apply message: " + msg);
                TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 " + title + " 소모임에 참여했습니다. ");
                try {
                     boardWriterSession.sendMessage(tmpMsg);

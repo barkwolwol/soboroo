@@ -86,6 +86,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public int reportBoard(int boardNo) {
+		System.out.println("서비스");
 		return bDao.reportBoard(sqlSession, boardNo);
 	}
 	
