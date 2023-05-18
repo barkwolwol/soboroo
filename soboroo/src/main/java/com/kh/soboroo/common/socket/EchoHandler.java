@@ -81,7 +81,7 @@ public class EchoHandler extends TextWebSocketHandler{
             if ("reply".equals(cmd) && boardWriterSession != null) {
             	 logger.info("Received apply message: {}", msg);
                  System.out.println("Received apply message: " + msg);
-                TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 " + title + "게시글에 댓글을 남겼습니다.");
+                TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 " + title + " 게시글에 댓글을 남겼습니다.");
                 try {
                     boardWriterSession.sendMessage(tmpMsg);
                 } catch (IllegalStateException e) {
@@ -92,10 +92,10 @@ public class EchoHandler extends TextWebSocketHandler{
                         userNotifications = new ArrayList<>();
                         notifications.put(receiver, userNotifications);
                     }
-                    userNotifications.add(caller + "님이 회원님의 " + title + "게시글에 댓글을 남겼습니다.");
+                    userNotifications.add(caller + "님이 회원님의 " + title + " 게시글에 댓글을 남겼습니다.");
                 }
-            } else if ("board".equals(cmd) && boardWriterSession != null) {
-               TextMessage tmpMsg = new TextMessage("회원님의 게시글이 신고되었습니다.");
+            } else if ("report".equals(cmd) && boardWriterSession != null) {
+               TextMessage tmpMsg = new TextMessage("회원님의 " + title + " 게시글이 신고되었습니다.");
                try {
                     boardWriterSession.sendMessage(tmpMsg);
                 } catch (IllegalStateException e) {
@@ -106,12 +106,12 @@ public class EchoHandler extends TextWebSocketHandler{
                         userNotifications = new ArrayList<>();
                         notifications.put(receiver, userNotifications);
                     }
-                    userNotifications.add("회원님의 게시글이 신고되었습니다.");
+                    userNotifications.add("회원님의 " + title + " 게시글이 신고되었습니다.");
                 }
             } else if ("apply".equals(cmd)&& boardWriterSession != null) {
                logger.info("Received apply message: {}", msg);
                System.out.println("Received apply message: " + msg);
-               TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 " + title + "소모임에 참여했습니다. ");
+               TextMessage tmpMsg = new TextMessage(caller + "님이 회원님의 " + title + " 소모임에 참여했습니다. ");
                try {
                     boardWriterSession.sendMessage(tmpMsg);
                 } catch (IllegalStateException e) {
@@ -122,7 +122,7 @@ public class EchoHandler extends TextWebSocketHandler{
                         userNotifications = new ArrayList<>();
                         notifications.put(receiver, userNotifications);
                     }
-                    userNotifications.add(caller + "님이 회원님의 " + title + "소모임에 참여했습니다. ");
+                    userNotifications.add(caller + "님이 회원님의 " + title + " 소모임에 참여했습니다. ");
                 }
             }
          }
