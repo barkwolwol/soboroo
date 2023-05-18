@@ -29,6 +29,9 @@
             #enrollForm>table * {
                 margin: 5px;
             }
+            label{
+				position: relative !important;
+			}
 
             select {
                 width: 150px;
@@ -208,11 +211,11 @@
                     <div class="left"
                         style="margin-left: 20%; margin-top: 20px; display: inline-block; margin-bottom: 20px; ">
                         <div class="avatar" style="float:left;">
-                            <img src="${pageContext.request.contextPath}/resources/images/default_profile.png"
+                            <img src="${loginUser.memImg}"
                                 class="avatar-image">
                         </div>
                         <div class="author" style="margin-left: 50px; display: block;">
-                            <div class="write">관리자</div>
+                            <div class="write">${loginUser.memNickname }</div>
                         </div>
                     </div>
 

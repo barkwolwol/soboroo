@@ -82,10 +82,10 @@
            
             
             <div style="margin-left: 20%; margin-right: 20%">
-                <div class="avatar" style="float: left;margin-top: 30px;"><img alt="" src="${pageContext.request.contextPath}/resources/images/default_profile.png" class="avatar-image"></div>
+                <div class="avatar" style="float: left;margin-top: 30px;"><img class="avatar-image" src="${b.memImg}" ></div>
                 <br> 
-            <div class="author">
-                <div class="write" style=" font-size: 13px;">${b.memNo} </div>
+            <div class="author" style="margin-top:2%;">
+                <div class="write" style=" font-size: 13px;">${b.memNickname} </div>
              
                 <div class="board_name">
                     <a href="list.bo?category=0" style="color: black;">
@@ -96,11 +96,18 @@
                 font-size: 13px; margin-left: 5px;">${ b.createDate }</div>
                 <div class="hit-count body_font_color_70" style="float: left;
                 font-size: 13px; margin-left: 10px;">조회수 ${ b.count }</div>
+	        <c:if test="${not empty loginUser }"> 
                 <div class="tools txt"> 
-                <c:if test="${not empty loginUser }"> 
-                <a  type="button" style="margin-right: 10px;float: left; font-size: 13px; margin-left: 5px; color: orange; font-weight: 900;"  onclick="postFormSubmit(1);" >수정</a>
-                <a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onclick="postFormSubmit(2);">지우기</a></div>
+                <c:if test="${b.memNickname eq loginUser.memNickname }">
+	                <a  type="button" style="margin-right: 10px;float: left; font-size: 13px; margin-left: 5px; color: orange; font-weight: 900;"  onclick="postFormSubmit(1);" >수정</a>
+	                <a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onclick="postFormSubmit(2);">지우기</a>
+	            </c:if>
+	            <c:if test="${b.memNickname ne loginUser.memNickname }">
+	            	<a  type="button" style="margin-right: 10px; float: left; font-size: 13px; color: red; font-weight: 900;" onclick="test01();">신고</a>
+                </c:if>
+                </div>
             </c:if>
+         
             </div>
             
             <form id="postForm" action="" method="post">
@@ -108,6 +115,12 @@
             <input type="hidden" name="memNo" value="${ loginUser.memNo }">
             </form>
             <script>
+            		function test01(){
+            			$("#test11").click();
+            			
+            		}
+            
+            
             		function postFormSubmit(num) {
 						if(num == 1){	//수정하기 클릭시 
 							$("#postForm").attr("action", "updateForm.bo").submit();
@@ -129,7 +142,7 @@
     </tr>
     <tr>
         <th>작성자</th>
-        <td>${b.memNo }</td>
+        <td>${b.memNickname }</td>
         <th>작성일</th>
         <td>${ b.createDate }</td>
     </tr>
@@ -171,16 +184,16 @@
 			                    </tr>
 	                    </c:otherwise>
                     </c:choose> 
-                    
-                    
+
                     <tr>
                        <td colspan="3">댓글 (<span id="rcount">0</span>) </td> 
                     </tr>
                 </thead>
                 <tbody>
-                   
                 </tbody>
+                
             </table>
+            
             </form>
         </div>
         <br><br>
@@ -195,7 +208,6 @@
 		
 	$(function() {
 		selectReplyList();  // 화면이 랜더링 되자마자 댓글 조회를 하겠다
-		
 	})
 
 	
@@ -211,19 +223,14 @@
 					memNo: '${loginUser.memNo}'  //문자열은 이렇게 묶어야함
 					
 				}, success:function(status){
-					
 					if(status == "success"){
 						selectReplyList();
 						$("#content").val("");
 					}
-					
-					
 				}, error:function(){
 					console.log("댓글 작성용 ajax 통신 실패!");
 				}
 			})
-			
-			
 		}else{
 			alert("댓글 작성 후 등록 요청해주세요")
 		}
@@ -243,21 +250,72 @@
 					  		+ "<td>" + list[i].replyContent +"</td>"
 					  		+ "<td>" + list[i].enrollDate +"</td>"
 					  		+ "</tr>";
+					  		value += selectReplyComment(list[i].replyNo);
 				
+				}
 			 	$("#replyArea tbody").html(value);
 			 	$("#rcount").text(list.length);
-				}
 			}, error:function(){
 				console.log("댓글 조회용 리스트 ajax 통신 실패");
 			}
 		});
 		
 	}
+	// 대댓글
+	function selectReplyComment(replyNo){
+		$.ajax({
+			url:"Relist.bo",
+			data:{bno:${b.boardNo}},
+			async:false,
+			success: function(list){
+				console.log(list);
+				//대댓글
+				let values = "";
+				for(let i in list){
+					values += "<tr>"
+					  		+ "<th>" + list[i].memNickname +"</th>"
+					  		+ "<td>" + list[i].replyContent +"</td>"
+					  		+ "<td>" + list[i].enrollDate +"</td>"
+					  		+ "</tr>";
+				
+				}
+			 	return values;
+			}, error:function(){
+				console.log("댓글 조회용 리스트 ajax 통신 실패");
+			}
+		});
+	}
 		
     </script>
      
-    
-    
+	    <!-- Button trigger modal -->
+	<button style="visibility: hidden;" id="test11" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	  Launch demo modal
+	</button>
+	
+	<!-- Modal -->
+	<div   class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">게시글 신고</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	       <form action="report.bo">
+	      <div class="modal-body">
+	       		게시글 신고하시겠습니까?
+	       	<input type="hidden" name="boardNo" value="${ b.boardNo }"/>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+	        <button type="submit" class="btn btn-primary">확인</button>
+	      </div>
+	       </form>
+	    </div>
+	  </div>
+	</div>
     
             
 

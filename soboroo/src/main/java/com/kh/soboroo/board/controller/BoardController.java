@@ -82,6 +82,7 @@ public class BoardController {
 	 
 	 @RequestMapping("enroll.bo")
 		public String enrollForm() {
+	
 			return "board/boardEnrollForm";
 			
 		}
@@ -91,11 +92,15 @@ public class BoardController {
 		 
 		 // board table insert
 		 int result1 = bService.insertBoard(b);
+		 //System.out.println(b);
+		 int uploadNo = 0;
+		 int result2 = 1;
+		 if(uploadNo != 0  ) {
+			 uploadNo = (int)session.getAttribute("uploadNo");
+			 // upload table update
+			 result2 = bService.updateUpload(uploadNo); 
+		 }
 		 
-		 int uploadNo = (int)session.getAttribute("uploadNo");
-		 
-		 // upload table update
-		int result2 = bService.updateUpload(uploadNo);
 		 
 		 if(result1 > 0 && result2 > 0) {
 			 session.setAttribute("alertMsg", "게시글이 성공적으로 등록되었습니다.");
@@ -135,9 +140,9 @@ public class BoardController {
 		@RequestMapping("update.bo")
 		public String updateNotice(Board b,HttpSession session, Model model) {
 				
-		 System.out.println(b);
+		 //System.out.println(b);
 			int result = bService.updateBoard(b);
-			System.out.println(result);
+			//System.out.println(result);
 			if(result > 0) { // 수정 성공=> 상세페이지
 				session.setAttribute("alertMsg", "게시글이 수정되었습니다.");
 				return"redirect:detail.bo?bno=" + b.getBoardNo();
@@ -181,5 +186,25 @@ public class BoardController {
 			return result > 0 ? "success" :"fail";
 		}
 		
-	
+		/*
+		 * @ResponseBody
+		 * 
+		 * @RequestMapping("Relist.bo") public String ajaxselectReplyComment(int bno) {
+		 * ArrayList<Reply> relist = bService.selectReplyComment(bno); return new
+		 * Gson().toJson(relist); }
+		 */
+		@RequestMapping("report.bo")
+		public String reportBoard(int boardNo,HttpSession session, Model model) {
+				
+		 //System.out.println(b);
+			int result = bService.reportBoard(boardNo);
+			//System.out.println(result);
+			if(result > 0) { // 수정 성공=> 상세페이지
+				session.setAttribute("alertMsg", "게시글이 신고되었습니다.");
+				return"redirect:list.bo?category=0";
+			}else { // 수정 실패 => 에러페이지 포워딩
+				model.addAttribute("errorMsg", "게시글 삭제 실패");
+				return "common/errorPage";
+			}
+		}
 }

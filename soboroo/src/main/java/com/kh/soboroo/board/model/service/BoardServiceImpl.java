@@ -79,7 +79,15 @@ public class BoardServiceImpl implements BoardService{
 	public int insertReply(Reply r) {
 		return bDao.insertReply(sqlSession, r);
 	}
+	/*
+	 * @Override public ArrayList<Reply> selectReplyComment(int boardNo) { return
+	 * bDao.selectReplyComment(sqlSession, boardNo); }
+	 */
 
+	@Override
+	public int reportBoard(int boardNo) {
+		return bDao.reportBoard(sqlSession, boardNo);
+	}
 	
 	
 
