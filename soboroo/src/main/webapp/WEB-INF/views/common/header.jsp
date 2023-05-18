@@ -150,10 +150,9 @@
           popoverContent += "<div>" + messageQueue[i] + "</div>";
         }
       } else {
-        popoverContent = "새로운 알림이 없습니다.";
+        popoverContent = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;새로운 알림이 없습니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
       }
   
-    popoverContent += "<a href='myAlert.my'>더보기</a>";
   
     var bellIcon = document.getElementById("bellIcon");
     bellIcon.setAttribute("data-content", popoverContent);
@@ -297,8 +296,7 @@ $(function() {
 						  <i style="margin-bottom:10px;" id="bellIcon" class="fa-sharp fa-solid fa-bell position-relative" tabindex="0" data-toggle="popover"
 						    data-toggle="popover" title="최신 알림" data-html="true"
 						    data-content="
-						    			  <div>최신 알림이 없습니다.</div>
-						                  <a href='selectAlertList.my'>더보기</a>" data-placement="bottom"></i>
+						    			  <div>최신 알림이 없습니다.</div>" data-placement="bottom"></i>
 						  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"></span>
 						</li>
 						</c:if>
