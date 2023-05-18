@@ -112,7 +112,7 @@
       var data = evt.data;
       console.log("ReceiveMessage: " + data + "\n");
   
-      messageQueue.push(data); // 새로운 메시지 큐에 추가
+      messageQueue.unshift(data); // 새로운 메시지 큐에 추가
   
       updatePopoverContent(); // 팝오버 내용 갱신
   

@@ -157,7 +157,7 @@
 														<c:otherwise>
 															<c:forEach var="g" items="${list}">
 																<tr class="board-row">
-																	<td class="bno" data-table-no="${g.tableNo}" data-no="${g.groupNo}">${g.boardNo }</td>
+																	<td class="bno">${g.boardNo }</td>
 																	<td>${g.boardTitle }</td>
 																	<td>${g.count }</td>
 																	<td>${g.createDate }</td>

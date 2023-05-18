@@ -157,9 +157,9 @@
                                           </c:when>
                                           <c:otherwise>
                                              <c:forEach var="g" items="${list}">
-                                                <tr>
+                                                <tr class="board-row">
                                                    <td class="bno">${g.no }</td>
-                                                   <td class="bno">${g.title }</td>
+                                                   <td  data-table-no="${g.tableNo}">${g.title }</td>
                                                    <td>${g.startDate }</td>
                                                 </tr>
                                              </c:forEach>
@@ -167,6 +167,16 @@
                                        </c:choose>
                                     </tbody>
                                  </table>
+                                 <script>
+  $(function() {
+    $(".board-row").on("click", function() {
+      var tableNo = $(this).find("td[data-table-no]").attr("data-table-no");
+      var no = $(this).find("td[data-no]").attr("data-no");
+      location.href = 'detail.go?tableNo=' + tableNo + '&no=' + $(this).children(".bno").text();
+    });
+  });
+</script>
+                                 
 
 
                               </div>
