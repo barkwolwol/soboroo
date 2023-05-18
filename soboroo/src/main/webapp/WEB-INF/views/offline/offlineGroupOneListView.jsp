@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 
-<div id="banner-area" class="banner-area" style="background-color: #ff8932;">
+<div id="banner-area" class="banner-area" style="background-image:url(${pageContext.request.contextPath}/resources/images/banner/with2.jpg)">
   <div class="banner-text">
     <div class="container">
         <div class="row">

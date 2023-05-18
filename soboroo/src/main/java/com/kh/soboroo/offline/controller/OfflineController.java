@@ -481,7 +481,7 @@ public class OfflineController {
 	
 	
 	
-	
+	/*
 	// 상세조회
 	@RequestMapping("detail.go")
 	public ModelAndView selectDetail(int no, Model model, ModelAndView mv) {
@@ -500,7 +500,7 @@ public class OfflineController {
 		return mv;
 		
 	}
-	
+	*/
 	
 	// 현재 넘어온 첨부파일 그 자체를 서버의 폴더에 저장시키는 역할
 	public List<String> saveFiles(List<MultipartFile> upfiles, HttpSession session) {
