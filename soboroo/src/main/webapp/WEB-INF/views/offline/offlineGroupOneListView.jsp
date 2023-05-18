@@ -20,14 +20,14 @@
         <div class="row">
           <div class="col-lg-12">
               <div class="banner-heading">
-                <h1 class="banner-title">오프라인 반짝모임</h1>
-                <nav aria-label="breadcrumb">
+                <h1 class="banner-title">오프라인 모임</h1>
+                <!-- <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                       <li class="breadcrumb-item"><a href="#">Home</a></li>
                       <li class="breadcrumb-item"><a href="#">Services</a></li>
                       <li class="breadcrumb-item active" aria-current="page">All Services</li>
                     </ol>
-                </nav>
+                </nav> -->
               </div>
           </div><!-- Col end -->
         </div><!-- Row end -->
@@ -39,7 +39,7 @@
   <div class="container">
   	<div style="text-align: right">
       <c:if test="${ not empty loginUser }">
-        <a class="btn btn-primary" href="enrollGroupOne.go">새로운 모임</a>
+        <a class="btn btn-primary" href="enrollOfflineGroupOne.go">새로운 모임</a>
       </c:if>
   	</div>
   	<br>
