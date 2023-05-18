@@ -159,7 +159,7 @@
                                              <c:forEach var="g" items="${list}">
                                                 <tr class="board-row">
                                                    <td class="bno">${g.no }</td>
-                                                   <td  data-table-no="${g.tableNo}">${g.title }</td>
+                                                   <td  data-table-no="${g.tableNo}">${g.title}</td>
                                                    <td>${g.startDate }</td>
                                                 </tr>
                                              </c:forEach>
