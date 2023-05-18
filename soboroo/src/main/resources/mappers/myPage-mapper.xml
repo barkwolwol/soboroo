@@ -11,6 +11,8 @@
 	<result column = "start_date" property="startDate"/>
 	<result column = "end_date" property="endDate"/>
 	<result column = "enroll_date" property="enrollDate"/>
+	<result column = "thumbnail" property="thumbnail"/>
+	<result column = "simple" property="simple"/>
 	<result column = "table_no" property="tableNo"/>
 </resultMap>
 
@@ -303,37 +305,13 @@ SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
      <select id="selectTopBoardList" resultMap="myPageResultSet">
      	select * 
      	  from (
-     	select count, no,title, table_no from (
-     		select count, title, no,table_no
-     		FROM OFFLINE_CHALLENGE_D_DAY
-   			WHERE del_ny = 'N' AND REP_NY='N'
-   			UNION
-   			select count, title, no, table_no
-   			FROM OFFLINE_CHALLENGE_REGULAR
-    WHERE del_ny = 'N' AND REP_NY='N'
-   			UNION
-   			select count, title, no,table_no
+     	select count, no, title, table_no, thumbnail, simple from (
+   			select count, title, no, table_no, thumbnail, simple
    			 FROM OFFLINE_GROUP_ONCE
     WHERE del_ny = 'N' AND REP_NY='N'
    			UNION
-   			select count, title, no, table_no
-   			 FROM OFFLINE_GROUP_REGULAR
-    WHERE del_ny = 'N' AND REP_NY='N'
-   			UNION
-   			select count, title, no, table_no
-   			FROM online_challenge_D_DAY
-    WHERE del_ny = 'N' AND REP_NY='N'
-   			UNION
-   			select count, title, no, table_no
-   			FROM online_challenge_regular
-    WHERE del_ny = 'N' AND REP_NY='N'
-   			UNION
-   			select count, title, no,table_no
+   			select count, title, no, table_no, thumbnail, simple
    			FROM online_group_once
-    WHERE del_ny = 'N' AND REP_NY='N'
-   			UNION
-   			select count, title, no, table_no
-   			FROM online_group_regular
     WHERE del_ny = 'N' AND REP_NY='N'
      	)  
      	 order 

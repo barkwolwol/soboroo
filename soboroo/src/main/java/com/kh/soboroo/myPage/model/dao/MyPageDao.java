@@ -17,14 +17,6 @@ import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.model.vo.EntryList;
 import com.kh.soboroo.member.model.vo.Member;
 import com.kh.soboroo.myPage.model.vo.MyPage;
-import com.kh.soboroo.myPage.model.vo.OfflineChallengeDday;
-import com.kh.soboroo.myPage.model.vo.OfflineChallengeRegular;
-import com.kh.soboroo.myPage.model.vo.OfflineGroupOnce;
-import com.kh.soboroo.myPage.model.vo.OfflineGroupRegular;
-import com.kh.soboroo.myPage.model.vo.OnlineChallengeDday;
-import com.kh.soboroo.myPage.model.vo.OnlineChallengeRegular;
-import com.kh.soboroo.myPage.model.vo.OnlineGroupOnce;
-import com.kh.soboroo.myPage.model.vo.OnlineGroupRegular;
 import com.kh.soboroo.reply.model.vo.Reply;
 
 @Repository

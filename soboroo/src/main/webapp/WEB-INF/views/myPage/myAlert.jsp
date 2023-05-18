@@ -105,6 +105,7 @@
             value += "<div class='post-thumb'>";
             value += "<a href='http://localhost:3500/soboroo/detail.go?tableNo=" + data[i].tableNo + "&no=" + data[i].no + "'>";
             value += "<img style='width:70px; height:50px; margin-right:10px' loading='lazy' alt='img' src='${pageContext.request.contextPath}/resources/images/logo_3.png'></a>";
+            /* value += "<img style='width:70px; height:50px; margin-right:10px' loading='lazy' alt='img' src='${pageContext.request.contextPath}/'" + data[i].thumbnail+"'></a>"; */
             value += "</div>";
             value += "<div class='post-info'>";
             value += "<h4 class='entry-title'>";
