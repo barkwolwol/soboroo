@@ -93,7 +93,7 @@
           
           for (let i = 0; i < data.length; i++) {
             let value = "<div class='ts-service-image-wrapper'>";
-            value += "<img loading='lazy' class='w-100' src='${pageContext.request.contextPath}/resources/images/logo_3.png' alt='service-image'>";
+            value += "<img loading='lazy' class='w-100' src='${pageContext.request.contextPath}/" + data[i].thumbnail + "' alt='service-image' style='width: 100px; height: 200px;'>";
             value += "</div>";
             value += "<a href='http://localhost:3500/soboroo/detail.go?tableNo=" + data[i].table_no + "&no=" + data[i].no + "'>";
             value += "<div class='d-flex'>";
@@ -127,6 +127,8 @@
       });
     }
   });
+
+  
 </script>
 
 
@@ -612,15 +614,6 @@
 							</div>
 							<div class="date">6.30 (금)</div>
 						  </div>
-				
-						  <div class="list_event_tags">
-							<span class="tag" data-tag_link="%23%EB%B6%80%EB%8F%99%EC%82%B0">#부동산</span><span class="tag"
-							  data-tag_link="%23%EC%9E%AC%ED%85%8C%ED%81%AC">#재테크</span><span class="tag"
-							  data-tag_link="%23%EB%95%85%ED%86%A0%EC%A7%80%ED%88%AC%EC%9E%90">#땅토지투자</span><span class="tag"
-							  data-tag_link="%23%EC%83%81%EA%B0%80%EB%B9%8C%EB%94%A9%EA%B2%BD%EB%A7%A4%EC%84%B8%EA%B8%88">#상가빌딩경매세금</span><span
-							  class="tag"
-							  data-tag_link="%23%EC%98%88%EC%88%A0%EA%B1%B4%EC%84%A4%EA%B5%90%EC%9C%A1%EA%B0%95%EC%9D%98%ED%8A%B9%EA%B0%95">#예술건설교육강의특강</span>
-						  </div>
 						</div>
 					  </a>
 					</article>
@@ -718,89 +711,6 @@
 		  <!--/ Container end -->
 		</section>
 		<!--/ News end -->
-		
-		<section id="goal" class="news">
-		  <div class="container">
-		    <div class="row text-center">
-		        <div class="col-12">
-		          <h2 class="section-title">goal</h2>
-		          <h3 class="section-sub-title">목표 소모임</h3>
-		        </div>
-		    </div>
-		    <!--/ Title row end -->
-		
-		    <div class="row">
-		        <div class="col-lg-4 col-md-6 mb-4">
-		          <div class="latest-post">
-		              <div class="latest-post-media">
-		                <a href="news-single.html" class="latest-post-img">
-		                    <img loading="lazy" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/logo_3.png" alt="img">
-		                </a>
-		              </div>
-		              <div class="post-body">
-		                <h4 class="post-title">
-		                    <a href="news-single.html" class="d-inline-block">We Just Completes $17.6 million Medical Clinic in Mid-Missouri</a>
-		                </h4>
-		                <div class="latest-post-meta">
-		                    <span class="post-item-date">
-		                      <i class="fa fa-clock-o"></i> July 20, 2017
-		                    </span>
-		                </div>
-		              </div>
-		          </div><!-- Latest post end -->
-		        </div><!-- 1st post col end -->
-		
-		        <div class="col-lg-4 col-md-6 mb-4">
-		          <div class="latest-post">
-		              <div class="latest-post-media">
-		                <a href="news-single.html" class="latest-post-img">
-		                    <img loading="lazy" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/logo_3.png" alt="img">
-		                </a>
-		              </div>
-		              <div class="post-body">
-		                <h4 class="post-title">
-		                    <a href="news-single.html" class="d-inline-block">Thandler Airport Water Reclamation Facility Expansion Project Named</a>
-		                </h4>
-		                <div class="latest-post-meta">
-		                    <span class="post-item-date">
-		                      <i class="fa fa-clock-o"></i> June 17, 2017
-		                    </span>
-		                </div>
-		              </div>
-		          </div><!-- Latest post end -->
-		        </div><!-- 2nd post col end -->
-		
-		        <div class="col-lg-4 col-md-6 mb-4">
-		          <div class="latest-post">
-		              <div class="latest-post-media">
-		                <a href="news-single.html" class="latest-post-img">
-		                    <img loading="lazy" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/logo_3.png" alt="img">
-		                </a>
-		              </div>
-		              <div class="post-body">
-		                <h4 class="post-title">
-		                    <a href="news-single.html" class="d-inline-block">Silicon Bench and Cornike Begin Construction Solar Facilities</a>
-		                </h4>
-		                <div class="latest-post-meta">
-		                    <span class="post-item-date">
-		                      <i class="fa fa-clock-o"></i> Aug 13, 2017
-		                    </span>
-		                </div>
-		              </div>
-		          </div><!-- Latest post end -->
-		        </div><!-- 3rd post col end -->
-		    </div>
-		    <!--/ Content row end -->
-		
-		    <div class="general-btn text-center mt-4">
-		        <a class="btn btn-primary" href="news-left-sidebar.html">더보기</a>
-		    </div>
-		
-		  </div>
-		  <!--/ Container end -->
-		</section>
-		<!--/ News end -->
-
 
 	
 		<jsp:include page="common/footer.jsp"/>  

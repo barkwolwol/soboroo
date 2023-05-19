@@ -49,5 +49,7 @@ public class OnlineGroupOnce {
 	private String categoryTitle;
 	private String filePath;
 	private String fileLevel;
+	private String memImg;
+	
 	
 }
