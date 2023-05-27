@@ -357,7 +357,7 @@
                       <span>조회수 ${ ogo.count }</span>
                       <span class="payment_type free">${ ogo.categoryTitle }</span>
                     </div>
-                    <div class="date">6.30 (금)</div>
+                    <div class="date">${ ogo.startDate }</div>
                   </div>
         
                   <div class="list_event_tags">

@@ -2810,7 +2810,7 @@ textarea {
     border: 1px solid #cccccc;
     color: #333333;
     background-color: #ffffff;
-    font-size: 12px;
+    /* font-size: 12px; */
     line-height: 17px
 }
 

@@ -67,6 +67,45 @@
 		 where status = 'Y'
 	</select>
 	
+	<select id="selectOnMainList" resultMap="onlineGroupOnceResultSet">
+		select *
+        from (
+        select
+		       NO
+		     , TITLE
+		     , ID
+		     , NAME
+		     , EMAIL
+		     , PHONE
+		     , SIMPLE
+		     , TO_CHAR(START_DATE, 'YYYY/MM/DD hh:dd') AS "START_DATE"
+		     , TO_CHAR(END_DATE, 'YYYY/MM/DD hh:dd') AS "END_DATE"
+		     , TO_CHAR(START_ENTER, 'YYYY/MM/DD hh:dd') AS "START_ENTER"
+		     , TO_CHAR(END_ENTER, 'YYYY/MM/DD hh:dd') AS "END_ENTER"
+		     , CONTENT
+		     , ADDRESS
+		     , ADDRESS_DETAIL
+		     , DISPLAY_NY
+			 , EVENT_PASSWORD
+			 , HASH_TAG
+			 , URL
+			 , MAX
+			 , MAX_ACCESS
+			 , ADULT_ACCESS
+			 , CATEGORY_TITLE
+			 , MEM_NO
+			 , TABLE_NO
+			 , ATTEND_PASSWORD
+			 , COUNT
+             , THUMBNAIL
+		  from ONLINE_GROUP_ONCE
+		  join category USING (CATEGORY_NO)
+		  where status = 'Y'
+		 order
+		    by NO desc)
+            where rownum between 1 and 5
+	</select>
+	
 	<select id="selectListOn" resultMap="onlineGroupOnceResultSet">
 		select
 		       NO

@@ -17,14 +17,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.soboroo.admin.controller.AdminController;
 import com.kh.soboroo.common.controller.CommonController;
 import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
+import com.kh.soboroo.myPage.model.vo.MyPage;
 import com.kh.soboroo.offline.model.service.OfflineServiceImpl;
 import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 
@@ -33,6 +36,16 @@ public class OfflineController {
 	
 	@Autowired
 	private OfflineServiceImpl offService;
+	
+	// 메인페이지 리스트 조회
+	@ResponseBody
+	@RequestMapping(value="selectOffMainList.go", produces="application/json; charset=utf-8")
+	public String ajaxOffMainList() {
+		int listCount = offService.selectListCount();
+		List<OfflineGroupOnce> list = offService.selectOffMainList();
+		
+		return new Gson().toJson(list);
+	}
 	
 	// 오프라인 반짝모임 리스트 조회
 	@RequestMapping("offList.go")

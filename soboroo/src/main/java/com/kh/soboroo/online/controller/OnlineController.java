@@ -16,13 +16,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.soboroo.common.controller.CommonController;
 import com.kh.soboroo.common.model.vo.GroupUpload;
 import com.kh.soboroo.common.model.vo.PageInfo;
 import com.kh.soboroo.common.template.Pagination;
+import com.kh.soboroo.offline.model.vo.OfflineGroupOnce;
 import com.kh.soboroo.online.model.service.OnlineServiceImpl;
 import com.kh.soboroo.online.model.vo.OnlineGroupOnce;
 
@@ -31,6 +34,16 @@ public class OnlineController {
 	
 	@Autowired
 	private OnlineServiceImpl onService;
+	
+	// 메인페이지 리스트 조회
+	@ResponseBody
+	@RequestMapping(value="selectOnMainList.go", produces="application/json; charset=utf-8")
+	public String ajaxOnMainList() {
+		int listCount = onService.selectListCount();
+		List<OnlineGroupOnce> list = onService.selectOnMainList();
+		
+		return new Gson().toJson(list);
+	}
 	
 	// 온라인 반짝모임 리스트 조회
 	@RequestMapping("onList.go")
