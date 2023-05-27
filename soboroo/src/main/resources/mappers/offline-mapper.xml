@@ -140,7 +140,7 @@
 		  where status = 'Y'
 		 order
 		    by NO desc)
-            where rownum &lt;= 5
+            where rownum between 1 and 5
 	</select>
 	
 	<update id="increaseCount">

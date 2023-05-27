@@ -3,17 +3,39 @@
 <mapper namespace="myPageMapper">
 
 <resultMap type="MyPage" id="myPageResultSet">
-	<result column = "count" property="count"/>
-	<result column = "del_ny" property="delNy"/>
-	<result column = "mem_no" property="memNo"/>
-	<result column = "no" property="no"/>
-	<result column = "title" property="title"/>
-	<result column = "start_date" property="startDate"/>
-	<result column = "end_date" property="endDate"/>
-	<result column = "enroll_date" property="enrollDate"/>
-	<result column = "thumbnail" property="thumbnail"/>
-	<result column = "simple" property="simple"/>
-	<result column = "table_no" property="tableNo"/>
+		<result column="NO" property="no"/>
+		<result column="TITLE" property="title"/>
+		<result column="ID" property="id"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="SIMPLE" property="simple"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="START_DATE" property="startDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="START_ENTER" property="startEnter"/>
+		<result column="END_ENTER" property="endEnter"/>
+		<result column="CONTENT" property="content"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="ADDRESS_DETAIL" property="addressDetail"/>
+		<result column="DISPLAY_NY" property="displayNY"/>
+		<result column="EVENT_PASSWORD" property="eventPassword"/>
+		<result column="HASH_TAG" property="hashTag"/>
+		<result column="DEL_NY" property="delNY"/>
+		<result column="REP_NY" property="repNY"/>
+		<result column="URL" property="url"/>
+		<result column="MAX" property="max"/>
+		<result column="MAX_ACCESS" property="maxAccess"/>
+		<result column="ADULT_ACCESS" property="adultAccess"/>
+		<result column="CATEGORY_NO" property="category"/>
+		<result column="CATEGORY_TITLE" property="categoryTitle"/>
+		<result column="MEM_NO" property="memNo"/>
+		<result column="TABLE_NO" property="tableNo"/>
+		<result column="ATTEND_PASSWORD" property="attendPassword"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="THUMBNAIL" property="thumbnail"/>
 </resultMap>
 
 <resultMap type="EntryList" id="entryListResultSet">
@@ -302,23 +324,44 @@ SELECT NO as "no", TITLE as "title", start_date, end_date, table_no
      	 where mem_no = #{memNo}  
      	   and id_no = #{no}    
      </update>
+     
      <select id="selectTopBoardList" resultMap="myPageResultSet">
-     	select * 
-     	  from (
-     	select count, no, title, table_no, thumbnail, simple from (
-   			select count, title, no, table_no, thumbnail, simple
-   			 FROM OFFLINE_GROUP_ONCE
-    WHERE del_ny = 'N' AND REP_NY='N'
-   			UNION
-   			select count, title, no, table_no, thumbnail, simple
-   			FROM online_group_once
-    WHERE del_ny = 'N' AND REP_NY='N'
-     	)  
-     	 order 
-     	    by count desc
-     	  )
-     	 where rownum between 1 and 3
-     	  
-     	  
+        select * 
+          from (
+               select count, no, title, table_no, thumbnail, simple, category_title
+             , TO_CHAR(START_DATE, 'YYYY/MM/DD hh:dd') AS "START_DATE"
+		     , TO_CHAR(END_DATE, 'YYYY/MM/DD hh:dd') AS "END_DATE"
+		     , TO_CHAR(START_ENTER, 'YYYY/MM/DD hh:dd') AS "START_ENTER"
+		     , TO_CHAR(END_ENTER, 'YYYY/MM/DD hh:dd') AS "END_ENTER"
+              from (
+                    select count, title, no, table_no, thumbnail, simple, category_no, START_DATE, END_DATE, START_ENTER, END_ENTER
+                    FROM OFFLINE_GROUP_ONCE
+                    WHERE del_ny = 'N' AND REP_NY='N'
+                    UNION
+                    select count, title, no, table_no, thumbnail, simple, category_no, START_DATE, END_DATE, START_ENTER, END_ENTER
+                    FROM online_group_once
+                    WHERE del_ny = 'N' AND REP_NY='N'
+                   )
+                join category using (category_no)   
+             order 
+                by count desc
+             )
+         where rownum between 1 and 5
      </select>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 </mapper>

@@ -360,15 +360,6 @@
                     </div>
                     <div class="date">${ ogo.startDate }</div>
                   </div>
-        
-                  <div class="list_event_tags">
-                    <span class="tag" data-tag_link="%23%EB%B6%80%EB%8F%99%EC%82%B0">#부동산</span><span class="tag"
-                      data-tag_link="%23%EC%9E%AC%ED%85%8C%ED%81%AC">#재테크</span><span class="tag"
-                      data-tag_link="%23%EB%95%85%ED%86%A0%EC%A7%80%ED%88%AC%EC%9E%90">#땅토지투자</span><span class="tag"
-                      data-tag_link="%23%EC%83%81%EA%B0%80%EB%B9%8C%EB%94%A9%EA%B2%BD%EB%A7%A4%EC%84%B8%EA%B8%88">#상가빌딩경매세금</span><span
-                      class="tag"
-                      data-tag_link="%23%EC%98%88%EC%88%A0%EA%B1%B4%EC%84%A4%EA%B5%90%EC%9C%A1%EA%B0%95%EC%9D%98%ED%8A%B9%EA%B0%95">#예술건설교육강의특강</span>
-                  </div>
                 </div>
               </a>
             </article>
